@@ -9,21 +9,6 @@ namespace Scholarship_Employment
         MySqlConnectionStringBuilder _conn = null;
         MySqlCommand _command = null;
 
-        private string _lastname;
-        private string _firstname;
-        private string _middleInitial;
-        private string _suffix;
-
-        private string _sex;
-        private string _birthdate;
-        private string _address;
-        private string _qualification;
-        private string _tvi;
-        private string _district;
-        private string _city;
-        private string _scholarship_type;
-        private int _graduation_year;
-
         public Form2()
         {
             InitializeComponent();
@@ -36,89 +21,55 @@ namespace Scholarship_Employment
             _conn.UserID = "root";
             _conn.Password = "Mysql.Tesda2024";
             _conn.Database = "tesda_db";
-
-            lblFullname.Text = $"{_firstname} {_middleInitial} {_lastname} {_suffix}";
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Do you wish to submit this information?", "Confirm Submission", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
+            string last_name = txtLastname.Text;
+            string first_name = txtFirstname.Text;
+            string middle_initial = txtMiddleInitial.Text;
+            string suffix = txtSuffix.Text;
+
+            try
             {
-                SendToDatabase();
-            }
-        }
-
-        private void SendToDatabase()
-        {
-            dtBirthDate.Format = DateTimePickerFormat.Custom;
-            dtBirthDate.CustomFormat = "yyyy-MM-dd";
-
-            _sex = cbxSex.Text;
-            _birthdate = dtBirthDate.Text;
-            _address = rtxtAddress.Text;
-            _qualification = txtQualification.Text;
-            _tvi = txtTVI.Text;
-            _district = txtDistrict.Text;
-            _city = txtCity.Text;
-            _scholarship_type = cbxScholarType.Text;
-            _graduation_year = int.Parse(cbxGradYear.Text);
-
-            using (MySqlConnection connection = new MySqlConnection(_conn.ConnectionString))
-            {
-                try
+                using (MySqlConnection connection = new MySqlConnection(_conn.ConnectionString))
                 {
                     connection.Open();
 
-                    string sql = "CALL submit_data(@last_name, @first_name, @middle_initial, @suffix, @sex, @birthdate, @address, @qualification, @tvi_name, @district, @city, @scholarship_type, @graduation_year)";
+                    string sql = "CALL check_fullname(@last, @first)";
                     _command = new MySqlCommand(sql, connection);
-                    _command.Parameters.AddWithValue("@last_name", _lastname);
-                    _command.Parameters.AddWithValue("@first_name", _firstname);
-                    _command.Parameters.AddWithValue("@middle_initial", _middleInitial);
-                    _command.Parameters.AddWithValue("@suffix", _suffix);
-                    _command.Parameters.AddWithValue("@sex", _sex);
-                    _command.Parameters.AddWithValue("@birthdate", _birthdate);
-                    _command.Parameters.AddWithValue("@address", _address);
-                    _command.Parameters.AddWithValue("@qualification", _qualification);
-                    _command.Parameters.AddWithValue("@tvi_name", _tvi);
-                    _command.Parameters.AddWithValue("@district", _district);
-                    _command.Parameters.AddWithValue("@city", _city);
-                    _command.Parameters.AddWithValue("@scholarship_type", _scholarship_type);
-                    _command.Parameters.AddWithValue("@graduation_year", _graduation_year);
+                    _command.Parameters.AddWithValue("@last", last_name.ToUpper());
+                    _command.Parameters.AddWithValue("@first", first_name.ToUpper());
                     _command.ExecuteNonQuery();
 
-                    ClearResetAll();
+                    string readLastname = "";
+                    string readFirstname = "";
+                    MySqlDataReader reader = _command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        readLastname += $"{reader.GetString(0)}";
+                        readFirstname += $"{reader.GetString(1)}";
+                    }
+
+                    if (readLastname.Equals("") && readFirstname.Equals(""))
+                    {
+                        Form3 form = new Form3();
+                        form.SetFullname(last_name, first_name, middle_initial, suffix);
+                        form.Show();
+                        Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This name already exists.", "Existing Name");
+                    }
 
                     connection.Close();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "ERROR");
-                }
             }
-        }
-
-        public void SetFullname(string lastname, string firstname, string middleInitial, string suffix)
-        {
-            _lastname = lastname;
-            _firstname = firstname;
-            _middleInitial = middleInitial;
-            _suffix = suffix;
-        }
-
-        private void ClearResetAll()
-        {
-            dtBirthDate.Format = DateTimePickerFormat.Long;
-
-            cbxSex.ResetText();
-            dtBirthDate.Value = DateTime.Now;
-            rtxtAddress.Clear();
-            txtQualification.Clear();
-            txtTVI.Clear();
-            txtDistrict.Clear();
-            txtCity.Clear();
-            cbxScholarType.ResetText();
-            cbxGradYear.ResetText();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR");
+            }
         }
     }
 }
