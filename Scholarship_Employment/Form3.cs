@@ -6,9 +6,6 @@ namespace Scholarship_Employment
 {
     public partial class Form3 : Form
     {
-        MySqlConnectionStringBuilder _conn = null;
-        MySqlCommand _command = null;
-
         private string _lastname;
         private string _firstname;
         private string _middleInitial;
@@ -31,12 +28,6 @@ namespace Scholarship_Employment
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            _conn = new MySqlConnectionStringBuilder();
-            _conn.Server = "localhost";
-            _conn.UserID = "root";
-            _conn.Password = "Mysql.Tesda2024";
-            _conn.Database = "tesda_db";
-
             lblFullname.Text = $"{_firstname} {_middleInitial} {_lastname} {_suffix}";
         }
 
@@ -64,28 +55,30 @@ namespace Scholarship_Employment
             _scholarship_type = cbxScholarType.Text;
             _graduation_year = int.Parse(cbxGradYear.Text);
 
-            using (MySqlConnection connection = new MySqlConnection(_conn.ConnectionString))
+            using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
                 try
                 {
                     connection.Open();
 
+                    MySqlCommand command = null;
+
                     string sql = "CALL submit_data(@last_name, @first_name, @middle_initial, @suffix, @sex, @birthdate, @address, @qualification, @tvi_name, @district, @city, @scholarship_type, @graduation_year)";
-                    _command = new MySqlCommand(sql, connection);
-                    _command.Parameters.AddWithValue("@last_name", _lastname);
-                    _command.Parameters.AddWithValue("@first_name", _firstname);
-                    _command.Parameters.AddWithValue("@middle_initial", _middleInitial);
-                    _command.Parameters.AddWithValue("@suffix", _suffix);
-                    _command.Parameters.AddWithValue("@sex", _sex);
-                    _command.Parameters.AddWithValue("@birthdate", _birthdate);
-                    _command.Parameters.AddWithValue("@address", _address);
-                    _command.Parameters.AddWithValue("@qualification", _qualification);
-                    _command.Parameters.AddWithValue("@tvi_name", _tvi);
-                    _command.Parameters.AddWithValue("@district", _district);
-                    _command.Parameters.AddWithValue("@city", _city);
-                    _command.Parameters.AddWithValue("@scholarship_type", _scholarship_type);
-                    _command.Parameters.AddWithValue("@graduation_year", _graduation_year);
-                    _command.ExecuteNonQuery();
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@last_name", _lastname);
+                    command.Parameters.AddWithValue("@first_name", _firstname);
+                    command.Parameters.AddWithValue("@middle_initial", _middleInitial);
+                    command.Parameters.AddWithValue("@suffix", _suffix);
+                    command.Parameters.AddWithValue("@sex", _sex);
+                    command.Parameters.AddWithValue("@birthdate", _birthdate);
+                    command.Parameters.AddWithValue("@address", _address);
+                    command.Parameters.AddWithValue("@qualification", _qualification);
+                    command.Parameters.AddWithValue("@tvi_name", _tvi);
+                    command.Parameters.AddWithValue("@district", _district);
+                    command.Parameters.AddWithValue("@city", _city);
+                    command.Parameters.AddWithValue("@scholarship_type", _scholarship_type);
+                    command.Parameters.AddWithValue("@graduation_year", _graduation_year);
+                    command.ExecuteNonQuery();
 
                     ClearResetAll();
 

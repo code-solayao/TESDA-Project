@@ -32,13 +32,17 @@
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Create Data Entry");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Data Entries");
             this.treeView = new System.Windows.Forms.TreeView();
-            this.panel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // treeView
             // 
-            this.treeView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeView.Location = new System.Drawing.Point(12, 12);
+            this.treeView.BackColor = System.Drawing.SystemColors.Menu;
+            this.treeView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.treeView.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeView.Indent = 12;
+            this.treeView.ItemHeight = 24;
+            this.treeView.Location = new System.Drawing.Point(0, 0);
+            this.treeView.Margin = new System.Windows.Forms.Padding(4);
             this.treeView.Name = "treeView";
             treeNode1.Name = "ndDashboard";
             treeNode1.Text = "Dashboard";
@@ -50,27 +54,18 @@
             treeNode1,
             treeNode2,
             treeNode3});
-            this.treeView.Size = new System.Drawing.Size(250, 837);
+            this.treeView.Size = new System.Drawing.Size(200, 861);
             this.treeView.TabIndex = 0;
             this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
-            // 
-            // panel
-            // 
-            this.panel.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel.Cursor = System.Windows.Forms.Cursors.Default;
-            this.panel.Location = new System.Drawing.Point(278, 12);
-            this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(844, 837);
-            this.panel.TabIndex = 1;
+            this.treeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_NodeMouseDoubleClick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1134, 861);
-            this.Controls.Add(this.panel);
             this.Controls.Add(this.treeView);
+            this.IsMdiContainer = true;
             this.Name = "Form1";
             this.Text = "Scholarship Employment";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -81,7 +76,6 @@
         #endregion
 
         private System.Windows.Forms.TreeView treeView;
-        private System.Windows.Forms.Panel panel;
     }
 }
 

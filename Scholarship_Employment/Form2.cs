@@ -6,9 +6,6 @@ namespace Scholarship_Employment
 {
     public partial class Form2 : Form
     {
-        MySqlConnectionStringBuilder _conn = null;
-        MySqlCommand _command = null;
-
         public Form2()
         {
             InitializeComponent();
@@ -16,11 +13,7 @@ namespace Scholarship_Employment
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            _conn = new MySqlConnectionStringBuilder();
-            _conn.Server = "localhost";
-            _conn.UserID = "root";
-            _conn.Password = "Mysql.Tesda2024";
-            _conn.Database = "tesda_db";
+
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -32,19 +25,23 @@ namespace Scholarship_Employment
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(_conn.ConnectionString))
+                using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
                 {
                     connection.Open();
 
-                    string sql = "CALL check_fullname(@last, @first)";
-                    _command = new MySqlCommand(sql, connection);
-                    _command.Parameters.AddWithValue("@last", last_name.ToUpper());
-                    _command.Parameters.AddWithValue("@first", first_name.ToUpper());
-                    _command.ExecuteNonQuery();
+                    MySqlCommand command = null;
+
+                    string sql = "CALL check_fullname(@last, @first, @middle, @suffix)";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@last", last_name.ToUpper());
+                    command.Parameters.AddWithValue("@first", first_name.ToUpper());
+                    command.Parameters.AddWithValue("@middle", middle_initial.ToUpper());
+                    command.Parameters.AddWithValue("@suffix", suffix.ToUpper());
+                    command.ExecuteNonQuery();
 
                     string readLastname = "";
                     string readFirstname = "";
-                    MySqlDataReader reader = _command.ExecuteReader();
+                    MySqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
                         readLastname += $"{reader.GetString(0)}";
@@ -55,8 +52,10 @@ namespace Scholarship_Employment
                     {
                         Form3 form = new Form3();
                         form.SetFullname(last_name, first_name, middle_initial, suffix);
+
+                        Close();
+                        form.MdiParent = Form1.Instance;
                         form.Show();
-                        Hide();
                     }
                     else
                     {
