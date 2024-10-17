@@ -1,6 +1,6 @@
 ﻿namespace Scholarship_Employment
 {
-    partial class Form4
+    partial class FrmRecords
     {
         /// <summary>
         /// Required designer variable.
@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.listView1 = new System.Windows.Forms.ListView();
+            this.colId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colLastname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colFirstname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colMiddleInitial = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colSuffix = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnDetails = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.colSuffix = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listView1
@@ -58,6 +58,11 @@
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.ItemActivate += new System.EventHandler(this.listView1_ItemActivate);
             // 
+            // colId
+            // 
+            this.colId.Text = "ID";
+            this.colId.Width = 50;
+            // 
             // colLastname
             // 
             this.colLastname.Text = "Last name";
@@ -73,6 +78,11 @@
             this.colMiddleInitial.Text = "Middle Initial";
             this.colMiddleInitial.Width = 75;
             // 
+            // colSuffix
+            // 
+            this.colSuffix.Text = "Suffix";
+            this.colSuffix.Width = 75;
+            // 
             // btnDetails
             // 
             this.btnDetails.Location = new System.Drawing.Point(474, 12);
@@ -81,6 +91,7 @@
             this.btnDetails.TabIndex = 1;
             this.btnDetails.Text = "Details";
             this.btnDetails.UseVisualStyleBackColor = true;
+            this.btnDetails.Click += new System.EventHandler(this.btnDetails_Click);
             // 
             // btnUpdate
             // 
@@ -90,6 +101,7 @@
             this.btnUpdate.TabIndex = 2;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
@@ -100,17 +112,7 @@
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
-            // colSuffix
-            // 
-            this.colSuffix.Text = "Suffix";
-            this.colSuffix.Width = 75;
-            // 
-            // colId
-            // 
-            this.colId.Text = "ID";
-            this.colId.Width = 50;
-            // 
-            // Form4
+            // FrmRecords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -119,9 +121,9 @@
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnDetails);
             this.Controls.Add(this.listView1);
-            this.Name = "Form4";
-            this.Text = "All Data Entries";
-            this.Load += new System.EventHandler(this.Form4_Load);
+            this.Name = "FrmRecords";
+            this.Text = "All Records";
+            this.Load += new System.EventHandler(this.FrmRecords_Load);
             this.ResumeLayout(false);
 
         }

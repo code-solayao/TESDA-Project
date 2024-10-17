@@ -80,7 +80,11 @@ namespace Scholarship_Employment
                     command.Parameters.AddWithValue("@graduation_year", _graduation_year);
                     command.ExecuteNonQuery();
 
-                    ClearResetAll();
+                    // ClearResetAll();
+                    dtBirthDate.Format = DateTimePickerFormat.Long;
+                    MessageBox.Show("The information was submitted successfully.");
+
+                    Close();
 
                     connection.Close();
                 }

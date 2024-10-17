@@ -4,15 +4,22 @@ using System.Windows.Forms;
 
 namespace Scholarship_Employment
 {
-    public partial class Form4 : Form
+    public partial class FrmRecords : Form
     {
-        public Form4()
+        private FrmUpdate _frmUpdate;
+
+        public FrmRecords()
         {
             InitializeComponent();
+
+            _frmUpdate = new FrmUpdate();
+            _frmUpdate.OnRecordUpdate += FrmRecords_Load; // need a way to unsubscribe before closing this form
         }
 
-        private void Form4_Load(object sender, EventArgs e)
+        private void FrmRecords_Load(object sender, EventArgs e)
         {
+            listView1.Items.Clear();
+
             using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
                 try
@@ -48,14 +55,40 @@ namespace Scholarship_Employment
 
         private void listView1_ItemActivate(object sender, EventArgs e)
         {
+            ShowFrmDetails();
+        }
+
+        private void btnDetails_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 0) return;
+
+            ShowFrmDetails();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 0) return;
+
+            ShowFrmUpdate();
+        }
+
+        private void ShowFrmDetails()
+        {
             int id = int.Parse(listView1.SelectedItems[0].Text);
 
-            FrmDetails frmDetails = new FrmDetails();
-            frmDetails.Id = id;
+            FrmDetails frmDetails = new FrmDetails(id);
 
             frmDetails.MdiParent = Form1.Instance;
             frmDetails.Show();
-            //MessageBox.Show($"{listView1.SelectedItems[0].SubItems[1].Text} ");
+        }
+
+        private void ShowFrmUpdate()
+        {
+            int id = int.Parse(listView1.SelectedItems[0].Text);
+            _frmUpdate.Id = id;
+
+            _frmUpdate.MdiParent = Form1.Instance;
+            _frmUpdate.Show();
         }
     }
 }

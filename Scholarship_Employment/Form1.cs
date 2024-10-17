@@ -22,7 +22,7 @@ namespace Scholarship_Employment
 
         private void treeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            Form childForm = new Form();
+            Form childForm = null;
 
             if (e.Node.Name.Equals(treeView.Nodes[0].Name))
             {
@@ -34,8 +34,10 @@ namespace Scholarship_Employment
             }
             else if (e.Node.Name.Equals(treeView.Nodes[2].Name))
             {
-                childForm = new Form4();
+                childForm = new FrmRecords();
             }
+
+            if (childForm == null) return;
 
             childForm.MdiParent = this;
             //childForm.Text = childForm.Text + " - " + childFormNumber++;

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Dashboard");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Create Data Entry");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Data Entries");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Create Entry");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Data Records");
             this.treeView = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
@@ -47,14 +47,14 @@
             treeNode1.Name = "ndDashboard";
             treeNode1.Text = "Dashboard";
             treeNode2.Name = "ndCreateEntry";
-            treeNode2.Text = "Create Data Entry";
-            treeNode3.Name = "ndDataEntries";
-            treeNode3.Text = "Data Entries";
+            treeNode2.Text = "Create Entry";
+            treeNode3.Name = "ndDataRecords";
+            treeNode3.Text = "Data Records";
             this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
             treeNode3});
-            this.treeView.Size = new System.Drawing.Size(200, 861);
+            this.treeView.Size = new System.Drawing.Size(200, 561);
             this.treeView.TabIndex = 0;
             this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
             this.treeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_NodeMouseDoubleClick);
@@ -63,11 +63,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1134, 861);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.treeView);
             this.IsMdiContainer = true;
             this.Name = "Form1";
             this.Text = "Scholarship Employment";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 

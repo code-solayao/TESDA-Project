@@ -1,6 +1,6 @@
 ﻿namespace Scholarship_Employment
 {
-    partial class Form3
+    partial class FrmUpdate
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnSubmit = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dtBirthDate = new System.Windows.Forms.DateTimePicker();
@@ -47,21 +47,28 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.cbxGradYear = new System.Windows.Forms.ComboBox();
-            this.lblFullname = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtSuffix = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtMiddleInitial = new System.Windows.Forms.TextBox();
+            this.txtFirstname = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtLastname = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // btnSubmit
+            // btnUpdate
             // 
-            this.btnSubmit.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubmit.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnSubmit.Location = new System.Drawing.Point(54, 600);
-            this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(132, 48);
-            this.btnSubmit.TabIndex = 14;
-            this.btnSubmit.Text = "Submit";
-            this.btnSubmit.UseVisualStyleBackColor = false;
-            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            this.btnUpdate.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnUpdate.Location = new System.Drawing.Point(54, 520);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(132, 48);
+            this.btnUpdate.TabIndex = 14;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // label3
             // 
@@ -120,7 +127,7 @@
             this.cbxSex.Location = new System.Drawing.Point(54, 150);
             this.cbxSex.Name = "cbxSex";
             this.cbxSex.Size = new System.Drawing.Size(150, 28);
-            this.cbxSex.TabIndex = 2;
+            this.cbxSex.TabIndex = 5;
             // 
             // label7
             // 
@@ -162,7 +169,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(50, 440);
+            this.label9.Location = new System.Drawing.Point(750, 360);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(76, 20);
             this.label9.TabIndex = 22;
@@ -171,7 +178,7 @@
             // txtDistrict
             // 
             this.txtDistrict.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDistrict.Location = new System.Drawing.Point(54, 470);
+            this.txtDistrict.Location = new System.Drawing.Point(754, 390);
             this.txtDistrict.Name = "txtDistrict";
             this.txtDistrict.Size = new System.Drawing.Size(300, 26);
             this.txtDistrict.TabIndex = 10;
@@ -180,7 +187,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(400, 440);
+            this.label10.Location = new System.Drawing.Point(50, 440);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(49, 20);
             this.label10.TabIndex = 24;
@@ -189,7 +196,7 @@
             // txtCity
             // 
             this.txtCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCity.Location = new System.Drawing.Point(404, 470);
+            this.txtCity.Location = new System.Drawing.Point(54, 470);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(300, 26);
             this.txtCity.TabIndex = 11;
@@ -203,7 +210,7 @@
             "PWSP",
             "PESFA",
             "TTSP"});
-            this.cbxScholarType.Location = new System.Drawing.Point(54, 550);
+            this.cbxScholarType.Location = new System.Drawing.Point(404, 470);
             this.cbxScholarType.Name = "cbxScholarType";
             this.cbxScholarType.Size = new System.Drawing.Size(300, 28);
             this.cbxScholarType.TabIndex = 12;
@@ -212,7 +219,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(50, 520);
+            this.label11.Location = new System.Drawing.Point(400, 440);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(177, 20);
             this.label11.TabIndex = 25;
@@ -222,7 +229,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(400, 520);
+            this.label12.Location = new System.Drawing.Point(750, 440);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(163, 20);
             this.label12.TabIndex = 27;
@@ -235,27 +242,96 @@
             this.cbxGradYear.Items.AddRange(new object[] {
             "2023",
             "2024"});
-            this.cbxGradYear.Location = new System.Drawing.Point(404, 550);
+            this.cbxGradYear.Location = new System.Drawing.Point(754, 470);
             this.cbxGradYear.Name = "cbxGradYear";
             this.cbxGradYear.Size = new System.Drawing.Size(150, 28);
             this.cbxGradYear.TabIndex = 13;
             // 
-            // lblFullname
+            // label13
             // 
-            this.lblFullname.AutoSize = true;
-            this.lblFullname.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFullname.Location = new System.Drawing.Point(50, 40);
-            this.lblFullname.Name = "lblFullname";
-            this.lblFullname.Size = new System.Drawing.Size(509, 31);
-            this.lblFullname.TabIndex = 28;
-            this.lblFullname.Text = "first_name middle_initial last_name suffix";
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(950, 40);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 20);
+            this.label13.TabIndex = 38;
+            this.label13.Text = "Suffix: ";
             // 
-            // Form3
+            // txtSuffix
+            // 
+            this.txtSuffix.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSuffix.Location = new System.Drawing.Point(954, 70);
+            this.txtSuffix.Name = "txtSuffix";
+            this.txtSuffix.Size = new System.Drawing.Size(150, 26);
+            this.txtSuffix.TabIndex = 4;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(750, 40);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(118, 20);
+            this.label6.TabIndex = 37;
+            this.label6.Text = "Middle initial: ";
+            // 
+            // txtMiddleInitial
+            // 
+            this.txtMiddleInitial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMiddleInitial.Location = new System.Drawing.Point(754, 70);
+            this.txtMiddleInitial.Name = "txtMiddleInitial";
+            this.txtMiddleInitial.Size = new System.Drawing.Size(150, 26);
+            this.txtMiddleInitial.TabIndex = 3;
+            // 
+            // txtFirstname
+            // 
+            this.txtFirstname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFirstname.Location = new System.Drawing.Point(404, 70);
+            this.txtFirstname.Name = "txtFirstname";
+            this.txtFirstname.Size = new System.Drawing.Size(300, 26);
+            this.txtFirstname.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(50, 40);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(103, 20);
+            this.label2.TabIndex = 35;
+            this.label2.Text = "Last name: ";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(400, 40);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(104, 20);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "First name: ";
+            // 
+            // txtLastname
+            // 
+            this.txtLastname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLastname.Location = new System.Drawing.Point(54, 70);
+            this.txtLastname.Name = "txtLastname";
+            this.txtLastname.Size = new System.Drawing.Size(300, 26);
+            this.txtLastname.TabIndex = 1;
+            // 
+            // FrmUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(764, 681);
-            this.Controls.Add(this.lblFullname);
+            this.ClientSize = new System.Drawing.Size(1159, 601);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.txtSuffix);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtMiddleInitial);
+            this.Controls.Add(this.txtFirstname);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtLastname);
             this.Controls.Add(this.cbxGradYear);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.cbxScholarType);
@@ -274,17 +350,17 @@
             this.Controls.Add(this.dtBirthDate);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnSubmit);
-            this.Name = "Form3";
-            this.Text = "Scholarship Employment";
-            this.Load += new System.EventHandler(this.Form3_Load);
+            this.Controls.Add(this.btnUpdate);
+            this.Name = "FrmUpdate";
+            this.Text = "Update Information";
+            this.Load += new System.EventHandler(this.FrmUpdate_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button btnSubmit;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dtBirthDate;
@@ -303,6 +379,13 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cbxGradYear;
-        private System.Windows.Forms.Label lblFullname;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtSuffix;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtMiddleInitial;
+        private System.Windows.Forms.TextBox txtFirstname;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtLastname;
     }
 }
