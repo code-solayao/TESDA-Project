@@ -12,11 +12,34 @@ namespace Scholarship_Employment
         {
             InitializeComponent();
 
-            _frmUpdate = new FrmUpdate();
-            _frmUpdate.OnRecordUpdate += FrmRecords_Load; // need a way to unsubscribe before closing this form
+            _frmUpdate = new FrmUpdate(this);
         }
 
         private void FrmRecords_Load(object sender, EventArgs e)
+        {
+            RefreshAllRecords();
+        }
+
+        private void listView1_ItemActivate(object sender, EventArgs e)
+        {
+            ShowFrmDetails();
+        }
+
+        private void btnDetails_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 0) return;
+
+            ShowFrmDetails();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 0) return;
+
+            ShowFrmUpdate();
+        }
+
+        public void RefreshAllRecords()
         {
             listView1.Items.Clear();
 
@@ -28,7 +51,7 @@ namespace Scholarship_Employment
 
                     MySqlCommand command = null;
 
-                    string sql = "SELECT id, last_name, first_name, middle_initial, suffix FROM scholarship_employment;";
+                    string sql = $"SELECT id, last_name, first_name, middle_initial, suffix FROM {Utilities.DbTable};";
                     command = new MySqlCommand(sql, connection);
 
                     MySqlDataReader reader = command.ExecuteReader();
@@ -53,42 +76,27 @@ namespace Scholarship_Employment
             }
         }
 
-        private void listView1_ItemActivate(object sender, EventArgs e)
-        {
-            ShowFrmDetails();
-        }
-
-        private void btnDetails_Click(object sender, EventArgs e)
-        {
-            if (listView1.SelectedItems.Count == 0) return;
-
-            ShowFrmDetails();
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            if (listView1.SelectedItems.Count == 0) return;
-
-            ShowFrmUpdate();
-        }
-
         private void ShowFrmDetails()
         {
             int id = int.Parse(listView1.SelectedItems[0].Text);
 
-            FrmDetails frmDetails = new FrmDetails(id);
+            FrmDetails frmDetails = new FrmDetails();
+            frmDetails.Id = id;
 
-            frmDetails.MdiParent = Form1.Instance;
-            frmDetails.Show();
+            frmDetails.ShowDialog();
         }
 
         private void ShowFrmUpdate()
         {
             int id = int.Parse(listView1.SelectedItems[0].Text);
-            _frmUpdate.Id = id;
 
-            _frmUpdate.MdiParent = Form1.Instance;
-            _frmUpdate.Show();
+            if (_frmUpdate.IsDisposed)
+            {
+                _frmUpdate = new FrmUpdate(this);
+            }
+
+            _frmUpdate.Id = id;
+            _frmUpdate.ShowDialog();
         }
     }
 }

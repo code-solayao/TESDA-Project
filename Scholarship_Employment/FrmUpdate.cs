@@ -22,11 +22,13 @@ namespace Scholarship_Employment
         private string _scholarship_type;
         private int _graduation_year;
 
-        public event EventHandler OnRecordUpdate;
+        private FrmRecords _frmRecords;
 
-        public FrmUpdate()
+        public FrmUpdate(FrmRecords frmRecords)
         {
             InitializeComponent();
+
+            _frmRecords = frmRecords;
         }
 
         private void FrmUpdate_Load(object sender, EventArgs e)
@@ -84,11 +86,16 @@ namespace Scholarship_Employment
             }
         }
 
+        private void FrmUpdate_Disposed(object sender, EventArgs e)
+        {
+            _frmRecords.RefreshAllRecords();
+        }
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (CheckIfNoChanges)
             {
-                Hide();
+                Close();
                 return;
             }
 
@@ -137,8 +144,7 @@ namespace Scholarship_Employment
                     dtBirthDate.Format = DateTimePickerFormat.Long;
                     MessageBox.Show("The information was updated successfully.");
 
-                    OnRecordUpdate?.Invoke(this, EventArgs.Empty);
-                    Hide();
+                    Close();
 
                     connection.Close();
                 }

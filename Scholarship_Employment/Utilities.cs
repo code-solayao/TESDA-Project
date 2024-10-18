@@ -17,5 +17,7 @@ namespace Scholarship_Employment
                 return mySqlConnectionStringBuilder.ConnectionString;
             }
         }
+
+        public static string DbTable { get => "scholarship_employment"; }
     }
 }
