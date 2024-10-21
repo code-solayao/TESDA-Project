@@ -40,6 +40,11 @@ namespace Scholarship_Employment
             }
         }
 
+        private void cbxDistrict_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DistrictToCitySelection();
+        }
+
         private void SendToDatabase()
         {
             dtBirthDate.Format = DateTimePickerFormat.Custom;
@@ -50,8 +55,8 @@ namespace Scholarship_Employment
             _address = rtxtAddress.Text;
             _qualification = txtQualification.Text;
             _tvi = txtTVI.Text;
-            _district = txtDistrict.Text;
-            _city = txtCity.Text;
+            _district = cbxDistrict.Text;
+            _city = cbxCity.Text;
             _scholarship_type = cbxScholarType.Text;
             _graduation_year = int.Parse(cbxGradYear.Text);
 
@@ -103,19 +108,51 @@ namespace Scholarship_Employment
             _suffix = suffix;
         }
 
-        private void ClearResetAll()
+        private void DistrictToCitySelection()
         {
-            dtBirthDate.Format = DateTimePickerFormat.Long;
+            cbxCity.Items.Clear();
 
-            cbxSex.ResetText();
-            dtBirthDate.Value = DateTime.Now;
-            rtxtAddress.Clear();
-            txtQualification.Clear();
-            txtTVI.Clear();
-            txtDistrict.Clear();
-            txtCity.Clear();
-            cbxScholarType.ResetText();
-            cbxGradYear.ResetText();
+            string selectedItem = cbxDistrict.SelectedItem.ToString();
+            switch (selectedItem)
+            {
+                case "CMNV":
+                    cbxCity.Items.Add("Caloocan City");
+                    cbxCity.Items.Add("Malabon City");
+                    cbxCity.Items.Add("Navotas City");
+                    cbxCity.Items.Add("Valenzuela City");
+                    break;
+
+                case "MLA":
+                    cbxCity.Items.Add("Manila");
+                    break;
+
+                case "MPLTP":
+                    cbxCity.Items.Add("Las Piñas City");
+                    cbxCity.Items.Add("Muntinlupa City");
+                    cbxCity.Items.Add("Parañaque City");
+                    cbxCity.Items.Add("Taguig City");
+                    break;
+
+                case "PMMS":
+                    cbxCity.Items.Add("Mandaluyong City");
+                    cbxCity.Items.Add("Marikina City");
+                    cbxCity.Items.Add("Pasig City");
+                    cbxCity.Items.Add("San Juan City");
+                    break;
+
+                case "PASMAK":
+                    cbxCity.Items.Add("Makati City");
+                    cbxCity.Items.Add("Pasig City");
+                    break;
+
+                case "QC":
+                    cbxCity.Items.Add("Quezon City");
+                    break;
+
+                default:
+                    cbxCity.Items.Clear();
+                    break;
+            }
         }
     }
 }

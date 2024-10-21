@@ -354,7 +354,6 @@
             this.Name = "FrmUpdate";
             this.Text = "Update Information";
             this.Load += new System.EventHandler(this.FrmUpdate_Load);
-            this.Disposed += new System.EventHandler(this.FrmUpdate_Disposed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

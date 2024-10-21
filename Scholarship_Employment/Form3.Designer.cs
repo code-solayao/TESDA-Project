@@ -40,14 +40,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtTVI = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtDistrict = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtCity = new System.Windows.Forms.TextBox();
             this.cbxScholarType = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.cbxGradYear = new System.Windows.Forms.ComboBox();
             this.lblFullname = new System.Windows.Forms.Label();
+            this.cbxDistrict = new System.Windows.Forms.ComboBox();
+            this.cbxCity = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnSubmit
@@ -168,14 +168,6 @@
             this.label9.TabIndex = 22;
             this.label9.Text = "District: ";
             // 
-            // txtDistrict
-            // 
-            this.txtDistrict.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDistrict.Location = new System.Drawing.Point(54, 470);
-            this.txtDistrict.Name = "txtDistrict";
-            this.txtDistrict.Size = new System.Drawing.Size(300, 26);
-            this.txtDistrict.TabIndex = 10;
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -185,14 +177,6 @@
             this.label10.Size = new System.Drawing.Size(49, 20);
             this.label10.TabIndex = 24;
             this.label10.Text = "City: ";
-            // 
-            // txtCity
-            // 
-            this.txtCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCity.Location = new System.Drawing.Point(404, 470);
-            this.txtCity.Name = "txtCity";
-            this.txtCity.Size = new System.Drawing.Size(300, 26);
-            this.txtCity.TabIndex = 11;
             // 
             // cbxScholarType
             // 
@@ -250,20 +234,51 @@
             this.lblFullname.TabIndex = 28;
             this.lblFullname.Text = "first_name middle_initial last_name suffix";
             // 
+            // cbxDistrict
+            // 
+            this.cbxDistrict.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxDistrict.FormattingEnabled = true;
+            this.cbxDistrict.Items.AddRange(new object[] {
+            "CMNV",
+            "MLA",
+            "MPLTP",
+            "PMMS",
+            "PASMAK",
+            "QC"});
+            this.cbxDistrict.Location = new System.Drawing.Point(54, 470);
+            this.cbxDistrict.Name = "cbxDistrict";
+            this.cbxDistrict.Size = new System.Drawing.Size(300, 28);
+            this.cbxDistrict.TabIndex = 29;
+            this.cbxDistrict.SelectedIndexChanged += new System.EventHandler(this.cbxDistrict_SelectedIndexChanged);
+            // 
+            // cbxCity
+            // 
+            this.cbxCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxCity.FormattingEnabled = true;
+            this.cbxCity.Items.AddRange(new object[] {
+            "STEP",
+            "PWSP",
+            "PESFA",
+            "TTSP"});
+            this.cbxCity.Location = new System.Drawing.Point(404, 470);
+            this.cbxCity.Name = "cbxCity";
+            this.cbxCity.Size = new System.Drawing.Size(300, 28);
+            this.cbxCity.TabIndex = 30;
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(764, 681);
+            this.Controls.Add(this.cbxCity);
+            this.Controls.Add(this.cbxDistrict);
             this.Controls.Add(this.lblFullname);
             this.Controls.Add(this.cbxGradYear);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.cbxScholarType);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.txtCity);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.txtDistrict);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtTVI);
             this.Controls.Add(this.label7);
@@ -296,13 +311,13 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtTVI;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtDistrict;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtCity;
         private System.Windows.Forms.ComboBox cbxScholarType;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cbxGradYear;
         private System.Windows.Forms.Label lblFullname;
+        private System.Windows.Forms.ComboBox cbxDistrict;
+        private System.Windows.Forms.ComboBox cbxCity;
     }
 }

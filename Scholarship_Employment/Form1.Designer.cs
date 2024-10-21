@@ -31,6 +31,7 @@
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Dashboard");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Create Entry");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Data Records");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Load Excel Data");
             this.treeView = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
@@ -50,10 +51,13 @@
             treeNode2.Text = "Create Entry";
             treeNode3.Name = "ndDataRecords";
             treeNode3.Text = "Data Records";
+            treeNode4.Name = "ndLoadExcelData";
+            treeNode4.Text = "Load Excel Data";
             this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
-            treeNode3});
+            treeNode3,
+            treeNode4});
             this.treeView.Size = new System.Drawing.Size(200, 561);
             this.treeView.TabIndex = 0;
             this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);

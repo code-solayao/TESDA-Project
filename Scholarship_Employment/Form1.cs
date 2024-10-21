@@ -1,5 +1,4 @@
-﻿using MySqlConnector;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace Scholarship_Employment
@@ -35,6 +34,10 @@ namespace Scholarship_Employment
             else if (e.Node.Name.Equals(treeView.Nodes[2].Name))
             {
                 childForm = new FrmRecords();
+            }
+            else if (e.Node.Name.Equals(treeView.Nodes[3].Name))
+            {
+                childForm = new FrmExcelData();
             }
 
             if (childForm == null) return;
