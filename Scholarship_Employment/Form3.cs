@@ -33,10 +33,11 @@ namespace Scholarship_Employment
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Do you wish to submit this information?", "Confirm Submission", MessageBoxButtons.YesNo);
+            string message = "Do you wish to submit this information?";
+            DialogResult result = MessageBox.Show(message, "Confirm Submission", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                SendToDatabase();
+                InsertToDatabaseTable();
             }
         }
 
@@ -45,7 +46,7 @@ namespace Scholarship_Employment
             DistrictToCitySelection();
         }
 
-        private void SendToDatabase()
+        private void InsertToDatabaseTable()
         {
             dtBirthDate.Format = DateTimePickerFormat.Custom;
             dtBirthDate.CustomFormat = "yyyy-MM-dd";
@@ -85,11 +86,14 @@ namespace Scholarship_Employment
                     command.Parameters.AddWithValue("@graduation_year", _graduation_year);
                     command.ExecuteNonQuery();
 
-                    // ClearResetAll();
                     dtBirthDate.Format = DateTimePickerFormat.Long;
-                    MessageBox.Show("The information was submitted successfully.");
 
                     Close();
+                    FrmRecords form = new FrmRecords();
+                    form.MdiParent = Form1.Instance;
+                    form.Show();
+
+                    MessageBox.Show("The information was submitted successfully.");
 
                     connection.Close();
                 }

@@ -6,6 +6,11 @@ namespace Scholarship_Employment
 {
     public partial class Form2 : Form
     {
+        private string _last_name;
+        private string _first_name;
+        private string _middle_initial;
+        private string _suffix;
+
         public Form2()
         {
             InitializeComponent();
@@ -18,14 +23,16 @@ namespace Scholarship_Employment
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            string last_name = txtLastname.Text;
-            string first_name = txtFirstname.Text;
-            string middle_initial = txtMiddleInitial.Text;
-            string suffix = txtSuffix.Text;
+            _last_name = txtLastname.Text;
+            _first_name = txtFirstname.Text;
+            _middle_initial = txtMiddleInitial.Text;
+            _suffix = txtSuffix.Text;
 
-            try
+            if (CheckEmptyFields()) return;
+
+            using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
-                using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
+                try
                 {
                     connection.Open();
 
@@ -33,10 +40,10 @@ namespace Scholarship_Employment
 
                     string sql = "CALL check_fullname(@last, @first, @middle, @suffix)";
                     command = new MySqlCommand(sql, connection);
-                    command.Parameters.AddWithValue("@last", last_name.ToUpper());
-                    command.Parameters.AddWithValue("@first", first_name.ToUpper());
-                    command.Parameters.AddWithValue("@middle", middle_initial.ToUpper());
-                    command.Parameters.AddWithValue("@suffix", suffix.ToUpper());
+                    command.Parameters.AddWithValue("@last", _last_name.ToUpper());
+                    command.Parameters.AddWithValue("@first", _first_name.ToUpper());
+                    command.Parameters.AddWithValue("@middle", _middle_initial.ToUpper());
+                    command.Parameters.AddWithValue("@suffix", _suffix.ToUpper());
                     command.ExecuteNonQuery();
 
                     string readLastname = "";
@@ -51,7 +58,7 @@ namespace Scholarship_Employment
                     if (readLastname.Equals("") && readFirstname.Equals(""))
                     {
                         Form3 form = new Form3();
-                        form.SetFullname(last_name, first_name, middle_initial, suffix);
+                        form.SetFullname(_last_name, _first_name, _middle_initial, _suffix);
 
                         Close();
                         form.MdiParent = Form1.Instance;
@@ -64,11 +71,31 @@ namespace Scholarship_Employment
 
                     connection.Close();
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "ERROR");
+                }
             }
-            catch (Exception ex)
+
+        }
+
+        private bool CheckEmptyFields()
+        {
+            if (_last_name.Equals("") || _first_name.Equals(""))
             {
-                MessageBox.Show(ex.Message, "ERROR");
+                if (_last_name.Equals(""))
+                {
+                    MessageBox.Show("Last name is required.", "Empty Field");
+                }
+                else if (_first_name.Equals(""))
+                {
+                    MessageBox.Show("First name is required.", "Empty Field");
+                }
+
+                return true;
             }
+
+            return false;
         }
     }
 }

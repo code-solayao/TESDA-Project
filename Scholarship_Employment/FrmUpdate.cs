@@ -22,9 +22,13 @@ namespace Scholarship_Employment
         private string _scholarship_type;
         private int _graduation_year;
 
+        private FrmRecords _frmRecords;
+
         public FrmUpdate(FrmRecords frmRecords)
         {
             InitializeComponent();
+
+            _frmRecords = frmRecords;
         }
 
         private void FrmUpdate_Load(object sender, EventArgs e)
@@ -86,10 +90,21 @@ namespace Scholarship_Employment
         {
             if (CheckIfNoChanges)
             {
+                MessageBox.Show("No changes were made in this information.");
                 Close();
                 return;
             }
 
+            string message = "Do you wish to update this information?";
+            DialogResult result = MessageBox.Show(message, "Confirm Update", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                UpdateDatabaseTable();
+            }
+        }
+
+        private void UpdateDatabaseTable()
+        {
             dtBirthDate.Format = DateTimePickerFormat.Custom;
             dtBirthDate.CustomFormat = "yyyy-MM-dd";
             _lastname = txtLastname.Text;
@@ -133,6 +148,8 @@ namespace Scholarship_Employment
                     command.ExecuteNonQuery();
 
                     dtBirthDate.Format = DateTimePickerFormat.Long;
+
+                    _frmRecords.RefreshAllRecords();
                     MessageBox.Show("The information was updated successfully.");
 
                     Close();

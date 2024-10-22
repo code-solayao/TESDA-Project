@@ -29,24 +29,36 @@ namespace Scholarship_Employment
 
         private void btnDetails_Click(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count == 0) return;
+            if (listView.SelectedItems.Count == 0) return;
 
             ShowFrmDetails();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count == 0) return;
+            if (listView.SelectedItems.Count == 0) return;
 
             ShowFrmUpdate();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (listView.SelectedItems.Count == 0) return;
+
             DialogResult result = MessageBox.Show("Are you sure to delete this record?", "Delete Record", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 DeleteRecord();
+            }
+        }
+
+        private void btnClearAllRecords_Click(object sender, EventArgs e)
+        {
+            string message = "The following action cannot be undone. Are you sure to clear all records here?";
+            DialogResult result = MessageBox.Show(message, "Clear All Records", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                ClearAllRecords();
             }
         }
 
@@ -57,8 +69,7 @@ namespace Scholarship_Employment
 
         public void RefreshAllRecords()
         {
-            listView1.Items.Clear();
-
+            listView.Items.Clear();
             using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
                 try
@@ -74,11 +85,13 @@ namespace Scholarship_Employment
                     int i = 0;
                     while (reader.Read())
                     {
-                        listView1.Items.Add(reader.GetInt32(0).ToString());
-                        listView1.Items[i].SubItems.Add(reader.GetString(1));
-                        listView1.Items[i].SubItems.Add(reader.GetString(2));
-                        listView1.Items[i].SubItems.Add(reader.GetString(3));
-                        listView1.Items[i].SubItems.Add(reader.GetString(4));
+                        listView.Items.Add(reader.GetInt32(0).ToString());
+                        listView.Items[i].SubItems.Add(reader.GetString(1));
+                        listView.Items[i].SubItems.Add(reader.GetString(2));
+                        listView.Items[i].SubItems.Add(reader.GetString(3));
+                        listView.Items[i].SubItems.Add(reader.GetString(4));
+
+                        listView.Items[i].Font = new System.Drawing.Font("Segoe UI Light", 12f);
 
                         i++;
                     }
@@ -94,7 +107,7 @@ namespace Scholarship_Employment
 
         private void ShowFrmDetails()
         {
-            _selectedID = int.Parse(listView1.SelectedItems[0].Text);
+            _selectedID = int.Parse(listView.SelectedItems[0].Text);
 
             FrmDetails frmDetails = new FrmDetails();
             frmDetails.Id = _selectedID;
@@ -104,7 +117,7 @@ namespace Scholarship_Employment
 
         private void ShowFrmUpdate()
         {
-            _selectedID = int.Parse(listView1.SelectedItems[0].Text);
+            _selectedID = int.Parse(listView.SelectedItems[0].Text);
 
             if (_frmUpdate.IsDisposed)
             {
@@ -117,7 +130,7 @@ namespace Scholarship_Employment
 
         private void DeleteRecord()
         {
-            _selectedID = int.Parse(listView1.SelectedItems[0].Text);
+            _selectedID = int.Parse(listView.SelectedItems[0].Text);
 
             using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
@@ -137,6 +150,32 @@ namespace Scholarship_Employment
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void ClearAllRecords()
+        {
+            using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    MySqlCommand command = null;
+
+                    string sql = $"TRUNCATE TABLE {Utilities.DbTable}";
+                    command = new MySqlCommand(sql, connection);
+                    command.ExecuteNonQuery();
+
+                    RefreshAllRecords();
+                    MessageBox.Show("All records have been cleared successfully.");
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "ERROR");
                 }
             }
         }
