@@ -46,6 +46,8 @@ namespace Scholarship_Employment
             DistrictToCitySelection();
         }
 
+        #region Functions
+
         private void InsertToDatabaseTable()
         {
             dtBirthDate.Format = DateTimePickerFormat.Custom;
@@ -158,5 +160,8 @@ namespace Scholarship_Employment
                     break;
             }
         }
+
+        #endregion
+
     }
 }

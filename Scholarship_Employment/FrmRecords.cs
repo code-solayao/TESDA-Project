@@ -20,6 +20,8 @@ namespace Scholarship_Employment
         private void FrmRecords_Load(object sender, EventArgs e)
         {
             RefreshAllRecords();
+
+            cbxSearchBy.SelectedIndex = 0;
         }
 
         private void listView1_ItemActivate(object sender, EventArgs e)
@@ -67,6 +69,13 @@ namespace Scholarship_Employment
             RefreshAllRecords();
         }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            SearchRecord();
+        }
+
+        #region Functions
+
         public void RefreshAllRecords()
         {
             listView.Items.Clear();
@@ -80,6 +89,90 @@ namespace Scholarship_Employment
 
                     string sql = $"SELECT id, last_name, first_name, middle_initial, suffix FROM {Utilities.DbTable};";
                     command = new MySqlCommand(sql, connection);
+
+                    MySqlDataReader reader = command.ExecuteReader();
+                    int i = 0;
+                    while (reader.Read())
+                    {
+                        listView.Items.Add(reader.GetInt32(0).ToString());
+                        listView.Items[i].SubItems.Add(reader.GetString(1));
+                        listView.Items[i].SubItems.Add(reader.GetString(2));
+                        listView.Items[i].SubItems.Add(reader.GetString(3));
+                        listView.Items[i].SubItems.Add(reader.GetString(4));
+
+                        listView.Items[i].Font = new System.Drawing.Font("Segoe UI Light", 12f);
+
+                        i++;
+                    }
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void SearchRecord()
+        {
+            listView.Items.Clear();
+
+            string input = txtSearch.Text;
+            string selectedItem = cbxSearchBy.SelectedItem.ToString();
+
+            using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    MySqlCommand command = null;
+                    string sql = "SELECT * FROM scholarship_employment;";
+
+                    switch (selectedItem)
+                    {
+                        case "ID":
+                            int inputNum = int.Parse(input);
+                            sql = $"CALL search_id(@input)";
+
+                            command = new MySqlCommand(sql, connection);
+                            command.Parameters.AddWithValue("@input", inputNum);
+                            break;
+
+                        case "Last name":
+                            sql = $"CALL search_lastname(@input)";
+
+                            command = new MySqlCommand(sql, connection);
+                            command.Parameters.AddWithValue("@input", input);
+                            break;
+
+                        case "First name":
+                            sql = $"CALL search_firstname(@input)";
+
+                            command = new MySqlCommand(sql, connection);
+                            command.Parameters.AddWithValue("@input", input);
+                            break;
+
+                        case "Middle initial":
+                            sql = $"CALL search_middleinitial(@input)";
+
+                            command = new MySqlCommand(sql, connection);
+                            command.Parameters.AddWithValue("@input", input);
+                            break;
+
+                        case "Suffix":
+                            sql = $"CALL search_suffix(@input)";
+
+                            command = new MySqlCommand(sql, connection);
+                            command.Parameters.AddWithValue("@input", input);
+                            break;
+
+                        default:
+                            sql = "SELECT * FROM scholarship_employment;";
+                            command = new MySqlCommand(sql, connection);
+                            break;
+                    }
 
                     MySqlDataReader reader = command.ExecuteReader();
                     int i = 0;
@@ -179,5 +272,7 @@ namespace Scholarship_Employment
                 }
             }
         }
+
+        #endregion
     }
 }
