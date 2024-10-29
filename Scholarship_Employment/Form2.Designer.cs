@@ -37,6 +37,7 @@
             this.txtMiddleInitial = new System.Windows.Forms.TextBox();
             this.txtSuffix = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.chkMidInitFormat = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // txtLastname
@@ -55,7 +56,7 @@
             this.btnSubmit.Location = new System.Drawing.Point(54, 360);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(132, 48);
-            this.btnSubmit.TabIndex = 14;
+            this.btnSubmit.TabIndex = 6;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = false;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
@@ -112,7 +113,7 @@
             this.txtSuffix.Location = new System.Drawing.Point(54, 310);
             this.txtSuffix.Name = "txtSuffix";
             this.txtSuffix.Size = new System.Drawing.Size(150, 26);
-            this.txtSuffix.TabIndex = 4;
+            this.txtSuffix.TabIndex = 5;
             // 
             // label13
             // 
@@ -124,11 +125,23 @@
             this.label13.TabIndex = 29;
             this.label13.Text = "Suffix: ";
             // 
+            // chkMidInitFormat
+            // 
+            this.chkMidInitFormat.AutoSize = true;
+            this.chkMidInitFormat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkMidInitFormat.Location = new System.Drawing.Point(225, 235);
+            this.chkMidInitFormat.Name = "chkMidInitFormat";
+            this.chkMidInitFormat.Size = new System.Drawing.Size(105, 19);
+            this.chkMidInitFormat.TabIndex = 4;
+            this.chkMidInitFormat.Text = "Proper Format";
+            this.chkMidInitFormat.UseVisualStyleBackColor = true;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(421, 445);
+            this.Controls.Add(this.chkMidInitFormat);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtSuffix);
             this.Controls.Add(this.label6);
@@ -157,5 +170,6 @@
         private System.Windows.Forms.TextBox txtMiddleInitial;
         private System.Windows.Forms.TextBox txtSuffix;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.CheckBox chkMidInitFormat;
     }
 }

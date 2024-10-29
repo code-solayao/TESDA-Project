@@ -21,6 +21,8 @@ namespace Scholarship_Employment
         private string _city;
         private string _scholarship_type;
         private int _graduation_year;
+        private string _verification_status;
+        private string _employment_status;
 
         private FrmRecords _frmRecords;
 
@@ -32,6 +34,46 @@ namespace Scholarship_Employment
         }
 
         private void FrmUpdate_Load(object sender, EventArgs e)
+        {
+            LoadInformation();
+            DistrictToCitySelection();
+        }
+
+        private void cbxDistrict_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DistrictToCitySelection();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            /* if (CheckIfNoChanges)
+            {
+                MessageBox.Show("No changes were made in this information.");
+                Close();
+                return;
+            }
+            */
+            string message = "Do you wish to update this information?";
+            DialogResult result = MessageBox.Show(message, "Confirm Update", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                UpdateDatabaseTable();
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            string message = "Are you sure to cancel this process?";
+            DialogResult result = MessageBox.Show(message, "Cancel Update", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Close();
+            }
+        }
+
+        #region Functions
+
+        private void LoadInformation()
         {
             using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
@@ -57,8 +99,8 @@ namespace Scholarship_Employment
                         rtxtAddress.Text = reader.GetString(7);
                         txtQualification.Text = reader.GetString(8);
                         txtTVI.Text = reader.GetString(9);
-                        txtDistrict.Text = reader.GetString(10);
-                        txtCity.Text = reader.GetString(11);
+                        cbxDistrict.Text = reader.GetString(10);
+                        cbxCity.Text = reader.GetString(11);
                         cbxScholarType.Text = reader.GetString(12);
                         cbxGradYear.Text = reader.GetInt32(13).ToString();
                     }
@@ -72,8 +114,8 @@ namespace Scholarship_Employment
                     _address = rtxtAddress.Text;
                     _qualification = txtQualification.Text;
                     _tvi = txtTVI.Text;
-                    _district = txtDistrict.Text;
-                    _city = txtCity.Text;
+                    _district = cbxDistrict.Text;
+                    _city = cbxCity.Text;
                     _scholarship_type = cbxScholarType.Text;
                     _graduation_year = int.Parse(cbxGradYear.Text);
 
@@ -86,20 +128,50 @@ namespace Scholarship_Employment
             }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void DistrictToCitySelection()
         {
-            if (CheckIfNoChanges)
-            {
-                MessageBox.Show("No changes were made in this information.");
-                Close();
-                return;
-            }
+            cbxCity.Items.Clear();
 
-            string message = "Do you wish to update this information?";
-            DialogResult result = MessageBox.Show(message, "Confirm Update", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
+            string selectedItem = cbxDistrict.SelectedItem.ToString();
+            switch (selectedItem)
             {
-                UpdateDatabaseTable();
+                case "CMNV":
+                    cbxCity.Items.Add("Caloocan City");
+                    cbxCity.Items.Add("Malabon City");
+                    cbxCity.Items.Add("Navotas City");
+                    cbxCity.Items.Add("Valenzuela City");
+                    break;
+
+                case "MLA":
+                    cbxCity.Items.Add("Manila");
+                    break;
+
+                case "MPLTP":
+                    cbxCity.Items.Add("Las Piñas City");
+                    cbxCity.Items.Add("Muntinlupa City");
+                    cbxCity.Items.Add("Parañaque City");
+                    cbxCity.Items.Add("Taguig City");
+                    break;
+
+                case "PMMS":
+                    cbxCity.Items.Add("Mandaluyong City");
+                    cbxCity.Items.Add("Marikina City");
+                    cbxCity.Items.Add("Pasig City");
+                    cbxCity.Items.Add("San Juan City");
+                    break;
+
+                case "PASMAK":
+                    cbxCity.Items.Add("Makati City");
+                    cbxCity.Items.Add("Pasig City");
+                    break;
+
+                case "QC":
+                    cbxCity.Items.Add("Quezon City");
+                    break;
+
+                default:
+                    cbxCity.Items.Clear();
+                    break;
             }
         }
 
@@ -107,6 +179,7 @@ namespace Scholarship_Employment
         {
             dtBirthDate.Format = DateTimePickerFormat.Custom;
             dtBirthDate.CustomFormat = "yyyy-MM-dd";
+
             _lastname = txtLastname.Text;
             _firstname = txtFirstname.Text;
             _middleInitial = txtMiddleInitial.Text;
@@ -116,10 +189,12 @@ namespace Scholarship_Employment
             _address = rtxtAddress.Text;
             _qualification = txtQualification.Text;
             _tvi = txtTVI.Text;
-            _district = txtDistrict.Text;
-            _city = txtCity.Text;
+            _district = cbxDistrict.Text;
+            _city = cbxCity.Text;
             _scholarship_type = cbxScholarType.Text;
             _graduation_year = int.Parse(cbxGradYear.Text);
+            _verification_status = cbxVerifyStatus.Text;
+            _employment_status = cbxEmployStatus.Text;
 
             using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
@@ -129,7 +204,9 @@ namespace Scholarship_Employment
 
                     MySqlCommand command = null;
 
-                    string sql = "CALL update_data(@id, @last_name, @first_name, @middle_initial, @suffix, @sex, @birthdate, @address, @qualification, @tvi_name, @district, @city, @scholarship_type, @graduation_year)";
+                    string sql = "CALL update_data(@id, @last_name, @first_name, @middle_initial, @suffix, @sex, @birthdate, @address, " +
+                        "@qualification, @tvi_name, @district, @city, @scholarship_type, @graduation_year, @verification_status, " +
+                        "@employment_status)";
                     command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@id", Id);
                     command.Parameters.AddWithValue("@last_name", _lastname);
@@ -145,6 +222,8 @@ namespace Scholarship_Employment
                     command.Parameters.AddWithValue("@city", _city);
                     command.Parameters.AddWithValue("@scholarship_type", _scholarship_type);
                     command.Parameters.AddWithValue("@graduation_year", _graduation_year);
+                    command.Parameters.AddWithValue("@verification_status", _verification_status);
+                    command.Parameters.AddWithValue("@employment_status", _employment_status);
                     command.ExecuteNonQuery();
 
                     dtBirthDate.Format = DateTimePickerFormat.Long;
@@ -177,13 +256,15 @@ namespace Scholarship_Employment
                 if (rtxtAddress.Text.Equals(_address)) x++;
                 if (txtQualification.Text.Equals(_qualification)) x++;
                 if (txtTVI.Text.Equals(_tvi)) x++;
-                if (txtDistrict.Text.Equals(_district)) x++;
-                if (txtCity.Text.Equals(_city)) x++;
+                if (cbxDistrict.Text.Equals(_district)) x++;
+                if (cbxCity.Text.Equals(_city)) x++;
                 if (cbxScholarType.Text.Equals(_scholarship_type)) x++;
                 if (cbxGradYear.Text.Equals(_graduation_year.ToString())) x++;
 
                 return x == 13;
             }
         }
+
+        #endregion
     }
 }

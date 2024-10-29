@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "1", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)))),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Last name", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)))),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "First name", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)))),
@@ -67,15 +67,15 @@
             this.listView.FullRowSelect = true;
             this.listView.HideSelection = false;
             this.listView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem7});
+            listViewItem2});
             this.listView.Location = new System.Drawing.Point(12, 72);
             this.listView.MultiSelect = false;
             this.listView.Name = "listView";
             this.listView.Size = new System.Drawing.Size(729, 437);
-            this.listView.TabIndex = 0;
+            this.listView.TabIndex = 4;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
-            this.listView.ItemActivate += new System.EventHandler(this.listView1_ItemActivate);
+            this.listView.ItemActivate += new System.EventHandler(this.listView_ItemActivate);
             // 
             // colId
             // 
@@ -112,7 +112,7 @@
             this.btnDetails.Location = new System.Drawing.Point(747, 72);
             this.btnDetails.Name = "btnDetails";
             this.btnDetails.Size = new System.Drawing.Size(75, 23);
-            this.btnDetails.TabIndex = 1;
+            this.btnDetails.TabIndex = 5;
             this.btnDetails.Text = "Details";
             this.btnDetails.UseVisualStyleBackColor = true;
             this.btnDetails.Click += new System.EventHandler(this.btnDetails_Click);
@@ -122,7 +122,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(747, 101);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdate.TabIndex = 2;
+            this.btnUpdate.TabIndex = 6;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -135,7 +135,7 @@
             this.btnDelete.Location = new System.Drawing.Point(747, 130);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 30);
-            this.btnDelete.TabIndex = 3;
+            this.btnDelete.TabIndex = 7;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -148,7 +148,7 @@
             this.btnRefresh.Location = new System.Drawing.Point(747, 251);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
-            this.btnRefresh.TabIndex = 4;
+            this.btnRefresh.TabIndex = 9;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
@@ -161,7 +161,7 @@
             this.btnClearAllRecords.Location = new System.Drawing.Point(747, 166);
             this.btnClearAllRecords.Name = "btnClearAllRecords";
             this.btnClearAllRecords.Size = new System.Drawing.Size(75, 50);
-            this.btnClearAllRecords.TabIndex = 5;
+            this.btnClearAllRecords.TabIndex = 8;
             this.btnClearAllRecords.Text = "Clear All Records";
             this.btnClearAllRecords.UseVisualStyleBackColor = false;
             this.btnClearAllRecords.Click += new System.EventHandler(this.btnClearAllRecords_Click);
@@ -182,7 +182,7 @@
             this.txtSearch.Location = new System.Drawing.Point(74, 17);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(367, 26);
-            this.txtSearch.TabIndex = 7;
+            this.txtSearch.TabIndex = 1;
             // 
             // cbxSearchBy
             // 
@@ -197,7 +197,7 @@
             this.cbxSearchBy.Location = new System.Drawing.Point(480, 17);
             this.cbxSearchBy.Name = "cbxSearchBy";
             this.cbxSearchBy.Size = new System.Drawing.Size(261, 26);
-            this.cbxSearchBy.TabIndex = 8;
+            this.cbxSearchBy.TabIndex = 2;
             this.cbxSearchBy.Text = "Search by";
             // 
             // btnSearch
@@ -207,8 +207,8 @@
             this.btnSearch.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSearch.Location = new System.Drawing.Point(747, 15);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 33);
-            this.btnSearch.TabIndex = 9;
+            this.btnSearch.Size = new System.Drawing.Size(75, 30);
+            this.btnSearch.TabIndex = 3;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);

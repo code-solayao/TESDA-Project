@@ -24,7 +24,7 @@ namespace Scholarship_Employment
             cbxSearchBy.SelectedIndex = 0;
         }
 
-        private void listView1_ItemActivate(object sender, EventArgs e)
+        private void listView_ItemActivate(object sender, EventArgs e)
         {
             ShowFrmDetails();
         }
@@ -191,9 +191,13 @@ namespace Scholarship_Employment
 
                     connection.Close();
                 }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show(ex.Message, "Format Exception");
+                }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message, "ERROR");
                 }
             }
         }

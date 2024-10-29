@@ -1,5 +1,6 @@
 ﻿using MySqlConnector;
 using System;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Scholarship_Employment
@@ -29,6 +30,8 @@ namespace Scholarship_Employment
             _suffix = txtSuffix.Text;
 
             if (CheckEmptyFields()) return;
+
+            if (chkMidInitFormat.Checked) MiddleInitialFormat();
 
             using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
@@ -96,6 +99,20 @@ namespace Scholarship_Employment
             }
 
             return false;
+        }
+
+        private void MiddleInitialFormat()
+        {
+            if (_middle_initial.Length == 2 && _middle_initial.Contains(".")) return;
+
+            int removalLength = _middle_initial.Length - 2;
+            StringBuilder builder = new StringBuilder(_middle_initial.ToUpper());
+            builder.Remove(2, removalLength);
+
+            string i = builder.ToString().Substring(1, 1);
+            builder.Replace(i, ".");
+
+            _middle_initial = builder.ToString();
         }
     }
 }

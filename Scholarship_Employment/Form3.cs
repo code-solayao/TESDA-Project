@@ -71,7 +71,8 @@ namespace Scholarship_Employment
 
                     MySqlCommand command = null;
 
-                    string sql = "CALL submit_data(@last_name, @first_name, @middle_initial, @suffix, @sex, @birthdate, @address, @qualification, @tvi_name, @district, @city, @scholarship_type, @graduation_year)";
+                    string sql = "CALL submit_data(@last_name, @first_name, @middle_initial, @suffix, @sex, @birthdate, @address, " +
+                        "@qualification, @tvi_name, @district, @city, @scholarship_type, @graduation_year)";
                     command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@last_name", _lastname);
                     command.Parameters.AddWithValue("@first_name", _firstname);
