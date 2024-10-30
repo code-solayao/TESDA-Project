@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
 using System.Data;
 using System.Data.OleDb;
 using System.Windows.Forms;
@@ -12,6 +13,12 @@ namespace Scholarship_Employment
             InitializeComponent();
         }
 
+        private void FrmExcelData_Load(object sender, EventArgs e)
+        {
+            listView.Items.Clear();
+            // ((Control)tabPage2).Enabled = false;
+        }
+
         private void btnLoadExcelData_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -19,8 +26,34 @@ namespace Scholarship_Employment
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 string filePath = ofd.FileName;
-                txtFilePath.Text = filePath;
+                lblFilePath.Text = filePath;
                 LoadExcelData(filePath, "yes");
+            }
+
+            using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    MySqlCommand command = null;
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "EROOR");
+                }
+            }
+        }
+
+        private void btnReadData_Click(object sender, EventArgs e)
+        {
+            string msg = "";
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                msg = dataGridView.Rows[column.Index].Cells[0].Value.ToString();
+                listView.Items.Add(msg);
             }
         }
 
@@ -52,6 +85,7 @@ namespace Scholarship_Employment
                     MessageBox.Show(ex.Message, "ERROR");
                 }
             }
+
         }
     }
 }

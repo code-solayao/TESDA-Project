@@ -21,6 +21,7 @@ namespace Scholarship_Employment
         private string _city;
         private string _scholarship_type;
         private int _graduation_year;
+
         private string _verification_status;
         private string _employment_status;
 
@@ -103,6 +104,9 @@ namespace Scholarship_Employment
                         cbxCity.Text = reader.GetString(11);
                         cbxScholarType.Text = reader.GetString(12);
                         cbxGradYear.Text = reader.GetInt32(13).ToString();
+
+                        cbxVerifyStatus.Text = reader.GetString(14);
+                        cbxEmployStatus.Text = reader.GetString(15);
                     }
 
                     _lastname = txtLastname.Text;
@@ -118,6 +122,9 @@ namespace Scholarship_Employment
                     _city = cbxCity.Text;
                     _scholarship_type = cbxScholarType.Text;
                     _graduation_year = int.Parse(cbxGradYear.Text);
+
+                    _verification_status = cbxVerifyStatus.Text;
+                    _employment_status = cbxEmployStatus.Text;
 
                     connection.Close();
                 }
