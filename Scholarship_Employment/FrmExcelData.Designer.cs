@@ -34,9 +34,8 @@
             this.btnLoadExcelData = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.lblFilePath = new System.Windows.Forms.Label();
-            this.btnReadData = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listView = new System.Windows.Forms.ListView();
             this.colDistrict = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -64,6 +63,7 @@
             this.colJobTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDateEmploy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEmployStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnReadData = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -114,6 +114,16 @@
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // lblFilePath
+            // 
+            this.lblFilePath.AutoSize = true;
+            this.lblFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFilePath.Location = new System.Drawing.Point(135, 544);
+            this.lblFilePath.Name = "lblFilePath";
+            this.lblFilePath.Size = new System.Drawing.Size(71, 20);
+            this.lblFilePath.TabIndex = 2;
+            this.lblFilePath.Text = "File Path";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.listView);
@@ -125,29 +135,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // lblFilePath
-            // 
-            this.lblFilePath.AutoSize = true;
-            this.lblFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFilePath.Location = new System.Drawing.Point(135, 544);
-            this.lblFilePath.Name = "lblFilePath";
-            this.lblFilePath.Size = new System.Drawing.Size(71, 20);
-            this.lblFilePath.TabIndex = 2;
-            this.lblFilePath.Text = "File Path";
-            // 
-            // btnReadData
-            // 
-            this.btnReadData.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnReadData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReadData.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnReadData.Location = new System.Drawing.Point(6, 536);
-            this.btnReadData.Name = "btnReadData";
-            this.btnReadData.Size = new System.Drawing.Size(123, 36);
-            this.btnReadData.TabIndex = 2;
-            this.btnReadData.Text = "Read Imported Data";
-            this.btnReadData.UseVisualStyleBackColor = false;
-            this.btnReadData.Click += new System.EventHandler(this.btnReadData_Click);
             // 
             // listView
             // 
@@ -320,6 +307,19 @@
             // 
             this.colEmployStatus.Text = "Status of Employment";
             this.colEmployStatus.Width = 150;
+            // 
+            // btnReadData
+            // 
+            this.btnReadData.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnReadData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReadData.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnReadData.Location = new System.Drawing.Point(6, 536);
+            this.btnReadData.Name = "btnReadData";
+            this.btnReadData.Size = new System.Drawing.Size(123, 36);
+            this.btnReadData.TabIndex = 2;
+            this.btnReadData.Text = "Read Imported Data";
+            this.btnReadData.UseVisualStyleBackColor = false;
+            this.btnReadData.Click += new System.EventHandler(this.btnReadData_Click);
             // 
             // FrmExcelData
             // 

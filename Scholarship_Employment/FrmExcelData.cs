@@ -1,6 +1,7 @@
 ﻿using MySqlConnector;
 using System;
 using System.Data;
+using System.Data.Common;
 using System.Data.OleDb;
 using System.Windows.Forms;
 
@@ -29,8 +30,33 @@ namespace Scholarship_Employment
                 lblFilePath.Text = filePath;
                 LoadExcelData(filePath, "yes");
             }
+        }
 
-            using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
+        private void btnReadData_Click(object sender, EventArgs e)
+        {
+            int rows = dataGridView.RowCount;
+            int columns = dataGridView.ColumnCount;
+            string cell = string.Empty;
+            for (int i = 0; i < rows; i++)
+            {
+                var rowValue = dataGridView.Rows[i].Cells[0].Value;
+                if (rowValue == null) break;
+
+                cell = rowValue.ToString();
+                listView.Items.Add(cell);
+
+                for (int j = 1; j <= columns; j++)
+                {
+                    var colValue = dataGridView.Rows[i].Cells[j].Value;
+                    cell = colValue.ToString();
+
+                    listView.Items[i].SubItems.Add(cell);
+                }
+
+                listView.Items[i].Font = new System.Drawing.Font("Segoe UI Light", 12f);
+            }
+
+            /* using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
                 try
                 {
@@ -42,19 +68,9 @@ namespace Scholarship_Employment
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "EROOR");
+                    MessageBox.Show(ex.Message, "ERROR");
                 }
-            }
-        }
-
-        private void btnReadData_Click(object sender, EventArgs e)
-        {
-            string msg = "";
-            foreach (DataGridViewColumn column in dataGridView.Columns)
-            {
-                msg = dataGridView.Rows[column.Index].Cells[0].Value.ToString();
-                listView.Items.Add(msg);
-            }
+            } */
         }
 
         private void LoadExcelData(string filePath, string hdr)
