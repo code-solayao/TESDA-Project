@@ -1,7 +1,5 @@
-﻿using MySqlConnector;
-using System;
+﻿using System;
 using System.Data;
-using System.Data.Common;
 using System.Data.OleDb;
 using System.Windows.Forms;
 
@@ -45,7 +43,7 @@ namespace Scholarship_Employment
                 cell = rowValue.ToString();
                 listView.Items.Add(cell);
 
-                for (int j = 1; j <= columns; j++)
+                for (int j = 1; j < columns; j++)
                 {
                     var colValue = dataGridView.Rows[i].Cells[j].Value;
                     cell = colValue.ToString();
