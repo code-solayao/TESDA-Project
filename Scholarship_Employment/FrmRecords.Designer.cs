@@ -42,6 +42,8 @@
             this.colMiddleInitial = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colSuffix = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEmpStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnDetails = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -62,7 +64,9 @@
             this.colFirstname,
             this.colMiddleInitial,
             this.colSuffix,
-            this.colEmpStatus});
+            this.colEmpStatus,
+            this.columnHeader1,
+            this.columnHeader2});
             this.listView.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView.FullRowSelect = true;
             this.listView.HideSelection = false;
@@ -106,6 +110,14 @@
             // 
             this.colEmpStatus.Text = "Status of Employment";
             this.colEmpStatus.Width = 200;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Year of Graduation";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Qualification Title";
             // 
             // btnDetails
             // 
@@ -193,7 +205,10 @@
             "Last name",
             "First name",
             "Middle initial",
-            "Suffix"});
+            "Suffix",
+            "Status of Employment",
+            "Year of Graduation",
+            "Qualification Title"});
             this.cbxSearchBy.Location = new System.Drawing.Point(480, 17);
             this.cbxSearchBy.Name = "cbxSearchBy";
             this.cbxSearchBy.Size = new System.Drawing.Size(261, 26);
@@ -240,7 +255,7 @@
             this.Controls.Add(this.btnDetails);
             this.Controls.Add(this.listView);
             this.Name = "FrmRecords";
-            this.Text = "All Records";
+            this.Text = "Records Table";
             this.Load += new System.EventHandler(this.FrmRecords_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -266,5 +281,7 @@
         private System.Windows.Forms.ComboBox cbxSearchBy;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }

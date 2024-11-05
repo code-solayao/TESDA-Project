@@ -29,7 +29,7 @@ namespace Scholarship_Employment
             }
             else if (e.Node.Name.Equals(treeView.Nodes[1].Name))
             {
-                childForm = new Form2();
+                childForm = new FrmFullName();
             }
             else if (e.Node.Name.Equals(treeView.Nodes[2].Name))
             {

@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace Scholarship_Employment
 {
-    public partial class Form3 : Form
+    public partial class FrmCreate : Form
     {
         private string _lastname;
         private string _firstname;
@@ -21,14 +21,14 @@ namespace Scholarship_Employment
         private string _scholarship_type;
         private int _graduation_year;
 
-        public Form3()
+        public FrmCreate()
         {
             InitializeComponent();
         }
 
-        private void Form3_Load(object sender, EventArgs e)
+        private void FrmCreate_Load(object sender, EventArgs e)
         {
-            lblFullname.Text = $"{_firstname} {_middleInitial} {_lastname} {_suffix}";
+            txtNameDisplay.Text = $"{_firstname} {_middleInitial} {_lastname} {_suffix}";
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -163,6 +163,5 @@ namespace Scholarship_Employment
         }
 
         #endregion
-
     }
 }

@@ -79,17 +79,17 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="FrmFullName.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="FrmFullName.Designer.cs">
+      <DependentUpon>FrmFullName.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form3.cs">
+    <Compile Include="FrmCreate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form3.Designer.cs">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <Compile Include="FrmCreate.Designer.cs">
+      <DependentUpon>FrmCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmExcelData.cs">
       <SubType>Form</SubType>
@@ -121,11 +121,11 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="FrmFullName.resx">
+      <DependentUpon>FrmFullName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <EmbeddedResource Include="FrmCreate.resx">
+      <DependentUpon>FrmCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmExcelData.resx">
       <DependentUpon>FrmExcelData.cs</DependentUpon>
@@ -161,6 +161,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pictures\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

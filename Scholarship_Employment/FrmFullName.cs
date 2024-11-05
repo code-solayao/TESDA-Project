@@ -5,33 +5,33 @@ using System.Windows.Forms;
 
 namespace Scholarship_Employment
 {
-    public partial class Form2 : Form
+    public partial class FrmFullName : Form
     {
         private string _last_name;
         private string _first_name;
-        private string _middle_initial;
-        private string _suffix;
+        private string _middle_name;
+        private string _extension_name;
 
-        public Form2()
+        public FrmFullName()
         {
             InitializeComponent();
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void btnProceed_Click(object sender, EventArgs e)
         {
-
+            CheckExistingName();
         }
 
-        private void btnSubmit_Click(object sender, EventArgs e)
+        private void CheckExistingName()
         {
-            _last_name = txtLastname.Text;
-            _first_name = txtFirstname.Text;
-            _middle_initial = txtMiddleInitial.Text;
-            _suffix = txtSuffix.Text;
+            _last_name = txtLastName.Text;
+            _first_name = txtFirstName.Text;
+            _middle_name = txtMiddleName.Text;
+            _extension_name = cbxExtnName.Text;
 
             if (CheckEmptyFields()) return;
 
-            if (chkMidInitFormat.Checked) MiddleInitialFormat();
+            CheckExtensionName();
 
             using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
@@ -41,12 +41,12 @@ namespace Scholarship_Employment
 
                     MySqlCommand command = null;
 
-                    string sql = "CALL check_fullname(@last, @first, @middle, @suffix)";
+                    string sql = "CALL check_fullname(@last, @first, @middle, @extn)";
                     command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@last", _last_name.ToUpper());
                     command.Parameters.AddWithValue("@first", _first_name.ToUpper());
-                    command.Parameters.AddWithValue("@middle", _middle_initial.ToUpper());
-                    command.Parameters.AddWithValue("@suffix", _suffix.ToUpper());
+                    command.Parameters.AddWithValue("@middle", _middle_name.ToUpper());
+                    command.Parameters.AddWithValue("@extn", _extension_name.ToUpper());
                     command.ExecuteNonQuery();
 
                     string readLastname = "";
@@ -60,8 +60,8 @@ namespace Scholarship_Employment
 
                     if (readLastname.Equals("") && readFirstname.Equals(""))
                     {
-                        Form3 form = new Form3();
-                        form.SetFullname(_last_name, _first_name, _middle_initial, _suffix);
+                        FrmCreate form = new FrmCreate();
+                        form.SetFullname(_last_name, _first_name, _middle_name, _extension_name);
 
                         Close();
                         form.MdiParent = Form1.Instance;
@@ -79,7 +79,6 @@ namespace Scholarship_Employment
                     MessageBox.Show(ex.Message, "ERROR");
                 }
             }
-
         }
 
         private bool CheckEmptyFields()
@@ -101,18 +100,9 @@ namespace Scholarship_Employment
             return false;
         }
 
-        private void MiddleInitialFormat()
+        private void CheckExtensionName()
         {
-            if (_middle_initial.Length == 2 && _middle_initial.Contains(".")) return;
-
-            int removalLength = _middle_initial.Length - 2;
-            StringBuilder builder = new StringBuilder(_middle_initial.ToUpper());
-            builder.Remove(2, removalLength);
-
-            string i = builder.ToString().Substring(1, 1);
-            builder.Replace(i, ".");
-
-            _middle_initial = builder.ToString();
+            if (cbxExtnName.Text.Equals("None")) _extension_name = string.Empty;
         }
     }
 }

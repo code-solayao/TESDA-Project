@@ -15,7 +15,6 @@ namespace Scholarship_Employment
         private void FrmExcelData_Load(object sender, EventArgs e)
         {
             listView.Items.Clear();
-            // ((Control)tabPage2).Enabled = false;
         }
 
         private void btnLoadExcelData_Click(object sender, EventArgs e)
