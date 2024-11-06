@@ -32,18 +32,20 @@
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "1", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)))),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Last name", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)))),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "First name", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)))),
-            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "M.I.", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)))),
-            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Sfx.", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)))),
-            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Employed")}, -1);
+            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Middle name", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)))),
+            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Sr.", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)))),
+            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Unemployed"),
+            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "2024"),
+            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Qualification NC I")}, -1);
             this.listView = new System.Windows.Forms.ListView();
             this.colId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colLastname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colFirstname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colMiddleInitial = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colSuffix = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colMiddleName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colExtnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEmpStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colGradYear = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colQualification = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnDetails = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -62,11 +64,11 @@
             this.colId,
             this.colLastname,
             this.colFirstname,
-            this.colMiddleInitial,
-            this.colSuffix,
+            this.colMiddleName,
+            this.colExtnName,
             this.colEmpStatus,
-            this.columnHeader1,
-            this.columnHeader2});
+            this.colGradYear,
+            this.colQualification});
             this.listView.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView.FullRowSelect = true;
             this.listView.HideSelection = false;
@@ -75,7 +77,7 @@
             this.listView.Location = new System.Drawing.Point(12, 72);
             this.listView.MultiSelect = false;
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(729, 437);
+            this.listView.Size = new System.Drawing.Size(1052, 539);
             this.listView.TabIndex = 4;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -83,7 +85,7 @@
             // 
             // colId
             // 
-            this.colId.Text = "ID";
+            this.colId.Text = "No.";
             this.colId.Width = 50;
             // 
             // colLastname
@@ -96,32 +98,34 @@
             this.colFirstname.Text = "First name";
             this.colFirstname.Width = 150;
             // 
-            // colMiddleInitial
+            // colMiddleName
             // 
-            this.colMiddleInitial.Text = "Middle Initial";
-            this.colMiddleInitial.Width = 140;
+            this.colMiddleName.Text = "Middle Name";
+            this.colMiddleName.Width = 140;
             // 
-            // colSuffix
+            // colExtnName
             // 
-            this.colSuffix.Text = "Suffix";
-            this.colSuffix.Width = 75;
+            this.colExtnName.Text = "Ext.";
+            this.colExtnName.Width = 75;
             // 
             // colEmpStatus
             // 
             this.colEmpStatus.Text = "Status of Employment";
             this.colEmpStatus.Width = 200;
             // 
-            // columnHeader1
+            // colGradYear
             // 
-            this.columnHeader1.Text = "Year of Graduation";
+            this.colGradYear.Text = "Year of Graduation";
+            this.colGradYear.Width = 165;
             // 
-            // columnHeader2
+            // colQualification
             // 
-            this.columnHeader2.Text = "Qualification Title";
+            this.colQualification.Text = "Qualification Title";
+            this.colQualification.Width = 167;
             // 
             // btnDetails
             // 
-            this.btnDetails.Location = new System.Drawing.Point(747, 72);
+            this.btnDetails.Location = new System.Drawing.Point(1070, 72);
             this.btnDetails.Name = "btnDetails";
             this.btnDetails.Size = new System.Drawing.Size(75, 23);
             this.btnDetails.TabIndex = 5;
@@ -131,7 +135,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(747, 101);
+            this.btnUpdate.Location = new System.Drawing.Point(1070, 101);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 6;
@@ -144,7 +148,7 @@
             this.btnDelete.BackColor = System.Drawing.Color.IndianRed;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDelete.Location = new System.Drawing.Point(747, 130);
+            this.btnDelete.Location = new System.Drawing.Point(1070, 130);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 30);
             this.btnDelete.TabIndex = 7;
@@ -157,7 +161,7 @@
             this.btnRefresh.BackColor = System.Drawing.SystemColors.Control;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefresh.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRefresh.Location = new System.Drawing.Point(747, 251);
+            this.btnRefresh.Location = new System.Drawing.Point(1070, 251);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 9;
@@ -170,7 +174,7 @@
             this.btnClearAllRecords.BackColor = System.Drawing.Color.Tomato;
             this.btnClearAllRecords.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearAllRecords.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnClearAllRecords.Location = new System.Drawing.Point(747, 166);
+            this.btnClearAllRecords.Location = new System.Drawing.Point(1070, 166);
             this.btnClearAllRecords.Name = "btnClearAllRecords";
             this.btnClearAllRecords.Size = new System.Drawing.Size(75, 50);
             this.btnClearAllRecords.TabIndex = 8;
@@ -201,11 +205,11 @@
             this.cbxSearchBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxSearchBy.FormattingEnabled = true;
             this.cbxSearchBy.Items.AddRange(new object[] {
-            "ID",
+            "Record number",
             "Last name",
             "First name",
-            "Middle initial",
-            "Suffix",
+            "Middle name",
+            "Extension name",
             "Status of Employment",
             "Year of Graduation",
             "Qualification Title"});
@@ -242,7 +246,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 522);
+            this.ClientSize = new System.Drawing.Size(1157, 623);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.cbxSearchBy);
@@ -267,11 +271,11 @@
         private System.Windows.Forms.ListView listView;
         private System.Windows.Forms.ColumnHeader colLastname;
         private System.Windows.Forms.ColumnHeader colFirstname;
-        private System.Windows.Forms.ColumnHeader colMiddleInitial;
+        private System.Windows.Forms.ColumnHeader colMiddleName;
         private System.Windows.Forms.Button btnDetails;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.ColumnHeader colSuffix;
+        private System.Windows.Forms.ColumnHeader colExtnName;
         private System.Windows.Forms.ColumnHeader colId;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnClearAllRecords;
@@ -281,7 +285,7 @@
         private System.Windows.Forms.ComboBox cbxSearchBy;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader colGradYear;
+        private System.Windows.Forms.ColumnHeader colQualification;
     }
 }

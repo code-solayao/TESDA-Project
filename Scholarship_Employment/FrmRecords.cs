@@ -87,7 +87,7 @@ namespace Scholarship_Employment
 
                     MySqlCommand command = null;
 
-                    string sql = $"SELECT id, last_name, first_name, middle_initial, suffix FROM {Utilities.DbTable};";
+                    string sql = $"SELECT id, last_name, first_name, middle_name, extension_name, graduation_year FROM {Utilities.DbTable};";
                     command = new MySqlCommand(sql, connection);
 
                     MySqlDataReader reader = command.ExecuteReader();
@@ -99,6 +99,9 @@ namespace Scholarship_Employment
                         listView.Items[i].SubItems.Add(reader.GetString(2));
                         listView.Items[i].SubItems.Add(reader.GetString(3));
                         listView.Items[i].SubItems.Add(reader.GetString(4));
+                        listView.Items[i].SubItems.Add("");
+                        listView.Items[i].SubItems.Add(reader.GetInt32(5).ToString());
+                        listView.Items[i].SubItems.Add("");
 
                         listView.Items[i].Font = new System.Drawing.Font("Segoe UI Light", 12f);
 
@@ -132,7 +135,7 @@ namespace Scholarship_Employment
 
                     switch (selectedItem)
                     {
-                        case "ID":
+                        case "Record number":
                             int inputNum = int.Parse(input);
                             sql = $"CALL search_id(@input)";
 
@@ -154,14 +157,14 @@ namespace Scholarship_Employment
                             command.Parameters.AddWithValue("@input", input);
                             break;
 
-                        case "Middle initial":
+                        case "Middle name":
                             sql = $"CALL search_middleinitial(@input)";
 
                             command = new MySqlCommand(sql, connection);
                             command.Parameters.AddWithValue("@input", input);
                             break;
 
-                        case "Suffix":
+                        case "Extension name":
                             sql = $"CALL search_suffix(@input)";
 
                             command = new MySqlCommand(sql, connection);

@@ -19,7 +19,7 @@ namespace Scholarship_Employment
             }
         }
 
-        public static string DbTable { get => "scholarship_employment"; }
+        public static string DbTable { get => "initial_records"; }
 
         // FrmFullName
 

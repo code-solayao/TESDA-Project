@@ -6,14 +6,16 @@ namespace Scholarship_Employment
 {
     public partial class FrmCreate : Form
     {
-        private string _lastname;
-        private string _firstname;
-        private string _middleInitial;
-        private string _suffix;
+        private string _last_name;
+        private string _first_name;
+        private string _middle_name;
+        private string _extension_name;
 
         private string _sex;
         private string _birthdate;
+        private string _contact_number;
         private string _address;
+        private string _email;
         private string _qualification;
         private string _tvi;
         private string _district;
@@ -28,7 +30,7 @@ namespace Scholarship_Employment
 
         private void FrmCreate_Load(object sender, EventArgs e)
         {
-            txtNameDisplay.Text = $"{_firstname} {_middleInitial} {_lastname} {_suffix}";
+            txtNameDisplay.Text = $"{_first_name} {_middle_name} {_last_name} {_extension_name}";
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -50,12 +52,16 @@ namespace Scholarship_Employment
 
         private void InsertToDatabaseTable()
         {
+            if (!ContactNumberFormat()) return;
+
             dtBirthDate.Format = DateTimePickerFormat.Custom;
             dtBirthDate.CustomFormat = "yyyy-MM-dd";
 
             _sex = cbxSex.Text;
             _birthdate = dtBirthDate.Text;
+            _contact_number = txtContactNum.Text;
             _address = rtxtAddress.Text;
+            _email = txtEmail.Text;
             _qualification = txtQualification.Text;
             _tvi = txtTVI.Text;
             _district = cbxDistrict.Text;
@@ -71,18 +77,20 @@ namespace Scholarship_Employment
 
                     MySqlCommand command = null;
 
-                    string sql = "CALL submit_data(@last_name, @first_name, @middle_initial, @suffix, @sex, @birthdate, @address, " +
-                        "@qualification, @tvi_name, @district, @city, @scholarship_type, @graduation_year)";
+                    string sql = "CALL submit_data(@last_name, @first_name, @middle_name, @extension_name, @sex, @birthdate, " +
+                        "@contact_number, @address, @email, @qualification, @tvi, @district, @city, @scholarship_type, @graduation_year)";
                     command = new MySqlCommand(sql, connection);
-                    command.Parameters.AddWithValue("@last_name", _lastname);
-                    command.Parameters.AddWithValue("@first_name", _firstname);
-                    command.Parameters.AddWithValue("@middle_initial", _middleInitial);
-                    command.Parameters.AddWithValue("@suffix", _suffix);
+                    command.Parameters.AddWithValue("@last_name", _last_name);
+                    command.Parameters.AddWithValue("@first_name", _first_name);
+                    command.Parameters.AddWithValue("@middle_name", _middle_name);
+                    command.Parameters.AddWithValue("@extension_name", _extension_name);
                     command.Parameters.AddWithValue("@sex", _sex);
                     command.Parameters.AddWithValue("@birthdate", _birthdate);
+                    command.Parameters.AddWithValue("@contact_number", _contact_number);
                     command.Parameters.AddWithValue("@address", _address);
+                    command.Parameters.AddWithValue("@email", _email);
                     command.Parameters.AddWithValue("@qualification", _qualification);
-                    command.Parameters.AddWithValue("@tvi_name", _tvi);
+                    command.Parameters.AddWithValue("@tvi", _tvi);
                     command.Parameters.AddWithValue("@district", _district);
                     command.Parameters.AddWithValue("@city", _city);
                     command.Parameters.AddWithValue("@scholarship_type", _scholarship_type);
@@ -109,51 +117,76 @@ namespace Scholarship_Employment
 
         public void SetFullname(string lastname, string firstname, string middleInitial, string suffix)
         {
-            _lastname = lastname;
-            _firstname = firstname;
-            _middleInitial = middleInitial;
-            _suffix = suffix;
+            _last_name = lastname;
+            _first_name = firstname;
+            _middle_name = middleInitial;
+            _extension_name = suffix;
+        }
+
+        private bool ContactNumberFormat()
+        {
+            if (txtContactNum.Text.Length < 11)
+            {
+                MessageBox.Show("Contact number must have 11 digits.", "ERROR: Contact Number");
+                return false;
+            }
+
+            try
+            {
+                long contactNum = long.Parse(txtContactNum.Text);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
         }
 
         private void DistrictToCitySelection()
         {
+            cbxCity.Text = string.Empty;
             cbxCity.Items.Clear();
 
             string selectedItem = cbxDistrict.SelectedItem.ToString();
             switch (selectedItem)
             {
-                case "CMNV":
+                case "CaMaNaVa":
                     cbxCity.Items.Add("Caloocan City");
                     cbxCity.Items.Add("Malabon City");
                     cbxCity.Items.Add("Navotas City");
                     cbxCity.Items.Add("Valenzuela City");
                     break;
 
-                case "MLA":
+                case "Manila":
                     cbxCity.Items.Add("Manila");
+
+                    cbxCity.Text = "Manila";
                     break;
 
-                case "MPLTP":
+                case "MuntiParLasTaPat":
                     cbxCity.Items.Add("Las Piñas City");
                     cbxCity.Items.Add("Muntinlupa City");
                     cbxCity.Items.Add("Parañaque City");
                     cbxCity.Items.Add("Taguig City");
                     break;
 
-                case "PMMS":
+                case "PaMaMariSan":
                     cbxCity.Items.Add("Mandaluyong City");
                     cbxCity.Items.Add("Marikina City");
                     cbxCity.Items.Add("Pasig City");
                     cbxCity.Items.Add("San Juan City");
                     break;
 
-                case "PASMAK":
+                case "Pasay-Makati":
                     cbxCity.Items.Add("Makati City");
                     cbxCity.Items.Add("Pasig City");
                     break;
 
-                case "QC":
+                case "Quezon City":
                     cbxCity.Items.Add("Quezon City");
+
+                    cbxCity.Text = "Quezon City";
                     break;
 
                 default:

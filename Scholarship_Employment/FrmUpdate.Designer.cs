@@ -30,7 +30,7 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.pageDetails = new System.Windows.Forms.TabPage();
-            this.pnlGeneral = new System.Windows.Forms.Panel();
+            this.pnlDetails = new System.Windows.Forms.Panel();
             this.cbxCity = new System.Windows.Forms.ComboBox();
             this.cbxDistrict = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -59,57 +59,63 @@
             this.label3 = new System.Windows.Forms.Label();
             this.pageVerification = new System.Windows.Forms.TabPage();
             this.pnlVerification = new System.Windows.Forms.Panel();
-            this.cbxEmployStatus = new System.Windows.Forms.ComboBox();
-            this.cbxVerifyStatus = new System.Windows.Forms.ComboBox();
+            this.grpNotInterested = new System.Windows.Forms.GroupBox();
+            this.rtbRsnNotInterested = new System.Windows.Forms.RichTextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.grpNoResponse = new System.Windows.Forms.GroupBox();
+            this.dtDateFollowup = new System.Windows.Forms.DateTimePicker();
+            this.label22 = new System.Windows.Forms.Label();
+            this.grpResponded = new System.Windows.Forms.GroupBox();
+            this.rtbRsnResponded = new System.Windows.Forms.RichTextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtCompanyName = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.rbtnNo = new System.Windows.Forms.RadioButton();
+            this.rbtnYes = new System.Windows.Forms.RadioButton();
+            this.label15 = new System.Windows.Forms.Label();
+            this.dtDateVerify = new System.Windows.Forms.DateTimePicker();
+            this.label14 = new System.Windows.Forms.Label();
+            this.cbxStatusVerify = new System.Windows.Forms.ComboBox();
+            this.cbxMeansVerify = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.pageEmployment = new System.Windows.Forms.TabPage();
+            this.pnlEmployment = new System.Windows.Forms.Panel();
+            this.txtJobTitle = new System.Windows.Forms.TextBox();
+            this.rtbAddress = new System.Windows.Forms.RichTextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.txtCompanyEmp = new System.Windows.Forms.TextBox();
+            this.grpEmploymentStatus = new System.Windows.Forms.GroupBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.dtDateHired = new System.Windows.Forms.DateTimePicker();
+            this.rbtnSubmitDocs = new System.Windows.Forms.RadioButton();
+            this.label27 = new System.Windows.Forms.Label();
+            this.rbtnHired = new System.Windows.Forms.RadioButton();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.label30 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.rbtnForInterview = new System.Windows.Forms.RadioButton();
+            this.rbtnNotHired = new System.Windows.Forms.RadioButton();
+            this.cbxReason = new System.Windows.Forms.ComboBox();
             this.tabControl.SuspendLayout();
             this.pageDetails.SuspendLayout();
-            this.pnlGeneral.SuspendLayout();
+            this.pnlDetails.SuspendLayout();
             this.pageVerification.SuspendLayout();
             this.pnlVerification.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.grpNotInterested.SuspendLayout();
+            this.grpNoResponse.SuspendLayout();
+            this.grpResponded.SuspendLayout();
+            this.pageEmployment.SuspendLayout();
+            this.pnlEmployment.SuspendLayout();
+            this.grpEmploymentStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
             // 
             this.tabControl.Controls.Add(this.pageDetails);
             this.tabControl.Controls.Add(this.pageVerification);
-            this.tabControl.Controls.Add(this.tabPage1);
+            this.tabControl.Controls.Add(this.pageEmployment);
             this.tabControl.Location = new System.Drawing.Point(10, 10);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -118,7 +124,7 @@
             // 
             // pageDetails
             // 
-            this.pageDetails.Controls.Add(this.pnlGeneral);
+            this.pageDetails.Controls.Add(this.pnlDetails);
             this.pageDetails.Location = new System.Drawing.Point(4, 22);
             this.pageDetails.Name = "pageDetails";
             this.pageDetails.Padding = new System.Windows.Forms.Padding(3);
@@ -127,43 +133,44 @@
             this.pageDetails.Text = "Details";
             this.pageDetails.UseVisualStyleBackColor = true;
             // 
-            // pnlGeneral
+            // pnlDetails
             // 
-            this.pnlGeneral.BackColor = System.Drawing.SystemColors.Control;
-            this.pnlGeneral.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlGeneral.Controls.Add(this.cbxCity);
-            this.pnlGeneral.Controls.Add(this.cbxDistrict);
-            this.pnlGeneral.Controls.Add(this.label13);
-            this.pnlGeneral.Controls.Add(this.txtSuffix);
-            this.pnlGeneral.Controls.Add(this.label6);
-            this.pnlGeneral.Controls.Add(this.txtMiddleInitial);
-            this.pnlGeneral.Controls.Add(this.txtFirstname);
-            this.pnlGeneral.Controls.Add(this.label2);
-            this.pnlGeneral.Controls.Add(this.label1);
-            this.pnlGeneral.Controls.Add(this.txtLastname);
-            this.pnlGeneral.Controls.Add(this.cbxGradYear);
-            this.pnlGeneral.Controls.Add(this.label12);
-            this.pnlGeneral.Controls.Add(this.cbxScholarType);
-            this.pnlGeneral.Controls.Add(this.label11);
-            this.pnlGeneral.Controls.Add(this.label10);
-            this.pnlGeneral.Controls.Add(this.label9);
-            this.pnlGeneral.Controls.Add(this.label8);
-            this.pnlGeneral.Controls.Add(this.txtTVI);
-            this.pnlGeneral.Controls.Add(this.label7);
-            this.pnlGeneral.Controls.Add(this.txtQualification);
-            this.pnlGeneral.Controls.Add(this.cbxSex);
-            this.pnlGeneral.Controls.Add(this.rtxtAddress);
-            this.pnlGeneral.Controls.Add(this.label5);
-            this.pnlGeneral.Controls.Add(this.dtBirthDate);
-            this.pnlGeneral.Controls.Add(this.label4);
-            this.pnlGeneral.Controls.Add(this.label3);
-            this.pnlGeneral.Location = new System.Drawing.Point(6, 6);
-            this.pnlGeneral.Name = "pnlGeneral";
-            this.pnlGeneral.Size = new System.Drawing.Size(1100, 500);
-            this.pnlGeneral.TabIndex = 40;
+            this.pnlDetails.BackColor = System.Drawing.SystemColors.Control;
+            this.pnlDetails.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlDetails.Controls.Add(this.cbxCity);
+            this.pnlDetails.Controls.Add(this.cbxDistrict);
+            this.pnlDetails.Controls.Add(this.label13);
+            this.pnlDetails.Controls.Add(this.txtSuffix);
+            this.pnlDetails.Controls.Add(this.label6);
+            this.pnlDetails.Controls.Add(this.txtMiddleInitial);
+            this.pnlDetails.Controls.Add(this.txtFirstname);
+            this.pnlDetails.Controls.Add(this.label2);
+            this.pnlDetails.Controls.Add(this.label1);
+            this.pnlDetails.Controls.Add(this.txtLastname);
+            this.pnlDetails.Controls.Add(this.cbxGradYear);
+            this.pnlDetails.Controls.Add(this.label12);
+            this.pnlDetails.Controls.Add(this.cbxScholarType);
+            this.pnlDetails.Controls.Add(this.label11);
+            this.pnlDetails.Controls.Add(this.label10);
+            this.pnlDetails.Controls.Add(this.label9);
+            this.pnlDetails.Controls.Add(this.label8);
+            this.pnlDetails.Controls.Add(this.txtTVI);
+            this.pnlDetails.Controls.Add(this.label7);
+            this.pnlDetails.Controls.Add(this.txtQualification);
+            this.pnlDetails.Controls.Add(this.cbxSex);
+            this.pnlDetails.Controls.Add(this.rtxtAddress);
+            this.pnlDetails.Controls.Add(this.label5);
+            this.pnlDetails.Controls.Add(this.dtBirthDate);
+            this.pnlDetails.Controls.Add(this.label4);
+            this.pnlDetails.Controls.Add(this.label3);
+            this.pnlDetails.Location = new System.Drawing.Point(6, 6);
+            this.pnlDetails.Name = "pnlDetails";
+            this.pnlDetails.Size = new System.Drawing.Size(1100, 500);
+            this.pnlDetails.TabIndex = 40;
             // 
             // cbxCity
             // 
+            this.cbxCity.Enabled = false;
             this.cbxCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxCity.FormattingEnabled = true;
             this.cbxCity.Items.AddRange(new object[] {
@@ -178,6 +185,7 @@
             // 
             // cbxDistrict
             // 
+            this.cbxDistrict.Enabled = false;
             this.cbxDistrict.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxDistrict.FormattingEnabled = true;
             this.cbxDistrict.Items.AddRange(new object[] {
@@ -205,6 +213,7 @@
             // 
             // txtSuffix
             // 
+            this.txtSuffix.Enabled = false;
             this.txtSuffix.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSuffix.Location = new System.Drawing.Point(924, 47);
             this.txtSuffix.Name = "txtSuffix";
@@ -223,6 +232,7 @@
             // 
             // txtMiddleInitial
             // 
+            this.txtMiddleInitial.Enabled = false;
             this.txtMiddleInitial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMiddleInitial.Location = new System.Drawing.Point(724, 47);
             this.txtMiddleInitial.Name = "txtMiddleInitial";
@@ -231,6 +241,7 @@
             // 
             // txtFirstname
             // 
+            this.txtFirstname.Enabled = false;
             this.txtFirstname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFirstname.Location = new System.Drawing.Point(374, 47);
             this.txtFirstname.Name = "txtFirstname";
@@ -259,6 +270,7 @@
             // 
             // txtLastname
             // 
+            this.txtLastname.Enabled = false;
             this.txtLastname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLastname.Location = new System.Drawing.Point(24, 47);
             this.txtLastname.Name = "txtLastname";
@@ -267,6 +279,7 @@
             // 
             // cbxGradYear
             // 
+            this.cbxGradYear.Enabled = false;
             this.cbxGradYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxGradYear.FormattingEnabled = true;
             this.cbxGradYear.Items.AddRange(new object[] {
@@ -289,6 +302,7 @@
             // 
             // cbxScholarType
             // 
+            this.cbxScholarType.Enabled = false;
             this.cbxScholarType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxScholarType.FormattingEnabled = true;
             this.cbxScholarType.Items.AddRange(new object[] {
@@ -343,6 +357,7 @@
             // 
             // txtTVI
             // 
+            this.txtTVI.Enabled = false;
             this.txtTVI.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTVI.Location = new System.Drawing.Point(374, 367);
             this.txtTVI.Name = "txtTVI";
@@ -361,6 +376,7 @@
             // 
             // txtQualification
             // 
+            this.txtQualification.Enabled = false;
             this.txtQualification.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtQualification.Location = new System.Drawing.Point(24, 367);
             this.txtQualification.Name = "txtQualification";
@@ -369,6 +385,7 @@
             // 
             // cbxSex
             // 
+            this.cbxSex.Enabled = false;
             this.cbxSex.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxSex.FormattingEnabled = true;
             this.cbxSex.Items.AddRange(new object[] {
@@ -381,6 +398,7 @@
             // 
             // rtxtAddress
             // 
+            this.rtxtAddress.Enabled = false;
             this.rtxtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtxtAddress.Location = new System.Drawing.Point(24, 207);
             this.rtxtAddress.Name = "rtxtAddress";
@@ -400,6 +418,7 @@
             // 
             // dtBirthDate
             // 
+            this.dtBirthDate.Enabled = false;
             this.dtBirthDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtBirthDate.Location = new System.Drawing.Point(224, 127);
             this.dtBirthDate.Name = "dtBirthDate";
@@ -441,24 +460,13 @@
             // 
             this.pnlVerification.BackColor = System.Drawing.SystemColors.Control;
             this.pnlVerification.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlVerification.Controls.Add(this.textBox2);
-            this.pnlVerification.Controls.Add(this.label15);
-            this.pnlVerification.Controls.Add(this.label24);
-            this.pnlVerification.Controls.Add(this.label23);
-            this.pnlVerification.Controls.Add(this.textBox1);
-            this.pnlVerification.Controls.Add(this.label22);
-            this.pnlVerification.Controls.Add(this.label21);
-            this.pnlVerification.Controls.Add(this.radioButton2);
-            this.pnlVerification.Controls.Add(this.radioButton1);
-            this.pnlVerification.Controls.Add(this.label20);
-            this.pnlVerification.Controls.Add(this.richTextBox1);
-            this.pnlVerification.Controls.Add(this.dateTimePicker2);
-            this.pnlVerification.Controls.Add(this.label19);
-            this.pnlVerification.Controls.Add(this.label18);
-            this.pnlVerification.Controls.Add(this.dateTimePicker1);
+            this.pnlVerification.Controls.Add(this.grpNotInterested);
+            this.pnlVerification.Controls.Add(this.grpNoResponse);
+            this.pnlVerification.Controls.Add(this.grpResponded);
+            this.pnlVerification.Controls.Add(this.dtDateVerify);
             this.pnlVerification.Controls.Add(this.label14);
-            this.pnlVerification.Controls.Add(this.cbxEmployStatus);
-            this.pnlVerification.Controls.Add(this.cbxVerifyStatus);
+            this.pnlVerification.Controls.Add(this.cbxStatusVerify);
+            this.pnlVerification.Controls.Add(this.cbxMeansVerify);
             this.pnlVerification.Controls.Add(this.label16);
             this.pnlVerification.Controls.Add(this.label17);
             this.pnlVerification.Location = new System.Drawing.Point(6, 7);
@@ -466,53 +474,379 @@
             this.pnlVerification.Size = new System.Drawing.Size(1100, 500);
             this.pnlVerification.TabIndex = 41;
             // 
-            // cbxEmployStatus
+            // grpNotInterested
             // 
-            this.cbxEmployStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxEmployStatus.FormattingEnabled = true;
-            this.cbxEmployStatus.Items.AddRange(new object[] {
+            this.grpNotInterested.Controls.Add(this.rtbRsnNotInterested);
+            this.grpNotInterested.Controls.Add(this.label23);
+            this.grpNotInterested.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpNotInterested.Location = new System.Drawing.Point(348, 70);
+            this.grpNotInterested.Name = "grpNotInterested";
+            this.grpNotInterested.Size = new System.Drawing.Size(720, 450);
+            this.grpNotInterested.TabIndex = 62;
+            this.grpNotInterested.TabStop = false;
+            this.grpNotInterested.Text = "Not Interested";
+            this.grpNotInterested.Visible = false;
+            // 
+            // rtbRsnNotInterested
+            // 
+            this.rtbRsnNotInterested.Font = new System.Drawing.Font("Arial", 12F);
+            this.rtbRsnNotInterested.Location = new System.Drawing.Point(54, 80);
+            this.rtbRsnNotInterested.Name = "rtbRsnNotInterested";
+            this.rtbRsnNotInterested.Size = new System.Drawing.Size(580, 170);
+            this.rtbRsnNotInterested.TabIndex = 38;
+            this.rtbRsnNotInterested.Text = "";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(50, 50);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(71, 21);
+            this.label23.TabIndex = 0;
+            this.label23.Text = "Reason: ";
+            // 
+            // grpNoResponse
+            // 
+            this.grpNoResponse.Controls.Add(this.dtDateFollowup);
+            this.grpNoResponse.Controls.Add(this.label22);
+            this.grpNoResponse.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpNoResponse.Location = new System.Drawing.Point(354, 43);
+            this.grpNoResponse.Name = "grpNoResponse";
+            this.grpNoResponse.Size = new System.Drawing.Size(720, 450);
+            this.grpNoResponse.TabIndex = 61;
+            this.grpNoResponse.TabStop = false;
+            this.grpNoResponse.Text = "No Response (For Follow-up)";
+            this.grpNoResponse.Visible = false;
+            // 
+            // dtDateFollowup
+            // 
+            this.dtDateFollowup.Font = new System.Drawing.Font("Arial", 12F);
+            this.dtDateFollowup.Location = new System.Drawing.Point(54, 80);
+            this.dtDateFollowup.Name = "dtDateFollowup";
+            this.dtDateFollowup.Size = new System.Drawing.Size(300, 26);
+            this.dtDateFollowup.TabIndex = 59;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(50, 50);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(179, 21);
+            this.label22.TabIndex = 0;
+            this.label22.Text = "Set Date for Follow-up:";
+            // 
+            // grpResponded
+            // 
+            this.grpResponded.Controls.Add(this.rtbRsnResponded);
+            this.grpResponded.Controls.Add(this.label19);
+            this.grpResponded.Controls.Add(this.txtCompanyName);
+            this.grpResponded.Controls.Add(this.label18);
+            this.grpResponded.Controls.Add(this.rbtnNo);
+            this.grpResponded.Controls.Add(this.rbtnYes);
+            this.grpResponded.Controls.Add(this.label15);
+            this.grpResponded.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpResponded.Location = new System.Drawing.Point(360, 20);
+            this.grpResponded.Name = "grpResponded";
+            this.grpResponded.Size = new System.Drawing.Size(720, 450);
+            this.grpResponded.TabIndex = 60;
+            this.grpResponded.TabStop = false;
+            this.grpResponded.Text = "Responded";
+            this.grpResponded.Visible = false;
+            // 
+            // rtbRsnResponded
+            // 
+            this.rtbRsnResponded.Enabled = false;
+            this.rtbRsnResponded.Font = new System.Drawing.Font("Arial", 12F);
+            this.rtbRsnResponded.Location = new System.Drawing.Point(124, 260);
+            this.rtbRsnResponded.Name = "rtbRsnResponded";
+            this.rtbRsnResponded.Size = new System.Drawing.Size(580, 170);
+            this.rtbRsnResponded.TabIndex = 38;
+            this.rtbRsnResponded.Text = "";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(120, 230);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(71, 21);
+            this.label19.TabIndex = 37;
+            this.label19.Text = "Reason: ";
+            // 
+            // txtCompanyName
+            // 
+            this.txtCompanyName.Enabled = false;
+            this.txtCompanyName.Font = new System.Drawing.Font("Arial", 12F);
+            this.txtCompanyName.Location = new System.Drawing.Point(124, 150);
+            this.txtCompanyName.Name = "txtCompanyName";
+            this.txtCompanyName.Size = new System.Drawing.Size(400, 26);
+            this.txtCompanyName.TabIndex = 35;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(120, 120);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(134, 21);
+            this.label18.TabIndex = 36;
+            this.label18.Text = "Company Name: ";
+            // 
+            // rbtnNo
+            // 
+            this.rbtnNo.AutoSize = true;
+            this.rbtnNo.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnNo.Location = new System.Drawing.Point(90, 200);
+            this.rbtnNo.Name = "rbtnNo";
+            this.rbtnNo.Size = new System.Drawing.Size(52, 25);
+            this.rbtnNo.TabIndex = 2;
+            this.rbtnNo.TabStop = true;
+            this.rbtnNo.Text = "NO";
+            this.rbtnNo.UseVisualStyleBackColor = true;
+            // 
+            // rbtnYes
+            // 
+            this.rbtnYes.AutoSize = true;
+            this.rbtnYes.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnYes.Location = new System.Drawing.Point(90, 90);
+            this.rbtnYes.Name = "rbtnYes";
+            this.rbtnYes.Size = new System.Drawing.Size(54, 25);
+            this.rbtnYes.TabIndex = 1;
+            this.rbtnYes.TabStop = true;
+            this.rbtnYes.Text = "YES";
+            this.rbtnYes.UseVisualStyleBackColor = true;
+            this.rbtnYes.CheckedChanged += new System.EventHandler(this.rbtnYes_CheckedChanged);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(50, 50);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(117, 21);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Referral Status";
+            // 
+            // dtDateVerify
+            // 
+            this.dtDateVerify.Font = new System.Drawing.Font("Arial", 12F);
+            this.dtDateVerify.Location = new System.Drawing.Point(24, 130);
+            this.dtDateVerify.Name = "dtDateVerify";
+            this.dtDateVerify.Size = new System.Drawing.Size(300, 26);
+            this.dtDateVerify.TabIndex = 2;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label14.Location = new System.Drawing.Point(20, 100);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(167, 21);
+            this.label14.TabIndex = 59;
+            this.label14.Text = "Date of Verification: ";
+            // 
+            // cbxStatusVerify
+            // 
+            this.cbxStatusVerify.Font = new System.Drawing.Font("Arial", 12F);
+            this.cbxStatusVerify.FormattingEnabled = true;
+            this.cbxStatusVerify.Items.AddRange(new object[] {
             "Responded",
-            "No Response (For Follow up)",
+            "No Response (For Follow-up)",
             "Not Interested (Please Provide Reason)",
             "Not Applicable"});
-            this.cbxEmployStatus.Location = new System.Drawing.Point(374, 47);
-            this.cbxEmployStatus.Name = "cbxEmployStatus";
-            this.cbxEmployStatus.Size = new System.Drawing.Size(300, 28);
-            this.cbxEmployStatus.TabIndex = 40;
+            this.cbxStatusVerify.Location = new System.Drawing.Point(24, 210);
+            this.cbxStatusVerify.Name = "cbxStatusVerify";
+            this.cbxStatusVerify.Size = new System.Drawing.Size(300, 26);
+            this.cbxStatusVerify.TabIndex = 3;
+            this.cbxStatusVerify.SelectedIndexChanged += new System.EventHandler(this.cbxStatusVerify_SelectedIndexChanged);
             // 
-            // cbxVerifyStatus
+            // cbxMeansVerify
             // 
-            this.cbxVerifyStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxVerifyStatus.FormattingEnabled = true;
-            this.cbxVerifyStatus.Items.AddRange(new object[] {
+            this.cbxMeansVerify.Font = new System.Drawing.Font("Arial", 12F);
+            this.cbxMeansVerify.FormattingEnabled = true;
+            this.cbxMeansVerify.Items.AddRange(new object[] {
             "For Verification",
             "Phone-called",
             "E-mailed",
             "SMS"});
-            this.cbxVerifyStatus.Location = new System.Drawing.Point(24, 47);
-            this.cbxVerifyStatus.Name = "cbxVerifyStatus";
-            this.cbxVerifyStatus.Size = new System.Drawing.Size(300, 28);
-            this.cbxVerifyStatus.TabIndex = 39;
+            this.cbxMeansVerify.Location = new System.Drawing.Point(24, 50);
+            this.cbxMeansVerify.Name = "cbxMeansVerify";
+            this.cbxMeansVerify.Size = new System.Drawing.Size(300, 26);
+            this.cbxMeansVerify.TabIndex = 1;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(20, 17);
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label16.Location = new System.Drawing.Point(20, 20);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(184, 20);
+            this.label16.Size = new System.Drawing.Size(177, 21);
             this.label16.TabIndex = 35;
             this.label16.Text = "Means of Verification:";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(370, 17);
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label17.Location = new System.Drawing.Point(20, 180);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(189, 20);
+            this.label17.Size = new System.Drawing.Size(178, 21);
             this.label17.TabIndex = 33;
             this.label17.Text = "Status of Verification: ";
+            // 
+            // pageEmployment
+            // 
+            this.pageEmployment.Controls.Add(this.pnlEmployment);
+            this.pageEmployment.Location = new System.Drawing.Point(4, 22);
+            this.pageEmployment.Name = "pageEmployment";
+            this.pageEmployment.Padding = new System.Windows.Forms.Padding(3);
+            this.pageEmployment.Size = new System.Drawing.Size(1112, 514);
+            this.pageEmployment.TabIndex = 2;
+            this.pageEmployment.Text = "Employment";
+            this.pageEmployment.UseVisualStyleBackColor = true;
+            // 
+            // pnlEmployment
+            // 
+            this.pnlEmployment.BackColor = System.Drawing.SystemColors.Control;
+            this.pnlEmployment.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlEmployment.Controls.Add(this.txtJobTitle);
+            this.pnlEmployment.Controls.Add(this.rtbAddress);
+            this.pnlEmployment.Controls.Add(this.label20);
+            this.pnlEmployment.Controls.Add(this.txtCompanyEmp);
+            this.pnlEmployment.Controls.Add(this.grpEmploymentStatus);
+            this.pnlEmployment.Controls.Add(this.label28);
+            this.pnlEmployment.Controls.Add(this.label29);
+            this.pnlEmployment.Location = new System.Drawing.Point(6, 7);
+            this.pnlEmployment.Name = "pnlEmployment";
+            this.pnlEmployment.Size = new System.Drawing.Size(1100, 500);
+            this.pnlEmployment.TabIndex = 42;
+            // 
+            // txtJobTitle
+            // 
+            this.txtJobTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtJobTitle.Location = new System.Drawing.Point(24, 290);
+            this.txtJobTitle.Name = "txtJobTitle";
+            this.txtJobTitle.Size = new System.Drawing.Size(300, 26);
+            this.txtJobTitle.TabIndex = 62;
+            // 
+            // rtbAddress
+            // 
+            this.rtbAddress.Enabled = false;
+            this.rtbAddress.Font = new System.Drawing.Font("Arial", 12F);
+            this.rtbAddress.Location = new System.Drawing.Point(24, 130);
+            this.rtbAddress.Name = "rtbAddress";
+            this.rtbAddress.Size = new System.Drawing.Size(500, 100);
+            this.rtbAddress.TabIndex = 38;
+            this.rtbAddress.Text = "";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label20.Location = new System.Drawing.Point(20, 100);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(78, 21);
+            this.label20.TabIndex = 61;
+            this.label20.Text = "Address: ";
+            // 
+            // txtCompanyEmp
+            // 
+            this.txtCompanyEmp.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCompanyEmp.Location = new System.Drawing.Point(24, 50);
+            this.txtCompanyEmp.Name = "txtCompanyEmp";
+            this.txtCompanyEmp.Size = new System.Drawing.Size(300, 26);
+            this.txtCompanyEmp.TabIndex = 39;
+            // 
+            // grpEmploymentStatus
+            // 
+            this.grpEmploymentStatus.Controls.Add(this.cbxReason);
+            this.grpEmploymentStatus.Controls.Add(this.rbtnNotHired);
+            this.grpEmploymentStatus.Controls.Add(this.rbtnForInterview);
+            this.grpEmploymentStatus.Controls.Add(this.label24);
+            this.grpEmploymentStatus.Controls.Add(this.dtDateHired);
+            this.grpEmploymentStatus.Controls.Add(this.rbtnSubmitDocs);
+            this.grpEmploymentStatus.Controls.Add(this.label27);
+            this.grpEmploymentStatus.Controls.Add(this.rbtnHired);
+            this.grpEmploymentStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpEmploymentStatus.Location = new System.Drawing.Point(547, 20);
+            this.grpEmploymentStatus.Name = "grpEmploymentStatus";
+            this.grpEmploymentStatus.Size = new System.Drawing.Size(533, 450);
+            this.grpEmploymentStatus.TabIndex = 60;
+            this.grpEmploymentStatus.TabStop = false;
+            this.grpEmploymentStatus.Text = "Employment Status";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(70, 270);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(71, 21);
+            this.label24.TabIndex = 37;
+            this.label24.Text = "Reason: ";
+            // 
+            // dtDateHired
+            // 
+            this.dtDateHired.Enabled = false;
+            this.dtDateHired.Font = new System.Drawing.Font("Arial", 12F);
+            this.dtDateHired.Location = new System.Drawing.Point(74, 100);
+            this.dtDateHired.Name = "dtDateHired";
+            this.dtDateHired.Size = new System.Drawing.Size(300, 26);
+            this.dtDateHired.TabIndex = 2;
+            // 
+            // rbtnSubmitDocs
+            // 
+            this.rbtnSubmitDocs.AutoSize = true;
+            this.rbtnSubmitDocs.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnSubmitDocs.Location = new System.Drawing.Point(40, 140);
+            this.rbtnSubmitDocs.Name = "rbtnSubmitDocs";
+            this.rbtnSubmitDocs.Size = new System.Drawing.Size(192, 25);
+            this.rbtnSubmitDocs.TabIndex = 2;
+            this.rbtnSubmitDocs.TabStop = true;
+            this.rbtnSubmitDocs.Text = "Submitted Documents";
+            this.rbtnSubmitDocs.UseVisualStyleBackColor = true;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(70, 70);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(97, 21);
+            this.label27.TabIndex = 59;
+            this.label27.Text = "Date Hired: ";
+            // 
+            // rbtnHired
+            // 
+            this.rbtnHired.AutoSize = true;
+            this.rbtnHired.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnHired.Location = new System.Drawing.Point(40, 40);
+            this.rbtnHired.Name = "rbtnHired";
+            this.rbtnHired.Size = new System.Drawing.Size(69, 25);
+            this.rbtnHired.TabIndex = 1;
+            this.rbtnHired.TabStop = true;
+            this.rbtnHired.Text = "Hired";
+            this.rbtnHired.UseVisualStyleBackColor = true;
+            this.rbtnHired.CheckedChanged += new System.EventHandler(this.rbtnHired_CheckedChanged);
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label28.Location = new System.Drawing.Point(20, 20);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(157, 21);
+            this.label28.TabIndex = 35;
+            this.label28.Text = "Name of Company:";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label29.Location = new System.Drawing.Point(20, 260);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(83, 21);
+            this.label29.TabIndex = 33;
+            this.label29.Text = "Job Title: ";
             // 
             // btnUpdate
             // 
@@ -537,309 +871,41 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // label14
+            // rbtnForInterview
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(21, 96);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(97, 13);
-            this.label14.TabIndex = 41;
-            this.label14.Text = "Date of Verification";
+            this.rbtnForInterview.AutoSize = true;
+            this.rbtnForInterview.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnForInterview.Location = new System.Drawing.Point(40, 190);
+            this.rbtnForInterview.Name = "rbtnForInterview";
+            this.rbtnForInterview.Size = new System.Drawing.Size(125, 25);
+            this.rbtnForInterview.TabIndex = 60;
+            this.rbtnForInterview.TabStop = true;
+            this.rbtnForInterview.Text = "For Interview";
+            this.rbtnForInterview.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
+            // rbtnNotHired
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(24, 122);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 43;
+            this.rbtnNotHired.AutoSize = true;
+            this.rbtnNotHired.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnNotHired.Location = new System.Drawing.Point(40, 240);
+            this.rbtnNotHired.Name = "rbtnNotHired";
+            this.rbtnNotHired.Size = new System.Drawing.Size(231, 25);
+            this.rbtnNotHired.TabIndex = 61;
+            this.rbtnNotHired.TabStop = true;
+            this.rbtnNotHired.Text = "Not Hired (Indicate Reason)";
+            this.rbtnNotHired.UseVisualStyleBackColor = true;
             // 
-            // tabPage1
+            // cbxReason
             // 
-            this.tabPage1.Controls.Add(this.textBox4);
-            this.tabPage1.Controls.Add(this.label31);
-            this.tabPage1.Controls.Add(this.comboBox1);
-            this.tabPage1.Controls.Add(this.dateTimePicker3);
-            this.tabPage1.Controls.Add(this.label30);
-            this.tabPage1.Controls.Add(this.radioButton6);
-            this.tabPage1.Controls.Add(this.radioButton5);
-            this.tabPage1.Controls.Add(this.radioButton4);
-            this.tabPage1.Controls.Add(this.radioButton3);
-            this.tabPage1.Controls.Add(this.label29);
-            this.tabPage1.Controls.Add(this.textBox3);
-            this.tabPage1.Controls.Add(this.label28);
-            this.tabPage1.Controls.Add(this.richTextBox2);
-            this.tabPage1.Controls.Add(this.label26);
-            this.tabPage1.Controls.Add(this.label25);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1112, 514);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Employment";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(632, 129);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(76, 13);
-            this.label18.TabIndex = 44;
-            this.label18.Text = "Follow up date";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(374, 352);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(47, 13);
-            this.label19.TabIndex = 45;
-            this.label19.Text = "Reason:";
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(635, 155);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 46;
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(377, 377);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(200, 96);
-            this.richTextBox1.TabIndex = 47;
-            this.richTextBox1.Text = "";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(371, 128);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(77, 13);
-            this.label20.TabIndex = 48;
-            this.label20.Text = "Referral Status";
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(374, 158);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(46, 17);
-            this.radioButton1.TabIndex = 49;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "YES";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(374, 223);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(41, 17);
-            this.radioButton2.TabIndex = 50;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "NO";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(371, 105);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(114, 13);
-            this.label21.TabIndex = 51;
-            this.label21.Text = "verification: responded";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(396, 188);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(82, 13);
-            this.label22.TabIndex = 52;
-            this.label22.Text = "Company Name";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(484, 185);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 53;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(632, 105);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(121, 13);
-            this.label23.TabIndex = 54;
-            this.label23.Text = "verification: for follow up";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(371, 319);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(128, 13);
-            this.label24.TabIndex = 55;
-            this.label24.Text = "verification: not interested";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(396, 258);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(44, 13);
-            this.label15.TabIndex = 56;
-            this.label15.Text = "Reason";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(446, 255);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 57;
-            this.textBox2.Text = "mandatory";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(27, 23);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(94, 13);
-            this.label25.TabIndex = 0;
-            this.label25.Text = "Name of Company";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(27, 61);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(45, 13);
-            this.label26.TabIndex = 1;
-            this.label26.Text = "Address";
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Location = new System.Drawing.Point(78, 58);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(204, 96);
-            this.richTextBox2.TabIndex = 3;
-            this.richTextBox2.Text = "";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(30, 197);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(47, 13);
-            this.label28.TabIndex = 4;
-            this.label28.Text = "Job Title";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(83, 194);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 5;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(361, 23);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(100, 13);
-            this.label29.TabIndex = 6;
-            this.label29.Text = "Employment Status:";
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(376, 51);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(48, 17);
-            this.radioButton3.TabIndex = 7;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "hired";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(376, 101);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(125, 17);
-            this.radioButton4.TabIndex = 8;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "submitted documents";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            // 
-            // radioButton5
-            // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(376, 148);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(82, 17);
-            this.radioButton5.TabIndex = 9;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "for interview";
-            this.radioButton5.UseVisualStyleBackColor = true;
-            // 
-            // radioButton6
-            // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(376, 171);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(152, 17);
-            this.radioButton6.TabIndex = 10;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "not hired (indicate reasons)";
-            this.radioButton6.UseVisualStyleBackColor = true;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(393, 75);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(58, 13);
-            this.label30.TabIndex = 11;
-            this.label30.Text = "Date Hired";
-            // 
-            // dateTimePicker3
-            // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(457, 75);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker3.TabIndex = 12;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Not yet qualified",
-            "For Upskilling",
-            "Lack of experience"});
-            this.comboBox1.Location = new System.Drawing.Point(457, 197);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 13;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(412, 201);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(39, 13);
-            this.label31.TabIndex = 14;
-            this.label31.Text = "reason";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(127, 20);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 15;
+            this.cbxReason.Enabled = false;
+            this.cbxReason.Font = new System.Drawing.Font("Arial", 12F);
+            this.cbxReason.FormattingEnabled = true;
+            this.cbxReason.Items.AddRange(new object[] {
+            "Not Hired"});
+            this.cbxReason.Location = new System.Drawing.Point(74, 300);
+            this.cbxReason.Name = "cbxReason";
+            this.cbxReason.Size = new System.Drawing.Size(300, 26);
+            this.cbxReason.TabIndex = 62;
             // 
             // FrmUpdate
             // 
@@ -854,13 +920,22 @@
             this.Load += new System.EventHandler(this.FrmUpdate_Load);
             this.tabControl.ResumeLayout(false);
             this.pageDetails.ResumeLayout(false);
-            this.pnlGeneral.ResumeLayout(false);
-            this.pnlGeneral.PerformLayout();
+            this.pnlDetails.ResumeLayout(false);
+            this.pnlDetails.PerformLayout();
             this.pageVerification.ResumeLayout(false);
             this.pnlVerification.ResumeLayout(false);
             this.pnlVerification.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.grpNotInterested.ResumeLayout(false);
+            this.grpNotInterested.PerformLayout();
+            this.grpNoResponse.ResumeLayout(false);
+            this.grpNoResponse.PerformLayout();
+            this.grpResponded.ResumeLayout(false);
+            this.grpResponded.PerformLayout();
+            this.pageEmployment.ResumeLayout(false);
+            this.pnlEmployment.ResumeLayout(false);
+            this.pnlEmployment.PerformLayout();
+            this.grpEmploymentStatus.ResumeLayout(false);
+            this.grpEmploymentStatus.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -869,7 +944,7 @@
 
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage pageDetails;
-        private System.Windows.Forms.Panel pnlGeneral;
+        private System.Windows.Forms.Panel pnlDetails;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtSuffix;
         private System.Windows.Forms.Label label6;
@@ -899,42 +974,43 @@
         private System.Windows.Forms.ComboBox cbxDistrict;
         private System.Windows.Forms.ComboBox cbxCity;
         private System.Windows.Forms.Panel pnlVerification;
-        private System.Windows.Forms.ComboBox cbxEmployStatus;
-        private System.Windows.Forms.ComboBox cbxVerifyStatus;
+        private System.Windows.Forms.ComboBox cbxStatusVerify;
+        private System.Windows.Forms.ComboBox cbxMeansVerify;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.TabPage pageEmployment;
+        private System.Windows.Forms.DateTimePicker dtDateVerify;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.GroupBox grpResponded;
+        private System.Windows.Forms.RadioButton rbtnNo;
+        private System.Windows.Forms.RadioButton rbtnYes;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtCompanyName;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.RichTextBox rtbRsnResponded;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.GroupBox grpNoResponse;
+        private System.Windows.Forms.DateTimePicker dtDateFollowup;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.GroupBox grpNotInterested;
+        private System.Windows.Forms.RichTextBox rtbRsnNotInterested;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Panel pnlEmployment;
+        private System.Windows.Forms.TextBox txtCompanyEmp;
+        private System.Windows.Forms.GroupBox grpEmploymentStatus;
+        private System.Windows.Forms.RichTextBox rtbAddress;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.DateTimePicker dtDateHired;
+        private System.Windows.Forms.RadioButton rbtnSubmitDocs;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.RadioButton rbtnHired;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox txtJobTitle;
+        private System.Windows.Forms.RadioButton rbtnForInterview;
+        private System.Windows.Forms.ComboBox cbxReason;
+        private System.Windows.Forms.RadioButton rbtnNotHired;
     }
 }

@@ -32,12 +32,15 @@ namespace Scholarship_Employment
             InitializeComponent();
 
             _frmRecords = frmRecords;
+
+            grpNoResponse.Location = grpResponded.Location;
+            grpNotInterested.Location = grpResponded.Location;
         }
 
         private void FrmUpdate_Load(object sender, EventArgs e)
         {
-            LoadInformation();
-            DistrictToCitySelection();
+            //LoadInformation();
+            //DistrictToCitySelection();
         }
 
         private void cbxDistrict_SelectedIndexChanged(object sender, EventArgs e)
@@ -47,13 +50,6 @@ namespace Scholarship_Employment
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            /* if (CheckIfNoChanges)
-            {
-                MessageBox.Show("No changes were made in this information.");
-                Close();
-                return;
-            }
-            */
             string message = "Do you wish to update this information?";
             DialogResult result = MessageBox.Show(message, "Confirm Update", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
@@ -69,6 +65,67 @@ namespace Scholarship_Employment
             if (result == DialogResult.Yes)
             {
                 Close();
+            }
+        }
+
+        private void cbxStatusVerify_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedItem = cbxStatusVerify.SelectedItem.ToString();
+            switch (selectedItem)
+            {
+                case "Responded":
+                    grpResponded.Visible = true;
+                    grpNoResponse.Visible = false;
+                    grpNotInterested.Visible = false;
+                    break;
+
+                case "No Response (For Follow-up)":
+                    grpNoResponse.Visible = true;
+                    grpResponded.Visible = false;
+                    grpNotInterested.Visible = false;
+                    break;
+
+                case "Not Interested (Please Provide Reason)":
+                    grpNotInterested.Visible = true;
+                    grpResponded.Visible = false;
+                    grpNoResponse.Visible = false;
+                    break;
+
+                default:
+                    grpResponded.Visible = false;
+                    grpNoResponse.Visible = false;
+                    grpNotInterested.Visible = false;
+                    break;
+            }
+        }
+
+        private void rbtnYes_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtnYes.Checked)
+            {
+                txtCompanyName.Enabled = true;
+                rtbRsnResponded.Enabled = false;
+            }
+            else
+            {
+                rtbRsnResponded.Enabled = true;
+                txtCompanyName.Enabled = false;
+            }
+        }
+
+        private void rbtnHired_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtnHired.Checked)
+            {
+                MessageBox.Show("Hired");
+            }
+            else if (rbtnSubmitDocs.Checked)
+            {
+                MessageBox.Show("Submitted Documents");
+            }
+            else
+            {
+                MessageBox.Show("ELSE");
             }
         }
 
@@ -105,8 +162,8 @@ namespace Scholarship_Employment
                         cbxScholarType.Text = reader.GetString(12);
                         cbxGradYear.Text = reader.GetInt32(13).ToString();
 
-                        cbxVerifyStatus.Text = reader.GetString(14);
-                        cbxEmployStatus.Text = reader.GetString(15);
+                        cbxMeansVerify.Text = reader.GetString(14);
+                        cbxStatusVerify.Text = reader.GetString(15);
                     }
 
                     _lastname = txtLastname.Text;
@@ -123,8 +180,8 @@ namespace Scholarship_Employment
                     _scholarship_type = cbxScholarType.Text;
                     _graduation_year = int.Parse(cbxGradYear.Text);
 
-                    _verification_status = cbxVerifyStatus.Text;
-                    _employment_status = cbxEmployStatus.Text;
+                    _verification_status = cbxMeansVerify.Text;
+                    _employment_status = cbxStatusVerify.Text;
 
                     connection.Close();
                 }
@@ -200,8 +257,8 @@ namespace Scholarship_Employment
             _city = cbxCity.Text;
             _scholarship_type = cbxScholarType.Text;
             _graduation_year = int.Parse(cbxGradYear.Text);
-            _verification_status = cbxVerifyStatus.Text;
-            _employment_status = cbxEmployStatus.Text;
+            _verification_status = cbxMeansVerify.Text;
+            _employment_status = cbxStatusVerify.Text;
 
             using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
