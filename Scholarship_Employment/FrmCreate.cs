@@ -16,6 +16,7 @@ namespace Scholarship_Employment
         private string _contact_number;
         private string _address;
         private string _email;
+        private string _sector;
         private string _qualification;
         private string _tvi;
         private string _district;
@@ -62,6 +63,7 @@ namespace Scholarship_Employment
             _contact_number = txtContactNum.Text;
             _address = rtxtAddress.Text;
             _email = txtEmail.Text;
+            _sector = cbxSector.Text;
             _qualification = txtQualification.Text;
             _tvi = txtTVI.Text;
             _district = cbxDistrict.Text;
@@ -78,7 +80,8 @@ namespace Scholarship_Employment
                     MySqlCommand command = null;
 
                     string sql = "CALL submit_data(@last_name, @first_name, @middle_name, @extension_name, @sex, @birthdate, " +
-                        "@contact_number, @address, @email, @qualification, @tvi, @district, @city, @scholarship_type, @graduation_year)";
+                        "@contact_number, @address, @email, @sector, @qualification, @tvi, @district, @city, @scholarship_type, " +
+                        "@graduation_year)";
                     command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@last_name", _last_name);
                     command.Parameters.AddWithValue("@first_name", _first_name);
@@ -89,6 +92,7 @@ namespace Scholarship_Employment
                     command.Parameters.AddWithValue("@contact_number", _contact_number);
                     command.Parameters.AddWithValue("@address", _address);
                     command.Parameters.AddWithValue("@email", _email);
+                    command.Parameters.AddWithValue("@sector", _sector);
                     command.Parameters.AddWithValue("@qualification", _qualification);
                     command.Parameters.AddWithValue("@tvi", _tvi);
                     command.Parameters.AddWithValue("@district", _district);

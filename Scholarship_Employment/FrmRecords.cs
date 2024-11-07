@@ -240,7 +240,7 @@ namespace Scholarship_Employment
 
                     MySqlCommand command = null;
 
-                    string sql = "DELETE FROM scholarship_employment WHERE id = @id";
+                    string sql = $"DELETE FROM {Utilities.DbTable} WHERE id = @id";
                     command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@id", _selectedID);
                     command.ExecuteNonQuery();
