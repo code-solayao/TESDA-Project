@@ -8,13 +8,9 @@ namespace Scholarship_Employment
     {
         private int _selectedID = 0;
 
-        private FrmUpdate _frmUpdate;
-
         public FrmRecords()
         {
             InitializeComponent();
-
-            _frmUpdate = new FrmUpdate(this);
         }
 
         private void FrmRecords_Load(object sender, EventArgs e)
@@ -219,13 +215,9 @@ namespace Scholarship_Employment
         {
             _selectedID = int.Parse(listView.SelectedItems[0].Text);
 
-            if (_frmUpdate.IsDisposed)
-            {
-                _frmUpdate = new FrmUpdate(this);
-            }
-
-            _frmUpdate.Id = _selectedID;
-            _frmUpdate.ShowDialog();
+            FrmUpdate frmUpdate = new FrmUpdate(this);
+            frmUpdate.Id = _selectedID;
+            frmUpdate.ShowDialog();
         }
 
         private void DeleteRecord()

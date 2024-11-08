@@ -65,17 +65,27 @@
             this.label3 = new System.Windows.Forms.Label();
             this.pageVerification = new System.Windows.Forms.TabPage();
             this.pnlVerification = new System.Windows.Forms.Panel();
+            this.rbtnNoResponse = new System.Windows.Forms.RadioButton();
+            this.rbtnResponded = new System.Windows.Forms.RadioButton();
             this.grpNoResponse = new System.Windows.Forms.GroupBox();
-            this.dtDateFollowup = new System.Windows.Forms.DateTimePicker();
+            this.chkInvalidContact = new System.Windows.Forms.CheckBox();
+            this.dtDateFollowup2 = new System.Windows.Forms.DateTimePicker();
+            this.label18 = new System.Windows.Forms.Label();
+            this.dtDateFollowup1 = new System.Windows.Forms.DateTimePicker();
             this.label22 = new System.Windows.Forms.Label();
             this.grpResponded = new System.Windows.Forms.GroupBox();
+            this.grpRsnNotInterested = new System.Windows.Forms.GroupBox();
             this.rtbRsnNotInterested = new System.Windows.Forms.RichTextBox();
-            this.label19 = new System.Windows.Forms.Label();
+            this.rbtnNotInterested = new System.Windows.Forms.RadioButton();
+            this.rbtnInterested = new System.Windows.Forms.RadioButton();
+            this.grpReferralStatus = new System.Windows.Forms.GroupBox();
+            this.dtReferCompany = new System.Windows.Forms.DateTimePicker();
+            this.rtbRsnReferralNo = new System.Windows.Forms.RichTextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.rbtnNo = new System.Windows.Forms.RadioButton();
             this.rbtnYes = new System.Windows.Forms.RadioButton();
             this.dtDateVerify = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
-            this.cbxStatusVerify = new System.Windows.Forms.ComboBox();
             this.cbxMeansVerify = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -84,25 +94,21 @@
             this.txtJobTitle = new System.Windows.Forms.TextBox();
             this.rtbAddress = new System.Windows.Forms.RichTextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.txtCompanyEmp = new System.Windows.Forms.TextBox();
+            this.txtCompanyName = new System.Windows.Forms.TextBox();
             this.grpEmploymentStatus = new System.Windows.Forms.GroupBox();
-            this.cbxReason = new System.Windows.Forms.ComboBox();
+            this.dtForInterview = new System.Windows.Forms.DateTimePicker();
+            this.dtSubmitDocs = new System.Windows.Forms.DateTimePicker();
+            this.cbxRsnNotHired = new System.Windows.Forms.ComboBox();
             this.rbtnNotHired = new System.Windows.Forms.RadioButton();
             this.rbtnForInterview = new System.Windows.Forms.RadioButton();
             this.label24 = new System.Windows.Forms.Label();
-            this.dtDateHired = new System.Windows.Forms.DateTimePicker();
+            this.dtHired = new System.Windows.Forms.DateTimePicker();
             this.rbtnSubmitDocs = new System.Windows.Forms.RadioButton();
-            this.label27 = new System.Windows.Forms.Label();
             this.rbtnHired = new System.Windows.Forms.RadioButton();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.grpReferralStatus = new System.Windows.Forms.GroupBox();
-            this.rbtnInterested = new System.Windows.Forms.RadioButton();
-            this.rbtnNotInterested = new System.Windows.Forms.RadioButton();
-            this.label15 = new System.Windows.Forms.Label();
-            this.rtbRsnRefStatusNo = new System.Windows.Forms.RichTextBox();
             this.tabControl.SuspendLayout();
             this.pageDetails.SuspendLayout();
             this.pnlDetails.SuspendLayout();
@@ -110,10 +116,11 @@
             this.pnlVerification.SuspendLayout();
             this.grpNoResponse.SuspendLayout();
             this.grpResponded.SuspendLayout();
+            this.grpRsnNotInterested.SuspendLayout();
+            this.grpReferralStatus.SuspendLayout();
             this.pageEmployment.SuspendLayout();
             this.pnlEmployment.SuspendLayout();
             this.grpEmploymentStatus.SuspendLayout();
-            this.grpReferralStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -121,7 +128,7 @@
             this.tabControl.Controls.Add(this.pageDetails);
             this.tabControl.Controls.Add(this.pageVerification);
             this.tabControl.Controls.Add(this.pageEmployment);
-            this.tabControl.Location = new System.Drawing.Point(10, 10);
+            this.tabControl.Location = new System.Drawing.Point(10, 11);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(1120, 540);
@@ -516,11 +523,12 @@
             // 
             this.pnlVerification.BackColor = System.Drawing.SystemColors.Control;
             this.pnlVerification.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlVerification.Controls.Add(this.rbtnNoResponse);
+            this.pnlVerification.Controls.Add(this.rbtnResponded);
             this.pnlVerification.Controls.Add(this.grpNoResponse);
             this.pnlVerification.Controls.Add(this.grpResponded);
             this.pnlVerification.Controls.Add(this.dtDateVerify);
             this.pnlVerification.Controls.Add(this.label14);
-            this.pnlVerification.Controls.Add(this.cbxStatusVerify);
             this.pnlVerification.Controls.Add(this.cbxMeansVerify);
             this.pnlVerification.Controls.Add(this.label16);
             this.pnlVerification.Controls.Add(this.label17);
@@ -529,9 +537,38 @@
             this.pnlVerification.Size = new System.Drawing.Size(1100, 500);
             this.pnlVerification.TabIndex = 41;
             // 
+            // rbtnNoResponse
+            // 
+            this.rbtnNoResponse.AutoSize = true;
+            this.rbtnNoResponse.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnNoResponse.Location = new System.Drawing.Point(50, 240);
+            this.rbtnNoResponse.Name = "rbtnNoResponse";
+            this.rbtnNoResponse.Size = new System.Drawing.Size(125, 25);
+            this.rbtnNoResponse.TabIndex = 4;
+            this.rbtnNoResponse.TabStop = true;
+            this.rbtnNoResponse.Text = "No Response";
+            this.rbtnNoResponse.UseVisualStyleBackColor = true;
+            this.rbtnNoResponse.CheckedChanged += new System.EventHandler(this.rbtnNoResponse_CheckedChanged);
+            // 
+            // rbtnResponded
+            // 
+            this.rbtnResponded.AutoSize = true;
+            this.rbtnResponded.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnResponded.Location = new System.Drawing.Point(50, 210);
+            this.rbtnResponded.Name = "rbtnResponded";
+            this.rbtnResponded.Size = new System.Drawing.Size(112, 25);
+            this.rbtnResponded.TabIndex = 3;
+            this.rbtnResponded.TabStop = true;
+            this.rbtnResponded.Text = "Responded";
+            this.rbtnResponded.UseVisualStyleBackColor = true;
+            this.rbtnResponded.CheckedChanged += new System.EventHandler(this.rbtnResponded_CheckedChanged);
+            // 
             // grpNoResponse
             // 
-            this.grpNoResponse.Controls.Add(this.dtDateFollowup);
+            this.grpNoResponse.Controls.Add(this.chkInvalidContact);
+            this.grpNoResponse.Controls.Add(this.dtDateFollowup2);
+            this.grpNoResponse.Controls.Add(this.label18);
+            this.grpNoResponse.Controls.Add(this.dtDateFollowup1);
             this.grpNoResponse.Controls.Add(this.label22);
             this.grpNoResponse.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpNoResponse.Location = new System.Drawing.Point(354, 43);
@@ -542,30 +579,58 @@
             this.grpNoResponse.Text = "No Response (For Follow-up)";
             this.grpNoResponse.Visible = false;
             // 
-            // dtDateFollowup
+            // chkInvalidContact
             // 
-            this.dtDateFollowup.Font = new System.Drawing.Font("Arial", 12F);
-            this.dtDateFollowup.Location = new System.Drawing.Point(54, 80);
-            this.dtDateFollowup.Name = "dtDateFollowup";
-            this.dtDateFollowup.Size = new System.Drawing.Size(300, 26);
-            this.dtDateFollowup.TabIndex = 59;
+            this.chkInvalidContact.AutoSize = true;
+            this.chkInvalidContact.Location = new System.Drawing.Point(55, 250);
+            this.chkInvalidContact.Name = "chkInvalidContact";
+            this.chkInvalidContact.Size = new System.Drawing.Size(138, 25);
+            this.chkInvalidContact.TabIndex = 14;
+            this.chkInvalidContact.Text = "Invalid Contact";
+            this.chkInvalidContact.UseVisualStyleBackColor = true;
+            // 
+            // dtDateFollowup2
+            // 
+            this.dtDateFollowup2.Enabled = false;
+            this.dtDateFollowup2.Font = new System.Drawing.Font("Arial", 12F);
+            this.dtDateFollowup2.Location = new System.Drawing.Point(54, 180);
+            this.dtDateFollowup2.Name = "dtDateFollowup2";
+            this.dtDateFollowup2.Size = new System.Drawing.Size(300, 26);
+            this.dtDateFollowup2.TabIndex = 13;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(50, 150);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(146, 21);
+            this.label18.TabIndex = 60;
+            this.label18.Text = "Second Follow-up:";
+            // 
+            // dtDateFollowup1
+            // 
+            this.dtDateFollowup1.Enabled = false;
+            this.dtDateFollowup1.Font = new System.Drawing.Font("Arial", 12F);
+            this.dtDateFollowup1.Location = new System.Drawing.Point(54, 80);
+            this.dtDateFollowup1.Name = "dtDateFollowup1";
+            this.dtDateFollowup1.Size = new System.Drawing.Size(300, 26);
+            this.dtDateFollowup1.TabIndex = 12;
             // 
             // label22
             // 
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(50, 50);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(179, 21);
+            this.label22.Size = new System.Drawing.Size(122, 21);
             this.label22.TabIndex = 0;
-            this.label22.Text = "Set Date for Follow-up:";
+            this.label22.Text = "First Follow-up:";
             // 
             // grpResponded
             // 
+            this.grpResponded.Controls.Add(this.grpRsnNotInterested);
             this.grpResponded.Controls.Add(this.rbtnNotInterested);
             this.grpResponded.Controls.Add(this.rbtnInterested);
             this.grpResponded.Controls.Add(this.grpReferralStatus);
-            this.grpResponded.Controls.Add(this.rtbRsnNotInterested);
-            this.grpResponded.Controls.Add(this.label19);
             this.grpResponded.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpResponded.Location = new System.Drawing.Point(360, 20);
             this.grpResponded.Name = "grpResponded";
@@ -575,25 +640,95 @@
             this.grpResponded.Text = "Type of Response";
             this.grpResponded.Visible = false;
             // 
+            // grpRsnNotInterested
+            // 
+            this.grpRsnNotInterested.Controls.Add(this.rtbRsnNotInterested);
+            this.grpRsnNotInterested.Enabled = false;
+            this.grpRsnNotInterested.Location = new System.Drawing.Point(80, 330);
+            this.grpRsnNotInterested.Name = "grpRsnNotInterested";
+            this.grpRsnNotInterested.Size = new System.Drawing.Size(580, 105);
+            this.grpRsnNotInterested.TabIndex = 44;
+            this.grpRsnNotInterested.TabStop = false;
+            this.grpRsnNotInterested.Text = "Reason";
+            // 
             // rtbRsnNotInterested
             // 
-            this.rtbRsnNotInterested.Enabled = false;
             this.rtbRsnNotInterested.Font = new System.Drawing.Font("Arial", 12F);
-            this.rtbRsnNotInterested.Location = new System.Drawing.Point(84, 360);
+            this.rtbRsnNotInterested.Location = new System.Drawing.Point(15, 30);
             this.rtbRsnNotInterested.Name = "rtbRsnNotInterested";
-            this.rtbRsnNotInterested.Size = new System.Drawing.Size(580, 60);
-            this.rtbRsnNotInterested.TabIndex = 38;
+            this.rtbRsnNotInterested.Size = new System.Drawing.Size(552, 60);
+            this.rtbRsnNotInterested.TabIndex = 11;
             this.rtbRsnNotInterested.Text = "";
             // 
-            // label19
+            // rbtnNotInterested
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(80, 330);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(71, 21);
-            this.label19.TabIndex = 37;
-            this.label19.Text = "Reason: ";
+            this.rbtnNotInterested.AutoSize = true;
+            this.rbtnNotInterested.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnNotInterested.Location = new System.Drawing.Point(50, 300);
+            this.rbtnNotInterested.Name = "rbtnNotInterested";
+            this.rbtnNotInterested.Size = new System.Drawing.Size(136, 25);
+            this.rbtnNotInterested.TabIndex = 10;
+            this.rbtnNotInterested.TabStop = true;
+            this.rbtnNotInterested.Text = "Not Interested";
+            this.rbtnNotInterested.UseVisualStyleBackColor = true;
+            this.rbtnNotInterested.CheckedChanged += new System.EventHandler(this.rbtnNotInterested_CheckedChanged);
+            // 
+            // rbtnInterested
+            // 
+            this.rbtnInterested.AutoSize = true;
+            this.rbtnInterested.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnInterested.Location = new System.Drawing.Point(50, 50);
+            this.rbtnInterested.Name = "rbtnInterested";
+            this.rbtnInterested.Size = new System.Drawing.Size(104, 25);
+            this.rbtnInterested.TabIndex = 5;
+            this.rbtnInterested.TabStop = true;
+            this.rbtnInterested.Text = "Interested";
+            this.rbtnInterested.UseVisualStyleBackColor = true;
+            this.rbtnInterested.CheckedChanged += new System.EventHandler(this.rbtnInterested_CheckedChanged);
+            // 
+            // grpReferralStatus
+            // 
+            this.grpReferralStatus.Controls.Add(this.dtReferCompany);
+            this.grpReferralStatus.Controls.Add(this.rtbRsnReferralNo);
+            this.grpReferralStatus.Controls.Add(this.label15);
+            this.grpReferralStatus.Controls.Add(this.rbtnNo);
+            this.grpReferralStatus.Controls.Add(this.rbtnYes);
+            this.grpReferralStatus.Enabled = false;
+            this.grpReferralStatus.Location = new System.Drawing.Point(80, 80);
+            this.grpReferralStatus.Name = "grpReferralStatus";
+            this.grpReferralStatus.Size = new System.Drawing.Size(584, 189);
+            this.grpReferralStatus.TabIndex = 41;
+            this.grpReferralStatus.TabStop = false;
+            this.grpReferralStatus.Text = "Refer to Company?";
+            // 
+            // dtReferCompany
+            // 
+            this.dtReferCompany.Enabled = false;
+            this.dtReferCompany.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtReferCompany.Location = new System.Drawing.Point(147, 40);
+            this.dtReferCompany.Name = "dtReferCompany";
+            this.dtReferCompany.Size = new System.Drawing.Size(280, 26);
+            this.dtReferCompany.TabIndex = 7;
+            // 
+            // rtbRsnReferralNo
+            // 
+            this.rtbRsnReferralNo.Enabled = false;
+            this.rtbRsnReferralNo.Font = new System.Drawing.Font("Arial", 12F);
+            this.rtbRsnReferralNo.Location = new System.Drawing.Point(147, 109);
+            this.rtbRsnReferralNo.Name = "rtbRsnReferralNo";
+            this.rtbRsnReferralNo.Size = new System.Drawing.Size(420, 60);
+            this.rtbRsnReferralNo.TabIndex = 9;
+            this.rtbRsnReferralNo.Text = "";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(70, 110);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(68, 21);
+            this.label15.TabIndex = 38;
+            this.label15.Text = "Reason: ";
             // 
             // rbtnNo
             // 
@@ -602,7 +737,7 @@
             this.rbtnNo.Location = new System.Drawing.Point(50, 80);
             this.rbtnNo.Name = "rbtnNo";
             this.rbtnNo.Size = new System.Drawing.Size(52, 25);
-            this.rbtnNo.TabIndex = 2;
+            this.rbtnNo.TabIndex = 8;
             this.rbtnNo.TabStop = true;
             this.rbtnNo.Text = "NO";
             this.rbtnNo.UseVisualStyleBackColor = true;
@@ -615,7 +750,7 @@
             this.rbtnYes.Location = new System.Drawing.Point(50, 40);
             this.rbtnYes.Name = "rbtnYes";
             this.rbtnYes.Size = new System.Drawing.Size(54, 25);
-            this.rbtnYes.TabIndex = 1;
+            this.rbtnYes.TabIndex = 6;
             this.rbtnYes.TabStop = true;
             this.rbtnYes.Text = "YES";
             this.rbtnYes.UseVisualStyleBackColor = true;
@@ -638,19 +773,6 @@
             this.label14.Size = new System.Drawing.Size(167, 21);
             this.label14.TabIndex = 59;
             this.label14.Text = "Date of Verification: ";
-            // 
-            // cbxStatusVerify
-            // 
-            this.cbxStatusVerify.Font = new System.Drawing.Font("Arial", 12F);
-            this.cbxStatusVerify.FormattingEnabled = true;
-            this.cbxStatusVerify.Items.AddRange(new object[] {
-            "Responded",
-            "No Response (For Follow-up)"});
-            this.cbxStatusVerify.Location = new System.Drawing.Point(24, 210);
-            this.cbxStatusVerify.Name = "cbxStatusVerify";
-            this.cbxStatusVerify.Size = new System.Drawing.Size(300, 26);
-            this.cbxStatusVerify.TabIndex = 3;
-            this.cbxStatusVerify.SelectedIndexChanged += new System.EventHandler(this.cbxStatusVerify_SelectedIndexChanged);
             // 
             // cbxMeansVerify
             // 
@@ -704,10 +826,11 @@
             this.pnlEmployment.Controls.Add(this.txtJobTitle);
             this.pnlEmployment.Controls.Add(this.rtbAddress);
             this.pnlEmployment.Controls.Add(this.label20);
-            this.pnlEmployment.Controls.Add(this.txtCompanyEmp);
+            this.pnlEmployment.Controls.Add(this.txtCompanyName);
             this.pnlEmployment.Controls.Add(this.grpEmploymentStatus);
             this.pnlEmployment.Controls.Add(this.label28);
             this.pnlEmployment.Controls.Add(this.label29);
+            this.pnlEmployment.Enabled = false;
             this.pnlEmployment.Location = new System.Drawing.Point(6, 7);
             this.pnlEmployment.Name = "pnlEmployment";
             this.pnlEmployment.Size = new System.Drawing.Size(1100, 500);
@@ -719,7 +842,7 @@
             this.txtJobTitle.Location = new System.Drawing.Point(24, 290);
             this.txtJobTitle.Name = "txtJobTitle";
             this.txtJobTitle.Size = new System.Drawing.Size(300, 26);
-            this.txtJobTitle.TabIndex = 62;
+            this.txtJobTitle.TabIndex = 17;
             // 
             // rtbAddress
             // 
@@ -727,7 +850,7 @@
             this.rtbAddress.Location = new System.Drawing.Point(24, 130);
             this.rtbAddress.Name = "rtbAddress";
             this.rtbAddress.Size = new System.Drawing.Size(500, 100);
-            this.rtbAddress.TabIndex = 38;
+            this.rtbAddress.TabIndex = 16;
             this.rtbAddress.Text = "";
             // 
             // label20
@@ -740,23 +863,24 @@
             this.label20.TabIndex = 61;
             this.label20.Text = "Address: ";
             // 
-            // txtCompanyEmp
+            // txtCompanyName
             // 
-            this.txtCompanyEmp.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCompanyEmp.Location = new System.Drawing.Point(24, 50);
-            this.txtCompanyEmp.Name = "txtCompanyEmp";
-            this.txtCompanyEmp.Size = new System.Drawing.Size(300, 26);
-            this.txtCompanyEmp.TabIndex = 39;
+            this.txtCompanyName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCompanyName.Location = new System.Drawing.Point(24, 50);
+            this.txtCompanyName.Name = "txtCompanyName";
+            this.txtCompanyName.Size = new System.Drawing.Size(300, 26);
+            this.txtCompanyName.TabIndex = 15;
             // 
             // grpEmploymentStatus
             // 
-            this.grpEmploymentStatus.Controls.Add(this.cbxReason);
+            this.grpEmploymentStatus.Controls.Add(this.dtForInterview);
+            this.grpEmploymentStatus.Controls.Add(this.dtSubmitDocs);
+            this.grpEmploymentStatus.Controls.Add(this.cbxRsnNotHired);
             this.grpEmploymentStatus.Controls.Add(this.rbtnNotHired);
             this.grpEmploymentStatus.Controls.Add(this.rbtnForInterview);
             this.grpEmploymentStatus.Controls.Add(this.label24);
-            this.grpEmploymentStatus.Controls.Add(this.dtDateHired);
+            this.grpEmploymentStatus.Controls.Add(this.dtHired);
             this.grpEmploymentStatus.Controls.Add(this.rbtnSubmitDocs);
-            this.grpEmploymentStatus.Controls.Add(this.label27);
             this.grpEmploymentStatus.Controls.Add(this.rbtnHired);
             this.grpEmploymentStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpEmploymentStatus.Location = new System.Drawing.Point(547, 20);
@@ -766,31 +890,49 @@
             this.grpEmploymentStatus.TabStop = false;
             this.grpEmploymentStatus.Text = "Employment Status";
             // 
-            // cbxReason
+            // dtForInterview
             // 
-            this.cbxReason.Enabled = false;
-            this.cbxReason.Font = new System.Drawing.Font("Arial", 12F);
-            this.cbxReason.FormattingEnabled = true;
-            this.cbxReason.Items.AddRange(new object[] {
+            this.dtForInterview.Enabled = false;
+            this.dtForInterview.Font = new System.Drawing.Font("Arial", 12F);
+            this.dtForInterview.Location = new System.Drawing.Point(70, 230);
+            this.dtForInterview.Name = "dtForInterview";
+            this.dtForInterview.Size = new System.Drawing.Size(300, 26);
+            this.dtForInterview.TabIndex = 23;
+            // 
+            // dtSubmitDocs
+            // 
+            this.dtSubmitDocs.Enabled = false;
+            this.dtSubmitDocs.Font = new System.Drawing.Font("Arial", 12F);
+            this.dtSubmitDocs.Location = new System.Drawing.Point(70, 150);
+            this.dtSubmitDocs.Name = "dtSubmitDocs";
+            this.dtSubmitDocs.Size = new System.Drawing.Size(300, 26);
+            this.dtSubmitDocs.TabIndex = 21;
+            // 
+            // cbxRsnNotHired
+            // 
+            this.cbxRsnNotHired.Enabled = false;
+            this.cbxRsnNotHired.Font = new System.Drawing.Font("Arial", 12F);
+            this.cbxRsnNotHired.FormattingEnabled = true;
+            this.cbxRsnNotHired.Items.AddRange(new object[] {
             "Underage",
             "Upskilling",
             "Lack of experience",
             "Did not meet the requirements"});
-            this.cbxReason.Location = new System.Drawing.Point(74, 300);
-            this.cbxReason.Name = "cbxReason";
-            this.cbxReason.Size = new System.Drawing.Size(300, 26);
-            this.cbxReason.TabIndex = 62;
+            this.cbxRsnNotHired.Location = new System.Drawing.Point(74, 340);
+            this.cbxRsnNotHired.Name = "cbxRsnNotHired";
+            this.cbxRsnNotHired.Size = new System.Drawing.Size(300, 26);
+            this.cbxRsnNotHired.TabIndex = 25;
             // 
             // rbtnNotHired
             // 
             this.rbtnNotHired.AutoSize = true;
             this.rbtnNotHired.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnNotHired.Location = new System.Drawing.Point(40, 240);
+            this.rbtnNotHired.Location = new System.Drawing.Point(40, 280);
             this.rbtnNotHired.Name = "rbtnNotHired";
-            this.rbtnNotHired.Size = new System.Drawing.Size(231, 25);
-            this.rbtnNotHired.TabIndex = 61;
+            this.rbtnNotHired.Size = new System.Drawing.Size(101, 25);
+            this.rbtnNotHired.TabIndex = 24;
             this.rbtnNotHired.TabStop = true;
-            this.rbtnNotHired.Text = "Not Hired (Indicate Reason)";
+            this.rbtnNotHired.Text = "Not Hired";
             this.rbtnNotHired.UseVisualStyleBackColor = true;
             this.rbtnNotHired.CheckedChanged += new System.EventHandler(this.rbtnNotHired_CheckedChanged);
             // 
@@ -798,54 +940,46 @@
             // 
             this.rbtnForInterview.AutoSize = true;
             this.rbtnForInterview.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnForInterview.Location = new System.Drawing.Point(40, 190);
+            this.rbtnForInterview.Location = new System.Drawing.Point(40, 200);
             this.rbtnForInterview.Name = "rbtnForInterview";
             this.rbtnForInterview.Size = new System.Drawing.Size(125, 25);
-            this.rbtnForInterview.TabIndex = 60;
+            this.rbtnForInterview.TabIndex = 22;
             this.rbtnForInterview.TabStop = true;
             this.rbtnForInterview.Text = "For Interview";
             this.rbtnForInterview.UseVisualStyleBackColor = true;
+            this.rbtnForInterview.CheckedChanged += new System.EventHandler(this.rbtnForInterview_CheckedChanged);
             // 
             // label24
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(70, 270);
+            this.label24.Location = new System.Drawing.Point(70, 310);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(71, 21);
             this.label24.TabIndex = 37;
             this.label24.Text = "Reason: ";
             // 
-            // dtDateHired
+            // dtHired
             // 
-            this.dtDateHired.Enabled = false;
-            this.dtDateHired.Font = new System.Drawing.Font("Arial", 12F);
-            this.dtDateHired.Location = new System.Drawing.Point(74, 100);
-            this.dtDateHired.Name = "dtDateHired";
-            this.dtDateHired.Size = new System.Drawing.Size(300, 26);
-            this.dtDateHired.TabIndex = 2;
+            this.dtHired.Enabled = false;
+            this.dtHired.Font = new System.Drawing.Font("Arial", 12F);
+            this.dtHired.Location = new System.Drawing.Point(70, 70);
+            this.dtHired.Name = "dtHired";
+            this.dtHired.Size = new System.Drawing.Size(300, 26);
+            this.dtHired.TabIndex = 19;
             // 
             // rbtnSubmitDocs
             // 
             this.rbtnSubmitDocs.AutoSize = true;
             this.rbtnSubmitDocs.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnSubmitDocs.Location = new System.Drawing.Point(40, 140);
+            this.rbtnSubmitDocs.Location = new System.Drawing.Point(40, 120);
             this.rbtnSubmitDocs.Name = "rbtnSubmitDocs";
             this.rbtnSubmitDocs.Size = new System.Drawing.Size(192, 25);
-            this.rbtnSubmitDocs.TabIndex = 2;
+            this.rbtnSubmitDocs.TabIndex = 20;
             this.rbtnSubmitDocs.TabStop = true;
             this.rbtnSubmitDocs.Text = "Submitted Documents";
             this.rbtnSubmitDocs.UseVisualStyleBackColor = true;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(70, 70);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(97, 21);
-            this.label27.TabIndex = 59;
-            this.label27.Text = "Date Hired: ";
+            this.rbtnSubmitDocs.CheckedChanged += new System.EventHandler(this.rbtnSubmitDocs_CheckedChanged);
             // 
             // rbtnHired
             // 
@@ -854,7 +988,7 @@
             this.rbtnHired.Location = new System.Drawing.Point(40, 40);
             this.rbtnHired.Name = "rbtnHired";
             this.rbtnHired.Size = new System.Drawing.Size(69, 25);
-            this.rbtnHired.TabIndex = 1;
+            this.rbtnHired.TabIndex = 18;
             this.rbtnHired.TabStop = true;
             this.rbtnHired.Text = "Hired";
             this.rbtnHired.UseVisualStyleBackColor = true;
@@ -903,66 +1037,6 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // grpReferralStatus
-            // 
-            this.grpReferralStatus.Controls.Add(this.rtbRsnRefStatusNo);
-            this.grpReferralStatus.Controls.Add(this.label15);
-            this.grpReferralStatus.Controls.Add(this.rbtnNo);
-            this.grpReferralStatus.Controls.Add(this.rbtnYes);
-            this.grpReferralStatus.Enabled = false;
-            this.grpReferralStatus.Location = new System.Drawing.Point(80, 80);
-            this.grpReferralStatus.Name = "grpReferralStatus";
-            this.grpReferralStatus.Size = new System.Drawing.Size(584, 189);
-            this.grpReferralStatus.TabIndex = 41;
-            this.grpReferralStatus.TabStop = false;
-            this.grpReferralStatus.Text = "Referral Status";
-            // 
-            // rbtnInterested
-            // 
-            this.rbtnInterested.AutoSize = true;
-            this.rbtnInterested.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnInterested.Location = new System.Drawing.Point(50, 50);
-            this.rbtnInterested.Name = "rbtnInterested";
-            this.rbtnInterested.Size = new System.Drawing.Size(104, 25);
-            this.rbtnInterested.TabIndex = 42;
-            this.rbtnInterested.TabStop = true;
-            this.rbtnInterested.Text = "Interested";
-            this.rbtnInterested.UseVisualStyleBackColor = true;
-            this.rbtnInterested.CheckedChanged += new System.EventHandler(this.rbtnInterested_CheckedChanged);
-            // 
-            // rbtnNotInterested
-            // 
-            this.rbtnNotInterested.AutoSize = true;
-            this.rbtnNotInterested.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnNotInterested.Location = new System.Drawing.Point(50, 300);
-            this.rbtnNotInterested.Name = "rbtnNotInterested";
-            this.rbtnNotInterested.Size = new System.Drawing.Size(136, 25);
-            this.rbtnNotInterested.TabIndex = 43;
-            this.rbtnNotInterested.TabStop = true;
-            this.rbtnNotInterested.Text = "Not Interested";
-            this.rbtnNotInterested.UseVisualStyleBackColor = true;
-            this.rbtnNotInterested.CheckedChanged += new System.EventHandler(this.rbtnNotInterested_CheckedChanged);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(70, 110);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(71, 21);
-            this.label15.TabIndex = 38;
-            this.label15.Text = "Reason: ";
-            // 
-            // rtbRsnRefStatusNo
-            // 
-            this.rtbRsnRefStatusNo.Enabled = false;
-            this.rtbRsnRefStatusNo.Font = new System.Drawing.Font("Arial", 12F);
-            this.rtbRsnRefStatusNo.Location = new System.Drawing.Point(147, 109);
-            this.rtbRsnRefStatusNo.Name = "rtbRsnRefStatusNo";
-            this.rtbRsnRefStatusNo.Size = new System.Drawing.Size(420, 60);
-            this.rtbRsnRefStatusNo.TabIndex = 39;
-            this.rtbRsnRefStatusNo.Text = "";
-            // 
             // FrmUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -985,13 +1059,14 @@
             this.grpNoResponse.PerformLayout();
             this.grpResponded.ResumeLayout(false);
             this.grpResponded.PerformLayout();
+            this.grpRsnNotInterested.ResumeLayout(false);
+            this.grpReferralStatus.ResumeLayout(false);
+            this.grpReferralStatus.PerformLayout();
             this.pageEmployment.ResumeLayout(false);
             this.pnlEmployment.ResumeLayout(false);
             this.pnlEmployment.PerformLayout();
             this.grpEmploymentStatus.ResumeLayout(false);
             this.grpEmploymentStatus.PerformLayout();
-            this.grpReferralStatus.ResumeLayout(false);
-            this.grpReferralStatus.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1017,7 +1092,6 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.TabPage pageVerification;
         private System.Windows.Forms.Panel pnlVerification;
-        private System.Windows.Forms.ComboBox cbxStatusVerify;
         private System.Windows.Forms.ComboBox cbxMeansVerify;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
@@ -1029,25 +1103,23 @@
         private System.Windows.Forms.RadioButton rbtnNo;
         private System.Windows.Forms.RadioButton rbtnYes;
         private System.Windows.Forms.RichTextBox rtbRsnNotInterested;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.GroupBox grpNoResponse;
-        private System.Windows.Forms.DateTimePicker dtDateFollowup;
+        private System.Windows.Forms.DateTimePicker dtDateFollowup1;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Panel pnlEmployment;
-        private System.Windows.Forms.TextBox txtCompanyEmp;
+        private System.Windows.Forms.TextBox txtCompanyName;
         private System.Windows.Forms.GroupBox grpEmploymentStatus;
         private System.Windows.Forms.RichTextBox rtbAddress;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.DateTimePicker dtDateHired;
+        private System.Windows.Forms.DateTimePicker dtHired;
         private System.Windows.Forms.RadioButton rbtnSubmitDocs;
-        private System.Windows.Forms.Label label27;
         private System.Windows.Forms.RadioButton rbtnHired;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txtJobTitle;
         private System.Windows.Forms.RadioButton rbtnForInterview;
-        private System.Windows.Forms.ComboBox cbxReason;
+        private System.Windows.Forms.ComboBox cbxRsnNotHired;
         private System.Windows.Forms.RadioButton rbtnNotHired;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label26;
@@ -1071,7 +1143,16 @@
         private System.Windows.Forms.GroupBox grpReferralStatus;
         private System.Windows.Forms.RadioButton rbtnNotInterested;
         private System.Windows.Forms.RadioButton rbtnInterested;
-        private System.Windows.Forms.RichTextBox rtbRsnRefStatusNo;
+        private System.Windows.Forms.RichTextBox rtbRsnReferralNo;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.DateTimePicker dtDateFollowup2;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.CheckBox chkInvalidContact;
+        private System.Windows.Forms.DateTimePicker dtReferCompany;
+        private System.Windows.Forms.DateTimePicker dtForInterview;
+        private System.Windows.Forms.DateTimePicker dtSubmitDocs;
+        private System.Windows.Forms.RadioButton rbtnResponded;
+        private System.Windows.Forms.RadioButton rbtnNoResponse;
+        private System.Windows.Forms.GroupBox grpRsnNotInterested;
     }
 }

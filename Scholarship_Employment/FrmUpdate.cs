@@ -12,11 +12,26 @@ namespace Scholarship_Employment
         private string _verification_means;
         private string _verification_date;
         private string _verification_status;
-        private bool _referral_status;
-        private string _company_name;
-        private string _responded_reason;
-        private string _follow_up_date;
+
+        private string _response_type;
+        private bool _refer_to_company;
+        private string _referral_date;
+        private string _no_referral_reason;
         private string _not_interested_reason;
+
+        private string _follow_up_date_1;
+        private string _follow_up_date_2;
+        private bool _invalid_contact;
+
+        private string _company_name;
+        private string _address;
+        private string _job_title;
+
+        private string _employment_status;
+        private string _hired_date;
+        private string _submitted_documents_date;
+        private string _for_interview_date;
+        private string _not_hired_reason;
 
         private FrmRecords _frmRecords;
 
@@ -33,8 +48,10 @@ namespace Scholarship_Employment
             _dateTimePickers = new List<DateTimePicker>
             {
                 dtDateVerify,
-                dtDateFollowup,
-                dtDateHired
+                dtReferCompany,
+                dtDateFollowup1,
+                dtDateFollowup2,
+                dtHired
             };
 
             InitialiseClearDetails();
@@ -65,25 +82,50 @@ namespace Scholarship_Employment
             }
         }
 
-        private void cbxStatusVerify_SelectedIndexChanged(object sender, EventArgs e)
+        #region Radio Button Actions
+
+        // Verification tab page
+        private void rbtnResponded_CheckedChanged(object sender, EventArgs e)
         {
-            string selectedItem = cbxStatusVerify.SelectedItem.ToString();
-            switch (selectedItem)
+            if (rbtnResponded.Checked)
             {
-                case "Responded":
-                    grpResponded.Visible = true;
-                    grpNoResponse.Visible = false;
-                    break;
+                grpResponded.Visible = true;
+            }
+            else
+            {
+                grpResponded.Visible = false;
 
-                case "No Response (For Follow-up)":
-                    grpNoResponse.Visible = true;
-                    grpResponded.Visible = false;
-                    break;
+                rbtnInterested.Checked = false;
+                rbtnNotInterested.Checked = false;
 
-                default:
-                    grpResponded.Visible = false;
-                    grpNoResponse.Visible = false;
-                    break;
+                grpReferralStatus.Enabled = false;
+                rbtnYes.Checked = false;
+                rbtnNo.Checked = false;
+                dtReferCompany.Enabled = false;
+                rtbRsnReferralNo.Clear();
+                rtbRsnReferralNo.Enabled = false;
+
+                rtbRsnNotInterested.Clear();
+                grpRsnNotInterested.Enabled = false;
+            }
+        }
+
+        private void rbtnNoResponse_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtnNoResponse.Checked)
+            {
+                grpNoResponse.Visible = true;
+
+                dtDateFollowup1.Enabled = true;
+                dtDateFollowup2.Enabled = true;
+            }
+            else
+            {
+                grpResponded.Visible = false;
+
+                dtDateFollowup1.Enabled = false;
+                dtDateFollowup2.Enabled = false;
+                chkInvalidContact.Checked = false;
             }
         }
 
@@ -92,7 +134,17 @@ namespace Scholarship_Employment
             if (rbtnInterested.Checked)
             {
                 grpReferralStatus.Enabled = true;
-                rtbRsnNotInterested.Enabled = false;
+            }
+            else
+            {
+                grpReferralStatus.Enabled = false;
+
+                rbtnYes.Checked = false;
+                rbtnNo.Checked = false;
+
+                dtReferCompany.Enabled = false;
+                rtbRsnReferralNo.Clear();
+                rtbRsnReferralNo.Enabled = false;
             }
         }
 
@@ -100,8 +152,12 @@ namespace Scholarship_Employment
         {
             if (rbtnNotInterested.Checked)
             {
-                rtbRsnNotInterested.Enabled = true;
-                grpReferralStatus.Enabled = false;
+                grpRsnNotInterested.Enabled = true;
+            }
+            else
+            {
+                grpRsnNotInterested.Enabled = false;
+                rtbRsnNotInterested.Clear();
             }
         }
 
@@ -109,9 +165,13 @@ namespace Scholarship_Employment
         {
             if (rbtnYes.Checked)
             {
-                rtbRsnRefStatusNo.Enabled = false;
-
-                // Redirect to Employment tab page
+                dtReferCompany.Enabled = true;
+                EmploymentTabPageAction(true);
+            }
+            else
+            {
+                dtReferCompany.Enabled = false;
+                EmploymentTabPageAction(false);
             }
         }
 
@@ -119,24 +179,44 @@ namespace Scholarship_Employment
         {
             if (rbtnNo.Checked)
             {
-                rtbRsnRefStatusNo.Enabled = true;
+                rtbRsnReferralNo.Enabled = true;
+            }
+            else
+            {
+                rtbRsnReferralNo.Enabled = false;
+                rtbRsnReferralNo.Clear();
             }
         }
 
+        // Employment tab page
         private void rbtnHired_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbtnHired.Checked) dtDateHired.Enabled = true;
-            else dtDateHired.Enabled = false;
+            if (rbtnHired.Checked) dtHired.Enabled = true;
+            else dtHired.Enabled = false;
+        }
+
+        private void rbtnSubmitDocs_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtnSubmitDocs.Checked) dtSubmitDocs.Enabled = true;
+            else dtSubmitDocs.Enabled = false;
+        }
+
+        private void rbtnForInterview_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtnForInterview.Checked) dtForInterview.Enabled = true;
+            else dtForInterview.Enabled = false;
         }
 
         private void rbtnNotHired_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbtnNotHired.Checked) cbxReason.Enabled = true;
-            else cbxReason.Enabled = false;
+            if (rbtnNotHired.Checked) cbxRsnNotHired.Enabled = true;
+            else cbxRsnNotHired.Enabled = false;
         }
 
+        #endregion
+
         #region Functions
-        
+
         private void InitialiseClearDetails()
         {
             List<Label> _detailsLabels = new List<Label>
@@ -276,16 +356,31 @@ namespace Scholarship_Employment
         {
             CustomiseDateTimePickers(true);
 
+            // Verification tab page
             _verification_means = cbxMeansVerify.Text;
             _verification_date = dtDateVerify.Text;
-            _verification_status = cbxStatusVerify.Text;
-            _referral_status = ReferralStatusValue();
-            //_company_name = txtCompanyName.Text;
-            _responded_reason = rtbRsnNotInterested.Text;
-            _follow_up_date = dtDateFollowup.Text;
-            // _not_interested_reason = rtbRsnNotInterested.Text;
+            _verification_status = Value_VerificationStatus();
 
-            MessageBox.Show(_follow_up_date);
+            _response_type = Value_TypeOfResponse();
+            _refer_to_company = Value_ReferToCompany();
+            _referral_date = Value_ReferralDate();
+            _no_referral_reason = rtbRsnReferralNo.Text;
+            _not_interested_reason = rtbRsnNotInterested.Text;
+
+            _follow_up_date_1 = Value_FollowUpDate_1();
+            _follow_up_date_2 = Value_FollowUpDate_2();
+            _invalid_contact = chkInvalidContact.Checked;
+
+            // Employment tab page
+            _company_name = txtCompanyName.Text;
+            _address = rtbAddress.Text;
+            _job_title = txtJobTitle.Text;
+
+            _employment_status = Value_EmploymentStatus();
+            _hired_date = Value_HiredDate();
+            _submitted_documents_date = Value_SubmittedDocumentsDate();
+            _for_interview_date = Value_ForInterviewDate();
+            _not_hired_reason = cbxRsnNotHired.Text;
 
             using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
@@ -295,18 +390,18 @@ namespace Scholarship_Employment
 
                     MySqlCommand command = null;
 
-                    string sql = "CALL update_record(@id, @means, @date, @status, @refstatus, @company_name, @responded_rsn, " +
-                        "@followup_date, @not_interested_rsn);";
+                    string sql = $"CALL submit_verification_record(@id, @means, @date, @status, @response_type, @can_refer, " +
+                        $"{_referral_date}, @no_ref_rsn, @not_interested_rsn, {_follow_up_date_1}, {_follow_up_date_2}, @invalid_contact);";
                     command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@id", Id);
                     command.Parameters.AddWithValue("@means", _verification_means);
                     command.Parameters.AddWithValue("@date", _verification_date);
                     command.Parameters.AddWithValue("@status", _verification_status);
-                    command.Parameters.AddWithValue("@refstatus", _referral_status);
-                    command.Parameters.AddWithValue("@company_name", _company_name);
-                    command.Parameters.AddWithValue("@responded_rsn", _responded_reason);
-                    command.Parameters.AddWithValue("@followup_date", _follow_up_date);
+                    command.Parameters.AddWithValue("@response_type", _response_type);
+                    command.Parameters.AddWithValue("@can_refer", _refer_to_company);
+                    command.Parameters.AddWithValue("@no_ref_rsn", _no_referral_reason);
                     command.Parameters.AddWithValue("@not_interested_rsn", _not_interested_reason);
+                    command.Parameters.AddWithValue("@invalid_contact", _invalid_contact);
                     command.ExecuteNonQuery();
 
                     CustomiseDateTimePickers(false);
@@ -344,7 +439,50 @@ namespace Scholarship_Employment
             }
         }
 
-        private bool ReferralStatusValue()
+        private void EmploymentTabPageAction(bool isActive)
+        {
+            if (isActive)
+            {
+                pnlEmployment.Enabled = true;
+            }
+            else
+            {
+                pnlEmployment.Enabled = false;
+
+                txtCompanyName.Clear();
+                rtbAddress.Clear();
+                txtJobTitle.Clear();
+
+                rbtnHired.Checked = false;
+                rbtnSubmitDocs.Checked = false;
+                rbtnForInterview.Checked = false;
+                rbtnNotHired.Checked = false;
+
+                dtHired.Enabled = false;
+                dtSubmitDocs.Enabled = false;
+                dtForInterview.Enabled = false;
+                cbxRsnNotHired.Text = string.Empty;
+                cbxRsnNotHired.Enabled = false;
+            }
+        }
+
+        // Verification tab page
+        private string Value_VerificationStatus()
+        {
+            if (rbtnResponded.Checked) return "Responded";
+            else if (rbtnNoResponse.Checked) return "No Response";
+
+            return string.Empty;
+        }
+
+        private string Value_TypeOfResponse()
+        {
+            if (rbtnInterested.Checked) return "Interested";
+            else if (rbtnNotInterested.Checked) return "Not Interested";
+            else return string.Empty;
+        }
+
+        private bool Value_ReferToCompany()
         {
             if (rbtnYes.Checked) return true;
             else if (rbtnNo.Checked) return false;
@@ -352,14 +490,74 @@ namespace Scholarship_Employment
             return false;
         }
 
-        private bool CheckIfNoChanges
+        private string Value_ReferralDate()
         {
-            get
+            if (dtReferCompany.Enabled)
             {
-                int x = 0;
-
-                return x == 13;
+                string date = $"\"{dtReferCompany.Text}\"";
+                return date;
             }
+            else return "null";
+        }
+
+        private string Value_FollowUpDate_1()
+        {
+            if (dtDateFollowup1.Enabled)
+            {
+                string date = $"\"{dtDateFollowup1.Text}\"";
+                return date;
+            }
+            else return "null";
+        }
+
+        private string Value_FollowUpDate_2()
+        {
+            if (dtDateFollowup2.Enabled)
+            {
+                string date = $"\"{dtDateFollowup2.Text}\"";
+                return date;
+            }
+            else return "null";
+        }
+
+        // Employment tab page
+        private string Value_EmploymentStatus()
+        {
+            if (rbtnHired.Checked) return "Hired";
+            else if (rbtnSubmitDocs.Checked) return "Submitted Documents";
+            else if (rbtnForInterview.Checked) return "For Interview";
+            else if (rbtnNotHired.Checked) return "Not Hired";
+            else return string.Empty;
+        }
+
+        private string Value_HiredDate()
+        {
+            if (dtHired.Enabled)
+            {
+                string date = $"\"{dtHired.Text}\"";
+                return date;
+            }
+            else return "null";
+        }
+
+        private string Value_SubmittedDocumentsDate()
+        {
+            if (dtSubmitDocs.Enabled)
+            {
+                string date = $"\"{dtSubmitDocs.Text}\"";
+                return date;
+            }
+            else return "null";
+        }
+
+        private string Value_ForInterviewDate()
+        {
+            if (dtForInterview.Enabled)
+            {
+                string date = $"\"{dtForInterview.Text}\"";
+                return date;
+            }
+            else return "null";
         }
 
         #endregion
