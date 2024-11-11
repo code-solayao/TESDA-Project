@@ -32,6 +32,8 @@ namespace Scholarship_Employment
         private void FrmCreate_Load(object sender, EventArgs e)
         {
             txtNameDisplay.Text = $"{_first_name} {_middle_name} {_last_name} {_extension_name}";
+
+            cbxGradYear.SelectedIndex = 0;
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -102,6 +104,31 @@ namespace Scholarship_Employment
                     command.ExecuteNonQuery();
 
                     dtBirthDate.Format = DateTimePickerFormat.Long;
+
+                    sql = "CALL get_new_record_id(@last_name, @first_name)";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@last_name", _last_name);
+                    command.Parameters.AddWithValue("@first_name", _first_name);
+                    command.ExecuteNonQuery();
+
+                    int id = 0;
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            id = reader.GetInt32(0);
+                        }
+                    }
+
+                    sql = "CALL initialise_verification_record(@id)";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@id", id);
+                    command.ExecuteNonQuery();
+
+                    sql = "CALL initialise_employment_record(@id)";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@id", id);
+                    command.ExecuteNonQuery();
 
                     Close();
                     FrmRecords form = new FrmRecords();

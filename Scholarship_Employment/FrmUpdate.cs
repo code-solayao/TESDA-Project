@@ -51,7 +51,9 @@ namespace Scholarship_Employment
                 dtReferCompany,
                 dtDateFollowup1,
                 dtDateFollowup2,
-                dtHired
+                dtHired,
+                dtSubmitDocs,
+                dtForInterview
             };
 
             InitialiseClearDetails();
@@ -402,6 +404,20 @@ namespace Scholarship_Employment
                     command.Parameters.AddWithValue("@no_ref_rsn", _no_referral_reason);
                     command.Parameters.AddWithValue("@not_interested_rsn", _not_interested_reason);
                     command.Parameters.AddWithValue("@invalid_contact", _invalid_contact);
+                    command.ExecuteNonQuery();
+
+                    sql = $"CALL submit_employment_record(@id, @company_name, @address, @job_title, @employment_status, {_hired_date}, " +
+                        $"{_submitted_documents_date}, {_for_interview_date}, @not_hired_reason);";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@id", Id);
+                    command.Parameters.AddWithValue("@company_name", _company_name);
+                    command.Parameters.AddWithValue("@address", _address);
+                    command.Parameters.AddWithValue("@job_title", _job_title);
+                    command.Parameters.AddWithValue("@employment_status", _employment_status);
+                    command.Parameters.AddWithValue("@hired_date", _hired_date);
+                    command.Parameters.AddWithValue("@submit_docs_date", _submitted_documents_date);
+                    command.Parameters.AddWithValue("@interview_date", _for_interview_date);
+                    command.Parameters.AddWithValue("@not_hired_reason", _not_hired_reason);
                     command.ExecuteNonQuery();
 
                     CustomiseDateTimePickers(false);

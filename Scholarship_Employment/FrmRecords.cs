@@ -83,25 +83,42 @@ namespace Scholarship_Employment
 
                     MySqlCommand command = null;
 
-                    string sql = $"SELECT id, last_name, first_name, middle_name, extension_name, graduation_year FROM {Utilities.DbTable};";
+                    string sql = $"CALL read_initial_records();";
                     command = new MySqlCommand(sql, connection);
+                    command.ExecuteNonQuery();
 
-                    MySqlDataReader reader = command.ExecuteReader();
                     int i = 0;
-                    while (reader.Read())
+                    using (MySqlDataReader reader = command.ExecuteReader())
                     {
-                        listView.Items.Add(reader.GetInt32(0).ToString());
-                        listView.Items[i].SubItems.Add(reader.GetString(1));
-                        listView.Items[i].SubItems.Add(reader.GetString(2));
-                        listView.Items[i].SubItems.Add(reader.GetString(3));
-                        listView.Items[i].SubItems.Add(reader.GetString(4));
-                        listView.Items[i].SubItems.Add("");
-                        listView.Items[i].SubItems.Add(reader.GetInt32(5).ToString());
-                        listView.Items[i].SubItems.Add("");
+                        while (reader.Read())
+                        {
+                            listView.Items.Add(reader.GetInt32(0).ToString());
+                            listView.Items[i].SubItems.Add(reader.GetString(1));
+                            listView.Items[i].SubItems.Add(reader.GetString(2));
+                            listView.Items[i].SubItems.Add(reader.GetString(3));
+                            listView.Items[i].SubItems.Add(reader.GetString(4));
+                            listView.Items[i].SubItems.Add(string.Empty);
+                            listView.Items[i].SubItems.Add(reader.GetInt32(5).ToString());
+                            listView.Items[i].SubItems.Add(reader.GetString(6));
 
-                        listView.Items[i].Font = new System.Drawing.Font("Segoe UI Light", 12f);
+                            listView.Items[i].Font = new System.Drawing.Font("Segoe UI Light", 12f);
 
-                        i++;
+                            i++;
+                        }
+                    }
+
+                    sql = "CALL read_employment_records();";
+                    command = new MySqlCommand(sql, connection);
+                    command.ExecuteNonQuery();
+
+                    i = 0;
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            listView.Items[i].SubItems[5].Text = "reader.GetString(0)";
+                            i++;
+                        }
                     }
 
                     connection.Close();
@@ -118,6 +135,7 @@ namespace Scholarship_Employment
             listView.Items.Clear();
 
             string input = txtSearch.Text;
+            int selectedIndex = cbxSearchBy.SelectedIndex;
             string selectedItem = cbxSearchBy.SelectedItem.ToString();
 
             using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
@@ -129,7 +147,42 @@ namespace Scholarship_Employment
                     MySqlCommand command = null;
                     string sql = "SELECT * FROM scholarship_employment;";
 
-                    switch (selectedItem)
+                    switch (selectedIndex)
+                    {
+                        case 0:
+                            int inputNum = int.Parse(input);
+                            sql = $"CALL search_id(@input)";
+
+                            command = new MySqlCommand(sql, connection);
+                            command.Parameters.AddWithValue("@input", inputNum);
+                            break;
+
+                        case 1:
+                            break;
+
+                        case 2:
+                            break;
+
+                        case 3:
+                            break;
+
+                        case 4:
+                            break;
+
+                        case 5:
+                            break;
+
+                        case 6:
+                            break;
+
+                        case 7:
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    /*switch (selectedItem)
                     {
                         case "Record number":
                             int inputNum = int.Parse(input);
@@ -171,7 +224,7 @@ namespace Scholarship_Employment
                             sql = "SELECT * FROM scholarship_employment;";
                             command = new MySqlCommand(sql, connection);
                             break;
-                    }
+                    }*/
 
                     MySqlDataReader reader = command.ExecuteReader();
                     int i = 0;
@@ -182,6 +235,9 @@ namespace Scholarship_Employment
                         listView.Items[i].SubItems.Add(reader.GetString(2));
                         listView.Items[i].SubItems.Add(reader.GetString(3));
                         listView.Items[i].SubItems.Add(reader.GetString(4));
+                        listView.Items[i].SubItems.Add(reader.GetString(5));
+                        listView.Items[i].SubItems.Add(reader.GetUInt32(6).ToString());
+                        listView.Items[i].SubItems.Add(reader.GetString(7));
 
                         listView.Items[i].Font = new System.Drawing.Font("Segoe UI Light", 12f);
 
@@ -256,7 +312,7 @@ namespace Scholarship_Employment
 
                     MySqlCommand command = null;
 
-                    string sql = $"TRUNCATE TABLE {Utilities.DbTable}";
+                    string sql = $"CALL clear_all_records();";
                     command = new MySqlCommand(sql, connection);
                     command.ExecuteNonQuery();
 
