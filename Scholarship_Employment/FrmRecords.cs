@@ -83,7 +83,7 @@ namespace Scholarship_Employment
 
                     MySqlCommand command = null;
 
-                    string sql = $"CALL read_initial_records();";
+                    string sql = $"CALL refresh_records();";
                     command = new MySqlCommand(sql, connection);
                     command.ExecuteNonQuery();
 
@@ -97,26 +97,12 @@ namespace Scholarship_Employment
                             listView.Items[i].SubItems.Add(reader.GetString(2));
                             listView.Items[i].SubItems.Add(reader.GetString(3));
                             listView.Items[i].SubItems.Add(reader.GetString(4));
-                            listView.Items[i].SubItems.Add(string.Empty);
-                            listView.Items[i].SubItems.Add(reader.GetInt32(5).ToString());
-                            listView.Items[i].SubItems.Add(reader.GetString(6));
+                            listView.Items[i].SubItems.Add(StatusOfEmployment(reader, 5));
+                            listView.Items[i].SubItems.Add(reader.GetInt32(6).ToString());
+                            listView.Items[i].SubItems.Add(reader.GetString(7));
 
                             listView.Items[i].Font = new System.Drawing.Font("Segoe UI Light", 12f);
 
-                            i++;
-                        }
-                    }
-
-                    sql = "CALL read_employment_records();";
-                    command = new MySqlCommand(sql, connection);
-                    command.ExecuteNonQuery();
-
-                    i = 0;
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            listView.Items[i].SubItems[5].Text = "reader.GetString(0)";
                             i++;
                         }
                     }
@@ -136,7 +122,6 @@ namespace Scholarship_Employment
 
             string input = txtSearch.Text;
             int selectedIndex = cbxSearchBy.SelectedIndex;
-            string selectedItem = cbxSearchBy.SelectedItem.ToString();
 
             using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
@@ -145,103 +130,107 @@ namespace Scholarship_Employment
                     connection.Open();
 
                     MySqlCommand command = null;
-                    string sql = "SELECT * FROM scholarship_employment;";
+                    string sql = string.Empty;
+                    int inputNum;
 
                     switch (selectedIndex)
                     {
                         case 0:
-                            int inputNum = int.Parse(input);
-                            sql = $"CALL search_id(@input)";
-
+                            // All records
+                            sql = "CALL refresh_records();";
                             command = new MySqlCommand(sql, connection);
-                            command.Parameters.AddWithValue("@input", inputNum);
                             break;
 
                         case 1:
-                            break;
-
-                        case 2:
-                            break;
-
-                        case 3:
-                            break;
-
-                        case 4:
-                            break;
-
-                        case 5:
-                            break;
-
-                        case 6:
-                            break;
-
-                        case 7:
-                            break;
-
-                        default:
-                            break;
-                    }
-
-                    /*switch (selectedItem)
-                    {
-                        case "Record number":
-                            int inputNum = int.Parse(input);
+                            // Record number
+                            inputNum = int.Parse(input);
                             sql = $"CALL search_id(@input)";
 
                             command = new MySqlCommand(sql, connection);
                             command.Parameters.AddWithValue("@input", inputNum);
                             break;
 
-                        case "Last name":
+                        case 2:
+                            // Last name
                             sql = $"CALL search_lastname(@input)";
 
                             command = new MySqlCommand(sql, connection);
                             command.Parameters.AddWithValue("@input", input);
                             break;
 
-                        case "First name":
+                        case 3:
+                            // First name
                             sql = $"CALL search_firstname(@input)";
 
                             command = new MySqlCommand(sql, connection);
                             command.Parameters.AddWithValue("@input", input);
                             break;
 
-                        case "Middle name":
-                            sql = $"CALL search_middleinitial(@input)";
+                        case 4:
+                            // Middle name
+                            sql = $"CALL search_middlename(@input)";
 
                             command = new MySqlCommand(sql, connection);
                             command.Parameters.AddWithValue("@input", input);
                             break;
 
-                        case "Extension name":
-                            sql = $"CALL search_suffix(@input)";
+                        case 5:
+                            // Extension name
+                            sql = $"CALL search_extension_name(@input)";
+
+                            command = new MySqlCommand(sql, connection);
+                            command.Parameters.AddWithValue("@input", input);
+                            break;
+
+                        case 6:
+                            // Status of Employment
+                            sql = $"CALL search_employment_status(@input)";
+
+                            command = new MySqlCommand(sql, connection);
+                            command.Parameters.AddWithValue("@input", input);
+                            break;
+
+                        case 7:
+                            // Year of Graduation
+                            inputNum = int.Parse(input);
+                            sql = $"CALL search_graduation_year(@input)";
+
+                            command = new MySqlCommand(sql, connection);
+                            command.Parameters.AddWithValue("@input", inputNum);
+                            break;
+
+                        case 8:
+                            // Qualification Title
+                            sql = $"CALL search_qualification_title(@input)";
 
                             command = new MySqlCommand(sql, connection);
                             command.Parameters.AddWithValue("@input", input);
                             break;
 
                         default:
-                            sql = "SELECT * FROM scholarship_employment;";
+                            sql = "CALL refresh_records();";
                             command = new MySqlCommand(sql, connection);
                             break;
-                    }*/
+                    }
 
-                    MySqlDataReader reader = command.ExecuteReader();
                     int i = 0;
-                    while (reader.Read())
+                    using (MySqlDataReader reader = command.ExecuteReader())
                     {
-                        listView.Items.Add(reader.GetInt32(0).ToString());
-                        listView.Items[i].SubItems.Add(reader.GetString(1));
-                        listView.Items[i].SubItems.Add(reader.GetString(2));
-                        listView.Items[i].SubItems.Add(reader.GetString(3));
-                        listView.Items[i].SubItems.Add(reader.GetString(4));
-                        listView.Items[i].SubItems.Add(reader.GetString(5));
-                        listView.Items[i].SubItems.Add(reader.GetUInt32(6).ToString());
-                        listView.Items[i].SubItems.Add(reader.GetString(7));
+                        while (reader.Read())
+                        {
+                            listView.Items.Add(reader.GetInt32(0).ToString());
+                            listView.Items[i].SubItems.Add(reader.GetString(1));
+                            listView.Items[i].SubItems.Add(reader.GetString(2));
+                            listView.Items[i].SubItems.Add(reader.GetString(3));
+                            listView.Items[i].SubItems.Add(reader.GetString(4));
+                            listView.Items[i].SubItems.Add(StatusOfEmployment(reader, 5));
+                            listView.Items[i].SubItems.Add(reader.GetInt32(6).ToString());
+                            listView.Items[i].SubItems.Add(reader.GetString(7));
 
-                        listView.Items[i].Font = new System.Drawing.Font("Segoe UI Light", 12f);
+                            listView.Items[i].Font = new System.Drawing.Font("Segoe UI Light", 12f);
 
-                        i++;
+                            i++;
+                        }
                     }
 
                     connection.Close();
@@ -288,10 +277,13 @@ namespace Scholarship_Employment
 
                     MySqlCommand command = null;
 
-                    string sql = $"DELETE FROM {Utilities.DbTable} WHERE id = @id";
+                    string sql = $"CALL delete_record(@id)";
                     command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@id", _selectedID);
                     command.ExecuteNonQuery();
+
+                    RefreshAllRecords();
+
 
                     connection.Close();
                 }
@@ -326,6 +318,12 @@ namespace Scholarship_Employment
                     MessageBox.Show(ex.Message, "ERROR");
                 }
             }
+        }
+
+        private string StatusOfEmployment(MySqlDataReader reader, int ordinal)
+        {
+            if (reader.IsDBNull(ordinal)) return null;
+            else return reader.GetString(ordinal);
         }
 
         #endregion

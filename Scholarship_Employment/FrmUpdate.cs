@@ -62,6 +62,7 @@ namespace Scholarship_Employment
         private void FrmUpdate_Load(object sender, EventArgs e)
         {
             LoadDetails();
+            RetrieveVerificationRecord();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -286,7 +287,38 @@ namespace Scholarship_Employment
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message, "ERROR");
+                }
+            }
+        }
+
+        private void RetrieveVerificationRecord()
+        {
+            using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    MySqlCommand command = null;
+
+                    string sql = "CALL retrieve_verification_record(@id);";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@id", Id);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            cbxMeansVerify.Text = reader.GetString(0);
+                        }
+                    }
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "ERROR");
                 }
             }
         }
@@ -392,7 +424,7 @@ namespace Scholarship_Employment
 
                     MySqlCommand command = null;
 
-                    string sql = $"CALL submit_verification_record(@id, @means, @date, @status, @response_type, @can_refer, " +
+                    string sql = $"CALL update_verification_record(@id, @means, @date, @status, @response_type, @can_refer, " +
                         $"{_referral_date}, @no_ref_rsn, @not_interested_rsn, {_follow_up_date_1}, {_follow_up_date_2}, @invalid_contact);";
                     command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@id", Id);
@@ -406,7 +438,7 @@ namespace Scholarship_Employment
                     command.Parameters.AddWithValue("@invalid_contact", _invalid_contact);
                     command.ExecuteNonQuery();
 
-                    sql = $"CALL submit_employment_record(@id, @company_name, @address, @job_title, @employment_status, {_hired_date}, " +
+                    sql = $"CALL update_employment_record(@id, @company_name, @address, @job_title, @employment_status, {_hired_date}, " +
                         $"{_submitted_documents_date}, {_for_interview_date}, @not_hired_reason);";
                     command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@id", Id);
