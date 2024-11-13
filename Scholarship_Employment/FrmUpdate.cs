@@ -124,7 +124,7 @@ namespace Scholarship_Employment
             }
             else
             {
-                grpResponded.Visible = false;
+                grpNoResponse.Visible = false;
 
                 dtDateFollowup1.Enabled = false;
                 dtDateFollowup2.Enabled = false;
@@ -159,8 +159,8 @@ namespace Scholarship_Employment
             }
             else
             {
-                grpRsnNotInterested.Enabled = false;
                 rtbRsnNotInterested.Clear();
+                grpRsnNotInterested.Enabled = false;
             }
         }
 
@@ -186,8 +186,8 @@ namespace Scholarship_Employment
             }
             else
             {
-                rtbRsnReferralNo.Enabled = false;
                 rtbRsnReferralNo.Clear();
+                rtbRsnReferralNo.Enabled = false;
             }
         }
 
@@ -289,101 +289,70 @@ namespace Scholarship_Employment
                 {
                     MessageBox.Show(ex.Message, "ERROR");
                 }
-            }
-        }
 
-        private void RetrieveVerificationRecord()
-        {
-            using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
-            {
-                try
+                string DateOfBirthFormat(DateTime readerDateTime)
                 {
-                    connection.Open();
-
-                    MySqlCommand command = null;
-
-                    string sql = "CALL retrieve_verification_record(@id);";
-                    command = new MySqlCommand(sql, connection);
-                    command.Parameters.AddWithValue("@id", Id);
-
-                    using (MySqlDataReader reader = command.ExecuteReader())
+                    string monthName = string.Empty;
+                    int month = readerDateTime.Month;
+                    switch (month)
                     {
-                        while (reader.Read())
-                        {
-                            cbxMeansVerify.Text = reader.GetString(0);
-                        }
+                        case 1:
+                            monthName = "January";
+                            break;
+
+                        case 2:
+                            monthName = "February";
+                            break;
+
+                        case 3:
+                            monthName = "March";
+                            break;
+
+                        case 4:
+                            monthName = "April";
+                            break;
+
+                        case 5:
+                            monthName = "May";
+                            break;
+
+                        case 6:
+                            monthName = "June";
+                            break;
+
+                        case 7:
+                            monthName = "July";
+                            break;
+
+                        case 8:
+                            monthName = "August";
+                            break;
+
+                        case 9:
+                            monthName = "September";
+                            break;
+
+                        case 10:
+                            monthName = "October";
+                            break;
+
+                        case 11:
+                            monthName = "November";
+                            break;
+
+                        case 12:
+                            monthName = "December";
+                            break;
+
+                        default:
+                            monthName = "";
+                            break;
                     }
 
-                    connection.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "ERROR");
+                    string format = $"{monthName} {readerDateTime.Day}, {readerDateTime.Year}";
+                    return format;
                 }
             }
-        }
-
-        private string DateOfBirthFormat(DateTime readerDateTime)
-        {
-            string monthName = string.Empty;
-            int month = readerDateTime.Month;
-            switch (month)
-            {
-                case 1:
-                    monthName = "January";
-                    break;
-
-                case 2:
-                    monthName = "February";
-                    break;
-
-                case 3:
-                    monthName = "March";
-                    break;
-
-                case 4:
-                    monthName = "April";
-                    break;
-
-                case 5:
-                    monthName = "May";
-                    break;
-
-                case 6:
-                    monthName = "June";
-                    break;
-
-                case 7:
-                    monthName = "July";
-                    break;
-
-                case 8:
-                    monthName = "August";
-                    break;
-
-                case 9:
-                    monthName = "September";
-                    break;
-
-                case 10:
-                    monthName = "October";
-                    break;
-
-                case 11:
-                    monthName = "November";
-                    break;
-
-                case 12:
-                    monthName = "December";
-                    break;
-
-                default:
-                    monthName = "";
-                    break;
-            }
-
-            string format = $"{monthName} {readerDateTime.Day}, {readerDateTime.Year}";
-            return format;
         }
 
         private void UpdateDatabaseTable()
@@ -487,34 +456,278 @@ namespace Scholarship_Employment
             }
         }
 
-        private void EmploymentTabPageAction(bool isActive)
+        // Verification tab page
+        private void RetrieveVerificationRecord()
         {
-            if (isActive)
+            using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
-                pnlEmployment.Enabled = true;
+                try
+                {
+                    connection.Open();
+
+                    MySqlCommand command = null;
+
+                    string sql = "CALL retrieve_verification_record(@id);";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@id", Id);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            cbxMeansVerify.Text = reader.GetString(0);
+                            VerificationDate(reader, 1);
+                            VerificationStatus(reader, 2);
+                            TypeOfResponse(reader, 3);
+                            ReferToCompany(reader, 4);
+                            ReferralDate(reader, 5);
+                            rtbRsnReferralNo.Text = reader.GetString(6);
+                            rtbRsnNotInterested.Text = reader.GetString(7);
+                            FollowUpDate_1(reader, 8);
+                            FollowUpDate_2(reader, 9);
+                            chkInvalidContact.Checked = reader.GetBoolean(10);
+                        }
+                    }
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "ERROR");
+                }
             }
-            else
+
+            void VerificationDate(MySqlDataReader reader, int ordinal)
             {
-                pnlEmployment.Enabled = false;
+                if (reader.IsDBNull(ordinal)) return;
 
-                txtCompanyName.Clear();
-                rtbAddress.Clear();
-                txtJobTitle.Clear();
+                DateTime dateTime = reader.GetDateTime(ordinal);
+                dtDateVerify.Value = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+            }
 
-                rbtnHired.Checked = false;
-                rbtnSubmitDocs.Checked = false;
-                rbtnForInterview.Checked = false;
-                rbtnNotHired.Checked = false;
+            void VerificationStatus(MySqlDataReader reader, int ordinal)
+            {
+                string verificationStatus = reader.GetString(ordinal);
+                if (verificationStatus.Equals(string.Empty))
+                {
+                    VerificationStatusAction(true, false);
+                    return;
+                }
 
-                dtHired.Enabled = false;
-                dtSubmitDocs.Enabled = false;
-                dtForInterview.Enabled = false;
-                cbxRsnNotHired.Text = string.Empty;
-                cbxRsnNotHired.Enabled = false;
+                if (verificationStatus.Equals("Responded"))
+                {
+                    VerificationStatusAction(false, true);
+                }
+                else if (verificationStatus.Equals("No Response"))
+                {
+                    VerificationStatusAction(false, false);
+                }
+                else
+                {
+                    VerificationStatusAction(true, true);
+                }
+            }
+
+            void TypeOfResponse(MySqlDataReader reader, int ordinal)
+            {
+                string typeOfResponse = reader.GetString(ordinal);
+                if (typeOfResponse.Equals("Interested"))
+                {
+                    TypeOfResponseAction(true);
+                }
+                else
+                {
+                    TypeOfResponseAction(false);
+                }
+            }
+
+            void ReferToCompany(MySqlDataReader reader, int ordinal)
+            {
+                if (reader.IsDBNull(ordinal))
+                {
+                    ReferToCompanyAction(true, false);
+                    return;
+                }
+
+                bool canRefer = reader.GetBoolean(ordinal);
+                if (canRefer) 
+                    ReferToCompanyAction(false, true);
+                else 
+                    ReferToCompanyAction(false, false);
+            }
+
+            void ReferralDate(MySqlDataReader reader, int ordinal)
+            {
+                if (reader.IsDBNull(ordinal)) return;
+
+                DateTime dateTime = reader.GetDateTime(ordinal);
+                dtReferCompany.Value = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+            }
+
+            void FollowUpDate_1(MySqlDataReader reader, int ordinal)
+            {
+                if (reader.IsDBNull(ordinal)) return;
+
+                DateTime dateTime = reader.GetDateTime(ordinal);
+                dtDateFollowup1.Value = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+            }
+
+            void FollowUpDate_2(MySqlDataReader reader, int ordinal)
+            {
+                if (reader.IsDBNull(ordinal)) return;
+
+                DateTime dateTime = reader.GetDateTime(ordinal);
+                dtDateFollowup2.Value = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
             }
         }
 
-        // Verification tab page
+        private void VerificationStatusAction(bool allUnchecked, bool isResponded)
+        {
+            if (allUnchecked)
+            {
+                rbtnResponded.Checked = false;
+                rbtnNoResponse.Checked = false;
+
+                // Responded actions
+                grpResponded.Visible = false;
+
+                rbtnInterested.Checked = false;
+                rbtnNotInterested.Checked = false;
+
+                grpReferralStatus.Enabled = false;
+                rbtnYes.Checked = false;
+                rbtnNo.Checked = false;
+                dtReferCompany.Enabled = false;
+                rtbRsnReferralNo.Clear();
+                rtbRsnReferralNo.Enabled = false;
+
+                rtbRsnNotInterested.Clear();
+                grpRsnNotInterested.Enabled = false;
+
+                // No Response actions
+                grpResponded.Visible = false;
+
+                dtDateFollowup1.Enabled = false;
+                dtDateFollowup2.Enabled = false;
+                chkInvalidContact.Checked = false;
+
+                return;
+            }
+
+            if (isResponded)
+            {
+                rbtnResponded.Checked = true;
+                rbtnNoResponse.Checked = false;
+
+                grpResponded.Visible = true;
+
+                // No Response actions
+                grpNoResponse.Visible = false;
+
+                dtDateFollowup1.Enabled = false;
+                dtDateFollowup2.Enabled = false;
+                chkInvalidContact.Checked = false;
+            }
+            else
+            {
+                rbtnNoResponse.Checked = true;
+                rbtnResponded.Checked = false;
+
+                // No Response actions
+                grpNoResponse.Visible = true;
+
+                dtDateFollowup1.Enabled = true;
+                dtDateFollowup2.Enabled = true;
+
+                // Responded actions
+                grpResponded.Visible = false;
+
+                rbtnInterested.Checked = false;
+                rbtnNotInterested.Checked = false;
+
+                grpReferralStatus.Enabled = false;
+                rbtnYes.Checked = false;
+                rbtnNo.Checked = false;
+                dtReferCompany.Enabled = false;
+                rtbRsnReferralNo.Clear();
+                rtbRsnReferralNo.Enabled = false;
+
+                rtbRsnNotInterested.Clear();
+                grpRsnNotInterested.Enabled = false;
+            }
+        }
+
+        private void TypeOfResponseAction(bool isInterested)
+        {
+            if (isInterested)
+            {
+                rbtnInterested.Checked = true;
+                rbtnNotInterested.Checked = false;
+
+                // Interested action
+                grpReferralStatus.Enabled = true;
+
+                // Not Interested actions
+                rtbRsnNotInterested.Clear();
+                grpRsnNotInterested.Enabled = false;
+            }
+            else
+            {
+                rbtnNotInterested.Checked = true;
+                rbtnInterested.Checked = false;
+
+                // Not Interested action
+                grpRsnNotInterested.Enabled = true;
+
+                // Interested actions
+                grpReferralStatus.Enabled = false;
+
+                rbtnYes.Checked = false;
+                rbtnNo.Checked = false;
+
+                dtReferCompany.Enabled = false;
+                rtbRsnReferralNo.Clear();
+                rtbRsnReferralNo.Enabled = false;
+            }
+        }
+
+        private void ReferToCompanyAction(bool allUnchecked, bool canRefer)
+        {
+            if (allUnchecked)
+            {
+                rbtnYes.Checked = false;
+                rbtnNo.Checked = false;
+
+                dtReferCompany.Enabled = false;
+                EmploymentTabPageAction(false);
+
+                rtbRsnReferralNo.Clear();
+                rtbRsnReferralNo.Enabled = false;
+
+                return;
+            }
+
+            if (canRefer)
+            {
+                rbtnYes.Checked = true;
+                dtReferCompany.Enabled = true;
+                EmploymentTabPageAction(true);
+
+                rbtnNo.Checked = false;
+                rtbRsnReferralNo.Clear();
+                rtbRsnReferralNo.Enabled = false;
+            }
+            else
+            {
+                rbtnNo.Checked = true;
+                rtbRsnReferralNo.Enabled = true;
+
+                rbtnYes.Checked = false;
+                dtReferCompany.Enabled = false;
+                EmploymentTabPageAction(false);
+            }
+        }
+
         private string Value_VerificationStatus()
         {
             if (rbtnResponded.Checked) return "Responded";
@@ -569,6 +782,33 @@ namespace Scholarship_Employment
         }
 
         // Employment tab page
+        private void EmploymentTabPageAction(bool isActive)
+        {
+            if (isActive)
+            {
+                pnlEmployment.Enabled = true;
+            }
+            else
+            {
+                pnlEmployment.Enabled = false;
+
+                txtCompanyName.Clear();
+                rtbAddress.Clear();
+                txtJobTitle.Clear();
+
+                rbtnHired.Checked = false;
+                rbtnSubmitDocs.Checked = false;
+                rbtnForInterview.Checked = false;
+                rbtnNotHired.Checked = false;
+
+                dtHired.Enabled = false;
+                dtSubmitDocs.Enabled = false;
+                dtForInterview.Enabled = false;
+                cbxRsnNotHired.Text = string.Empty;
+                cbxRsnNotHired.Enabled = false;
+            }
+        }
+
         private string Value_EmploymentStatus()
         {
             if (rbtnHired.Checked) return "Hired";
