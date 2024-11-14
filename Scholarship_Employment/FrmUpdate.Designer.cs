@@ -128,7 +128,7 @@
             this.tabControl.Controls.Add(this.pageDetails);
             this.tabControl.Controls.Add(this.pageVerification);
             this.tabControl.Controls.Add(this.pageEmployment);
-            this.tabControl.Location = new System.Drawing.Point(10, 11);
+            this.tabControl.Location = new System.Drawing.Point(10, 10);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(1120, 540);

@@ -63,6 +63,7 @@ namespace Scholarship_Employment
         {
             LoadDetails();
             RetrieveVerificationRecord();
+            RetrieveEmploymentRecord();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -212,8 +213,15 @@ namespace Scholarship_Employment
 
         private void rbtnNotHired_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbtnNotHired.Checked) cbxRsnNotHired.Enabled = true;
-            else cbxRsnNotHired.Enabled = false;
+            if (rbtnNotHired.Checked)
+            {
+                cbxRsnNotHired.Enabled = true;
+            }
+            else
+            {
+                cbxRsnNotHired.Text = string.Empty;
+                cbxRsnNotHired.Enabled = false;
+            }
         }
 
         #endregion
@@ -393,7 +401,7 @@ namespace Scholarship_Employment
 
                     MySqlCommand command = null;
 
-                    string sql = $"CALL update_verification_record(@id, @means, @date, @status, @response_type, @can_refer, " +
+                    string sql = $"CALL update_verification_record(@id, @means, @date, @status, @response_type, {_refer_to_company}, " +
                         $"{_referral_date}, @no_ref_rsn, @not_interested_rsn, {_follow_up_date_1}, {_follow_up_date_2}, @invalid_contact);";
                     command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@id", Id);
@@ -401,7 +409,6 @@ namespace Scholarship_Employment
                     command.Parameters.AddWithValue("@date", _verification_date);
                     command.Parameters.AddWithValue("@status", _verification_status);
                     command.Parameters.AddWithValue("@response_type", _response_type);
-                    command.Parameters.AddWithValue("@can_refer", _refer_to_company);
                     command.Parameters.AddWithValue("@no_ref_rsn", _no_referral_reason);
                     command.Parameters.AddWithValue("@not_interested_rsn", _not_interested_reason);
                     command.Parameters.AddWithValue("@invalid_contact", _invalid_contact);
@@ -533,12 +540,14 @@ namespace Scholarship_Employment
                 string typeOfResponse = reader.GetString(ordinal);
                 if (typeOfResponse.Equals("Interested"))
                 {
-                    TypeOfResponseAction(true);
+                    TypeOfResponseAction(true, true);
+                }
+                else if (typeOfResponse.Equals("Not Interested"))
+                {
+                    TypeOfResponseAction(true, false);
                 }
                 else
-                {
-                    TypeOfResponseAction(false);
-                }
+                    TypeOfResponseAction(false, false);
             }
 
             void ReferToCompany(MySqlDataReader reader, int ordinal)
@@ -657,8 +666,10 @@ namespace Scholarship_Employment
             }
         }
 
-        private void TypeOfResponseAction(bool isInterested)
+        private void TypeOfResponseAction(bool isResponded, bool isInterested)
         {
+            if (!isResponded) return;
+
             if (isInterested)
             {
                 rbtnInterested.Checked = true;
@@ -747,8 +758,7 @@ namespace Scholarship_Employment
         {
             if (rbtnYes.Checked) return true;
             else if (rbtnNo.Checked) return false;
-
-            return false;
+            else return false;
         }
 
         private string Value_ReferralDate()
@@ -782,6 +792,124 @@ namespace Scholarship_Employment
         }
 
         // Employment tab page
+        private void RetrieveEmploymentRecord()
+        {
+            if (!pnlEmployment.Enabled) return;
+
+            using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    MySqlCommand command = null;
+
+                    string sql = "CALL retrieve_employment_record(@id);";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@id", Id);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            txtCompanyName.Text = reader.GetString(0);
+                            rtbAddress.Text = reader.GetString(1);
+                            txtJobTitle.Text = reader.GetString(2);
+                            EmploymentStatus(reader, 3);
+                            HiredDate(reader, 4);
+                            SubmittedDocumentsDate(reader, 5);
+                            ForInterviewDate(reader, 6);
+                            NotHiredReason(reader, 7);
+                        }
+                    }
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "ERROR");
+                }
+            }
+
+            void EmploymentStatus(MySqlDataReader reader, int ordinal)
+            {
+                string employmentStatus = reader.GetString(ordinal);
+                if (employmentStatus.Equals(string.Empty))
+                {
+                    rbtnHired.Checked = false;
+                    rbtnSubmitDocs.Checked = false;
+                    rbtnForInterview.Checked = false;
+                    rbtnNotHired.Checked = false;
+                    return;
+                }
+
+                switch (employmentStatus)
+                {
+                    case "Hired":
+                        rbtnHired.Checked = true;
+                        break;
+
+                    case "Submitted Documents":
+                        rbtnSubmitDocs.Checked = true;
+                        break;
+
+                    case "For Interview":
+                        rbtnForInterview.Checked = true;
+                        break;
+
+                    case "Not Hired":
+                        rbtnNotHired.Checked = true;
+                        break;
+
+                    default:
+                        rbtnHired.Checked = false;
+                        rbtnSubmitDocs.Checked = false;
+                        rbtnForInterview.Checked = false;
+                        rbtnNotHired.Checked = false;
+                        break;
+                }
+            }
+
+            void HiredDate(MySqlDataReader reader, int ordinal)
+            {
+                if (reader.IsDBNull(ordinal)) return;
+
+                DateTime dateTime = reader.GetDateTime(ordinal);
+                dtHired.Value = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+            }
+
+            void SubmittedDocumentsDate(MySqlDataReader reader, int ordinal)
+            {
+                if (reader.IsDBNull(ordinal)) return;
+
+                DateTime dateTime = reader.GetDateTime(ordinal);
+                dtSubmitDocs.Value = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+            }
+
+            void ForInterviewDate(MySqlDataReader reader, int ordinal)
+            {
+                if (reader.IsDBNull(ordinal)) return;
+
+                DateTime dateTime = reader.GetDateTime(ordinal);
+                dtForInterview.Value = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+            }
+
+            void NotHiredReason(MySqlDataReader reader, int ordinal)
+            {
+                string notHiredReason = reader.GetString(ordinal);
+                if (notHiredReason.Equals(string.Empty))
+                {
+                    cbxRsnNotHired.Text = string.Empty;
+                    cbxRsnNotHired.Enabled = false;
+                }
+                else
+                {
+                    cbxRsnNotHired.Enabled = true;
+                    cbxRsnNotHired.Text = notHiredReason;
+                }
+            }
+        }
+
         private void EmploymentTabPageAction(bool isActive)
         {
             if (isActive)
