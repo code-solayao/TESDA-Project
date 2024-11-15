@@ -496,7 +496,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(115, 21);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Date of Birth: ";
+            this.label4.Text = "Date of birth: ";
             // 
             // label3
             // 
