@@ -16,13 +16,39 @@ namespace Scholarship_Employment
 
         private void FrmDetails_Load(object sender, EventArgs e)
         {
+            InitialiseClearAll();
+
             LoadDetails();
+            LoadVerificationRecord();
+        }
+
+        private void InitialiseClearAll()
+        {
+            List<Label> _detailsLabels = new List<Label>
+            {
+                lblFullName,
+                lblSex,
+                lblBirthDate,
+                lblContactNum,
+                lblAddress,
+                lblEmail,
+                lblSector,
+                lblQualiTitle,
+                lblDistrict,
+                lblCity,
+                lblScholarType,
+                lblTVI,
+                lblGradYear
+            };
+
+            foreach (Label detail in _detailsLabels)
+            {
+                detail.Text = string.Empty;
+            }
         }
 
         private void LoadDetails()
         {
-            InitialiseClearDetails();
-
             string last_name, first_name, middle_name, extension_name;
             using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
@@ -45,7 +71,7 @@ namespace Scholarship_Employment
                             lblFullName.Text = FullNameFormat();
 
                             lblSex.Text = reader.GetString(4);
-                            lblBirthDate.Text = DateOfBirthFormat(reader.GetDateTime(5));
+                            lblBirthDate.Text = DateFormatRead(reader.GetDateTime(5));
                             lblContactNum.Text = reader.GetString(6);
                             lblAddress.Text = reader.GetString(7);
                             lblEmail.Text = reader.GetString(8);
@@ -88,134 +114,154 @@ namespace Scholarship_Employment
 
                 return full_name;
             }
-
-            string DateOfBirthFormat(DateTime readerDateTime)
-            {
-                string monthName = string.Empty;
-                int month = readerDateTime.Month;
-                switch (month)
-                {
-                    case 1:
-                        monthName = "January";
-                        break;
-
-                    case 2:
-                        monthName = "February";
-                        break;
-
-                    case 3:
-                        monthName = "March";
-                        break;
-
-                    case 4:
-                        monthName = "April";
-                        break;
-
-                    case 5:
-                        monthName = "May";
-                        break;
-
-                    case 6:
-                        monthName = "June";
-                        break;
-
-                    case 7:
-                        monthName = "July";
-                        break;
-
-                    case 8:
-                        monthName = "August";
-                        break;
-
-                    case 9:
-                        monthName = "September";
-                        break;
-
-                    case 10:
-                        monthName = "October";
-                        break;
-
-                    case 11:
-                        monthName = "November";
-                        break;
-
-                    case 12:
-                        monthName = "December";
-                        break;
-
-                    default:
-                        monthName = "";
-                        break;
-                }
-
-                string format = $"{monthName} {readerDateTime.Day}, {readerDateTime.Year}";
-                return format;
-            }
         }
 
-        private void InitialiseClearDetails()
+        private void LoadVerificationRecord()
         {
-            List<Label> _detailsLabels = new List<Label>
-            {
-                lblFullName,
-                lblSex,
-                lblBirthDate,
-                lblContactNum,
-                lblAddress,
-                lblEmail,
-                lblSector,
-                lblQualiTitle,
-                lblDistrict,
-                lblCity,
-                lblScholarType,
-                lblTVI,
-                lblGradYear
-            };
-
-            foreach (Label detail in _detailsLabels)
-            {
-                detail.Text = string.Empty;
-            }
-        }
-
-        void LumangDetalye()
-        {
-            /*
             using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
                 try
                 {
                     connection.Open();
 
-                    MySqlCommand command = null;
-
-                    string sql = $"SELECT * FROM {Utilities.DbTable} WHERE id = @id";
-                    command = new MySqlCommand(sql, connection);
+                    string sql = "CALL retrieve_verification_record(@id);";
+                    MySqlCommand command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@id", Id);
 
-                    MySqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
+                    using (MySqlDataReader reader = command.ExecuteReader())
                     {
-                        listView1.Items[0].SubItems.Add($"{reader.GetString(2)} {reader.GetString(3)} {reader.GetString(1)} {reader.GetString(4)}");
-                        listView1.Items[1].SubItems.Add($"{reader.GetString(5)}");
-                        listView1.Items[2].SubItems.Add($"{reader.GetDateTime(6).Date}");
-                        listView1.Items[3].SubItems.Add($"{reader.GetString(7)}");
-                        listView1.Items[4].SubItems.Add($"{reader.GetString(8)}");
-                        listView1.Items[5].SubItems.Add($"{reader.GetString(9)}");
-                        listView1.Items[6].SubItems.Add($"{reader.GetString(10)}");
-                        listView1.Items[7].SubItems.Add($"{reader.GetString(11)}");
-                        listView1.Items[8].SubItems.Add($"{reader.GetString(12)}");
-                        listView1.Items[9].SubItems.Add($"{reader.GetInt32(13)}");
+                        while (reader.Read())
+                        {
+                            lblVerifyMeans.Text = reader.GetString(0);
+                            lblVerifyDate.Text = DateFormatRead(reader.GetDateTime(1));
+                            lblVerifyStatus.Text = reader.GetString(2);
+                            lblResponseType.Text = reader.GetString(3);
+
+                            lblReferToCompany.Text = Value_ReferToCompany(reader.GetInt16(4));
+                            Value_ReferYesNo(reader.GetDateTime(5), reader.GetString(6));
+                        }
                     }
 
                     connection.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message, "ERROR");
                 }
             }
-            */
+
+            string Value_ReferToCompany(short reader)
+            {
+                string response = string.Empty;
+                switch (reader)
+                {
+                    case 0:
+                        response = "No response";
+                        break;
+
+                    case 1:
+                        response = "Yes";
+
+                        labelReferYesNo.Text = "Date of Referral: ";
+                        labelReferYesNo.Location = new System.Drawing.Point(75, 40);
+                        break;
+
+                    case 2:
+                        response = "No";
+
+                        labelReferYesNo.Text = "Reason: ";
+                        labelReferYesNo.Location = new System.Drawing.Point(140, 40);
+                        break;
+
+                    default:
+                        response = "No response";
+                        break;
+                }
+
+                return response;
+            }
+
+            string Value_ReferYesNo(DateTime referral, string reason)
+            {
+                string value = string.Empty;
+                if (referral != null)
+                {
+                    return DateFormatRead(referral);
+                }
+                else if (!reason.Equals(string.Empty))
+                {
+                    return "";
+                }
+                else return value;
+            }
+        }
+
+        private string DateFormatRead(DateTime readerDateTime)
+        {
+            string monthName = string.Empty;
+            int month = readerDateTime.Month;
+            switch (month)
+            {
+                case 1:
+                    monthName = "January";
+                    break;
+
+                case 2:
+                    monthName = "February";
+                    break;
+
+                case 3:
+                    monthName = "March";
+                    break;
+
+                case 4:
+                    monthName = "April";
+                    break;
+
+                case 5:
+                    monthName = "May";
+                    break;
+
+                case 6:
+                    monthName = "June";
+                    break;
+
+                case 7:
+                    monthName = "July";
+                    break;
+
+                case 8:
+                    monthName = "August";
+                    break;
+
+                case 9:
+                    monthName = "September";
+                    break;
+
+                case 10:
+                    monthName = "October";
+                    break;
+
+                case 11:
+                    monthName = "November";
+                    break;
+
+                case 12:
+                    monthName = "December";
+                    break;
+
+                default:
+                    monthName = "";
+                    break;
+            }
+
+            string format = $"{monthName} {readerDateTime.Day}, {readerDateTime.Year}";
+            return format;
+        }
+
+        private void CopyFullName(object sender, EventArgs e)
+        {
+            Clipboard.SetText(lblFullName.Text);
         }
     }
 }

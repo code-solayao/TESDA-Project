@@ -14,7 +14,7 @@ namespace Scholarship_Employment
         private string _verification_status;
 
         private string _response_type;
-        private bool _refer_to_company;
+        private short _refer_to_company;
         private string _referral_date;
         private string _no_referral_reason;
         private string _not_interested_reason;
@@ -552,17 +552,25 @@ namespace Scholarship_Employment
 
             void ReferToCompany(MySqlDataReader reader, int ordinal)
             {
-                if (reader.IsDBNull(ordinal))
+                short response = reader.GetInt16(ordinal);
+                switch (response)
                 {
-                    ReferToCompanyAction(true, false);
-                    return;
-                }
+                    case 0:
+                        ReferToCompanyAction(true, false);
+                        break;
 
-                bool canRefer = reader.GetBoolean(ordinal);
-                if (canRefer) 
-                    ReferToCompanyAction(false, true);
-                else 
-                    ReferToCompanyAction(false, false);
+                    case 1:
+                        ReferToCompanyAction(false, true);
+                        break;
+
+                    case 2:
+                        ReferToCompanyAction(false, false);
+                        break;
+
+                    default:
+                        ReferToCompanyAction(true, false);
+                        break;
+                }
             }
 
             void ReferralDate(MySqlDataReader reader, int ordinal)
@@ -754,11 +762,11 @@ namespace Scholarship_Employment
             else return string.Empty;
         }
 
-        private bool Value_ReferToCompany()
+        private short Value_ReferToCompany()
         {
-            if (rbtnYes.Checked) return true;
-            else if (rbtnNo.Checked) return false;
-            else return false;
+            if (rbtnYes.Checked) return 1;
+            else if (rbtnNo.Checked) return 2;
+            else return 0;
         }
 
         private string Value_ReferralDate()
