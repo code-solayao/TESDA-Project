@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDetails));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.pageDetails = new System.Windows.Forms.TabPage();
             this.pnlDetails = new System.Windows.Forms.Panel();
@@ -59,48 +60,46 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pageVerification = new System.Windows.Forms.TabPage();
             this.pnlVerification = new System.Windows.Forms.Panel();
-            this.lblVerifyDate = new System.Windows.Forms.Label();
-            this.pnlInterested = new System.Windows.Forms.Panel();
+            this.lblVerifyStatus = new System.Windows.Forms.Label();
+            this.pnlResponded = new System.Windows.Forms.Panel();
             this.label17 = new System.Windows.Forms.Label();
             this.lblResponseType = new System.Windows.Forms.Label();
+            this.ver_value_2 = new System.Windows.Forms.Label();
+            this.ver_value_1 = new System.Windows.Forms.Label();
+            this.ver_label_2 = new System.Windows.Forms.Label();
+            this.ver_label_1 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.lblVerifyDate = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.lblVerifyMeans = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.pageEmployment = new System.Windows.Forms.TabPage();
             this.pnlEmployment = new System.Windows.Forms.Panel();
-            this.txtJobTitle = new System.Windows.Forms.TextBox();
-            this.rtbAddress = new System.Windows.Forms.RichTextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.txtCompanyName = new System.Windows.Forms.TextBox();
-            this.grpEmploymentStatus = new System.Windows.Forms.GroupBox();
-            this.dtForInterview = new System.Windows.Forms.DateTimePicker();
-            this.dtSubmitDocs = new System.Windows.Forms.DateTimePicker();
-            this.cbxRsnNotHired = new System.Windows.Forms.ComboBox();
-            this.rbtnNotHired = new System.Windows.Forms.RadioButton();
-            this.rbtnForInterview = new System.Windows.Forms.RadioButton();
-            this.label24 = new System.Windows.Forms.Label();
-            this.dtHired = new System.Windows.Forms.DateTimePicker();
-            this.rbtnSubmitDocs = new System.Windows.Forms.RadioButton();
-            this.rbtnHired = new System.Windows.Forms.RadioButton();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.pnlVerificationStatus = new System.Windows.Forms.Panel();
-            this.lblVerifyStatus = new System.Windows.Forms.Label();
+            this.pnlNoResponse = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
-            this.labelReferYesNo = new System.Windows.Forms.Label();
-            this.lblReferToCompany = new System.Windows.Forms.Label();
-            this.lblReferYesNo = new System.Windows.Forms.Label();
+            this.lblFollowup1 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.lblFollowup2 = new System.Windows.Forms.Label();
+            this.chkInvalidContact = new System.Windows.Forms.CheckBox();
+            this.lblCompanyName = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.lblCompanyAddress = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.lblJobTitle = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.lblEmpStatus = new System.Windows.Forms.Label();
+            this.emp_label = new System.Windows.Forms.Label();
+            this.emp_value = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.pageDetails.SuspendLayout();
             this.pnlDetails.SuspendLayout();
             this.pageVerification.SuspendLayout();
             this.pnlVerification.SuspendLayout();
-            this.pnlInterested.SuspendLayout();
+            this.pnlResponded.SuspendLayout();
             this.pageEmployment.SuspendLayout();
             this.pnlEmployment.SuspendLayout();
-            this.grpEmploymentStatus.SuspendLayout();
-            this.pnlVerificationStatus.SuspendLayout();
+            this.pnlNoResponse.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -439,8 +438,9 @@
             // 
             this.pnlVerification.BackColor = System.Drawing.SystemColors.Control;
             this.pnlVerification.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlVerification.Controls.Add(this.pnlNoResponse);
             this.pnlVerification.Controls.Add(this.lblVerifyStatus);
-            this.pnlVerification.Controls.Add(this.pnlVerificationStatus);
+            this.pnlVerification.Controls.Add(this.pnlResponded);
             this.pnlVerification.Controls.Add(this.label16);
             this.pnlVerification.Controls.Add(this.lblVerifyDate);
             this.pnlVerification.Controls.Add(this.label15);
@@ -451,32 +451,34 @@
             this.pnlVerification.Size = new System.Drawing.Size(1100, 500);
             this.pnlVerification.TabIndex = 41;
             // 
-            // lblVerifyDate
+            // lblVerifyStatus
             // 
-            this.lblVerifyDate.AutoSize = true;
-            this.lblVerifyDate.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerifyDate.Location = new System.Drawing.Point(430, 50);
-            this.lblVerifyDate.Name = "lblVerifyDate";
-            this.lblVerifyDate.Size = new System.Drawing.Size(85, 21);
-            this.lblVerifyDate.TabIndex = 47;
-            this.lblVerifyDate.Text = "July 3, 2001";
+            this.lblVerifyStatus.AutoSize = true;
+            this.lblVerifyStatus.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerifyStatus.Location = new System.Drawing.Point(430, 80);
+            this.lblVerifyStatus.Name = "lblVerifyStatus";
+            this.lblVerifyStatus.Size = new System.Drawing.Size(87, 21);
+            this.lblVerifyStatus.TabIndex = 49;
+            this.lblVerifyStatus.Text = "Responded";
             // 
-            // pnlInterested
+            // pnlResponded
             // 
-            this.pnlInterested.Controls.Add(this.lblReferYesNo);
-            this.pnlInterested.Controls.Add(this.lblReferToCompany);
-            this.pnlInterested.Controls.Add(this.labelReferYesNo);
-            this.pnlInterested.Controls.Add(this.label18);
-            this.pnlInterested.Location = new System.Drawing.Point(59, 35);
-            this.pnlInterested.Name = "pnlInterested";
-            this.pnlInterested.Size = new System.Drawing.Size(761, 249);
-            this.pnlInterested.TabIndex = 49;
+            this.pnlResponded.Controls.Add(this.ver_value_2);
+            this.pnlResponded.Controls.Add(this.label17);
+            this.pnlResponded.Controls.Add(this.ver_label_2);
+            this.pnlResponded.Controls.Add(this.ver_value_1);
+            this.pnlResponded.Controls.Add(this.lblResponseType);
+            this.pnlResponded.Controls.Add(this.ver_label_1);
+            this.pnlResponded.Location = new System.Drawing.Point(135, 105);
+            this.pnlResponded.Name = "pnlResponded";
+            this.pnlResponded.Size = new System.Drawing.Size(820, 320);
+            this.pnlResponded.TabIndex = 50;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.label17.Location = new System.Drawing.Point(123, 5);
+            this.label17.Location = new System.Drawing.Point(139, 5);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(150, 21);
             this.label17.TabIndex = 46;
@@ -486,11 +488,55 @@
             // 
             this.lblResponseType.AutoSize = true;
             this.lblResponseType.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblResponseType.Location = new System.Drawing.Point(279, 5);
+            this.lblResponseType.Location = new System.Drawing.Point(295, 5);
             this.lblResponseType.Name = "lblResponseType";
             this.lblResponseType.Size = new System.Drawing.Size(78, 21);
             this.lblResponseType.TabIndex = 48;
             this.lblResponseType.Text = "Interested";
+            // 
+            // ver_value_2
+            // 
+            this.ver_value_2.AutoSize = true;
+            this.ver_value_2.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ver_value_2.Location = new System.Drawing.Point(295, 75);
+            this.ver_value_2.MaximumSize = new System.Drawing.Size(400, 0);
+            this.ver_value_2.Name = "ver_value_2";
+            this.ver_value_2.Size = new System.Drawing.Size(85, 21);
+            this.ver_value_2.TabIndex = 50;
+            this.ver_value_2.Text = "July 3, 2001";
+            // 
+            // ver_value_1
+            // 
+            this.ver_value_1.AutoSize = true;
+            this.ver_value_1.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ver_value_1.Location = new System.Drawing.Point(295, 45);
+            this.ver_value_1.MaximumSize = new System.Drawing.Size(400, 0);
+            this.ver_value_1.Name = "ver_value_1";
+            this.ver_value_1.Size = new System.Drawing.Size(385, 147);
+            this.ver_value_1.TabIndex = 49;
+            this.ver_value_1.Text = resources.GetString("ver_value_1.Text");
+            // 
+            // ver_label_2
+            // 
+            this.ver_label_2.AutoSize = true;
+            this.ver_label_2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.ver_label_2.Location = new System.Drawing.Point(151, 75);
+            this.ver_label_2.Name = "ver_label_2";
+            this.ver_label_2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ver_label_2.Size = new System.Drawing.Size(138, 21);
+            this.ver_label_2.TabIndex = 48;
+            this.ver_label_2.Text = "Date of Referral: ";
+            this.ver_label_2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // ver_label_1
+            // 
+            this.ver_label_1.AutoSize = true;
+            this.ver_label_1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.ver_label_1.Location = new System.Drawing.Point(131, 45);
+            this.ver_label_1.Name = "ver_label_1";
+            this.ver_label_1.Size = new System.Drawing.Size(158, 21);
+            this.ver_label_1.TabIndex = 47;
+            this.ver_label_1.Text = "Refer to Company? ";
             // 
             // label16
             // 
@@ -501,6 +547,16 @@
             this.label16.Size = new System.Drawing.Size(178, 21);
             this.label16.TabIndex = 45;
             this.label16.Text = "Status of Verification: ";
+            // 
+            // lblVerifyDate
+            // 
+            this.lblVerifyDate.AutoSize = true;
+            this.lblVerifyDate.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerifyDate.Location = new System.Drawing.Point(430, 50);
+            this.lblVerifyDate.Name = "lblVerifyDate";
+            this.lblVerifyDate.Size = new System.Drawing.Size(85, 21);
+            this.lblVerifyDate.TabIndex = 47;
+            this.lblVerifyDate.Text = "July 3, 2001";
             // 
             // label15
             // 
@@ -547,255 +603,190 @@
             // 
             this.pnlEmployment.BackColor = System.Drawing.SystemColors.Control;
             this.pnlEmployment.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlEmployment.Controls.Add(this.txtJobTitle);
-            this.pnlEmployment.Controls.Add(this.rtbAddress);
+            this.pnlEmployment.Controls.Add(this.emp_value);
+            this.pnlEmployment.Controls.Add(this.emp_label);
+            this.pnlEmployment.Controls.Add(this.lblEmpStatus);
+            this.pnlEmployment.Controls.Add(this.label23);
+            this.pnlEmployment.Controls.Add(this.lblJobTitle);
+            this.pnlEmployment.Controls.Add(this.label22);
+            this.pnlEmployment.Controls.Add(this.lblCompanyAddress);
+            this.pnlEmployment.Controls.Add(this.label21);
             this.pnlEmployment.Controls.Add(this.label20);
-            this.pnlEmployment.Controls.Add(this.txtCompanyName);
-            this.pnlEmployment.Controls.Add(this.grpEmploymentStatus);
-            this.pnlEmployment.Controls.Add(this.label28);
-            this.pnlEmployment.Controls.Add(this.label29);
+            this.pnlEmployment.Controls.Add(this.lblCompanyName);
             this.pnlEmployment.Enabled = false;
             this.pnlEmployment.Location = new System.Drawing.Point(6, 7);
             this.pnlEmployment.Name = "pnlEmployment";
             this.pnlEmployment.Size = new System.Drawing.Size(1100, 500);
             this.pnlEmployment.TabIndex = 42;
             // 
-            // txtJobTitle
+            // pnlNoResponse
             // 
-            this.txtJobTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtJobTitle.Location = new System.Drawing.Point(24, 290);
-            this.txtJobTitle.Name = "txtJobTitle";
-            this.txtJobTitle.Size = new System.Drawing.Size(300, 26);
-            this.txtJobTitle.TabIndex = 17;
-            // 
-            // rtbAddress
-            // 
-            this.rtbAddress.Font = new System.Drawing.Font("Arial", 12F);
-            this.rtbAddress.Location = new System.Drawing.Point(24, 130);
-            this.rtbAddress.Name = "rtbAddress";
-            this.rtbAddress.Size = new System.Drawing.Size(500, 100);
-            this.rtbAddress.TabIndex = 16;
-            this.rtbAddress.Text = "";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.label20.Location = new System.Drawing.Point(20, 100);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(78, 21);
-            this.label20.TabIndex = 61;
-            this.label20.Text = "Address: ";
-            // 
-            // txtCompanyName
-            // 
-            this.txtCompanyName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCompanyName.Location = new System.Drawing.Point(24, 50);
-            this.txtCompanyName.Name = "txtCompanyName";
-            this.txtCompanyName.Size = new System.Drawing.Size(300, 26);
-            this.txtCompanyName.TabIndex = 15;
-            // 
-            // grpEmploymentStatus
-            // 
-            this.grpEmploymentStatus.Controls.Add(this.dtForInterview);
-            this.grpEmploymentStatus.Controls.Add(this.dtSubmitDocs);
-            this.grpEmploymentStatus.Controls.Add(this.cbxRsnNotHired);
-            this.grpEmploymentStatus.Controls.Add(this.rbtnNotHired);
-            this.grpEmploymentStatus.Controls.Add(this.rbtnForInterview);
-            this.grpEmploymentStatus.Controls.Add(this.label24);
-            this.grpEmploymentStatus.Controls.Add(this.dtHired);
-            this.grpEmploymentStatus.Controls.Add(this.rbtnSubmitDocs);
-            this.grpEmploymentStatus.Controls.Add(this.rbtnHired);
-            this.grpEmploymentStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpEmploymentStatus.Location = new System.Drawing.Point(547, 20);
-            this.grpEmploymentStatus.Name = "grpEmploymentStatus";
-            this.grpEmploymentStatus.Size = new System.Drawing.Size(533, 450);
-            this.grpEmploymentStatus.TabIndex = 60;
-            this.grpEmploymentStatus.TabStop = false;
-            this.grpEmploymentStatus.Text = "Employment Status";
-            // 
-            // dtForInterview
-            // 
-            this.dtForInterview.Enabled = false;
-            this.dtForInterview.Font = new System.Drawing.Font("Arial", 12F);
-            this.dtForInterview.Location = new System.Drawing.Point(70, 230);
-            this.dtForInterview.Name = "dtForInterview";
-            this.dtForInterview.Size = new System.Drawing.Size(300, 26);
-            this.dtForInterview.TabIndex = 23;
-            // 
-            // dtSubmitDocs
-            // 
-            this.dtSubmitDocs.Enabled = false;
-            this.dtSubmitDocs.Font = new System.Drawing.Font("Arial", 12F);
-            this.dtSubmitDocs.Location = new System.Drawing.Point(70, 150);
-            this.dtSubmitDocs.Name = "dtSubmitDocs";
-            this.dtSubmitDocs.Size = new System.Drawing.Size(300, 26);
-            this.dtSubmitDocs.TabIndex = 21;
-            // 
-            // cbxRsnNotHired
-            // 
-            this.cbxRsnNotHired.Enabled = false;
-            this.cbxRsnNotHired.Font = new System.Drawing.Font("Arial", 12F);
-            this.cbxRsnNotHired.FormattingEnabled = true;
-            this.cbxRsnNotHired.Items.AddRange(new object[] {
-            "Underage",
-            "Upskilling",
-            "Lack of experience",
-            "Did not meet the requirements"});
-            this.cbxRsnNotHired.Location = new System.Drawing.Point(74, 340);
-            this.cbxRsnNotHired.Name = "cbxRsnNotHired";
-            this.cbxRsnNotHired.Size = new System.Drawing.Size(300, 26);
-            this.cbxRsnNotHired.TabIndex = 25;
-            // 
-            // rbtnNotHired
-            // 
-            this.rbtnNotHired.AutoSize = true;
-            this.rbtnNotHired.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnNotHired.Location = new System.Drawing.Point(40, 280);
-            this.rbtnNotHired.Name = "rbtnNotHired";
-            this.rbtnNotHired.Size = new System.Drawing.Size(101, 25);
-            this.rbtnNotHired.TabIndex = 24;
-            this.rbtnNotHired.TabStop = true;
-            this.rbtnNotHired.Text = "Not Hired";
-            this.rbtnNotHired.UseVisualStyleBackColor = true;
-            // 
-            // rbtnForInterview
-            // 
-            this.rbtnForInterview.AutoSize = true;
-            this.rbtnForInterview.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnForInterview.Location = new System.Drawing.Point(40, 200);
-            this.rbtnForInterview.Name = "rbtnForInterview";
-            this.rbtnForInterview.Size = new System.Drawing.Size(125, 25);
-            this.rbtnForInterview.TabIndex = 22;
-            this.rbtnForInterview.TabStop = true;
-            this.rbtnForInterview.Text = "For Interview";
-            this.rbtnForInterview.UseVisualStyleBackColor = true;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(70, 310);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(71, 21);
-            this.label24.TabIndex = 37;
-            this.label24.Text = "Reason: ";
-            // 
-            // dtHired
-            // 
-            this.dtHired.Enabled = false;
-            this.dtHired.Font = new System.Drawing.Font("Arial", 12F);
-            this.dtHired.Location = new System.Drawing.Point(70, 70);
-            this.dtHired.Name = "dtHired";
-            this.dtHired.Size = new System.Drawing.Size(300, 26);
-            this.dtHired.TabIndex = 19;
-            // 
-            // rbtnSubmitDocs
-            // 
-            this.rbtnSubmitDocs.AutoSize = true;
-            this.rbtnSubmitDocs.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnSubmitDocs.Location = new System.Drawing.Point(40, 120);
-            this.rbtnSubmitDocs.Name = "rbtnSubmitDocs";
-            this.rbtnSubmitDocs.Size = new System.Drawing.Size(192, 25);
-            this.rbtnSubmitDocs.TabIndex = 20;
-            this.rbtnSubmitDocs.TabStop = true;
-            this.rbtnSubmitDocs.Text = "Submitted Documents";
-            this.rbtnSubmitDocs.UseVisualStyleBackColor = true;
-            // 
-            // rbtnHired
-            // 
-            this.rbtnHired.AutoSize = true;
-            this.rbtnHired.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnHired.Location = new System.Drawing.Point(40, 40);
-            this.rbtnHired.Name = "rbtnHired";
-            this.rbtnHired.Size = new System.Drawing.Size(69, 25);
-            this.rbtnHired.TabIndex = 18;
-            this.rbtnHired.TabStop = true;
-            this.rbtnHired.Text = "Hired";
-            this.rbtnHired.UseVisualStyleBackColor = true;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.label28.Location = new System.Drawing.Point(20, 20);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(157, 21);
-            this.label28.TabIndex = 35;
-            this.label28.Text = "Name of Company:";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.label29.Location = new System.Drawing.Point(20, 260);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(83, 21);
-            this.label29.TabIndex = 33;
-            this.label29.Text = "Job Title: ";
-            // 
-            // pnlVerificationStatus
-            // 
-            this.pnlVerificationStatus.Controls.Add(this.label17);
-            this.pnlVerificationStatus.Controls.Add(this.lblResponseType);
-            this.pnlVerificationStatus.Controls.Add(this.pnlInterested);
-            this.pnlVerificationStatus.Location = new System.Drawing.Point(150, 105);
-            this.pnlVerificationStatus.Name = "pnlVerificationStatus";
-            this.pnlVerificationStatus.Size = new System.Drawing.Size(875, 343);
-            this.pnlVerificationStatus.TabIndex = 50;
-            // 
-            // lblVerifyStatus
-            // 
-            this.lblVerifyStatus.AutoSize = true;
-            this.lblVerifyStatus.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerifyStatus.Location = new System.Drawing.Point(430, 80);
-            this.lblVerifyStatus.Name = "lblVerifyStatus";
-            this.lblVerifyStatus.Size = new System.Drawing.Size(87, 21);
-            this.lblVerifyStatus.TabIndex = 49;
-            this.lblVerifyStatus.Text = "Responded";
+            this.pnlNoResponse.Controls.Add(this.chkInvalidContact);
+            this.pnlNoResponse.Controls.Add(this.lblFollowup2);
+            this.pnlNoResponse.Controls.Add(this.label18);
+            this.pnlNoResponse.Controls.Add(this.lblFollowup1);
+            this.pnlNoResponse.Controls.Add(this.label19);
+            this.pnlNoResponse.Location = new System.Drawing.Point(123, 121);
+            this.pnlNoResponse.Name = "pnlNoResponse";
+            this.pnlNoResponse.Size = new System.Drawing.Size(820, 320);
+            this.pnlNoResponse.TabIndex = 51;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.label18.Location = new System.Drawing.Point(55, 10);
+            this.label18.Location = new System.Drawing.Point(162, 5);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(158, 21);
-            this.label18.TabIndex = 47;
-            this.label18.Text = "Refer to Company? ";
+            this.label18.Size = new System.Drawing.Size(127, 21);
+            this.label18.TabIndex = 46;
+            this.label18.Text = "First Follow-up:";
             // 
-            // labelReferYesNo
+            // lblFollowup1
             // 
-            this.labelReferYesNo.AutoSize = true;
-            this.labelReferYesNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.labelReferYesNo.Location = new System.Drawing.Point(75, 40);
-            this.labelReferYesNo.Name = "labelReferYesNo";
-            this.labelReferYesNo.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.labelReferYesNo.Size = new System.Drawing.Size(138, 21);
-            this.labelReferYesNo.TabIndex = 48;
-            this.labelReferYesNo.Text = "Date of Referral: ";
-            this.labelReferYesNo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblFollowup1.AutoSize = true;
+            this.lblFollowup1.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFollowup1.Location = new System.Drawing.Point(295, 5);
+            this.lblFollowup1.Name = "lblFollowup1";
+            this.lblFollowup1.Size = new System.Drawing.Size(85, 21);
+            this.lblFollowup1.TabIndex = 48;
+            this.lblFollowup1.Text = "July 3, 2001";
             // 
-            // lblReferToCompany
+            // label19
             // 
-            this.lblReferToCompany.AutoSize = true;
-            this.lblReferToCompany.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReferToCompany.Location = new System.Drawing.Point(219, 10);
-            this.lblReferToCompany.Name = "lblReferToCompany";
-            this.lblReferToCompany.Size = new System.Drawing.Size(97, 21);
-            this.lblReferToCompany.TabIndex = 49;
-            this.lblReferToCompany.Text = "No response";
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label19.Location = new System.Drawing.Point(138, 35);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(151, 21);
+            this.label19.TabIndex = 47;
+            this.label19.Text = "Second Follow-up:";
             // 
-            // lblReferYesNo
+            // lblFollowup2
             // 
-            this.lblReferYesNo.AutoSize = true;
-            this.lblReferYesNo.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReferYesNo.Location = new System.Drawing.Point(219, 40);
-            this.lblReferYesNo.MaximumSize = new System.Drawing.Size(400, 0);
-            this.lblReferYesNo.Name = "lblReferYesNo";
-            this.lblReferYesNo.Size = new System.Drawing.Size(238, 21);
-            this.lblReferYesNo.TabIndex = 50;
-            this.lblReferYesNo.Text = "Reason for \"No\" refer to company";
+            this.lblFollowup2.AutoSize = true;
+            this.lblFollowup2.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFollowup2.Location = new System.Drawing.Point(295, 35);
+            this.lblFollowup2.Name = "lblFollowup2";
+            this.lblFollowup2.Size = new System.Drawing.Size(85, 21);
+            this.lblFollowup2.TabIndex = 49;
+            this.lblFollowup2.Text = "July 3, 2001";
+            // 
+            // chkInvalidContact
+            // 
+            this.chkInvalidContact.AutoSize = true;
+            this.chkInvalidContact.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkInvalidContact.Checked = true;
+            this.chkInvalidContact.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkInvalidContact.Enabled = false;
+            this.chkInvalidContact.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.chkInvalidContact.Location = new System.Drawing.Point(158, 75);
+            this.chkInvalidContact.Name = "chkInvalidContact";
+            this.chkInvalidContact.Size = new System.Drawing.Size(153, 25);
+            this.chkInvalidContact.TabIndex = 50;
+            this.chkInvalidContact.Text = "Invalid Contact: ";
+            this.chkInvalidContact.UseVisualStyleBackColor = true;
+            // 
+            // lblCompanyName
+            // 
+            this.lblCompanyName.AutoSize = true;
+            this.lblCompanyName.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCompanyName.Location = new System.Drawing.Point(430, 20);
+            this.lblCompanyName.Name = "lblCompanyName";
+            this.lblCompanyName.Size = new System.Drawing.Size(55, 21);
+            this.lblCompanyName.TabIndex = 44;
+            this.lblCompanyName.Text = "TESDA";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label20.Location = new System.Drawing.Point(263, 20);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(161, 21);
+            this.label20.TabIndex = 45;
+            this.label20.Text = "Name of Company: ";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label21.Location = new System.Drawing.Point(346, 50);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(78, 21);
+            this.label21.TabIndex = 46;
+            this.label21.Text = "Address: ";
+            // 
+            // lblCompanyAddress
+            // 
+            this.lblCompanyAddress.AutoSize = true;
+            this.lblCompanyAddress.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCompanyAddress.Location = new System.Drawing.Point(430, 50);
+            this.lblCompanyAddress.MaximumSize = new System.Drawing.Size(500, 0);
+            this.lblCompanyAddress.Name = "lblCompanyAddress";
+            this.lblCompanyAddress.Size = new System.Drawing.Size(499, 42);
+            this.lblCompanyAddress.TabIndex = 49;
+            this.lblCompanyAddress.Text = "Blk. 21 Lot 15, 7th Street, Berkeley Heights Subd., Brgy. Pulong Sta. Cruz, City " +
+    "of Sta. Rosa, Laguna";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label22.Location = new System.Drawing.Point(341, 100);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(83, 21);
+            this.label22.TabIndex = 50;
+            this.label22.Text = "Job Title: ";
+            // 
+            // lblJobTitle
+            // 
+            this.lblJobTitle.AutoSize = true;
+            this.lblJobTitle.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblJobTitle.Location = new System.Drawing.Point(430, 100);
+            this.lblJobTitle.Name = "lblJobTitle";
+            this.lblJobTitle.Size = new System.Drawing.Size(76, 21);
+            this.lblJobTitle.TabIndex = 51;
+            this.lblJobTitle.Text = "Job Order";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label23.Location = new System.Drawing.Point(257, 140);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(167, 21);
+            this.label23.TabIndex = 52;
+            this.label23.Text = "Employment Status: ";
+            // 
+            // lblEmpStatus
+            // 
+            this.lblEmpStatus.AutoSize = true;
+            this.lblEmpStatus.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmpStatus.Location = new System.Drawing.Point(430, 140);
+            this.lblEmpStatus.Name = "lblEmpStatus";
+            this.lblEmpStatus.Size = new System.Drawing.Size(162, 21);
+            this.lblEmpStatus.TabIndex = 53;
+            this.lblEmpStatus.Text = "Submitted Documents";
+            // 
+            // emp_label
+            // 
+            this.emp_label.AutoSize = true;
+            this.emp_label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.emp_label.Location = new System.Drawing.Point(258, 170);
+            this.emp_label.Name = "emp_label";
+            this.emp_label.Size = new System.Drawing.Size(166, 21);
+            this.emp_label.TabIndex = 54;
+            this.emp_label.Text = "Date of Submission: ";
+            // 
+            // emp_value
+            // 
+            this.emp_value.AutoSize = true;
+            this.emp_value.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emp_value.Location = new System.Drawing.Point(430, 170);
+            this.emp_value.Name = "emp_value";
+            this.emp_value.Size = new System.Drawing.Size(85, 21);
+            this.emp_value.TabIndex = 55;
+            this.emp_value.Text = "July 3, 2001";
             // 
             // FrmDetails
             // 
@@ -815,15 +806,13 @@
             this.pageVerification.ResumeLayout(false);
             this.pnlVerification.ResumeLayout(false);
             this.pnlVerification.PerformLayout();
-            this.pnlInterested.ResumeLayout(false);
-            this.pnlInterested.PerformLayout();
+            this.pnlResponded.ResumeLayout(false);
+            this.pnlResponded.PerformLayout();
             this.pageEmployment.ResumeLayout(false);
             this.pnlEmployment.ResumeLayout(false);
             this.pnlEmployment.PerformLayout();
-            this.grpEmploymentStatus.ResumeLayout(false);
-            this.grpEmploymentStatus.PerformLayout();
-            this.pnlVerificationStatus.ResumeLayout(false);
-            this.pnlVerificationStatus.PerformLayout();
+            this.pnlNoResponse.ResumeLayout(false);
+            this.pnlNoResponse.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -863,35 +852,34 @@
         private System.Windows.Forms.Panel pnlVerification;
         private System.Windows.Forms.TabPage pageEmployment;
         private System.Windows.Forms.Panel pnlEmployment;
-        private System.Windows.Forms.TextBox txtJobTitle;
-        private System.Windows.Forms.RichTextBox rtbAddress;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox txtCompanyName;
-        private System.Windows.Forms.GroupBox grpEmploymentStatus;
-        private System.Windows.Forms.DateTimePicker dtForInterview;
-        private System.Windows.Forms.DateTimePicker dtSubmitDocs;
-        private System.Windows.Forms.ComboBox cbxRsnNotHired;
-        private System.Windows.Forms.RadioButton rbtnNotHired;
-        private System.Windows.Forms.RadioButton rbtnForInterview;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.DateTimePicker dtHired;
-        private System.Windows.Forms.RadioButton rbtnSubmitDocs;
-        private System.Windows.Forms.RadioButton rbtnHired;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lblVerifyMeans;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lblVerifyDate;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label lblResponseType;
-        private System.Windows.Forms.Panel pnlInterested;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Panel pnlVerificationStatus;
+        private System.Windows.Forms.Panel pnlResponded;
         private System.Windows.Forms.Label lblVerifyStatus;
+        private System.Windows.Forms.Label ver_label_1;
+        private System.Windows.Forms.Label ver_label_2;
+        private System.Windows.Forms.Label ver_value_1;
+        private System.Windows.Forms.Label ver_value_2;
+        private System.Windows.Forms.Panel pnlNoResponse;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label labelReferYesNo;
-        private System.Windows.Forms.Label lblReferToCompany;
-        private System.Windows.Forms.Label lblReferYesNo;
+        private System.Windows.Forms.Label lblFollowup1;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label lblFollowup2;
+        private System.Windows.Forms.CheckBox chkInvalidContact;
+        private System.Windows.Forms.Label lblCompanyName;
+        private System.Windows.Forms.Label lblCompanyAddress;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label lblJobTitle;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label lblEmpStatus;
+        private System.Windows.Forms.Label emp_label;
+        private System.Windows.Forms.Label emp_value;
     }
 }
