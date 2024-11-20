@@ -11,16 +11,20 @@ namespace Scholarship_Employment
 
         private string _verification_means;
         private string _verification_date;
+        private string _verification_date_old;
         private string _verification_status;
 
         private string _response_type;
         private short _refer_to_company;
         private string _referral_date;
+        private string _referral_date_old;
         private string _no_referral_reason;
         private string _not_interested_reason;
 
         private string _follow_up_date_1;
+        private string _follow_up_date_1_old;
         private string _follow_up_date_2;
+        private string _follow_up_date_2_old;
         private bool _invalid_contact;
 
         private string _company_name;
@@ -29,19 +33,26 @@ namespace Scholarship_Employment
 
         private string _employment_status;
         private string _hired_date;
+        private string _hired_date_old;
         private string _submitted_documents_date;
+        private string _submitted_documents_date_old;
         private string _for_interview_date;
+        private string _for_interview_date_old;
         private string _not_hired_reason;
 
         private FrmRecords _frmRecords;
+        private FrmDetails _frmDetails;
+        public FrmRecords frmRecords { get; set; }
+        public FrmDetails frmDetails { get; set; }
 
         private List<DateTimePicker> _dateTimePickers;
 
-        public FrmUpdate(FrmRecords frmRecords)
+        public FrmUpdate()
         {
             InitializeComponent();
 
             _frmRecords = frmRecords;
+            _frmDetails = frmDetails;
 
             grpNoResponse.Location = grpResponded.Location;
 
@@ -369,7 +380,7 @@ namespace Scholarship_Employment
 
             // Verification tab page
             _verification_means = cbxMeansVerify.Text;
-            _verification_date = dtDateVerify.Text;
+            _verification_date = Value_VerificationDate();
             _verification_status = Value_VerificationStatus();
 
             _response_type = Value_TypeOfResponse();
@@ -431,6 +442,7 @@ namespace Scholarship_Employment
                     CustomiseDateTimePickers(false);
 
                     _frmRecords.RefreshAllRecords();
+                    _frmDetails.RefreshFrmDetails();
                     MessageBox.Show("The information was updated successfully.");
 
                     Close();
@@ -510,6 +522,8 @@ namespace Scholarship_Employment
 
                 DateTime dateTime = reader.GetDateTime(ordinal);
                 dtDateVerify.Value = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+
+                _verification_date_old = $"{dateTime.Year}-{dateTime.Month}-{dateTime.Day}";
             }
 
             void VerificationStatus(MySqlDataReader reader, int ordinal)
@@ -579,6 +593,8 @@ namespace Scholarship_Employment
 
                 DateTime dateTime = reader.GetDateTime(ordinal);
                 dtReferCompany.Value = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+
+                _referral_date_old = $"\"{dateTime.Year}-{dateTime.Month}-{dateTime.Day}\"";
             }
 
             void FollowUpDate_1(MySqlDataReader reader, int ordinal)
@@ -587,6 +603,8 @@ namespace Scholarship_Employment
 
                 DateTime dateTime = reader.GetDateTime(ordinal);
                 dtDateFollowup1.Value = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+
+                _follow_up_date_1_old = $"\"{dateTime.Year}-{dateTime.Month}-{dateTime.Day}\"";
             }
 
             void FollowUpDate_2(MySqlDataReader reader, int ordinal)
@@ -595,6 +613,8 @@ namespace Scholarship_Employment
 
                 DateTime dateTime = reader.GetDateTime(ordinal);
                 dtDateFollowup2.Value = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+
+                _follow_up_date_2_old = $"\"{dateTime.Year}-{dateTime.Month}-{dateTime.Day}\"";
             }
         }
 
@@ -747,6 +767,12 @@ namespace Scholarship_Employment
             }
         }
 
+        private string Value_VerificationDate()
+        {
+            if (dtDateVerify.Text.Equals(string.Empty)) return _verification_date_old;
+            else return dtDateVerify.Text;
+        }
+
         private string Value_VerificationStatus()
         {
             if (rbtnResponded.Checked) return "Responded";
@@ -771,32 +797,32 @@ namespace Scholarship_Employment
 
         private string Value_ReferralDate()
         {
-            if (dtReferCompany.Enabled)
-            {
-                string date = $"\"{dtReferCompany.Text}\"";
-                return date;
-            }
-            else return "null";
+            if (!dtReferCompany.Enabled) return "null";
+
+            string date = $"\"{dtReferCompany.Text}\"";
+
+            if (date.Equals("\"\"")) return _referral_date_old;
+            else return date;
         }
 
         private string Value_FollowUpDate_1()
         {
-            if (dtDateFollowup1.Enabled)
-            {
-                string date = $"\"{dtDateFollowup1.Text}\"";
-                return date;
-            }
-            else return "null";
+            if (!dtDateFollowup1.Enabled) return "null";
+
+            string date = $"\"{dtDateFollowup1.Text}\"";
+
+            if (date.Equals("\"\"")) return _follow_up_date_1_old;
+            else return date;
         }
 
         private string Value_FollowUpDate_2()
         {
-            if (dtDateFollowup2.Enabled)
-            {
-                string date = $"\"{dtDateFollowup2.Text}\"";
-                return date;
-            }
-            else return "null";
+            if (!dtDateFollowup2.Enabled) return "null";
+
+            string date = $"\"{dtDateFollowup2.Text}\"";
+
+            if (date.Equals("\"\"")) return _follow_up_date_2_old;
+            else return date;
         }
 
         // Employment tab page
@@ -884,6 +910,8 @@ namespace Scholarship_Employment
 
                 DateTime dateTime = reader.GetDateTime(ordinal);
                 dtHired.Value = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+
+                _hired_date_old = $"\"{dateTime.Year}-{dateTime.Month}-{dateTime.Day}\"";
             }
 
             void SubmittedDocumentsDate(MySqlDataReader reader, int ordinal)
@@ -892,6 +920,8 @@ namespace Scholarship_Employment
 
                 DateTime dateTime = reader.GetDateTime(ordinal);
                 dtSubmitDocs.Value = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+
+                _submitted_documents_date_old = $"\"{dateTime.Year}-{dateTime.Month}-{dateTime.Day}\"";
             }
 
             void ForInterviewDate(MySqlDataReader reader, int ordinal)
@@ -900,6 +930,8 @@ namespace Scholarship_Employment
 
                 DateTime dateTime = reader.GetDateTime(ordinal);
                 dtForInterview.Value = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+
+                _for_interview_date_old = $"\"{dateTime.Year}-{dateTime.Month}-{dateTime.Day}\"";
             }
 
             void NotHiredReason(MySqlDataReader reader, int ordinal)
@@ -956,32 +988,32 @@ namespace Scholarship_Employment
 
         private string Value_HiredDate()
         {
-            if (dtHired.Enabled)
-            {
-                string date = $"\"{dtHired.Text}\"";
-                return date;
-            }
-            else return "null";
+            if (!dtHired.Enabled) return "null";
+
+            string date = $"\"{dtHired.Text}\"";
+
+            if (date.Equals("\"\"")) return _hired_date_old;
+            else return date;
         }
 
         private string Value_SubmittedDocumentsDate()
         {
-            if (dtSubmitDocs.Enabled)
-            {
-                string date = $"\"{dtSubmitDocs.Text}\"";
-                return date;
-            }
-            else return "null";
+            if (!dtSubmitDocs.Enabled) return "null";
+
+            string date = $"\"{dtSubmitDocs.Text}\"";
+
+            if (date.Equals("\"\"")) return _submitted_documents_date_old;
+            else return date;
         }
 
         private string Value_ForInterviewDate()
         {
-            if (dtForInterview.Enabled)
-            {
-                string date = $"\"{dtForInterview.Text}\"";
-                return date;
-            }
-            else return "null";
+            if (!dtForInterview.Enabled) return "null";
+
+            string date = $"\"{dtForInterview.Text}\"";
+
+            if (date.Equals("\"\"")) return _for_interview_date_old;
+            else return date;
         }
 
         #endregion

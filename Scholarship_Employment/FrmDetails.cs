@@ -10,14 +10,31 @@ namespace Scholarship_Employment
     {
         public int Id { get; set; }
 
+        private FrmRecords _frmRecords;
+
         private bool _enableEmploymentPage = false;
 
-        public FrmDetails()
+        public FrmDetails(FrmRecords frmRecords)
         {
             InitializeComponent();
+            _frmRecords = frmRecords;
         }
 
         private void FrmDetails_Load(object sender, EventArgs e)
+        {
+            RefreshFrmDetails();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            FrmUpdate frmUpdate = new FrmUpdate();
+            frmUpdate.frmDetails = this;
+            frmUpdate.Id = Id;
+
+            frmUpdate.ShowDialog();
+        }
+
+        public void RefreshFrmDetails()
         {
             InitialiseClearAll();
 

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "1", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)))),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Last name", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)))),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "First name", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)))),
@@ -36,7 +36,7 @@
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Sr.", System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)))),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Unemployed"),
             new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "2024"),
-            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Qualification NC I")}, -1);
+            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Qualification Title NC III")}, -1);
             this.listView = new System.Windows.Forms.ListView();
             this.colId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colLastname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -73,11 +73,11 @@
             this.listView.FullRowSelect = true;
             this.listView.HideSelection = false;
             this.listView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.listView.Location = new System.Drawing.Point(12, 72);
             this.listView.MultiSelect = false;
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(1052, 539);
+            this.listView.Size = new System.Drawing.Size(1325, 539);
             this.listView.TabIndex = 4;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -91,17 +91,17 @@
             // colLastname
             // 
             this.colLastname.Text = "Last name";
-            this.colLastname.Width = 100;
+            this.colLastname.Width = 160;
             // 
             // colFirstname
             // 
             this.colFirstname.Text = "First name";
-            this.colFirstname.Width = 150;
+            this.colFirstname.Width = 160;
             // 
             // colMiddleName
             // 
             this.colMiddleName.Text = "Middle Name";
-            this.colMiddleName.Width = 140;
+            this.colMiddleName.Width = 160;
             // 
             // colExtnName
             // 
@@ -121,11 +121,11 @@
             // colQualification
             // 
             this.colQualification.Text = "Qualification Title";
-            this.colQualification.Width = 167;
+            this.colQualification.Width = 350;
             // 
             // btnDetails
             // 
-            this.btnDetails.Location = new System.Drawing.Point(1070, 72);
+            this.btnDetails.Location = new System.Drawing.Point(1343, 72);
             this.btnDetails.Name = "btnDetails";
             this.btnDetails.Size = new System.Drawing.Size(75, 23);
             this.btnDetails.TabIndex = 5;
@@ -135,7 +135,8 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(1070, 101);
+            this.btnUpdate.Enabled = false;
+            this.btnUpdate.Location = new System.Drawing.Point(1343, 101);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 6;
@@ -148,7 +149,7 @@
             this.btnDelete.BackColor = System.Drawing.Color.IndianRed;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDelete.Location = new System.Drawing.Point(1070, 130);
+            this.btnDelete.Location = new System.Drawing.Point(1343, 130);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 30);
             this.btnDelete.TabIndex = 7;
@@ -161,7 +162,7 @@
             this.btnRefresh.BackColor = System.Drawing.SystemColors.Control;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefresh.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRefresh.Location = new System.Drawing.Point(1070, 251);
+            this.btnRefresh.Location = new System.Drawing.Point(1343, 251);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 9;
@@ -174,7 +175,7 @@
             this.btnClearAllRecords.BackColor = System.Drawing.Color.Tomato;
             this.btnClearAllRecords.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearAllRecords.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnClearAllRecords.Location = new System.Drawing.Point(1070, 166);
+            this.btnClearAllRecords.Location = new System.Drawing.Point(1343, 166);
             this.btnClearAllRecords.Name = "btnClearAllRecords";
             this.btnClearAllRecords.Size = new System.Drawing.Size(75, 50);
             this.btnClearAllRecords.TabIndex = 8;
@@ -247,7 +248,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1157, 623);
+            this.ClientSize = new System.Drawing.Size(1424, 623);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.cbxSearchBy);

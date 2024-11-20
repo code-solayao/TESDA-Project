@@ -97,7 +97,7 @@ namespace Scholarship_Employment
                             listView.Items[i].SubItems.Add(reader.GetString(2));
                             listView.Items[i].SubItems.Add(reader.GetString(3));
                             listView.Items[i].SubItems.Add(reader.GetString(4));
-                            listView.Items[i].SubItems.Add(StatusOfEmployment(reader, 5));
+                            listView.Items[i].SubItems.Add(reader.GetString(5));
                             listView.Items[i].SubItems.Add(reader.GetInt32(6).ToString());
                             listView.Items[i].SubItems.Add(reader.GetString(7));
 
@@ -223,7 +223,7 @@ namespace Scholarship_Employment
                             listView.Items[i].SubItems.Add(reader.GetString(2));
                             listView.Items[i].SubItems.Add(reader.GetString(3));
                             listView.Items[i].SubItems.Add(reader.GetString(4));
-                            listView.Items[i].SubItems.Add(StatusOfEmployment(reader, 5));
+                            listView.Items[i].SubItems.Add(reader.GetString(5));
                             listView.Items[i].SubItems.Add(reader.GetInt32(6).ToString());
                             listView.Items[i].SubItems.Add(reader.GetString(7));
 
@@ -250,18 +250,21 @@ namespace Scholarship_Employment
         {
             _selectedID = int.Parse(listView.SelectedItems[0].Text);
 
-            FrmDetails frmDetails = new FrmDetails();
+            FrmDetails frmDetails = new FrmDetails(this);
             frmDetails.Id = _selectedID;
 
-            frmDetails.ShowDialog();
+            frmDetails.MdiParent = Form1.Instance;
+            frmDetails.Show();
         }
 
         private void ShowFrmUpdate()
         {
             _selectedID = int.Parse(listView.SelectedItems[0].Text);
 
-            FrmUpdate frmUpdate = new FrmUpdate(this);
+            FrmUpdate frmUpdate = new FrmUpdate();
+            frmUpdate.frmRecords = this;
             frmUpdate.Id = _selectedID;
+
             frmUpdate.ShowDialog();
         }
 
@@ -318,12 +321,6 @@ namespace Scholarship_Employment
                     MessageBox.Show(ex.Message, "ERROR");
                 }
             }
-        }
-
-        private string StatusOfEmployment(MySqlDataReader reader, int ordinal)
-        {
-            if (reader.IsDBNull(ordinal)) return null;
-            else return reader.GetString(ordinal);
         }
 
         #endregion
