@@ -8,16 +8,15 @@ namespace Scholarship_Employment
 {
     public partial class FrmDetails : Form
     {
-        public int Id { get; set; }
+        public int Id { private get; set; }
 
         private FrmRecords _frmRecords;
 
         private bool _enableEmploymentPage = false;
 
-        public FrmDetails(FrmRecords frmRecords)
+        public FrmDetails()
         {
             InitializeComponent();
-            _frmRecords = frmRecords;
         }
 
         private void FrmDetails_Load(object sender, EventArgs e)
@@ -25,14 +24,24 @@ namespace Scholarship_Employment
             RefreshFrmDetails();
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void btnUpdateRecord_Click(object sender, EventArgs e)
         {
             FrmUpdate frmUpdate = new FrmUpdate();
-            frmUpdate.frmDetails = this;
+            frmUpdate.RefreshForms(_frmRecords, this);
             frmUpdate.Id = Id;
 
             frmUpdate.ShowDialog();
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            if (_frmRecords != null) _frmRecords.RefreshAllRecords();
+            Close();
+        }
+
+        #region Functions
+
+        public void SetFrmRecords(FrmRecords frmRecords) => _frmRecords = frmRecords;
 
         public void RefreshFrmDetails()
         {
@@ -493,5 +502,7 @@ namespace Scholarship_Employment
         {
             Clipboard.SetText(lblFullName.Text);
         }
+
+        #endregion
     }
 }

@@ -15,6 +15,8 @@ namespace Scholarship_Employment
         private void FrmExcelData_Load(object sender, EventArgs e)
         {
             listView.Items.Clear();
+
+            DGV_Test();
         }
 
         private void btnLoadExcelData_Click(object sender, EventArgs e)
@@ -52,22 +54,6 @@ namespace Scholarship_Employment
 
                 listView.Items[i].Font = new System.Drawing.Font("Segoe UI Light", 12f);
             }
-
-            /* using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
-            {
-                try
-                {
-                    connection.Open();
-
-                    MySqlCommand command = null;
-
-                    connection.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "ERROR");
-                }
-            } */
         }
 
         private void LoadExcelData(string filePath, string hdr)
@@ -99,6 +85,12 @@ namespace Scholarship_Employment
                 }
             }
 
+        }
+
+        private void DGV_Test()
+        {
+            if (dataGridView.Columns.Contains("Column6")) dataGridView.Columns.Remove("Column2");
+            else dataGridView.Columns.Remove("Column5");
         }
     }
 }

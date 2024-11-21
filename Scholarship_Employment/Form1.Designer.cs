@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Dashboard");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Create Entry");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Data Records");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Load Excel Data");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Dashboard");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Create Entry");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Data Records");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Load Excel Data");
             this.treeView = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
@@ -45,19 +45,19 @@
             this.treeView.Location = new System.Drawing.Point(0, 0);
             this.treeView.Margin = new System.Windows.Forms.Padding(4);
             this.treeView.Name = "treeView";
-            treeNode1.Name = "ndDashboard";
-            treeNode1.Text = "Dashboard";
-            treeNode2.Name = "ndCreateEntry";
-            treeNode2.Text = "Create Entry";
-            treeNode3.Name = "ndDataRecords";
-            treeNode3.Text = "Data Records";
-            treeNode4.Name = "ndLoadExcelData";
-            treeNode4.Text = "Load Excel Data";
+            treeNode5.Name = "ndDashboard";
+            treeNode5.Text = "Dashboard";
+            treeNode6.Name = "ndCreateEntry";
+            treeNode6.Text = "Create Entry";
+            treeNode7.Name = "ndDataRecords";
+            treeNode7.Text = "Data Records";
+            treeNode8.Name = "ndLoadExcelData";
+            treeNode8.Text = "Load Excel Data";
             this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4});
+            treeNode5,
+            treeNode6,
+            treeNode7,
+            treeNode8});
             this.treeView.Size = new System.Drawing.Size(200, 561);
             this.treeView.TabIndex = 0;
             this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
@@ -67,8 +67,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.treeView);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.IsMdiContainer = true;
             this.Name = "Form1";
             this.Text = "Scholarship Employment";

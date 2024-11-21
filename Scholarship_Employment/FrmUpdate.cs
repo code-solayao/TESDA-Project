@@ -42,17 +42,12 @@ namespace Scholarship_Employment
 
         private FrmRecords _frmRecords;
         private FrmDetails _frmDetails;
-        public FrmRecords frmRecords { get; set; }
-        public FrmDetails frmDetails { get; set; }
 
         private List<DateTimePicker> _dateTimePickers;
 
         public FrmUpdate()
         {
             InitializeComponent();
-
-            _frmRecords = frmRecords;
-            _frmDetails = frmDetails;
 
             grpNoResponse.Location = grpResponded.Location;
 
@@ -238,6 +233,12 @@ namespace Scholarship_Employment
         #endregion
 
         #region Functions
+
+        public void RefreshForms(FrmRecords frmRecords, FrmDetails frmDetails)
+        {
+            _frmRecords = frmRecords;
+            _frmDetails = frmDetails;
+        }
 
         private void InitialiseClearDetails()
         {

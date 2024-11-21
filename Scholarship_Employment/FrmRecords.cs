@@ -32,13 +32,6 @@ namespace Scholarship_Employment
             ShowFrmDetails();
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            if (listView.SelectedItems.Count == 0) return;
-
-            ShowFrmUpdate();
-        }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (listView.SelectedItems.Count == 0) return;
@@ -250,22 +243,12 @@ namespace Scholarship_Employment
         {
             _selectedID = int.Parse(listView.SelectedItems[0].Text);
 
-            FrmDetails frmDetails = new FrmDetails(this);
+            FrmDetails frmDetails = new FrmDetails();
+            frmDetails.SetFrmRecords(this);
             frmDetails.Id = _selectedID;
 
             frmDetails.MdiParent = Form1.Instance;
             frmDetails.Show();
-        }
-
-        private void ShowFrmUpdate()
-        {
-            _selectedID = int.Parse(listView.SelectedItems[0].Text);
-
-            FrmUpdate frmUpdate = new FrmUpdate();
-            frmUpdate.frmRecords = this;
-            frmUpdate.Id = _selectedID;
-
-            frmUpdate.ShowDialog();
         }
 
         private void DeleteRecord()
