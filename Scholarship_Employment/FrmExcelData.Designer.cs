@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
             "1"}, -1, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))));
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.btnLoadExcelData = new System.Windows.Forms.Button();
@@ -64,11 +64,6 @@
             this.colDateEmploy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEmployStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnReadData = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -79,16 +74,11 @@
             // 
             this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ScrollBar;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5});
             this.dataGridView.Location = new System.Drawing.Point(19, 17);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.Size = new System.Drawing.Size(1080, 494);
             this.dataGridView.TabIndex = 0;
+            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
             // btnLoadExcelData
             // 
@@ -181,7 +171,7 @@
             this.listView.FullRowSelect = true;
             this.listView.HideSelection = false;
             this.listView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem12});
+            listViewItem4});
             this.listView.Location = new System.Drawing.Point(16, 16);
             this.listView.MultiSelect = false;
             this.listView.Name = "listView";
@@ -333,31 +323,6 @@
             this.btnReadData.UseVisualStyleBackColor = false;
             this.btnReadData.Click += new System.EventHandler(this.btnReadData_Click);
             // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "ColumnHeader1";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "ColumnHeader2";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "ColumnHeader3";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "ColumnHeader4";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "ColumnHeader5";
-            this.Column5.Name = "Column5";
-            // 
             // FrmExcelData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -412,10 +377,5 @@
         private System.Windows.Forms.ColumnHeader colJobTitle;
         private System.Windows.Forms.ColumnHeader colDateEmploy;
         private System.Windows.Forms.ColumnHeader colEmployStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }
 }

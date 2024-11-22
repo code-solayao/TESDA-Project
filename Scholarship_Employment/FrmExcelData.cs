@@ -15,8 +15,6 @@ namespace Scholarship_Employment
         private void FrmExcelData_Load(object sender, EventArgs e)
         {
             listView.Items.Clear();
-
-            DGV_Test();
         }
 
         private void btnLoadExcelData_Click(object sender, EventArgs e)
@@ -87,10 +85,21 @@ namespace Scholarship_Employment
 
         }
 
-        private void DGV_Test()
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView.Columns.Contains("Column6")) dataGridView.Columns.Remove("Column2");
-            else dataGridView.Columns.Remove("Column5");
+            if (e.RowIndex == 0)
+            {
+                MessageBox.Show("no row index");
+                return;
+            }
+
+            DataGridViewRow row = dataGridView.Rows[e.RowIndex];
+            DataGridViewCellCollection cellCollection = row.Cells;
+            System.Collections.Generic.List<DataGridViewCell> cells = new System.Collections.Generic.List<DataGridViewCell>();
+            foreach (DataGridViewCell cell in cellCollection)
+            {
+                cells.Add(cell);
+            }
         }
     }
 }
