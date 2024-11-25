@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
 using System.Data;
 using System.Data.OleDb;
 using System.Windows.Forms;
@@ -27,6 +28,13 @@ namespace Scholarship_Employment
                 lblFilePath.Text = filePath;
                 LoadExcelData(filePath, "yes");
             }
+
+            //CreateDataTable();
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            SubmitToDatabase();
         }
 
         private void btnReadData_Click(object sender, EventArgs e)
@@ -85,20 +93,61 @@ namespace Scholarship_Employment
 
         }
 
-        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        // TEST environment
+        private void CreateDataTable()
         {
-            if (e.RowIndex == 0)
-            {
-                MessageBox.Show("no row index");
-                return;
-            }
+            DataTable table = new DataTable();
 
-            DataGridViewRow row = dataGridView.Rows[e.RowIndex];
-            DataGridViewCellCollection cellCollection = row.Cells;
-            System.Collections.Generic.List<DataGridViewCell> cells = new System.Collections.Generic.List<DataGridViewCell>();
-            foreach (DataGridViewCell cell in cellCollection)
+            table.Columns.Add("ID", typeof(int));
+            table.Columns.Add("Name", typeof(string));
+            table.Columns.Add("Birth date", typeof(DateTime));
+            table.Columns.Add("Age", typeof(int));
+            
+            table.Rows.Add(1, "Dave Solayao", new DateTime(2001, 7, 3), 23);
+            table.Rows.Add(2, "Dave Solayao", new DateTime(2001, 7, 3), 23);
+            table.Rows.Add(3, "Dave Solayao", new DateTime(2001, 7, 3), 23);
+            table.Rows.Add(4, "Dave Solayao", new DateTime(2001, 7, 3), 23);
+            table.Rows.Add(5, "Dave Solayao", new DateTime(2001, 7, 3), 23);
+
+            dataGridView.DataSource = table;
+        }
+
+        private void SubmitToDatabase()
+        {
+            using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
-                cells.Add(cell);
+                try
+                {
+                    connection.Open();
+
+                    string sql = "insert into test values (@ID, @Name, @Birth_Date, @Age);";
+                    MySqlCommand command = null;
+
+                    int ID;
+                    string Name;
+                    DateTime BirthDate;
+                    int Age;
+                    for (int i = 0; i < dataGridView.Rows.Count - 1; i++)
+                    {
+                        ID = Convert.ToInt32(dataGridView.Rows[i].Cells[0].Value);
+                        Name = dataGridView.Rows[i].Cells[1].Value.ToString();
+                        BirthDate = Convert.ToDateTime(dataGridView.Rows[i].Cells[2].Value);
+                        Age = Convert.ToInt32(dataGridView.Rows[i].Cells[3].Value);
+
+                        command = new MySqlCommand(sql, connection);
+                        command.Parameters.AddWithValue("@ID", ID);
+                        command.Parameters.AddWithValue("@Name", Name);
+                        command.Parameters.AddWithValue("@Birth_Date", BirthDate);
+                        command.Parameters.AddWithValue("@Age", Age);
+                        command.ExecuteNonQuery();
+                    }
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "ERROR");
+                }
             }
         }
     }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "1"}, -1, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))));
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.btnLoadExcelData = new System.Windows.Forms.Button();
@@ -64,6 +64,7 @@
             this.colDateEmploy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEmployStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnReadData = new System.Windows.Forms.Button();
+            this.btnSubmit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -78,7 +79,6 @@
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.Size = new System.Drawing.Size(1080, 494);
             this.dataGridView.TabIndex = 0;
-            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
             // btnLoadExcelData
             // 
@@ -105,6 +105,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnSubmit);
             this.tabPage1.Controls.Add(this.lblFilePath);
             this.tabPage1.Controls.Add(this.dataGridView);
             this.tabPage1.Controls.Add(this.btnLoadExcelData);
@@ -171,7 +172,7 @@
             this.listView.FullRowSelect = true;
             this.listView.HideSelection = false;
             this.listView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem4});
+            listViewItem2});
             this.listView.Location = new System.Drawing.Point(16, 16);
             this.listView.MultiSelect = false;
             this.listView.Name = "listView";
@@ -323,6 +324,16 @@
             this.btnReadData.UseVisualStyleBackColor = false;
             this.btnReadData.Click += new System.EventHandler(this.btnReadData_Click);
             // 
+            // btnSubmit
+            // 
+            this.btnSubmit.Location = new System.Drawing.Point(295, 536);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(75, 23);
+            this.btnSubmit.TabIndex = 3;
+            this.btnSubmit.Text = "button1";
+            this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            // 
             // FrmExcelData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -377,5 +388,6 @@
         private System.Windows.Forms.ColumnHeader colJobTitle;
         private System.Windows.Forms.ColumnHeader colDateEmploy;
         private System.Windows.Forms.ColumnHeader colEmployStatus;
+        private System.Windows.Forms.Button btnSubmit;
     }
 }
