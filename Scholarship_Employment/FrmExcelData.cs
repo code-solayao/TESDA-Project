@@ -8,6 +8,41 @@ namespace Scholarship_Employment
 {
     public partial class FrmExcelData : Form
     {
+        #region EmpDashboard field variables
+
+        private string _district;
+        private string _city;
+        private string _tvi;
+        private string _qualification;
+        private string _sector;
+        private string _last_name;
+        private string _first_name;
+        private string _middle_name;
+        private string _extension_name;
+        private string _full_name;
+        private string _scholarship_type;
+        private string _training_status;
+        private string _assessment_result;
+        private string _emp_before_training;
+        private string _occupation;
+        private string _employer;
+        private string _emp_type;
+        private int _allocation;
+        private string _verif_status;
+        private string _verif_date;
+        private string _referral_status;
+        private string _company;
+        private string _address;
+        private string _job_title;
+        private string _emp_date;
+        private string _emp_status;
+        private string _response_type;
+        private string _follow_up;
+        private string _answered;
+        private string _reason_not_applying;
+
+        #endregion
+
         public FrmExcelData()
         {
             InitializeComponent();
@@ -120,27 +155,79 @@ namespace Scholarship_Employment
                 {
                     connection.Open();
 
-                    string sql = "insert into test values (@ID, @Name, @Birth_Date, @Age);";
-                    MySqlCommand command = null;
+                    string sql = $"CALL Insert_Data(@District, @City, @TVI, @Qualification, @Sector, @Last_Name, @First_Name, @Middle_Name, " +
+                        $"@Extension_Name, @Full_Name, @Scholarship_Type, @Training_Status, @Assessment_Result, @Emp_Before_Training, @Occupation, " +
+                        $"@Employer, @Emp_Type, @Allocation, @Verif_Status, @Verif_Date, @Referral_Status, @Company, @Address, @Job_Title, @Emp_Date, " +
+                        $"@Emp_Status, @Response_Type, @Follow_Up, @Answered, @Reason_Not_Applying);";
 
-                    int ID;
-                    string Name;
-                    DateTime BirthDate;
-                    int Age;
+                    MySqlCommand command = null;
                     for (int i = 0; i < dataGridView.Rows.Count - 1; i++)
                     {
-                        ID = Convert.ToInt32(dataGridView.Rows[i].Cells[0].Value);
-                        Name = dataGridView.Rows[i].Cells[1].Value.ToString();
-                        BirthDate = Convert.ToDateTime(dataGridView.Rows[i].Cells[2].Value);
-                        Age = Convert.ToInt32(dataGridView.Rows[i].Cells[3].Value);
+                        _district = dataGridView.Rows[i].Cells[0].Value.ToString();
+                        _city = dataGridView.Rows[i].Cells[1].Value.ToString();
+                        _tvi = dataGridView.Rows[i].Cells[2].Value.ToString();
+                        _qualification = dataGridView.Rows[i].Cells[3].Value.ToString();
+                        _sector = dataGridView.Rows[i].Cells[4].Value.ToString();
+                        _last_name = dataGridView.Rows[i].Cells[5].Value.ToString();
+                        _first_name = dataGridView.Rows[i].Cells[6].Value.ToString();
+                        _middle_name = dataGridView.Rows[i].Cells[7].Value.ToString();
+                        _extension_name = dataGridView.Rows[i].Cells[8].Value.ToString();
+                        _full_name = dataGridView.Rows[i].Cells[9].Value.ToString();
+                        _scholarship_type = dataGridView.Rows[i].Cells[10].Value.ToString();
+                        _training_status = dataGridView.Rows[i].Cells[11].Value.ToString();
+                        _assessment_result = dataGridView.Rows[i].Cells[12].Value.ToString();
+                        _emp_before_training = dataGridView.Rows[i].Cells[13].Value.ToString();
+                        _occupation = dataGridView.Rows[i].Cells[14].Value.ToString();
+                        _employer = dataGridView.Rows[i].Cells[15].Value.ToString();
+                        _emp_type = dataGridView.Rows[i].Cells[16].Value.ToString();
+                        _allocation = Convert.ToInt32(dataGridView.Rows[i].Cells[17].Value);
+                        _verif_status = dataGridView.Rows[i].Cells[18].Value.ToString();
+                        _verif_date = dataGridView.Rows[i].Cells[19].Value.ToString();
+                        _referral_status = dataGridView.Rows[i].Cells[20].Value.ToString();
+                        _company = dataGridView.Rows[i].Cells[21].Value.ToString();
+                        _address = dataGridView.Rows[i].Cells[22].Value.ToString();
+                        _job_title = dataGridView.Rows[i].Cells[23].Value.ToString();
+                        _emp_date = dataGridView.Rows[i].Cells[24].Value.ToString();
+                        _emp_status = dataGridView.Rows[i].Cells[25].Value.ToString();
+                        _response_type = dataGridView.Rows[i].Cells[26].Value.ToString();
+                        _follow_up = dataGridView.Rows[i].Cells[27].Value.ToString();
+                        _answered = dataGridView.Rows[i].Cells[28].Value.ToString();
+                        _reason_not_applying = dataGridView.Rows[i].Cells[29].Value.ToString();
 
                         command = new MySqlCommand(sql, connection);
-                        command.Parameters.AddWithValue("@ID", ID);
-                        command.Parameters.AddWithValue("@Name", Name);
-                        command.Parameters.AddWithValue("@Birth_Date", BirthDate);
-                        command.Parameters.AddWithValue("@Age", Age);
+                        command.Parameters.AddWithValue("@District", _district);
+                        command.Parameters.AddWithValue("@City", _city);
+                        command.Parameters.AddWithValue("@TVI", _tvi);
+                        command.Parameters.AddWithValue("@Qualification", _qualification);
+                        command.Parameters.AddWithValue("@Sector", _sector);
+                        command.Parameters.AddWithValue("@Last_Name", _last_name);
+                        command.Parameters.AddWithValue("@First_Name", _first_name);
+                        command.Parameters.AddWithValue("@Middle_Name", _middle_name);
+                        command.Parameters.AddWithValue("@Extension_Name", _extension_name);
+                        command.Parameters.AddWithValue("@Full_Name", _full_name);
+                        command.Parameters.AddWithValue("@Scholarship_Type", _scholarship_type);
+                        command.Parameters.AddWithValue("@Training_Status", _training_status);
+                        command.Parameters.AddWithValue("@Assessment_Result", _assessment_result);
+                        command.Parameters.AddWithValue("@Emp_Before_Training", _emp_before_training);
+                        command.Parameters.AddWithValue("@Occupation", _occupation);
+                        command.Parameters.AddWithValue("@Employer", _employer);
+                        command.Parameters.AddWithValue("@Emp_Type", _emp_type);
+                        command.Parameters.AddWithValue("@Allocation", _allocation);
+                        command.Parameters.AddWithValue("@Verif_Status", _verif_status);
+                        command.Parameters.AddWithValue("@Verif_Date", _verif_date);
+                        command.Parameters.AddWithValue("@Referral_Status", _referral_status);
+                        command.Parameters.AddWithValue("@Company", _company);
+                        command.Parameters.AddWithValue("@Address", _address);
+                        command.Parameters.AddWithValue("@Job_Title", _job_title);
+                        command.Parameters.AddWithValue("@Emp_Date", _emp_date);
+                        command.Parameters.AddWithValue("@Emp_Status", _emp_status);
+                        command.Parameters.AddWithValue("@Response_Type", _response_type);
+                        command.Parameters.AddWithValue("@Follow_Up", _follow_up);
+                        command.Parameters.AddWithValue("@Answered", _answered);
+                        command.Parameters.AddWithValue("@Reason_Not_Applying", _reason_not_applying);
                         command.ExecuteNonQuery();
                     }
+                    MessageBox.Show("Excel data has been submitted to the database successfully.", "Data Submission");
 
                     connection.Close();
                 }

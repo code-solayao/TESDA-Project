@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "1"}, -1, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))));
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.btnLoadExcelData = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnSubmit = new System.Windows.Forms.Button();
             this.lblFilePath = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listView = new System.Windows.Forms.ListView();
@@ -64,7 +65,6 @@
             this.colDateEmploy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEmployStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnReadData = new System.Windows.Forms.Button();
-            this.btnSubmit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -82,9 +82,9 @@
             // 
             // btnLoadExcelData
             // 
-            this.btnLoadExcelData.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnLoadExcelData.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnLoadExcelData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadExcelData.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnLoadExcelData.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnLoadExcelData.Location = new System.Drawing.Point(19, 528);
             this.btnLoadExcelData.Name = "btnLoadExcelData";
             this.btnLoadExcelData.Size = new System.Drawing.Size(123, 36);
@@ -100,7 +100,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1127, 604);
+            this.tabControl1.Size = new System.Drawing.Size(1127, 646);
             this.tabControl1.TabIndex = 3;
             // 
             // tabPage1
@@ -112,10 +112,23 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1119, 578);
+            this.tabPage1.Size = new System.Drawing.Size(1119, 620);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnSubmit
+            // 
+            this.btnSubmit.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnSubmit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSubmit.Location = new System.Drawing.Point(19, 570);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(200, 36);
+            this.btnSubmit.TabIndex = 3;
+            this.btnSubmit.Text = "Submit to Database";
+            this.btnSubmit.UseVisualStyleBackColor = false;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // lblFilePath
             // 
@@ -172,7 +185,7 @@
             this.listView.FullRowSelect = true;
             this.listView.HideSelection = false;
             this.listView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.listView.Location = new System.Drawing.Point(16, 16);
             this.listView.MultiSelect = false;
             this.listView.Name = "listView";
@@ -324,21 +337,11 @@
             this.btnReadData.UseVisualStyleBackColor = false;
             this.btnReadData.Click += new System.EventHandler(this.btnReadData_Click);
             // 
-            // btnSubmit
-            // 
-            this.btnSubmit.Location = new System.Drawing.Point(295, 536);
-            this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(75, 23);
-            this.btnSubmit.TabIndex = 3;
-            this.btnSubmit.Text = "button1";
-            this.btnSubmit.UseVisualStyleBackColor = true;
-            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
-            // 
             // FrmExcelData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1151, 628);
+            this.ClientSize = new System.Drawing.Size(1151, 668);
             this.Controls.Add(this.tabControl1);
             this.Name = "FrmExcelData";
             this.Text = "FrmExcelData";
