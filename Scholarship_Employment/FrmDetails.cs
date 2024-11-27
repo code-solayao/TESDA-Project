@@ -268,7 +268,7 @@ namespace Scholarship_Employment
                 {
                     case "Interested":
                         ver_label_1.Text = "Refer to Company? ";
-                        ver_label_1.Location = new Point(131, 45);
+                        ver_label_1.Location = new Point(25, 50);
 
                         ver_label_2.Visible = true;
                         ver_value_2.Visible = true;
@@ -278,7 +278,7 @@ namespace Scholarship_Employment
 
                     case "Not Interested":
                         ver_label_1.Text = "Reason: ";
-                        ver_label_1.Location = new Point(216, 45);
+                        ver_label_1.Location = new Point(135, 50);
 
                         ver_label_2.Visible = false;
                         ver_value_2.Visible = false;
@@ -302,7 +302,7 @@ namespace Scholarship_Employment
                 {
                     case "Yes":
                         ver_label_2.Text = "Date of Referral: ";
-                        ver_label_2.Location = new Point(151, 75);
+                        ver_label_2.Location = new Point(51, 90);
 
                         ver_value_2.Text = date_of_referral;
                         _enableEmploymentPage = true;
@@ -310,7 +310,7 @@ namespace Scholarship_Employment
 
                     case "No":
                         ver_label_2.Text = "Reason: ";
-                        ver_label_2.Location = new Point(216, 75);
+                        ver_label_2.Location = new Point(135, 90);
 
                         ver_value_2.Text = reason_no_referral;
                         _enableEmploymentPage = false;
@@ -392,28 +392,28 @@ namespace Scholarship_Employment
                 {
                     case "Hired":
                         emp_label.Text = "Date Hired: ";
-                        emp_label.Location = new Point(324, 170);
+                        emp_label.Location = new Point(115, 240);
 
                         emp_value.Text = hired_date;
                         break;
 
                     case "Submitted Documents":
                         emp_label.Text = "Date of Submission: ";
-                        emp_label.Location = new Point(258, 170);
+                        emp_label.Location = new Point(29, 240);
 
                         emp_value.Text = submitted_documents_date;
                         break;
 
                     case "For Interview":
                         emp_label.Text = "Interview Date: ";
-                        emp_label.Location = new Point(293, 170);
+                        emp_label.Location = new Point(76, 240);
 
                         emp_value.Text = for_interview_date;
                         break;
 
                     case "Not Hired":
                         emp_label.Text = "Reason: ";
-                        emp_label.Location = new Point(351, 170);
+                        emp_label.Location = new Point(150, 240);
 
                         emp_value.Text = reason_not_hired;
                         break;
