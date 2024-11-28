@@ -91,7 +91,7 @@ namespace Scholarship_Employment
                             listView.Items[i].SubItems.Add(reader.GetString(3));
                             listView.Items[i].SubItems.Add(reader.GetString(4));
                             listView.Items[i].SubItems.Add(reader.GetString(5));
-                            listView.Items[i].SubItems.Add(reader.GetInt32(6).ToString());
+                            listView.Items[i].SubItems.Add(reader.GetString(6));
                             listView.Items[i].SubItems.Add(reader.GetString(7));
 
                             listView.Items[i].Font = new System.Drawing.Font("Segoe UI Light", 12f);

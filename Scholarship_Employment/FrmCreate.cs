@@ -23,6 +23,7 @@ namespace Scholarship_Employment
         private string _city;
         private string _scholarship_type;
         private int _graduation_year;
+        private string _allocation;
 
         public FrmCreate()
         {
@@ -58,7 +59,7 @@ namespace Scholarship_Employment
             if (!ContactNumberFormat()) return;
 
             dtBirthDate.Format = DateTimePickerFormat.Custom;
-            dtBirthDate.CustomFormat = "yyyy-MM-dd";
+            dtBirthDate.CustomFormat = "MM/dd/yyyy";
 
             _sex = cbxSex.Text;
             _birthdate = dtBirthDate.Text;
@@ -72,6 +73,7 @@ namespace Scholarship_Employment
             _city = cbxCity.Text;
             _scholarship_type = cbxScholarType.Text;
             _graduation_year = int.Parse(cbxGradYear.Text);
+            _allocation = "FY " + _graduation_year;
 
             using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
@@ -81,26 +83,27 @@ namespace Scholarship_Employment
 
                     MySqlCommand command = null;
 
-                    string sql = "CALL submit_data(@last_name, @first_name, @middle_name, @extension_name, @sex, @birthdate, " +
-                        "@contact_number, @address, @email, @sector, @qualification, @tvi, @district, @city, @scholarship_type, " +
-                        "@graduation_year)";
+                    string sql = "CALL submit_record_data(@district, @city, @tvi, @qualification_title, @sector, @last_name, @first_name, " +
+                        "@middle_name, @extension_name, @full_name, @sex, @birthdate, @contact_number, @email, @scholarship_type, " +
+                        "@address, @allocation)";
                     command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@district", _district);
+                    command.Parameters.AddWithValue("@city", _city);
+                    command.Parameters.AddWithValue("@tvi", _tvi);
+                    command.Parameters.AddWithValue("@qualification_title", _qualification);
+                    command.Parameters.AddWithValue("@sector", _sector);
                     command.Parameters.AddWithValue("@last_name", _last_name);
                     command.Parameters.AddWithValue("@first_name", _first_name);
                     command.Parameters.AddWithValue("@middle_name", _middle_name);
                     command.Parameters.AddWithValue("@extension_name", _extension_name);
+                    command.Parameters.AddWithValue("@full_name", FullNameFormat());
                     command.Parameters.AddWithValue("@sex", _sex);
                     command.Parameters.AddWithValue("@birthdate", _birthdate);
                     command.Parameters.AddWithValue("@contact_number", _contact_number);
-                    command.Parameters.AddWithValue("@address", _address);
                     command.Parameters.AddWithValue("@email", _email);
-                    command.Parameters.AddWithValue("@sector", _sector);
-                    command.Parameters.AddWithValue("@qualification", _qualification);
-                    command.Parameters.AddWithValue("@tvi", _tvi);
-                    command.Parameters.AddWithValue("@district", _district);
-                    command.Parameters.AddWithValue("@city", _city);
                     command.Parameters.AddWithValue("@scholarship_type", _scholarship_type);
-                    command.Parameters.AddWithValue("@graduation_year", _graduation_year);
+                    command.Parameters.AddWithValue("@address", _address);
+                    command.Parameters.AddWithValue("@allocation", _allocation);
                     command.ExecuteNonQuery();
 
                     dtBirthDate.Format = DateTimePickerFormat.Long;
@@ -120,14 +123,14 @@ namespace Scholarship_Employment
                         }
                     }
 
-                    sql = "CALL initialise_verification_record(@id)";
+                    sql = "CALL initialise_verification_record(@Id)";
                     command = new MySqlCommand(sql, connection);
-                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@Id", id);
                     command.ExecuteNonQuery();
 
-                    sql = "CALL initialise_employment_record(@id)";
+                    sql = "CALL initialise_employment_record(@Id)";
                     command = new MySqlCommand(sql, connection);
-                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@Id", id);
                     command.ExecuteNonQuery();
 
                     Close();
@@ -152,6 +155,28 @@ namespace Scholarship_Employment
             _first_name = firstname;
             _middle_name = middleInitial;
             _extension_name = suffix;
+        }
+
+        private string FullNameFormat()
+        {
+            string full_name = string.Empty;
+
+            if (_extension_name.Equals(string.Empty) && _middle_name.Equals(string.Empty))
+            {
+                full_name = $"{_last_name}, {_first_name}";
+            }
+            else if (_extension_name.Equals(string.Empty))
+            {
+                full_name = $"{_last_name}, {_first_name} {_middle_name}";
+            }
+            else if (_middle_name.Equals(string.Empty))
+            {
+                full_name = $"{_last_name} {_extension_name}, {_first_name}";
+            }
+            else
+                full_name = $"{_last_name} {_extension_name}, {_first_name} {_middle_name}";
+
+            return full_name;
         }
 
         private bool ContactNumberFormat()

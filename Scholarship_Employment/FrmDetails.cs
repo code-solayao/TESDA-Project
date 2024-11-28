@@ -86,9 +86,9 @@ namespace Scholarship_Employment
                 {
                     connection.Open();
 
-                    string sql = "CALL retrieve_initial_record(@id)";
+                    string sql = "CALL retrieve_initial_record(@Id)";
                     MySqlCommand command = new MySqlCommand(sql, connection);
-                    command.Parameters.AddWithValue("@id", Id);
+                    command.Parameters.AddWithValue("@Id", Id);
 
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
@@ -111,7 +111,7 @@ namespace Scholarship_Employment
                             lblDistrict.Text = reader.GetString(12);
                             lblCity.Text = reader.GetString(13);
                             lblScholarType.Text = reader.GetString(14);
-                            lblGradYear.Text = reader.GetInt32(15).ToString();
+                            lblGradYear.Text = reader.GetString(15);
                         }
                     }
 
@@ -153,14 +153,14 @@ namespace Scholarship_Employment
             string status_of_verifcation;
 
             string type_of_response;
-            string refer_to_company;
+            string referral_status;
             string date_of_referral;
             string reason_no_referral;
             string reason_not_interested;
 
             string follow_up_date_1;
             string follow_up_date_2;
-            bool invalid_contact = false;
+            string invalid_contact;
 
             using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
@@ -168,9 +168,9 @@ namespace Scholarship_Employment
                 {
                     connection.Open();
 
-                    string sql = "CALL retrieve_verification_record(@id);";
+                    string sql = "CALL retrieve_verification_record(@Id);";
                     MySqlCommand command = new MySqlCommand(sql, connection);
-                    command.Parameters.AddWithValue("@id", Id);
+                    command.Parameters.AddWithValue("@Id", Id);
 
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
@@ -179,16 +179,14 @@ namespace Scholarship_Employment
                             means_of_verification = reader.GetString(0);
                             date_of_verification = DateFormatRead(reader, 1);
                             status_of_verifcation = reader.GetString(2);
-                            type_of_response = reader.GetString(3);
-
-                            refer_to_company = ReferToCompanyValue(reader.GetInt16(4));
-                            date_of_referral = DateFormatRead(reader, 5);
-                            reason_no_referral = reader.GetString(6);
-                            reason_not_interested = reader.GetString(7);
-
-                            follow_up_date_1 = DateFormatRead(reader, 8);
-                            follow_up_date_2 = DateFormatRead(reader, 9);
-                            invalid_contact = reader.GetBoolean(10);
+                            follow_up_date_1 = DateFormatRead(reader, 3);
+                            follow_up_date_2 = DateFormatRead(reader, 4);
+                            type_of_response = reader.GetString(5);
+                            reason_not_interested = reader.GetString(6);
+                            referral_status = ReferToCompanyValue(reader.GetString(7));
+                            date_of_referral = DateFormatRead(reader, 8);
+                            reason_no_referral = reader.GetString(9);
+                            invalid_contact = reader.GetString(10);
 
                             lblVerifyMeans.Text = means_of_verification;
                             lblVerifyDate.Text = date_of_verification;
@@ -225,7 +223,7 @@ namespace Scholarship_Employment
 
                         lblFollowup1.Text = follow_up_date_1;
                         lblFollowup2.Text = follow_up_date_2;
-                        chkInvalidContact.Checked = invalid_contact;
+                        InvalidContactAction();
                         break;
 
                     default:
@@ -235,29 +233,28 @@ namespace Scholarship_Employment
                 }
             }
 
-            string ReferToCompanyValue(short reader)
+            string ReferToCompanyValue(string reader)
             {
-                string response = string.Empty;
-                switch (reader)
-                {
-                    case 0:
-                        response = "No response";
-                        break;
+                string response = "No response";
 
-                    case 1:
-                        response = "Yes";
-                        break;
-
-                    case 2:
-                        response = "No";
-                        break;
-
-                    default:
-                        response = "No response";
-                        break;
-                }
+                if (reader.Equals(string.Empty))
+                    response = "No response";
+                else
+                    response = reader;
 
                 return response;
+            }
+
+            void InvalidContactAction()
+            {
+                if (invalid_contact.Equals("Yes"))
+                {
+                    chkInvalidContact.Checked = true;
+                }
+                else
+                {
+                    chkInvalidContact.Checked = false;
+                }
             }
 
             void TypeOfResponseAction()
@@ -273,7 +270,7 @@ namespace Scholarship_Employment
                         ver_label_2.Visible = true;
                         ver_value_2.Visible = true;
 
-                        ver_value_1.Text = refer_to_company;
+                        ver_value_1.Text = referral_status;
                         break;
 
                     case "Not Interested":
@@ -298,7 +295,7 @@ namespace Scholarship_Employment
 
             void ReferToCompanyAction()
             {
-                switch (refer_to_company)
+                switch (referral_status)
                 {
                     case "Yes":
                         ver_label_2.Text = "Date of Referral: ";
@@ -348,9 +345,9 @@ namespace Scholarship_Employment
                 {
                     connection.Open();
 
-                    string sql = "CALL retrieve_employment_record(@id)";
+                    string sql = "CALL retrieve_employment_record(@Id)";
                     MySqlCommand command = new MySqlCommand(sql, connection);
-                    command.Parameters.AddWithValue("@id", Id);
+                    command.Parameters.AddWithValue("@Id", Id);
 
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
@@ -428,16 +425,14 @@ namespace Scholarship_Employment
 
         private string DateFormatRead(MySqlDataReader reader, int ordinal)
         {
-            DateTime date;
+            string date;
 
-            if (reader.IsDBNull(ordinal))
-            {
-                date = DateTime.MinValue;
+            if (reader.IsDBNull(ordinal) || reader.GetString(ordinal).Equals(string.Empty))
                 return "<no-given-date>";
-            }
-            else date = reader.GetDateTime(ordinal);
+            else 
+                date = reader.GetString(ordinal);
 
-            string monthName = string.Empty;
+            /* string monthName = string.Empty;
             int month = date.Month;
             switch (month)
             {
@@ -494,8 +489,9 @@ namespace Scholarship_Employment
                     break;
             }
 
-            string format = $"{monthName} {date.Day}, {date.Year}";
-            return format;
+            string format = $"{monthName} {date.Day}, {date.Year}"; */
+
+            return date;
         }
 
         private void CopyFullName(object sender, EventArgs e)
