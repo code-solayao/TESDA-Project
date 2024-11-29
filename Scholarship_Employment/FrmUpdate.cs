@@ -11,20 +11,20 @@ namespace Scholarship_Employment
 
         private string _verification_means;
         private string _verification_date;
-        private string _verification_date_old;
+        private string _verification_date_old = string.Empty;
         private string _verification_status;
 
         private string _response_type;
         private string _refer_to_company;
         private string _referral_date;
-        private string _referral_date_old;
+        private string _referral_date_old = string.Empty;
         private string _no_referral_reason;
         private string _not_interested_reason;
 
         private string _follow_up_date_1;
-        private string _follow_up_date_1_old;
+        private string _follow_up_date_1_old = string.Empty;
         private string _follow_up_date_2;
-        private string _follow_up_date_2_old;
+        private string _follow_up_date_2_old = string.Empty;
         private string _invalid_contact;
 
         private string _company_name;
@@ -33,11 +33,11 @@ namespace Scholarship_Employment
 
         private string _employment_status;
         private string _hired_date;
-        private string _hired_date_old;
+        private string _hired_date_old = string.Empty;
         private string _submitted_documents_date;
-        private string _submitted_documents_date_old;
+        private string _submitted_documents_date_old = string.Empty;
         private string _for_interview_date;
-        private string _for_interview_date_old;
+        private string _for_interview_date_old = string.Empty;
         private string _not_hired_reason;
 
         private FrmRecords _frmRecords;
@@ -305,7 +305,7 @@ namespace Scholarship_Employment
 
                     connection.Close();
                 }
-                catch (FieldAccessException ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "ERROR");
                 }
@@ -421,33 +421,34 @@ namespace Scholarship_Employment
 
                     MySqlCommand command = null;
 
-                    string sql = $"CALL update_verification_record(@Id, @means, @date, @status, {_follow_up_date_1}, {_follow_up_date_2}, " +
-                        $"@response, @not_interested, {_refer_to_company}, {_referral_date}, @no_referral, @invalid_contact);";
+                    string sql = $"CALL update_verification_record(@Id, @means, @date, @status, @follow_up_1, @follow_up_2, " +
+                        $"@response, @not_interested, @referral_status, @referral_date, @no_referral, @invalid_contact);";
                     command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@Id", Id);
                     command.Parameters.AddWithValue("@means", _verification_means);
                     command.Parameters.AddWithValue("@date", _verification_date);
                     command.Parameters.AddWithValue("@status", _verification_status);
+                    command.Parameters.AddWithValue("@follow_up_1", _follow_up_date_1);
+                    command.Parameters.AddWithValue("@follow_up_2", _follow_up_date_2);
                     command.Parameters.AddWithValue("@response", _response_type);
                     command.Parameters.AddWithValue("@not_interested", _not_interested_reason);
+                    command.Parameters.AddWithValue("@referral_status", _refer_to_company);
+                    command.Parameters.AddWithValue("@referral_date", _referral_date);
                     command.Parameters.AddWithValue("@no_referral", _no_referral_reason);
                     command.Parameters.AddWithValue("@invalid_contact", _invalid_contact);
-                    string query = $"{_verification_means}, {_verification_date}, {_verification_status}, {_follow_up_date_1}, " +
-                        $"{_follow_up_date_2}, {_response_type}, {_not_interested_reason}, {_refer_to_company}, {_referral_date}, " +
-                        $"{_no_referral_reason}, {_invalid_contact}";
                     command.ExecuteNonQuery();
 
-                    sql = $"CALL update_employment_record(@Id, @company_name, @address, @job_title, @employment_status, {_hired_date}, " +
-                        $"{_submitted_documents_date}, {_for_interview_date}, @not_hired_reason);";
+                    sql = $"CALL update_employment_record(@Id, @company_name, @address, @job_title, @employment_status, @hired_date, " +
+                        $"@submit_docs_date, @interview_date, @not_hired_reason);";
                     command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@Id", Id);
                     command.Parameters.AddWithValue("@company_name", _company_name);
                     command.Parameters.AddWithValue("@address", _address);
                     command.Parameters.AddWithValue("@job_title", _job_title);
                     command.Parameters.AddWithValue("@employment_status", _employment_status);
-                    /*command.Parameters.AddWithValue("@hired_date", _hired_date);
+                    command.Parameters.AddWithValue("@hired_date", _hired_date);
                     command.Parameters.AddWithValue("@submit_docs_date", _submitted_documents_date);
-                    command.Parameters.AddWithValue("@interview_date", _for_interview_date);*/
+                    command.Parameters.AddWithValue("@interview_date", _for_interview_date);
                     command.Parameters.AddWithValue("@not_hired_reason", _not_hired_reason);
                     command.ExecuteNonQuery();
 
@@ -461,7 +462,7 @@ namespace Scholarship_Employment
 
                     connection.Close();
                 }
-                catch (FieldAccessException ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
@@ -522,7 +523,7 @@ namespace Scholarship_Employment
 
                     connection.Close();
                 }
-                catch (FieldAccessException ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "ERROR");
                 }
@@ -532,10 +533,10 @@ namespace Scholarship_Employment
             {
                 if (reader.GetString(ordinal).Equals(string.Empty)) return;
 
-                string dateTime = reader.GetString(ordinal);
-                int year = int.Parse(dateTime.Substring(6, 4));
-                int month = int.Parse(dateTime.Substring(0, 2));
-                int day = int.Parse(dateTime.Substring(3, 2));
+                string date = reader.GetString(ordinal);
+                int year = int.Parse(date.Substring(6, 4));
+                int month = int.Parse(date.Substring(0, 2));
+                int day = int.Parse(date.Substring(3, 2));
 
                 dtDateVerify.Value = new DateTime(year, month, day);
 
@@ -601,19 +602,19 @@ namespace Scholarship_Employment
             {
                 if (reader.GetString(ordinal).Equals(string.Empty)) return;
 
-                string dateTime = reader.GetString(ordinal);
-                int year = int.Parse(dateTime.Substring(6, 4));
-                int month = int.Parse(dateTime.Substring(0, 2));
-                int day = int.Parse(dateTime.Substring(3, 2));
+                string date = reader.GetString(ordinal);
+                int year = int.Parse(date.Substring(6, 4));
+                int month = int.Parse(date.Substring(0, 2));
+                int day = int.Parse(date.Substring(3, 2));
 
                 dtReferCompany.Value = new DateTime(year, month, day);
 
-                _referral_date_old = $"\"{month}/{day}/{year}\"";
+                _referral_date_old = $"{month}/{day}/{year}";
             }
 
             void FollowUpDate_1(MySqlDataReader reader, int ordinal)
             {
-                if (reader.IsDBNull(ordinal) || reader.GetString(ordinal).Equals(string.Empty)) return;
+                if (reader.GetString(ordinal).Equals(string.Empty)) return;
 
                 string dateTime = reader.GetString(ordinal);
                 int year = int.Parse(dateTime.Substring(6, 4));
@@ -622,12 +623,12 @@ namespace Scholarship_Employment
 
                 dtDateFollowup1.Value = new DateTime(year, month, day);
 
-                _follow_up_date_1_old = $"\"{month}/{day}/{year}\"";
+                _follow_up_date_1_old = $"{month}/{day}/{year}";
             }
 
             void FollowUpDate_2(MySqlDataReader reader, int ordinal)
             {
-                if (reader.IsDBNull(ordinal) || reader.GetString(ordinal).Equals(string.Empty)) return;
+                if (reader.GetString(ordinal).Equals(string.Empty)) return;
 
                 string dateTime = reader.GetString(ordinal);
                 int year = int.Parse(dateTime.Substring(6, 4));
@@ -636,7 +637,7 @@ namespace Scholarship_Employment
 
                 dtDateFollowup2.Value = new DateTime(year, month, day);
 
-                _follow_up_date_2_old = $"\"{month}/{day}/{year}\"";
+                _follow_up_date_2_old = $"{month}/{day}/{year}";
             }
 
             void InvalidContact(MySqlDataReader reader, int ordinal)
@@ -819,55 +820,43 @@ namespace Scholarship_Employment
         {
             if (rbtnInterested.Checked) return "Interested";
             else if (rbtnNotInterested.Checked) return "Not Interested";
-            else return "\"\"";
+            else return string.Empty;
         }
 
         private string Value_ReferToCompany()
         {
-            if (rbtnYes.Checked) return "\"Yes\"";
-            else if (rbtnNo.Checked) return "\"No\"";
+            if (rbtnYes.Checked) return "Yes";
+            else if (rbtnNo.Checked) return "No";
             else return string.Empty;
         }
 
         private string Value_ReferralDate()
         {
-            if (!dtReferCompany.Enabled) return "\"\"";
+            if (!dtReferCompany.Enabled) return string.Empty;
 
-            string date = $"\"{dtReferCompany.Text}\"";
+            string date = dtReferCompany.Text;
 
-            if (date.Equals("\"\"")) return _referral_date_old;
+            if (date.Equals(string.Empty)) return _referral_date_old;
             else return date;
-        }
-
-        private string Value_NoReferral()
-        {
-            if (rtbRsnReferralNo.Text.Equals(string.Empty)) return "\"\"";
-            return rtbRsnReferralNo.Text;
-        }
-
-        private string Value_NotInterested()
-        {
-            if (rtbRsnNotInterested.Text.Equals(string.Empty)) return "\"\"";
-            return rtbRsnNotInterested.Text;
         }
 
         private string Value_FollowUpDate_1()
         {
-            if (!dtDateFollowup1.Enabled) return "\"\"";
+            if (!dtDateFollowup1.Enabled) return string.Empty;
 
-            string date = $"\"{dtDateFollowup1.Text}\"";
+            string date = dtDateFollowup1.Text;
 
-            if (date.Equals("\"\"")) return _follow_up_date_1_old;
+            if (date.Equals(string.Empty)) return _follow_up_date_1_old;
             else return date;
         }
 
         private string Value_FollowUpDate_2()
         {
-            if (!dtDateFollowup2.Enabled) return "\"\"";
+            if (!dtDateFollowup2.Enabled) return string.Empty;
 
-            string date = $"\"{dtDateFollowup2.Text}\"";
+            string date = dtDateFollowup2.Text;
 
-            if (date.Equals("\"\"")) return _follow_up_date_2_old;
+            if (date.Equals(string.Empty)) return _follow_up_date_2_old;
             else return date;
         }
 
@@ -911,7 +900,7 @@ namespace Scholarship_Employment
 
                     connection.Close();
                 }
-                catch (FieldAccessException ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "ERROR");
                 }
@@ -958,44 +947,44 @@ namespace Scholarship_Employment
 
             void HiredDate(MySqlDataReader reader, int ordinal)
             {
-                if (reader.IsDBNull(ordinal) || reader.GetString(ordinal).Equals(string.Empty)) return;
+                if (reader.GetString(ordinal).Equals(string.Empty)) return;
 
-                string dateTime = reader.GetString(ordinal);
-                int year = int.Parse(dateTime.Substring(6, 4));
-                int month = int.Parse(dateTime.Substring(0, 2));
-                int day = int.Parse(dateTime.Substring(3, 2));
+                string date = reader.GetString(ordinal);
+                int year = int.Parse(date.Substring(6, 4));
+                int month = int.Parse(date.Substring(0, 2));
+                int day = int.Parse(date.Substring(3, 2));
 
                 dtHired.Value = new DateTime(year, month, day);
 
-                _hired_date_old = $"\"{month}/{day}/{year}\"";
+                _hired_date_old = $"{month}/{day}/{year}";
             }
 
             void SubmittedDocumentsDate(MySqlDataReader reader, int ordinal)
             {
-                if (reader.IsDBNull(ordinal) || reader.GetString(ordinal).Equals(string.Empty)) return;
+                if (reader.GetString(ordinal).Equals(string.Empty)) return;
 
-                string dateTime = reader.GetString(ordinal);
-                int year = int.Parse(dateTime.Substring(6, 4));
-                int month = int.Parse(dateTime.Substring(0, 2));
-                int day = int.Parse(dateTime.Substring(3, 2));
+                string date = reader.GetString(ordinal);
+                int year = int.Parse(date.Substring(6, 4));
+                int month = int.Parse(date.Substring(0, 2));
+                int day = int.Parse(date.Substring(3, 2));
 
                 dtSubmitDocs.Value = new DateTime(year, month, day);
 
-                _submitted_documents_date_old = $"\"{month}/{day}/{year}\"";
+                _submitted_documents_date_old = $"{month}/{day}/{year}";
             }
 
             void ForInterviewDate(MySqlDataReader reader, int ordinal)
             {
-                if (reader.IsDBNull(ordinal) || reader.GetString(ordinal).Equals(string.Empty)) return;
+                if (reader.GetString(ordinal).Equals(string.Empty)) return;
 
-                string dateTime = reader.GetString(ordinal);
-                int year = int.Parse(dateTime.Substring(6, 4));
-                int month = int.Parse(dateTime.Substring(0, 2));
-                int day = int.Parse(dateTime.Substring(3, 2));
+                string date = reader.GetString(ordinal);
+                int year = int.Parse(date.Substring(6, 4));
+                int month = int.Parse(date.Substring(0, 2));
+                int day = int.Parse(date.Substring(3, 2));
 
                 dtForInterview.Value = new DateTime(year, month, day);
 
-                _for_interview_date_old = $"\"{month}/{day}/{year}\"";
+                _for_interview_date_old = $"{month}/{day}/{year}";
             }
 
             void NotHiredReason(MySqlDataReader reader, int ordinal)
@@ -1052,31 +1041,30 @@ namespace Scholarship_Employment
 
         private string Value_HiredDate()
         {
-            if (!dtHired.Enabled) return "\"\"";
+            if (!dtHired.Enabled) return string.Empty;
 
-            string date = $"\"{dtHired.Text}\"";
+            string date = dtHired.Text;
 
-            if (date.Equals("\"\"")) return _hired_date_old;
+            if (date.Equals(string.Empty)) return _hired_date_old;
             else return date;
         }
 
         private string Value_SubmittedDocumentsDate()
         {
-            if (!dtSubmitDocs.Enabled) return "\"\"";
+            if (!dtSubmitDocs.Enabled) return string.Empty;
 
-            string date = $"\"{dtSubmitDocs.Text}\"";
+            string date = dtSubmitDocs.Text;
 
-            if (date.Equals("\"\"")) return _submitted_documents_date_old;
+            if (date.Equals(string.Empty)) return _submitted_documents_date_old;
             else return date;
         }
 
         private string Value_ForInterviewDate()
         {
-            if (!dtForInterview.Enabled) return "\"\"";
+            if (!dtForInterview.Enabled) return string.Empty;
 
-            string date = $"\"{dtForInterview.Text}\"";
-
-            if (date.Equals("\"\"")) return _for_interview_date_old;
+            string date = dtForInterview.Text;
+            if (date.Equals(string.Empty)) return _for_interview_date_old;
             else return date;
         }
 

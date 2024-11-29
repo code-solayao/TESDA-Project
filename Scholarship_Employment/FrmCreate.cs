@@ -34,6 +34,7 @@ namespace Scholarship_Employment
         {
             txtNameDisplay.Text = $"{_first_name} {_middle_name} {_last_name} {_extension_name}";
 
+            cbxCity.Items.Clear();
             cbxGradYear.SelectedIndex = 0;
         }
 
@@ -201,53 +202,60 @@ namespace Scholarship_Employment
 
         private void DistrictToCitySelection()
         {
-            cbxCity.Text = string.Empty;
-            cbxCity.Items.Clear();
-
-            string selectedItem = cbxDistrict.SelectedItem.ToString();
-            switch (selectedItem)
+            try
             {
-                case "CaMaNaVa":
-                    cbxCity.Items.Add("Caloocan City");
-                    cbxCity.Items.Add("Malabon City");
-                    cbxCity.Items.Add("Navotas City");
-                    cbxCity.Items.Add("Valenzuela City");
-                    break;
+                cbxCity.Text = string.Empty;
+                cbxCity.Items.Clear();
 
-                case "Manila":
-                    cbxCity.Items.Add("Manila");
+                string selectedItem = cbxDistrict.SelectedItem.ToString();
+                switch (selectedItem)
+                {
+                    case "CaMaNaVa":
+                        cbxCity.Items.Add("Caloocan City");
+                        cbxCity.Items.Add("Malabon City");
+                        cbxCity.Items.Add("Navotas City");
+                        cbxCity.Items.Add("Valenzuela City");
+                        break;
 
-                    cbxCity.Text = "Manila";
-                    break;
+                    case "Manila":
+                        cbxCity.Items.Add("Manila");
 
-                case "MuntiParLasTaPat":
-                    cbxCity.Items.Add("Las Piñas City");
-                    cbxCity.Items.Add("Muntinlupa City");
-                    cbxCity.Items.Add("Parañaque City");
-                    cbxCity.Items.Add("Taguig City");
-                    break;
+                        cbxCity.Text = "Manila";
+                        break;
 
-                case "PaMaMariSan":
-                    cbxCity.Items.Add("Mandaluyong City");
-                    cbxCity.Items.Add("Marikina City");
-                    cbxCity.Items.Add("Pasig City");
-                    cbxCity.Items.Add("San Juan City");
-                    break;
+                    case "MuntiParLasTaPat":
+                        cbxCity.Items.Add("Las Piñas City");
+                        cbxCity.Items.Add("Muntinlupa City");
+                        cbxCity.Items.Add("Parañaque City");
+                        cbxCity.Items.Add("Taguig City");
+                        break;
 
-                case "Pasay-Makati":
-                    cbxCity.Items.Add("Makati City");
-                    cbxCity.Items.Add("Pasig City");
-                    break;
+                    case "PaMaMariSan":
+                        cbxCity.Items.Add("Mandaluyong City");
+                        cbxCity.Items.Add("Marikina City");
+                        cbxCity.Items.Add("Pasig City");
+                        cbxCity.Items.Add("San Juan City");
+                        break;
 
-                case "Quezon City":
-                    cbxCity.Items.Add("Quezon City");
+                    case "Pasay-Makati":
+                        cbxCity.Items.Add("Makati City");
+                        cbxCity.Items.Add("Pasig City");
+                        break;
 
-                    cbxCity.Text = "Quezon City";
-                    break;
+                    case "Quezon City":
+                        cbxCity.Items.Add("Quezon City");
 
-                default:
-                    cbxCity.Items.Clear();
-                    break;
+                        cbxCity.Text = "Quezon City";
+                        break;
+
+                    default:
+                        cbxCity.Items.Clear();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR");
             }
         }
 

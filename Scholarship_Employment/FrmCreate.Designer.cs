@@ -193,7 +193,7 @@
             this.cbxScholarType.FormattingEnabled = true;
             this.cbxScholarType.Items.AddRange(new object[] {
             "STEP",
-            "PWSP",
+            "TWSP",
             "PESFA",
             "TTSP",
             "UAQTEA",

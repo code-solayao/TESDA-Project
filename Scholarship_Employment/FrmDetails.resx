@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblCompanyAddress.Text" xml:space="preserve">
+  <data name="lblAddress.Text" xml:space="preserve">
     <value>Lorem ipsum dolor sit amet. Est ipsum nobis sed dolor enim eum autem eaque quo provident quis ut quas assumenda. Ut commodi quisquam sit velit modi quo omnis animi At repellendus internos rem accusantium quasi At cumque eaque. Aut quibusdam sunt a error amet et quisquam nihil est ipsa inventore ut cupiditate officiis.</value>
   </data>
-  <data name="lblAddress.Text" xml:space="preserve">
+  <data name="lblCompanyAddress.Text" xml:space="preserve">
     <value>Lorem ipsum dolor sit amet. Est ipsum nobis sed dolor enim eum autem eaque quo provident quis ut quas assumenda. Ut commodi quisquam sit velit modi quo omnis animi At repellendus internos rem accusantium quasi At cumque eaque. Aut quibusdam sunt a error amet et quisquam nihil est ipsa inventore ut cupiditate officiis.</value>
   </data>
 </root>

@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Dashboard");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Create Entry");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Data Records");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Load Excel Data");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Create Entry");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Data Records");
             this.treeView = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
@@ -45,19 +43,13 @@
             this.treeView.Location = new System.Drawing.Point(0, 0);
             this.treeView.Margin = new System.Windows.Forms.Padding(4);
             this.treeView.Name = "treeView";
-            treeNode5.Name = "ndDashboard";
-            treeNode5.Text = "Dashboard";
-            treeNode6.Name = "ndCreateEntry";
-            treeNode6.Text = "Create Entry";
-            treeNode7.Name = "ndDataRecords";
-            treeNode7.Text = "Data Records";
-            treeNode8.Name = "ndLoadExcelData";
-            treeNode8.Text = "Load Excel Data";
+            treeNode1.Name = "ndCreateEntry";
+            treeNode1.Text = "Create Entry";
+            treeNode2.Name = "ndDataRecords";
+            treeNode2.Text = "Data Records";
             this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode6,
-            treeNode7,
-            treeNode8});
+            treeNode1,
+            treeNode2});
             this.treeView.Size = new System.Drawing.Size(200, 561);
             this.treeView.TabIndex = 0;
             this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);

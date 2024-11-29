@@ -54,14 +54,14 @@ namespace Scholarship_Employment
 
         private void InitialiseClearAll()
         {
-            List<Label> _detailsLabels = new List<Label>
+            List<Label> detailsLabels = new List<Label>
             {
                 lblFullName,
                 lblSex,
                 lblBirthDate,
                 lblContactNum,
-                lblAddress,
                 lblEmail,
+                lblAddress,
                 lblSector,
                 lblQualiTitle,
                 lblDistrict,
@@ -71,9 +71,40 @@ namespace Scholarship_Employment
                 lblGradYear
             };
 
-            foreach (Label detail in _detailsLabels)
+            List<Label> verificationLabels = new List<Label>
             {
-                detail.Text = string.Empty;
+                lblVerifyMeans,
+                lblVerifyDate,
+                lblVerifyStatus,
+                lblResponseType,
+                ver_value_1,
+                ver_value_2,
+                lblFollowup1,
+                lblFollowup2
+            };
+
+            List<Label> employmentLabels = new List<Label>
+            {
+                lblCompanyName,
+                lblCompanyAddress,
+                lblJobTitle,
+                lblEmpStatus,
+                emp_value
+            };
+
+            foreach (Label label in detailsLabels)
+            {
+                label.Text = string.Empty;
+            }
+
+            foreach (Label label in verificationLabels)
+            {
+                label.Text = string.Empty;
+            }
+
+            foreach (Label label in employmentLabels)
+            {
+                label.Text = string.Empty;
             }
         }
 
@@ -425,15 +456,17 @@ namespace Scholarship_Employment
 
         private string DateFormatRead(MySqlDataReader reader, int ordinal)
         {
-            string date;
+            string date = string.Empty;
 
-            if (reader.IsDBNull(ordinal) || reader.GetString(ordinal).Equals(string.Empty))
+            if (reader.GetString(ordinal).Equals(string.Empty))
                 return "<no-given-date>";
-            else 
-                date = reader.GetString(ordinal);
 
-            /* string monthName = string.Empty;
-            int month = date.Month;
+            date = reader.GetString(ordinal);
+            int year = int.Parse(date.Substring(6, 4));
+            int month = int.Parse(date.Substring(0, 2));
+            int day = int.Parse(date.Substring(3, 2));
+
+            string monthName = string.Empty;
             switch (month)
             {
                 case 1:
@@ -489,9 +522,9 @@ namespace Scholarship_Employment
                     break;
             }
 
-            string format = $"{monthName} {date.Day}, {date.Year}"; */
+            string format = $"{monthName} {day}, {year}";
 
-            return date;
+            return format;
         }
 
         private void CopyFullName(object sender, EventArgs e)

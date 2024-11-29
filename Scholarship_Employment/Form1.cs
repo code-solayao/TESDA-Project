@@ -21,6 +21,17 @@ namespace Scholarship_Employment
 
         private void treeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+            //TreeViewFunction(e);
+            TreeViewFunctionTest(e);
+        }
+
+        private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+             
+        }
+
+        private void TreeViewFunction(TreeNodeMouseClickEventArgs e)
+        {
             Form childForm = null;
 
             if (e.Node.Name.Equals(treeView.Nodes[0].Name))
@@ -47,9 +58,24 @@ namespace Scholarship_Employment
             childForm.Show();
         }
 
-        private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
+        private void TreeViewFunctionTest(TreeNodeMouseClickEventArgs e)
         {
-             
+            Form childForm = null;
+
+            if (e.Node.Name.Equals(treeView.Nodes[0].Name))
+            {
+                childForm = new FrmFullName();
+            }
+            else if (e.Node.Name.Equals(treeView.Nodes[1].Name))
+            {
+                childForm = new FrmRecords();
+            }
+
+            if (childForm == null) return;
+
+            childForm.MdiParent = this;
+            //childForm.Text = childForm.Text + " - " + childFormNumber++;
+            childForm.Show();
         }
     }
 }
