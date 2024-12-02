@@ -10,8 +10,9 @@ namespace Scholarship_Employment
             get
             {
                 MySqlConnectionStringBuilder mySqlConnectionStringBuilder = new MySqlConnectionStringBuilder();
-                mySqlConnectionStringBuilder.Server = "localhost";
-                mySqlConnectionStringBuilder.UserID = "root";
+                mySqlConnectionStringBuilder.Server = "192.168.1.121";
+                mySqlConnectionStringBuilder.Port = 3306;
+                mySqlConnectionStringBuilder.UserID = "TesdaNCR";
                 mySqlConnectionStringBuilder.Password = "Mysql.Tesda2024";
                 mySqlConnectionStringBuilder.Database = "tesda_db";
 
