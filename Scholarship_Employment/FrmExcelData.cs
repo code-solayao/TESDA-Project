@@ -46,11 +46,13 @@ namespace Scholarship_Employment
         public FrmExcelData()
         {
             InitializeComponent();
+
+            MdiParent = Form1.Instance;
         }
 
         private void FrmExcelData_Load(object sender, EventArgs e)
         {
-            listView.Items.Clear();
+            
         }
 
         private void btnLoadExcelData_Click(object sender, EventArgs e)
@@ -72,9 +74,11 @@ namespace Scholarship_Employment
             SubmitToDatabase();
         }
 
-        private void btnReadData_Click(object sender, EventArgs e)
+        private void btnExport_Click(object sender, EventArgs e)
         {
-            int rows = dataGridView.RowCount;
+
+
+            /*int rows = dataGridView.RowCount;
             int columns = dataGridView.ColumnCount;
             string cell = string.Empty;
             for (int i = 0; i < rows; i++)
@@ -94,7 +98,7 @@ namespace Scholarship_Employment
                 }
 
                 listView.Items[i].Font = new System.Drawing.Font("Segoe UI Light", 12f);
-            }
+            }*/
         }
 
         private void LoadExcelData(string filePath, string hdr)
@@ -118,7 +122,7 @@ namespace Scholarship_Employment
                     dataAdapter.Fill(dataTable);
 
                     connection.Close();
-                    dataGridView.DataSource = dataTable;
+                    dgvImport.DataSource = dataTable;
                 }
                 catch (Exception ex)
                 {
@@ -144,7 +148,7 @@ namespace Scholarship_Employment
             table.Rows.Add(4, "Dave Solayao", new DateTime(2001, 7, 3), 23);
             table.Rows.Add(5, "Dave Solayao", new DateTime(2001, 7, 3), 23);
 
-            dataGridView.DataSource = table;
+            dgvImport.DataSource = table;
         }
 
         private void SubmitToDatabase()
@@ -161,38 +165,38 @@ namespace Scholarship_Employment
                         $"@Emp_Status, @Response_Type, @Follow_Up, @Answered, @Reason_Not_Applying);";
 
                     MySqlCommand command = null;
-                    for (int i = 0; i < dataGridView.Rows.Count - 1; i++)
+                    for (int i = 0; i < dgvImport.Rows.Count - 1; i++)
                     {
-                        _district = dataGridView.Rows[i].Cells[0].Value.ToString();
-                        _city = dataGridView.Rows[i].Cells[1].Value.ToString();
-                        _tvi = dataGridView.Rows[i].Cells[2].Value.ToString();
-                        _qualification = dataGridView.Rows[i].Cells[3].Value.ToString();
-                        _sector = dataGridView.Rows[i].Cells[4].Value.ToString();
-                        _last_name = dataGridView.Rows[i].Cells[5].Value.ToString();
-                        _first_name = dataGridView.Rows[i].Cells[6].Value.ToString();
-                        _middle_name = dataGridView.Rows[i].Cells[7].Value.ToString();
-                        _extension_name = dataGridView.Rows[i].Cells[8].Value.ToString();
-                        _full_name = dataGridView.Rows[i].Cells[9].Value.ToString();
-                        _scholarship_type = dataGridView.Rows[i].Cells[10].Value.ToString();
-                        _training_status = dataGridView.Rows[i].Cells[11].Value.ToString();
-                        _assessment_result = dataGridView.Rows[i].Cells[12].Value.ToString();
-                        _emp_before_training = dataGridView.Rows[i].Cells[13].Value.ToString();
-                        _occupation = dataGridView.Rows[i].Cells[14].Value.ToString();
-                        _employer = dataGridView.Rows[i].Cells[15].Value.ToString();
-                        _emp_type = dataGridView.Rows[i].Cells[16].Value.ToString();
-                        _allocation = Convert.ToInt32(dataGridView.Rows[i].Cells[17].Value);
-                        _verif_status = dataGridView.Rows[i].Cells[18].Value.ToString();
-                        _verif_date = dataGridView.Rows[i].Cells[19].Value.ToString();
-                        _referral_status = dataGridView.Rows[i].Cells[20].Value.ToString();
-                        _company = dataGridView.Rows[i].Cells[21].Value.ToString();
-                        _address = dataGridView.Rows[i].Cells[22].Value.ToString();
-                        _job_title = dataGridView.Rows[i].Cells[23].Value.ToString();
-                        _emp_date = dataGridView.Rows[i].Cells[24].Value.ToString();
-                        _emp_status = dataGridView.Rows[i].Cells[25].Value.ToString();
-                        _response_type = dataGridView.Rows[i].Cells[26].Value.ToString();
-                        _follow_up = dataGridView.Rows[i].Cells[27].Value.ToString();
-                        _answered = dataGridView.Rows[i].Cells[28].Value.ToString();
-                        _reason_not_applying = dataGridView.Rows[i].Cells[29].Value.ToString();
+                        _district = dgvImport.Rows[i].Cells[0].Value.ToString();
+                        _city = dgvImport.Rows[i].Cells[1].Value.ToString();
+                        _tvi = dgvImport.Rows[i].Cells[2].Value.ToString();
+                        _qualification = dgvImport.Rows[i].Cells[3].Value.ToString();
+                        _sector = dgvImport.Rows[i].Cells[4].Value.ToString();
+                        _last_name = dgvImport.Rows[i].Cells[5].Value.ToString();
+                        _first_name = dgvImport.Rows[i].Cells[6].Value.ToString();
+                        _middle_name = dgvImport.Rows[i].Cells[7].Value.ToString();
+                        _extension_name = dgvImport.Rows[i].Cells[8].Value.ToString();
+                        _full_name = dgvImport.Rows[i].Cells[9].Value.ToString();
+                        _scholarship_type = dgvImport.Rows[i].Cells[10].Value.ToString();
+                        _training_status = dgvImport.Rows[i].Cells[11].Value.ToString();
+                        _assessment_result = dgvImport.Rows[i].Cells[12].Value.ToString();
+                        _emp_before_training = dgvImport.Rows[i].Cells[13].Value.ToString();
+                        _occupation = dgvImport.Rows[i].Cells[14].Value.ToString();
+                        _employer = dgvImport.Rows[i].Cells[15].Value.ToString();
+                        _emp_type = dgvImport.Rows[i].Cells[16].Value.ToString();
+                        _allocation = Convert.ToInt32(dgvImport.Rows[i].Cells[17].Value);
+                        _verif_status = dgvImport.Rows[i].Cells[18].Value.ToString();
+                        _verif_date = dgvImport.Rows[i].Cells[19].Value.ToString();
+                        _referral_status = dgvImport.Rows[i].Cells[20].Value.ToString();
+                        _company = dgvImport.Rows[i].Cells[21].Value.ToString();
+                        _address = dgvImport.Rows[i].Cells[22].Value.ToString();
+                        _job_title = dgvImport.Rows[i].Cells[23].Value.ToString();
+                        _emp_date = dgvImport.Rows[i].Cells[24].Value.ToString();
+                        _emp_status = dgvImport.Rows[i].Cells[25].Value.ToString();
+                        _response_type = dgvImport.Rows[i].Cells[26].Value.ToString();
+                        _follow_up = dgvImport.Rows[i].Cells[27].Value.ToString();
+                        _answered = dgvImport.Rows[i].Cells[28].Value.ToString();
+                        _reason_not_applying = dgvImport.Rows[i].Cells[29].Value.ToString();
 
                         command = new MySqlCommand(sql, connection);
                         command.Parameters.AddWithValue("@District", _district);

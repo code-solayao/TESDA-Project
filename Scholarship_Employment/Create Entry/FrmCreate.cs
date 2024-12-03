@@ -28,6 +28,8 @@ namespace Scholarship_Employment
         public FrmCreate()
         {
             InitializeComponent();
+
+            MdiParent = Form1.Instance;
         }
 
         private void FrmCreate_Load(object sender, EventArgs e)
@@ -136,7 +138,6 @@ namespace Scholarship_Employment
 
                     Close();
                     FrmRecords form = new FrmRecords();
-                    form.MdiParent = Form1.Instance;
                     form.Show();
 
                     MessageBox.Show("The information was submitted successfully.");

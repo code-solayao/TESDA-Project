@@ -11,6 +11,8 @@ namespace Scholarship_Employment
         public FrmRecords()
         {
             InitializeComponent();
+
+            MdiParent = Form1.Instance;
         }
 
         private void FrmRecords_Load(object sender, EventArgs e)

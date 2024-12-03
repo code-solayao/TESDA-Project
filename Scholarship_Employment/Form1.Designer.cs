@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Create Entry");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Data Records");
             this.treeView = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
@@ -43,14 +41,7 @@
             this.treeView.Location = new System.Drawing.Point(0, 0);
             this.treeView.Margin = new System.Windows.Forms.Padding(4);
             this.treeView.Name = "treeView";
-            treeNode1.Name = "ndCreateEntry";
-            treeNode1.Text = "Create Entry";
-            treeNode2.Name = "ndDataRecords";
-            treeNode2.Text = "Data Records";
-            this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            this.treeView.Size = new System.Drawing.Size(200, 561);
+            this.treeView.Size = new System.Drawing.Size(300, 561);
             this.treeView.TabIndex = 0;
             this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
             this.treeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_NodeMouseDoubleClick);
@@ -65,7 +56,7 @@
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.IsMdiContainer = true;
             this.Name = "Form1";
-            this.Text = "Scholarship Employment";
+            this.Text = "Employment Monitoring System";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);

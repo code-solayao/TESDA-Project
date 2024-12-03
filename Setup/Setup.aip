@@ -31,10 +31,10 @@
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPNOREPAIR" MultiBuildValue="DefaultBuild:1"/>
-    <ROW Property="Manufacturer" Value="Your Company"/>
+    <ROW Property="Manufacturer" Value="TESDA NCR"/>
     <ROW Property="ProductCode" Value="1033:{71C65498-3949-41C8-A5D7-E40692AFB1C1} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
-    <ROW Property="ProductName" Value="Your Application"/>
+    <ROW Property="ProductName" Value="TESDA - Employment Monitoring System"/>
     <ROW Property="ProductVersion" Value="1.0.0" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{72126512-BABB-40BA-8137-74CB1DACFF11}"/>
@@ -52,7 +52,6 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
     <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
-    <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
     <ROW Directory="Scholarship_Employment_Dir" Directory_Parent="APPDIR" DefaultDir="SCHOLA~1|Scholarship_Employment"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
   </COMPONENT>
@@ -64,7 +63,6 @@
     <ROW Component="AI_ExePath" ComponentId="{9EAE1BD0-D7D2-4847-9440-B5934B59CE73}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{7AFBBF21-1451-4E5F-8974-F8D5DE6FC9BC}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="ProductInformation" ComponentId="{34E1ED27-9609-4B38-9E1E-5B0557569938}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
-    <ROW Component="SHORTCUTDIR" ComponentId="{F139330C-51C4-42EC-9F03-B4479B2D04BE}" Directory_="SHORTCUTDIR" Attributes="0"/>
     <ROW Component="Scholarship_Employment_PrimaryOutput" ComponentId="{F4870E29-C259-4F49-91A2-E71EB35436E8}" Directory_="Scholarship_Employment_Dir" Attributes="0" KeyPath="Scholarship_Employment.exe"/>
     <ROW Component="Scholarship_Employment_References" ComponentId="{46479B27-ADB6-4A3D-BCF1-72CA881C7E3C}" Directory_="Scholarship_Employment_Dir" Attributes="0" KeyPath="System.Threading.Tasks.Extensions.dll"/>
     <ROW Component="Scholarship_Employment_SymbolsOutput" ComponentId="{68519F23-24B3-4982-8E8B-FE76F47C99C2}" Directory_="Scholarship_Employment_Dir" Attributes="0" KeyPath="Scholarship_Employment.pdb"/>
@@ -166,7 +164,6 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
-    <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
@@ -198,7 +195,6 @@
     <ROW Feature_="MainFeature" Component_="APPDIR"/>
     <ROW Feature_="MainFeature" Component_="ProductInformation"/>
     <ROW Feature_="MainFeature" Component_="Scholarship_Employment_PrimaryOutput"/>
-    <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
     <ROW Feature_="MainFeature" Component_="Scholarship_Employment_References"/>
     <ROW Feature_="MainFeature" Component_="Scholarship_Employment_SymbolsOutput"/>
     <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
@@ -258,7 +254,6 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
     <ROW Shortcut="AI_PROPPATH_FILENAME_PERBUILD_Schol" Directory_="DesktopFolder" Name="SCHOLA~1.EXE|[|AI_PROPPATH_FILENAME_PERBUILD_Scholarship_Employment.exe]" Component_="Scholarship_Employment_PrimaryOutput" Target="[#Scholarship_Employment.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="Scholarship_Employment_Dir"/>
-    <ROW Shortcut="Scholarship_Employment" Directory_="SHORTCUTDIR" Name="SCHOLA~1|Scholarship_Employment" Component_="Scholarship_Employment_PrimaryOutput" Target="[#Scholarship_Employment.exe]" Hotkey="0" IconIndex="0" ShowCmd="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
@@ -268,7 +263,7 @@
     <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.VsProjectComponent">
-    <ROW ProjectId="{6d650edf-43bb-4fa3-aa9f-c171a8621538}" ProjectName="Scholarship_Employment" OutputGroup="PrimaryOutput" OutputFile="Scholarship_Employment.exe" OutputFileShortcut="Scholarship_Employment"/>
+    <ROW ProjectId="{6d650edf-43bb-4fa3-aa9f-c171a8621538}" ProjectName="Scholarship_Employment" OutputGroup="PrimaryOutput" OutputFile="Scholarship_Employment.exe"/>
     <ROW ProjectId="{6d650edf-43bb-4fa3-aa9f-c171a8621538}" ProjectName="Scholarship_Employment" OutputGroup="PrimaryOutput" OutputFile="Scholarship_Employment.exe.config"/>
     <ROW ProjectId="{6d650edf-43bb-4fa3-aa9f-c171a8621538}" ProjectName="Scholarship_Employment" OutputGroup="References" OutputFile="Microsoft.Extensions.Logging.Abstractions.dll"/>
     <ROW ProjectId="{6d650edf-43bb-4fa3-aa9f-c171a8621538}" ProjectName="Scholarship_Employment" OutputGroup="References" OutputFile="MySqlConnector.dll"/>

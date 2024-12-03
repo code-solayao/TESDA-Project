@@ -15,6 +15,8 @@ namespace Scholarship_Employment
         public FrmFullName()
         {
             InitializeComponent();
+
+            MdiParent = Form1.Instance;
         }
 
         private void btnProceed_Click(object sender, EventArgs e)
@@ -64,7 +66,6 @@ namespace Scholarship_Employment
                         form.SetFullname(_last_name, _first_name, _middle_name, _extension_name);
 
                         Close();
-                        form.MdiParent = Form1.Instance;
                         form.Show();
                     }
                     else

@@ -113,16 +113,16 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmFullName.cs">
+    <Compile Include="Create Entry\FrmFullName.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmFullName.Designer.cs">
+    <Compile Include="Create Entry\FrmFullName.Designer.cs">
       <DependentUpon>FrmFullName.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmCreate.cs">
+    <Compile Include="Create Entry\FrmCreate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmCreate.Designer.cs">
+    <Compile Include="Create Entry\FrmCreate.Designer.cs">
       <DependentUpon>FrmCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmExcelData.cs">
@@ -131,22 +131,22 @@
     <Compile Include="FrmExcelData.Designer.cs">
       <DependentUpon>FrmExcelData.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmRecords.cs">
+    <Compile Include="Data Records\FrmRecords.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmRecords.Designer.cs">
+    <Compile Include="Data Records\FrmRecords.Designer.cs">
       <DependentUpon>FrmRecords.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmDetails.cs">
+    <Compile Include="Data Records\FrmDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDetails.Designer.cs">
+    <Compile Include="Data Records\FrmDetails.Designer.cs">
       <DependentUpon>FrmDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUpdate.cs">
+    <Compile Include="Data Records\FrmUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmUpdate.Designer.cs">
+    <Compile Include="Data Records\FrmUpdate.Designer.cs">
       <DependentUpon>FrmUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -155,22 +155,22 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmFullName.resx">
+    <EmbeddedResource Include="Create Entry\FrmFullName.resx">
       <DependentUpon>FrmFullName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmCreate.resx">
+    <EmbeddedResource Include="Create Entry\FrmCreate.resx">
       <DependentUpon>FrmCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmExcelData.resx">
       <DependentUpon>FrmExcelData.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmRecords.resx">
+    <EmbeddedResource Include="Data Records\FrmRecords.resx">
       <DependentUpon>FrmRecords.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmDetails.resx">
+    <EmbeddedResource Include="Data Records\FrmDetails.resx">
       <DependentUpon>FrmDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUpdate.resx">
+    <EmbeddedResource Include="Data Records\FrmUpdate.resx">
       <DependentUpon>FrmUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -198,9 +198,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pictures\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
