@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Dashboard");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Create Entry");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Data Records");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Data Import/Export (Excel File)");
             this.treeView = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
@@ -41,6 +45,19 @@
             this.treeView.Location = new System.Drawing.Point(0, 0);
             this.treeView.Margin = new System.Windows.Forms.Padding(4);
             this.treeView.Name = "treeView";
+            treeNode1.Name = "ndDashboard";
+            treeNode1.Text = "Dashboard";
+            treeNode2.Name = "ndCreateEntry";
+            treeNode2.Text = "Create Entry";
+            treeNode3.Name = "ndDataRecords";
+            treeNode3.Text = "Data Records";
+            treeNode4.Name = "ndExcelData";
+            treeNode4.Text = "Data Import/Export (Excel File)";
+            this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4});
             this.treeView.Size = new System.Drawing.Size(300, 561);
             this.treeView.TabIndex = 0;
             this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
