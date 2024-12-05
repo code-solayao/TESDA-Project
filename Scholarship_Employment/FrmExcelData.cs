@@ -23,14 +23,7 @@ namespace Scholarship_Employment
         private string _contact_number;
         private string _email;
         private string _scholarship_type;
-        private string _training_status;
-        private string _assessment_result;
-        private string _employment_before_training;
-        private string _occupation;
-        private string _employer_name;
-        private string _employment_type;
         private string _address;
-        private string _date_hired;
         private string _allocation;
 
         private string _verification_means;
@@ -46,6 +39,14 @@ namespace Scholarship_Employment
         private string _job_title;
         private string _employment_status;
         private string _hired_date;
+
+        private string _training_status;
+        private string _assessment_result;
+        private string _employment_before_training;
+        private string _occupation;
+        private string _employer_name;
+        private string _employment_type;
+        private string _date_hired;
 
         #endregion
 
@@ -71,8 +72,6 @@ namespace Scholarship_Employment
                 lblFilePath.Text = filePath;
                 LoadExcelData(filePath, "yes");
             }
-
-            //CreateDataTable();
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -83,28 +82,6 @@ namespace Scholarship_Employment
         private void btnExport_Click(object sender, EventArgs e)
         {
 
-
-            /*int rows = dataGridView.RowCount;
-            int columns = dataGridView.ColumnCount;
-            string cell = string.Empty;
-            for (int i = 0; i < rows; i++)
-            {
-                var rowValue = dataGridView.Rows[i].Cells[0].Value;
-                if (rowValue == null) break;
-
-                cell = rowValue.ToString();
-                listView.Items.Add(cell);
-
-                for (int j = 1; j < columns; j++)
-                {
-                    var colValue = dataGridView.Rows[i].Cells[j].Value;
-                    cell = colValue.ToString();
-
-                    listView.Items[i].SubItems.Add(cell);
-                }
-
-                listView.Items[i].Font = new System.Drawing.Font("Segoe UI Light", 12f);
-            }*/
         }
 
         private void LoadExcelData(string filePath, string hdr)
@@ -181,7 +158,7 @@ namespace Scholarship_Employment
                         _qualification_title = dgvImport.Rows[i].Cells[3].Value.ToString();
                         _sector = dgvImport.Rows[i].Cells[4].Value.ToString();
                         _last_name = dgvImport.Rows[i].Cells[5].Value.ToString();
-                        _first_name = dgvImport.Rows[i].Cells[6].Value.ToString();
+                        _first_name = dgvImport.Rows[i].Cells[6].Value.ToString(); 
                         _middle_name = dgvImport.Rows[i].Cells[7].Value.ToString();
                         _extension_name = dgvImport.Rows[i].Cells[8].Value.ToString();
                         _full_name = dgvImport.Rows[i].Cells[9].Value.ToString();
@@ -211,38 +188,44 @@ namespace Scholarship_Employment
                         _job_title = dgvImport.Rows[i].Cells[31].Value.ToString();
                         _employment_status = dgvImport.Rows[i].Cells[32].Value.ToString();
                         _hired_date = dgvImport.Rows[i].Cells[33].Value.ToString();
-
+                        
                         command = new MySqlCommand(sql, connection);
-                        command.Parameters.AddWithValue("@District", _district);
-                        command.Parameters.AddWithValue("@City", _city);
-                        command.Parameters.AddWithValue("@TVI", _tvi);
-                        command.Parameters.AddWithValue("@Qualification", _qualification_title);
-                        command.Parameters.AddWithValue("@Sector", _sector);
-                        command.Parameters.AddWithValue("@Last_Name", _last_name);
-                        command.Parameters.AddWithValue("@First_Name", _first_name);
-                        command.Parameters.AddWithValue("@Middle_Name", _middle_name);
-                        command.Parameters.AddWithValue("@Extension_Name", _extension_name);
-                        command.Parameters.AddWithValue("@Full_Name", _full_name);
-                        command.Parameters.AddWithValue("@Scholarship_Type", _scholarship_type);
-                        command.Parameters.AddWithValue("@Training_Status", _training_status);
-                        command.Parameters.AddWithValue("@Assessment_Result", _assessment_result);
-                        command.Parameters.AddWithValue("@Emp_Before_Training", _employment_before_training);
-                        command.Parameters.AddWithValue("@Occupation", _occupation);
-                        command.Parameters.AddWithValue("@Employer", _employer_name);
-                        command.Parameters.AddWithValue("@Emp_Type", _employment_type);
-                        command.Parameters.AddWithValue("@Allocation", _allocation);
-                        command.Parameters.AddWithValue("@Verif_Status", _verification_status);
-                        command.Parameters.AddWithValue("@Verif_Date", _verification_date);
-                        command.Parameters.AddWithValue("@Referral_Status", _referral_status);
-                        command.Parameters.AddWithValue("@Company", _company_name);
-                        command.Parameters.AddWithValue("@Address", _address);
-                        command.Parameters.AddWithValue("@Job_Title", _job_title);
-                        command.Parameters.AddWithValue("@Emp_Date", _company_address);
-                        command.Parameters.AddWithValue("@Emp_Status", _employment_status);
-                        command.Parameters.AddWithValue("@Response_Type", _response_status);
-                        command.Parameters.AddWithValue("@Follow_Up", _follow_up_date);
-                        command.Parameters.AddWithValue("@Answered", _hired_date);
-                        command.Parameters.AddWithValue("@Reason_Not_Applying", _not_interested_reason);
+                        command.Parameters.AddWithValue("@district", _district);
+                        command.Parameters.AddWithValue("@city", _city);
+                        command.Parameters.AddWithValue("@tvi", _tvi);
+                        command.Parameters.AddWithValue("@qualification_title", _qualification_title);
+                        command.Parameters.AddWithValue("@sector", _sector);
+                        command.Parameters.AddWithValue("@last_name", _last_name);
+                        command.Parameters.AddWithValue("@first_name", _first_name);
+                        command.Parameters.AddWithValue("@middle_name", _middle_name);
+                        command.Parameters.AddWithValue("@extension_name", _extension_name);
+                        command.Parameters.AddWithValue("@full_name", _full_name);
+                        command.Parameters.AddWithValue("@contact_number", _contact_number);
+                        command.Parameters.AddWithValue("@email", _email);
+                        command.Parameters.AddWithValue("@scholarship_type", _scholarship_type);
+                        command.Parameters.AddWithValue("@training_status", _training_status);
+                        command.Parameters.AddWithValue("@assessment_result", _assessment_result);
+                        command.Parameters.AddWithValue("@employment_before_training", _employment_before_training);
+                        command.Parameters.AddWithValue("@occupation", _occupation);
+                        command.Parameters.AddWithValue("@employer_name", _employer_name);
+                        command.Parameters.AddWithValue("@employment_type", _employment_type);
+                        command.Parameters.AddWithValue("@address", _address);
+                        command.Parameters.AddWithValue("@date_hired", _date_hired);
+                        command.Parameters.AddWithValue("@allocation", _allocation);
+
+                        command.Parameters.AddWithValue("@verification_means", _verification_means);
+                        command.Parameters.AddWithValue("@verification_date", _verification_date);
+                        command.Parameters.AddWithValue("@verification_status", _verification_status);
+                        command.Parameters.AddWithValue("@follow_up_date", _follow_up_date);
+                        command.Parameters.AddWithValue("@response_status", _response_status);
+                        command.Parameters.AddWithValue("not_interested_reason", _not_interested_reason);
+                        command.Parameters.AddWithValue("@referral_status", _referral_status);
+
+                        command.Parameters.AddWithValue("@company_name", _company_name);
+                        command.Parameters.AddWithValue("@company_address", _company_address);
+                        command.Parameters.AddWithValue("@job_title", _job_title);
+                        command.Parameters.AddWithValue("@employment_status", _employment_status);
+                        command.Parameters.AddWithValue("@hired_date", _hired_date);
                         command.ExecuteNonQuery();
                     }
                     MessageBox.Show("Excel data has been submitted to the database successfully.", "Data Submission");

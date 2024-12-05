@@ -136,6 +136,11 @@ namespace Scholarship_Employment
                     command.Parameters.AddWithValue("@Id", id);
                     command.ExecuteNonQuery();
 
+                    sql = "CALL initialise_external_record(@Id)";
+                    command = new MySqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@Id", id);
+                    command.ExecuteNonQuery();
+
                     Close();
                     FrmRecords form = new FrmRecords();
                     form.Show();
