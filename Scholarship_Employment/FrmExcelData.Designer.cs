@@ -35,8 +35,8 @@
             this.btnSubmit = new System.Windows.Forms.Button();
             this.lblFilePath = new System.Windows.Forms.Label();
             this.pgExport = new System.Windows.Forms.TabPage();
-            this.btnExport = new System.Windows.Forms.Button();
             this.dgvExport = new System.Windows.Forms.DataGridView();
+            this.btnExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvImport)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.pgImport.SuspendLayout();
@@ -126,6 +126,15 @@
             this.pgExport.Text = "Export";
             this.pgExport.UseVisualStyleBackColor = true;
             // 
+            // dgvExport
+            // 
+            this.dgvExport.BackgroundColor = System.Drawing.SystemColors.ScrollBar;
+            this.dgvExport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvExport.Location = new System.Drawing.Point(20, 20);
+            this.dgvExport.Name = "dgvExport";
+            this.dgvExport.Size = new System.Drawing.Size(1355, 575);
+            this.dgvExport.TabIndex = 3;
+            // 
             // btnExport
             // 
             this.btnExport.BackColor = System.Drawing.SystemColors.Highlight;
@@ -138,15 +147,6 @@
             this.btnExport.Text = "Export as Excel File";
             this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
-            // dgvExport
-            // 
-            this.dgvExport.BackgroundColor = System.Drawing.SystemColors.ScrollBar;
-            this.dgvExport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvExport.Location = new System.Drawing.Point(20, 20);
-            this.dgvExport.Name = "dgvExport";
-            this.dgvExport.Size = new System.Drawing.Size(1355, 575);
-            this.dgvExport.TabIndex = 3;
             // 
             // FrmExcelData
             // 

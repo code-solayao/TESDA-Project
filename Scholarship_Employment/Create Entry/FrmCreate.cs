@@ -88,7 +88,7 @@ namespace Scholarship_Employment
 
                     string sql = "CALL submit_record_data(@district, @city, @tvi, @qualification_title, @sector, @last_name, @first_name, " +
                         "@middle_name, @extension_name, @full_name, @sex, @birthdate, @contact_number, @email, @scholarship_type, " +
-                        "@address, @allocation)";
+                        "@address, @allocation);";
                     command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@district", _district);
                     command.Parameters.AddWithValue("@city", _city);
@@ -111,7 +111,7 @@ namespace Scholarship_Employment
 
                     dtBirthDate.Format = DateTimePickerFormat.Long;
 
-                    sql = "CALL get_new_record_id(@last_name, @first_name)";
+                    sql = "CALL get_new_record_id(@last_name, @first_name);";
                     command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@last_name", _last_name);
                     command.Parameters.AddWithValue("@first_name", _first_name);
@@ -126,17 +126,17 @@ namespace Scholarship_Employment
                         }
                     }
 
-                    sql = "CALL initialise_verification_record(@Id)";
+                    sql = "CALL initialise_verification_record(@Id);";
                     command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@Id", id);
                     command.ExecuteNonQuery();
 
-                    sql = "CALL initialise_employment_record(@Id)";
+                    sql = "CALL initialise_employment_record(@Id);";
                     command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@Id", id);
                     command.ExecuteNonQuery();
 
-                    sql = "CALL initialise_external_record(@Id)";
+                    sql = "CALL initialise_external_record(@Id);";
                     command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@Id", id);
                     command.ExecuteNonQuery();
