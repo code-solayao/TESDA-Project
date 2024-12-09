@@ -139,7 +139,7 @@ namespace Scholarship_Employment
                         case 1:
                             // Record number
                             inputNum = int.Parse(input);
-                            sql = $"CALL search_id(@input)";
+                            sql = $"CALL search_Id(@input)";
 
                             command = new MySqlCommand(sql, connection);
                             command.Parameters.AddWithValue("@input", inputNum);
