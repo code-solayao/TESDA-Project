@@ -1,8 +1,8 @@
-using EmploymentMonitoringSystem_WebApp.Models;
+using EmploymentMonitoringSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace EmploymentMonitoringSystem_WebApp.Controllers
+namespace EmploymentMonitoringSystem.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,4 +1,4 @@
-namespace EmploymentMonitoringSystem_WebApp.Models
+namespace EmploymentMonitoringSystem.Models
 {
     public class ErrorViewModel
     {

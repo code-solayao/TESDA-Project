@@ -1,8 +1,8 @@
-using EmploymentMonitoringSystem_WebApp.Data;
+using EmploymentMonitoringSystem.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace EmploymentMonitoringSystem_WebApp
+namespace EmploymentMonitoringSystem
 {
     public class Program
     {

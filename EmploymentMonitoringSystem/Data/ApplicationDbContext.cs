@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace EmploymentMonitoringSystem_WebApp.Data
+namespace EmploymentMonitoringSystem.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
