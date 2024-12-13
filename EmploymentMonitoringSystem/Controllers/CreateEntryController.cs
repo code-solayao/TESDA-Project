@@ -1,4 +1,5 @@
-﻿using EmploymentMonitoringSystem.Data_Access_Layers;
+﻿using EmploymentMonitoringSystem.Data;
+using EmploymentMonitoringSystem.Data_Access_Layers;
 using EmploymentMonitoringSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using MySqlConnector;
@@ -7,6 +8,13 @@ namespace EmploymentMonitoringSystem.Controllers
 {
     public class CreateEntryController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public CreateEntryController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             return View();
