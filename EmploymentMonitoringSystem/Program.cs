@@ -1,3 +1,6 @@
+using EmploymentMonitoringSystem.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace EmploymentMonitoringSystem
 {
     public class Program
@@ -8,6 +11,9 @@ namespace EmploymentMonitoringSystem
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("\"DefaultConnection\" is not found.");
+            builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
             var app = builder.Build();
 
