@@ -1,4 +1,6 @@
-﻿namespace EmploymentMonitoringSystem.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EmploymentMonitoringSystem.Models
 {
     public class InitialRecord
     {
@@ -9,8 +11,8 @@
         public string? tvi { get; set; }
         public string? qualification_title { get; set; }
         public string? sector { get; set; }
-        public string? last_name { get; set; }
-        public string? first_name { get; set; }
+        [Required] public string? last_name { get; set; }
+        [Required] public string? first_name { get; set; }
         public string? middle_name { get; set; }
         public string? extension_name { get; set; }
         public string? full_name { get; set; }
