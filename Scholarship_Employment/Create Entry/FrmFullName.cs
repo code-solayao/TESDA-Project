@@ -1,6 +1,5 @@
 ﻿using MySqlConnector;
 using System;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Scholarship_Employment

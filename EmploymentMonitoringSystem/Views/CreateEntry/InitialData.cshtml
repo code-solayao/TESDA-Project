@@ -5,12 +5,9 @@
     ViewData["Title"] = "Create Entry";
 }
 
-@model List<InitialRecord>
+@model InitialRecord
 
 <div class="text-center">
     <h3 class="display-6">Creating an entry data for</h3>
-    @{
-        // kailangan pa pag-aralan ang Razor page/ASP.NET MVC tutorial
-        <h1 style="font-size:3.5em">@Model[0].full_name</h1>
-    }
+    <h1 style="font-size:3.5em">@Model.full_name</h1>
 </div>
