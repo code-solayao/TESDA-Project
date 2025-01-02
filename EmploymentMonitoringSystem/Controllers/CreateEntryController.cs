@@ -14,28 +14,29 @@ namespace EmploymentMonitoringSystem.Controllers
             _context = context;
         }
 
-        public IActionResult Index(InitialRecord model)
+        public IActionResult Index()
         {
-            return View(model);
+            return View();
         }
 
-        public IActionResult SubmitFullName(InitialRecord model)
+        [HttpPost]
+        public IActionResult Index(InitialRecord model)
         {
             /* how to: 
              * call a stored procedure 
              * exception handling 
              * display error message */
 
-            if (true)
+            if (model != null && model.last_name.Contains("a"))
             {
-                ModelState.AddModelError("last_name", "error found");
+                ModelState.AddModelError("last_name", "modelstate error found");
             }
             
             if (ModelState.IsValid)
             {
                 return RedirectToAction("InitialData", model);
             }
-            else return RedirectToAction("Index", model);
+            else return View(model);
         }
 
         public IActionResult InitialData(InitialRecord model)
