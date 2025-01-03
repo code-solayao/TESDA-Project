@@ -11,9 +11,9 @@ namespace EmploymentMonitoringSystem.Models
         public string? tvi { get; set; }
         public string? qualification_title { get; set; }
         public string? sector { get; set; }
-        [Required] 
+        [Required(ErrorMessage = "Please enter a last name.")] 
         public string last_name { get; set; } = string.Empty;
-        [Required] 
+        [Required(ErrorMessage = "Please enter a first name.")] 
         public string first_name { get; set; } = string.Empty;
         public string? middle_name { get; set; }
         public string? extension_name { get; set; }

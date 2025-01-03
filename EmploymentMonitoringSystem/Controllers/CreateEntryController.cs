@@ -22,20 +22,18 @@ namespace EmploymentMonitoringSystem.Controllers
         [HttpPost]
         public IActionResult Index(InitialRecord model)
         {
-            /* how to: 
-             * call a stored procedure 
-             * exception handling 
-             * display error message */
+            /* band-aid solution to display exception message: 
+             * use last_name as key
+             * use asp-validation-summary="All" only */
 
-            if (model != null && model.last_name.Contains("a"))
+            if (model != null)
             {
-                ModelState.AddModelError("last_name", "modelstate error found");
+                CheckExistingName(model);
             }
+            else ModelState.AddModelError("last_name", "Cannot process data to proceed.");
             
-            if (ModelState.IsValid)
-            {
+            if (ModelState.IsValid) 
                 return RedirectToAction("InitialData", model);
-            }
             else return View(model);
         }
 
@@ -44,9 +42,12 @@ namespace EmploymentMonitoringSystem.Controllers
             return View(model);
         }
 
-        private bool CheckExistingName(InitialRecord model)
+        private void CheckExistingName(InitialRecord model)
         {
-            bool nameExists = false;
+            string last_name = model.last_name;
+            string first_name = model.first_name;
+            string middle_name = model.middle_name ?? string.Empty;
+            string extension_name = model.extension_name ?? string.Empty;
 
             using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
@@ -54,63 +55,55 @@ namespace EmploymentMonitoringSystem.Controllers
                 {
                     connection.Open();
 
-                    string sql = "CALL check_fullname(@last, @first, @middle, @extn)";
+                    string full_name = FullNameFormat();
+
+                    string sql = "CALL check_fullname(@name);";
                     MySqlCommand command = new MySqlCommand(sql, connection);
-                    command.Parameters.AddWithValue("@last", model.last_name);
-                    command.Parameters.AddWithValue("@first", model.first_name);
-                    command.Parameters.AddWithValue("@middle", model.middle_name);
-                    command.Parameters.AddWithValue("@extn", model.extension_name);
+                    command.Parameters.AddWithValue("@name", full_name);
                     command.ExecuteNonQuery();
 
-                    string last_name = string.Empty;
-                    string first_name = string.Empty;
+                    int result = 0;
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            last_name += $"{reader.GetString(0)}";
-                            first_name += $"{reader.GetString(1)}";
+                            result++;
                         }
                     }
 
-                    if (last_name.Equals(string.Empty) && first_name.Equals(string.Empty))
-                    {
-                        nameExists = true;
-                    }
-                    else
-                    {
-                        nameExists = false;
-                    }
+                    if (result > 0)
+                        ModelState.AddModelError("last_name", "This name already exists. Please enter another name.");
+                    else model.full_name = full_name;
 
                     connection.Close();
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
-                    nameExists = true;
+                    ModelState.AddModelError("last_name", ex.Message);
                 }
-
             }
 
-            return nameExists;
-        }
+            string FullNameFormat()
+            {
+                string full_name;
 
-        private void FullNameFormat(InitialRecord model)
-        {
-            if (model.middle_name == null && model.extension_name == null)
-            {
-                model.full_name = $"{model.last_name}, {model.first_name}";
+                if (middle_name.Equals(string.Empty) && extension_name.Equals(string.Empty))
+                {
+                    full_name = $"{last_name}, {first_name}";
+                }
+                else if (extension_name.Equals(string.Empty))
+                {
+                    full_name = $"{last_name}, {first_name} {middle_name}";
+                }
+                else if (middle_name.Equals(string.Empty))
+                {
+                    full_name = $"{last_name} {extension_name}, {first_name}";
+                }
+                else
+                    full_name = $"{last_name} {extension_name}, {first_name} {middle_name}";
+
+                return full_name;
             }
-            else if (model.extension_name == null)
-            {
-                model.full_name = $"{model.last_name}, {model.first_name} {model.middle_name}";
-            }
-            else if (model.middle_name == null)
-            {
-                model.full_name = $"{model.last_name} {model.extension_name}, {model.first_name}";
-            }
-            else
-                model.full_name = $"{model.last_name} {model.extension_name}, {model.first_name} {model.middle_name}";
         }
     }
 }
