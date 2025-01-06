@@ -5,9 +5,104 @@
     ViewData["Title"] = "Create Entry";
 }
 
-@model InitialRecord
+@model EmploymentMonitoringSystem.Models.InitialRecord
 
 <div class="text-center">
     <h3 class="display-6">Creating an entry data for</h3>
     <h1 style="font-size:3.5em">@Model.full_name</h1>
+</div>
+
+<div class="container mt-4">
+    <form asp-action="InitialData" method="post">
+        <div class="form-group mb-4">
+            <label asp-for="sex" class="form-label">Sex</label>
+            <select asp-for="sex" class="form-control">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="birthdate" class="form-label">Date of Birth</label>
+            <input asp-for="birthdate" class="form-control" type="date" />
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="contact_number" class="form-label">Contact Number</label>
+            <input asp-for="contact_number" class="form-control" type="text" placeholder="09XXXXXXXXX" />
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="address" class="form-label">Address</label>
+            <input asp-for="address" row="5" class="form-control" type="text" />
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="email" class="form-label">E-mail Address</label>
+            <input asp-for="email" class="form-control" type="email" placeholder="username@email.com" />
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="sector" class="form-label">Sector</label>
+            <select asp-for="sector" class="form-control">
+                <option value="Agriculture">Agriculture</option>
+                <option value="ALT">ALT</option>
+                <option value="Construction">Construction</option>
+                <option value="Electrical and Electronics">Electrical and Electronics</option>
+                <option value="Garments">Garments</option>
+                <option value="Health">Health</option>
+                <option value="HVAC/R">HVAC/R</option>
+                <option value="ICT">ICT</option>
+                <option value="Marine">Marine</option>
+                <option value="Metals and Engineering">Metals and Engineering</option>
+                <option value="Others">Others</option>
+                <option value="Processed Foods and Beverages">Processed Foods and Beverages</option>
+                <option value="SCDOS">SCDOS</option>
+                <option value="Tourism">Tourism</option>
+                <option value="TVET">TVET</option>
+                <option value="Visual Arts">Visual Arts</option>
+                <option value="Wholesale">Wholesale</option>
+            </select>
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="qualification_title" class="form-label">Qualification Title</label>
+            <input asp-for="qualification_title" class="form-control" type="text" />
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="district" class="form-label">District</label>
+            <select asp-for="district" class="form-control">
+                <option value="CaMaNaVa">CaMaNaVa</option>
+                <option value="Manila">Manila</option>
+                <option value="MuntiParLasTaPat">MuntiParLasTaPat</option>
+                <option value="PaMaMariSan">PaMaMariSan</option>
+                <option value="Pasay-Makati">Pasay-Makati</option>
+                <option value="Quezon City">Quezon City</option>
+            </select>
+        </div>
+        <div class="form-group mb-4"> <!-- Make this a dropdown based on specific inputs on District -->
+            <label asp-for="city" class="form-label">City</label>
+            <input asp-for="city" class="form-control" type="text" />
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="scholarship_type" class="form-label">Type of Scholarship</label>
+            <select asp-for="district" class="form-control">
+                <option value="STEP">STEP</option>
+                <option value="TWSP">TWSP</option>
+                <option value="PESFA">PESFA</option>
+                <option value="TTSP">TTSP</option>
+                <option value="UAQTEA">UAQTEA</option>
+                <option value="TSUPER Iskolar">TSUPER Iskolar</option>
+            </select>
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="tvi" class="form-label">Name of TVI</label>
+            <input asp-for="tvi" class="form-control" type="text" />
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="allocation" class="form-label">Year of Graduation</label>
+            <select asp-for="allocation" class="form-control">
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a asp-controller="CreateEntry" asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
 </div>

@@ -20,6 +20,7 @@ namespace EmploymentMonitoringSystem.Models
         public string? full_name { get; set; }
         public string? sex { get; set; }
         public string? birthdate { get; set; }
+        [StringLength(11, MinimumLength = 11, ErrorMessage = "Contact number must have 11 digits.")]
         public string? contact_number { get; set; }
         public string? email { get; set; }
         public string? scholarship_type { get; set; }

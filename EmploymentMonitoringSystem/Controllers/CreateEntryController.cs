@@ -42,6 +42,11 @@ namespace EmploymentMonitoringSystem.Controllers
             return View(model);
         }
 
+        public IActionResult Submit(InitialRecord model)
+        {
+            return RedirectToAction("InitialData", model);
+        }
+
         private void CheckExistingName(InitialRecord model)
         {
             string last_name = model.last_name;
