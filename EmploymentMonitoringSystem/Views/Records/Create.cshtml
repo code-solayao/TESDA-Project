@@ -8,12 +8,35 @@
 @model EmploymentMonitoringSystem.Models.InitialRecord
 
 <div class="text-center">
-    <h3 class="display-6">Creating an entry data for</h3>
-    <h1 style="font-size:3.5em">@Model.full_name</h1>
+    <h1 class="display-4">Create an Entry</h1>
 </div>
 
 <div class="container mt-4">
-    <form asp-action="InitialData" method="post">
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <!-- FULL NAME -->
+        <div class="form-group mb-4">
+            <label asp-for="last_name" class="form-label">Last name</label>
+            <input asp-for="last_name" class="form-control" type="text" placeholder="Enter last name" />
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="first_name" class="form-label">First name</label>
+            <input asp-for="first_name" class="form-control" type="text" placeholder="Enter first name" />
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="middle_name" class="form-label">Middle name</label>
+            <input asp-for="middle_name" class="form-control" type="text" placeholder="Enter middle name" />
+        </div>
+        <div class="form-group mb-5">
+            <label asp-for="extension_name" class="form-label">Extension name</label>
+            <select asp-for="extension_name" class="form-control">
+                <option value="">None</option>
+                <option value="Sr.">Sr.</option>
+                <option value="Jr.">Jr.</option>
+                <option value="III">III</option>
+            </select>
+        </div>
+        <!-- INITIAL DATA -->
         <div class="form-group mb-4">
             <label asp-for="sex" class="form-label">Sex</label>
             <select asp-for="sex" class="form-control">
@@ -74,9 +97,26 @@
                 <option value="Quezon City">Quezon City</option>
             </select>
         </div>
-        <div class="form-group mb-4"> <!-- Make this a dropdown based on specific inputs on District -->
+        <div class="form-group mb-4">
             <label asp-for="city" class="form-label">City</label>
-            <input asp-for="city" class="form-control" type="text" />
+            <select asp-for="city" class="form-control">
+                <option value="Caloocan City">Caloocan City</option>
+                <option value="Malabon City">Malabon City</option>
+                <option value="Navotas City">Navotas City</option>
+                <option value="Valenzuela City">Valenzuela City</option>
+                <option value="Manila">Manila</option>
+                <option value="Las Piñas City">Las Piñas City</option>
+                <option value="Muntinlupa City">Muntinlupa City</option>
+                <option value="Parañaque City">Parañaque City</option>
+                <option value="Taguig City">Taguig City</option>
+                <option value="Mandaluyong City">Mandaluyong City</option>
+                <option value="Marikina City">Marikina City</option>
+                <option value="Pasig City">Pasig City</option>
+                <option value="San Juan City">San Juan City</option>
+                <option value="Makati City">Makati City</option>
+                <option value="Pasig City">Pasig City</option>
+                <option value="Quezon City">Quezon City</option>
+            </select>
         </div>
         <div class="form-group mb-4">
             <label asp-for="scholarship_type" class="form-label">Type of Scholarship</label>
@@ -102,7 +142,11 @@
         </div>
         <div>
             <button type="submit" class="btn btn-primary">Submit</button>
-            <a asp-controller="CreateEntry" asp-action="Index" class="btn btn-secondary">Cancel</a>
+            <a asp-controller="Records" asp-action="Index" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
