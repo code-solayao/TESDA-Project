@@ -233,6 +233,7 @@ namespace Scholarship_Employment
                         cbxCity.Items.Add("Las Piñas City");
                         cbxCity.Items.Add("Muntinlupa City");
                         cbxCity.Items.Add("Parañaque City");
+                        cbxCity.Items.Add("Pateros City");
                         cbxCity.Items.Add("Taguig City");
                         break;
 
@@ -245,7 +246,7 @@ namespace Scholarship_Employment
 
                     case "Pasay-Makati":
                         cbxCity.Items.Add("Makati City");
-                        cbxCity.Items.Add("Pasig City");
+                        cbxCity.Items.Add("Pasay City");
                         break;
 
                     case "Quezon City":
