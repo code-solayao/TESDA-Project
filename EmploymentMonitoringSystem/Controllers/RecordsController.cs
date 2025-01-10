@@ -34,16 +34,24 @@ namespace EmploymentMonitoringSystem.Controllers
             if (model != null)
             {
                 CheckExistingName(model);
-            }
-            else 
-                ModelState.AddModelError("last_name", "Cannot process data to proceed.");
 
-            if (ModelState.IsValid)
-            {
-                return RedirectToAction("InitialData", model);
+                if (ModelState.IsValid)
+                {
+                    _context.Initial_Records.Add(model);
+                    _context.SaveChanges();
+
+                    _context.Verification_Records.Add(new VerificationRecord { Id = model.Id });
+                    _context.Employment_Records.Add(new EmploymentRecord { Id = model.Id });
+                    _context.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                else return View(model);
             }
-            else 
+            else
+            {
                 return View(model);
+            }
         }
 
         #region Functions
@@ -66,7 +74,6 @@ namespace EmploymentMonitoringSystem.Controllers
                     string sql = "CALL check_fullname(@name);";
                     MySqlCommand command = new MySqlCommand(sql, connection);
                     command.Parameters.AddWithValue("@name", full_name);
-                    command.ExecuteNonQuery();
 
                     int result = 0;
                     using (MySqlDataReader reader = command.ExecuteReader())

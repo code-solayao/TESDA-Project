@@ -8,14 +8,16 @@ var city = document.getElementById("selectCity");
 
 var optionValue;
 
-// public static void Main(String[] args)
-// {
 districtToCitySelection();
-// }
 
 function addOption(text) {
     let option = document.createElement("option");
     option.text = text;
+
+    if (text == "None") {
+        option.value = "";
+    }
+
     return option;
 }
 
@@ -32,6 +34,7 @@ function districtToCitySelection() {
 
     switch (optionValue) {
         case "CaMaNaVa":
+            city.add(addOption("None"));
             city.add(addOption("Caloocan City"));
             city.add(addOption("Malabon City"));
             city.add(addOption("Navotas City"));
@@ -43,6 +46,7 @@ function districtToCitySelection() {
             break;
 
         case "MuntiParLasTaPat":
+            city.add(addOption("None"));
             city.add(addOption("Las Piñas City"));
             city.add(addOption("Muntinlupa City"));
             city.add(addOption("Parañaque City"));
@@ -51,6 +55,7 @@ function districtToCitySelection() {
             break;
 
         case "PaMaMariSan":
+            city.add(addOption("None"));
             city.add(addOption("Mandaluyong City"));
             city.add(addOption("Marikina City"));
             city.add(addOption("Pasig City"));
@@ -58,6 +63,7 @@ function districtToCitySelection() {
             break;
 
         case "Pasay-Makati":
+            city.add(addOption("None"));
             city.add(addOption("Makati City"));
             city.add(addOption("Pasay City"));
             break;
@@ -67,6 +73,7 @@ function districtToCitySelection() {
             break;
 
         default:
+            city.add(addOption("None"));
             city.add(addOption("Caloocan City"));
             city.add(addOption("Las Piñas City"));
             city.add(addOption("Makati City"));

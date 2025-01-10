@@ -63,6 +63,7 @@
         <div class="form-group mb-4">
             <label asp-for="sector" class="form-label">Sector</label>
             <select asp-for="sector" class="form-control">
+                <option value="">None</option>
                 <option value="Agriculture">Agriculture</option>
                 <option value="ALT">ALT</option>
                 <option value="Construction">Construction</option>
@@ -89,6 +90,7 @@
         <div class="form-group mb-4">
             <label asp-for="district" class="form-label">District</label>
             <select asp-for="district" class="form-control" id="selectDistrict" onchange="setOptionValue(this)">
+                <option value="">None</option>
                 <option value="CaMaNaVa">CaMaNaVa</option>
                 <option value="Manila">Manila</option>
                 <option value="MuntiParLasTaPat">MuntiParLasTaPat</option>
@@ -100,6 +102,7 @@
         <div class="form-group mb-4">
             <label asp-for="city" class="form-label">City</label>
             <select asp-for="city" class="form-control" id="selectCity">
+                <option value="">None</option>
                 <option value="Caloocan City">Caloocan City</option>
                 <option value="Malabon City">Malabon City</option>
                 <option value="Navotas City">Navotas City</option>
@@ -121,6 +124,7 @@
         <div class="form-group mb-4">
             <label asp-for="scholarship_type" class="form-label">Type of Scholarship</label>
             <select asp-for="district" class="form-control">
+                <option value="">None</option>
                 <option value="STEP">STEP</option>
                 <option value="TWSP">TWSP</option>
                 <option value="PESFA">PESFA</option>
@@ -136,6 +140,7 @@
         <div class="form-group mb-4">
             <label asp-for="allocation" class="form-label">Year of Graduation</label>
             <select asp-for="allocation" class="form-control">
+                <option value="">None</option>
                 <option value="2023">2023</option>
                 <option value="2024">2024</option>
             </select>
