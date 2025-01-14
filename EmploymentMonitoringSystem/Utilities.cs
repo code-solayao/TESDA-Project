@@ -18,5 +18,11 @@ namespace EmploymentMonitoringSystem
                 return mySqlConnectionStringBuilder.ConnectionString;
             }
         }
+
+        public class DataRecordTable
+        {
+            public required List<Models.InitialRecord> InitialRecords { get; set; }
+            public required List<Models.EmploymentRecord> EmploymentRecords { get; set; }
+        }
     }
 }

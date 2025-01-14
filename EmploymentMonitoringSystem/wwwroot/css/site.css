@@ -20,3 +20,30 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.tablink {
+    background-color: darkgrey;
+    color: black;
+    float: inline-start;
+    border: none;
+    outline: hidden;
+    cursor: pointer;
+    padding: 20px;
+    font-size: 20px;
+    width: 33.33%;
+}
+
+.tablink:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.tabcontent {
+    color: black;
+    display: none;
+    padding: 100px 20px;
+    height: 100%;
+}
+
+#Details { background-color: lightgrey; }
+#Verification { background-color: lightgrey; }
+#Employment { background-color: lightgrey; }

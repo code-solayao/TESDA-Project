@@ -16,7 +16,13 @@ namespace EmploymentMonitoringSystem.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            Utilities.DataRecordTable table = new Utilities.DataRecordTable()
+            {
+                InitialRecords = _context.Initial_Records.ToList(),
+                EmploymentRecords = _context.Employment_Records.ToList()
+            };
+
+            return View(table);
         }
 
         public IActionResult Create()
@@ -52,6 +58,11 @@ namespace EmploymentMonitoringSystem.Controllers
             {
                 return View(model);
             }
+        }
+
+        public IActionResult Edit()
+        {
+            return View();
         }
 
         #region Functions

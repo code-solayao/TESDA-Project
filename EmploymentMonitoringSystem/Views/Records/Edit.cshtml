@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Edit Record";
+}
+
+<div class="text-center mb-4">
+    <h1 class="display-4">Edit Data Record</h1>
+</div>
+
+<button id="defaultTab" class="tablink" onclick="openTabPage(`Details`, this, `lightgrey`)">Details</button>
+<button class="tablink" onclick="openTabPage(`Verification`, this, `lightgrey`)">Verification</button>
+<button class="tablink" onclick="openTabPage(`Employment`, this, `lightgrey`)">Employment</button>
+
+<div id="Details" class="tabcontent">
+    <h3>Details</h3>
+    <p>Details: InitialRecord</p>
+</div>
+
+<div id="Verification" class="tabcontent">
+    <h3>Verification</h3>
+    <p>Verification: VerificationRecord</p>
+</div>
+
+<div id="Employment" class="tabcontent">
+    <h3>Employment</h3>
+    <p>Employment: EmploymentRecord</p>
+</div>
+
+<script src="~/js/Records/edit.js" asp-append-version="true"></script>
