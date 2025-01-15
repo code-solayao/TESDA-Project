@@ -4,27 +4,43 @@
 @{
     ViewData["Title"] = "Edit Record";
 }
+@model EmploymentMonitoringSystem.Utilities.DetailsTable
 
 <div class="text-center mb-4">
     <h1 class="display-4">Edit Data Record</h1>
 </div>
 
-<button id="defaultTab" class="tablink" onclick="openTabPage(`Details`, this, `lightgrey`)">Details</button>
-<button class="tablink" onclick="openTabPage(`Verification`, this, `lightgrey`)">Verification</button>
-<button class="tablink" onclick="openTabPage(`Employment`, this, `lightgrey`)">Employment</button>
-
-<div id="Details" class="tabcontent">
-    <h3>Details</h3>
-    <p>Details: InitialRecord</p>
+<div class="tab-buttons">
+    <button id="defaultTab" class="tablink" onclick="openTabPage(`details`, this, `lightgrey`)">Details</button>
+    <button class="tablink" onclick="openTabPage(`verification`, this, `lightgrey`)">Verification</button>
+    <button class="tablink" onclick="openTabPage(`employment`, this, `lightgrey`)">Employment</button>
 </div>
 
-<div id="Verification" class="tabcontent">
-    <h3>Verification</h3>
-    <p>Verification: VerificationRecord</p>
+<div id="details" class="tabcontent">
+    @if (Model.Initial != null)
+    {
+        <p><b>Name: </b>@Model.Initial.full_name</p>
+        <p><b>Sex: </b>@Model.Initial.sex</p>
+        <p><b>Date of Birth: </b>@Model.Initial.birthdate</p>
+        <p><b>Contact Number: </b>@Model.Initial.contact_number</p>
+        <p><b>E-mail Address: </b>@Model.Initial.email</p>
+        <p><b>Address: </b>@Model.Initial.address</p>
+        <p><b>Sector: </b>@Model.Initial.sector</p>
+        <p><b>Qualification Title: </b>@Model.Initial.qualification_title</p>
+        <p><b>District: </b>@Model.Initial.district</p>
+        <p><b>City: </b>@Model.Initial.city</p>
+        <p><b>Type of Scholarship: </b>@Model.Initial.scholarship_type</p>
+        <p><b>Name of TVI: </b>@Model.Initial.tvi</p>
+        <p><b>Year of Graduation: </b>@Model.Initial.allocation</p>
+    }
 </div>
 
-<div id="Employment" class="tabcontent">
-    <h3>Employment</h3>
+<div id="verification" class="tabcontent">
+    
+</div>
+
+<div id="employment" class="tabcontent">
+    <h2>Employment</h2>
     <p>Employment: EmploymentRecord</p>
 </div>
 

@@ -60,9 +60,20 @@ namespace EmploymentMonitoringSystem.Controllers
             }
         }
 
-        public IActionResult Edit()
+        [HttpGet]
+        public IActionResult Edit(int? Id)
         {
-            return View();
+            if (Id == null || Id == 0) return NotFound();
+
+            InitialRecord? initial = _context.Initial_Records.Find(Id);
+            VerificationRecord? verification = _context.Verification_Records.Find(Id);
+            EmploymentRecord? employment = _context.Employment_Records.Find(Id);
+
+            Utilities.DetailsTable details = new Utilities.DetailsTable(initial, verification, employment);
+            if (details.Initial == null || details.Verification == null || details.Employment == null) 
+                return NotFound();
+            else 
+                return View(details);
         }
 
         #region Functions

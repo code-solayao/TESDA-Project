@@ -12,6 +12,7 @@
     tablinks = document.getElementsByClassName("tablink");
     for (let i = 0; i < tablinks.length; i++) {
         tablinks[i].style.backgroundColor = "";
+        tablinks[i].style.color = "white";
     }
 
     // Show the specific tab content
@@ -19,6 +20,7 @@
 
     // Add the specific color to the button used to open the tab content
     element.style.backgroundColor = color;
+    element.style.color = "black";
 }
 
 // Get the element with id="defaultOpen" and click on it
