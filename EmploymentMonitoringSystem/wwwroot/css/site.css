@@ -18,7 +18,7 @@ html {
 }
 
 body {
-    margin-bottom: 60px;
+    margin-bottom: 100px;
 }
 
 #details {
@@ -42,7 +42,7 @@ body {
     font-size: 17px;
     outline: hidden;
     padding: 14px 16px;
-    width: 33.33%;
+    width: 33.334%;
 }
 
 .tablink:hover {
@@ -50,8 +50,9 @@ body {
 }
 
 .tabcontent {
+    border-radius: 5px;
     color: black;
-    display: none;
     height: 100%;
+    outline: solid;
     padding: 100px 20px;
 }

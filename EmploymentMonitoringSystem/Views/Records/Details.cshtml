@@ -1,0 +1,73 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Record Details";
+}
+@model EmploymentMonitoringSystem.Utilities.Records
+
+<div class="text-center mb-4">
+    <h1 class="display-4">Record Details</h1>
+    @if (Model.Initial != null) 
+    {
+        <a asp-controller="Records" asp-action="Edit" asp-route-id="@Model.Initial.Id" class="btn btn-primary">Update Record</a>
+    }
+</div>
+
+<div class="tab-buttons">
+    <button id="defaultTab" class="tablink" onclick="openTabPage(`details`, this, `lightgrey`)">Details</button>
+    <button class="tablink" onclick="openTabPage(`verification`, this, `lightgrey`)">Verification</button>
+    <button class="tablink" onclick="openTabPage(`employment`, this, `lightgrey`)">Employment</button>
+</div>
+
+<div id="details" class="tabcontent">
+    @if (Model.Initial != null)
+    {
+        <p><b>Name: </b>@Model.Initial.full_name</p>
+        <p><b>Sex: </b>@Model.Initial.sex</p>
+        <p><b>Date of Birth: </b>@Model.Initial.birthdate</p>
+        <p><b>Contact Number: </b>@Model.Initial.contact_number</p>
+        <p><b>E-mail Address: </b>@Model.Initial.email</p>
+        <p><b>Address: </b>@Model.Initial.address</p>
+        <p><b>Sector: </b>@Model.Initial.sector</p>
+        <p><b>Qualification Title: </b>@Model.Initial.qualification_title</p>
+        <p><b>District: </b>@Model.Initial.district</p>
+        <p><b>City: </b>@Model.Initial.city</p>
+        <p><b>Type of Scholarship: </b>@Model.Initial.scholarship_type</p>
+        <p><b>Name of TVI: </b>@Model.Initial.tvi</p>
+        <p><b>Year of Graduation: </b>@Model.Initial.allocation</p>
+    }
+</div>
+
+<div id="verification" class="tabcontent">
+    @if (Model.Verification != null)
+    {
+        <p><b>Means of Verification: </b>@Model.Verification.verification_means</p>
+        <p><b>Date of Verification: </b>@Model.Verification.verification_date</p>
+        <p><b>Status of Verification: </b>@Model.Verification.verification_status</p>
+        <p><b>First Follow-up Date: </b>@Model.Verification.follow_up_date_1</p>
+        <p><b>Second Follow-up Date: </b>@Model.Verification.follow_up_date_2</p>
+        <p><b>Status of Response: </b>@Model.Verification.response_status</p>
+        <p><b>Reason (Not Interested): </b>@Model.Verification.not_interested_reason</p>
+        <p><b>Referral Status: </b>@Model.Verification.referral_status</p>
+        <p><b>Date of Referral: </b>@Model.Verification.referral_date</p>
+        <p><b>Reason (No Referral): </b>@Model.Verification.no_referral_reason</p>
+        <p><b>Invalid Contact: </b>@Model.Verification.invalid_contact</p>
+    }
+</div>
+
+<div id="employment" class="tabcontent">
+    @if (Model.Employment != null)
+    {
+        <p><b>Company Name: </b>@Model.Employment.company_name</p>
+        <p><b>Company Address: </b>@Model.Employment.company_address</p>
+        <p><b>Job Title: </b>@Model.Employment.job_title</p>
+        <p><b>Status of Employment: </b>@Model.Employment.employment_status</p>
+        <p><b>Date Hired: </b>@Model.Employment.hired_date</p>
+        <p><b>Date of Submission of Documents: </b>@Model.Employment.submitted_documents_date</p>
+        <p><b>Interview Date: </b>@Model.Employment.interview_date</p>
+        <p><b>Reason (Not Hired): </b>@Model.Employment.not_hired_reason</p>
+    }
+</div>
+
+<script src="~/js/Records/details.js" asp-append-version="true"></script>

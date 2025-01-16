@@ -37,27 +37,40 @@ namespace EmploymentMonitoringSystem.Controllers
              * use last_name as key
              * use asp-validation-summary="All" only */
 
-            if (model != null)
+            if (model == null) 
+                return BadRequest();
+            else
             {
                 CheckExistingName(model);
 
-                if (ModelState.IsValid)
-                {
-                    _context.Initial_Records.Add(model);
-                    _context.SaveChanges();
+                if (!ModelState.IsValid)
+                    return View(model);
 
-                    _context.Verification_Records.Add(new VerificationRecord { Id = model.Id });
-                    _context.Employment_Records.Add(new EmploymentRecord { Id = model.Id });
-                    _context.SaveChanges();
+                _context.Initial_Records.Add(model);
+                _context.SaveChanges();
 
-                    return RedirectToAction("Index");
-                }
-                else return View(model);
+                _context.Verification_Records.Add(new VerificationRecord { Id = model.Id });
+                _context.Employment_Records.Add(new EmploymentRecord { Id = model.Id });
+                _context.SaveChanges();
+
+                return RedirectToAction("Index");
             }
+        }
+
+        [HttpGet]
+        public IActionResult Details(int? Id)
+        {
+            if (Id == null || Id == 0) return NotFound();
+
+            InitialRecord? initial = _context.Initial_Records.Find(Id);
+            VerificationRecord? verification = _context.Verification_Records.Find(Id);
+            EmploymentRecord? employment = _context.Employment_Records.Find(Id);
+
+            Utilities.Records records = new Utilities.Records(initial, verification, employment);
+            if (records.Initial == null || records.Verification == null || records.Employment == null)
+                return BadRequest();
             else
-            {
-                return View(model);
-            }
+                return View(records);
         }
 
         [HttpGet]
@@ -69,11 +82,30 @@ namespace EmploymentMonitoringSystem.Controllers
             VerificationRecord? verification = _context.Verification_Records.Find(Id);
             EmploymentRecord? employment = _context.Employment_Records.Find(Id);
 
-            Utilities.DetailsTable details = new Utilities.DetailsTable(initial, verification, employment);
+            Utilities.Records details = new Utilities.Records(initial, verification, employment);
             if (details.Initial == null || details.Verification == null || details.Employment == null) 
-                return NotFound();
+                return BadRequest();
             else 
                 return View(details);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(VerificationRecord model)
+        {
+            // Kailangan ma-POST ang 2 model, hindi pwede ang Utilities.Records
+            if (model == null)
+            {
+                return BadRequest(ModelState);
+            }
+            else
+            {
+                if (!ModelState.IsValid)
+                    return View(model);
+
+                _context.Verification_Records.Add(model);
+
+                return RedirectToAction("Index");
+            }
         }
 
         #region Functions
@@ -114,7 +146,7 @@ namespace EmploymentMonitoringSystem.Controllers
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("last_name", ex.Message);
+                    Console.WriteLine(ex.Message);
                 }
             }
 
