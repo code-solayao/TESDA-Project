@@ -42,7 +42,7 @@
             @if (Model.Verification != null)
             {
                 <div class="form-group mb-4">
-                    <label asp-for="@Model.Verification.verification_means" class="form-label">Means of Verification</label>
+                    <label asp-for="@Model.Verification.verification_means" class="form-label control-label">Means of Verification</label>
                     <select asp-for="@Model.Verification.verification_means" class="form-control">
                         <option value="">None</option>
                         <option value="For Verification">For Verification</option>
@@ -52,22 +52,69 @@
                     </select>
                 </div>
                 <div class="form-group mb-4">
-                    <label asp-for="@Model.Verification.verification_date" class="form-label">Date of Verification</label>
+                    <label asp-for="@Model.Verification.verification_date" class="form-label control-label">Date of Verification</label>
                     <input asp-for="@Model.Verification.verification_date" class="form-control" type="date" />
                 </div>
-                <div class="form-group mb-4">
-                    <label asp-for="@Model.Verification.verification_status" class="form-label">Status of Verification</label>
+                <div class="form-group">
+                    <label asp-for="@Model.Verification.verification_status" class="form-label control-label">Status of Verification</label>
+
                     <div class="form-check">
-                        <input asp-for="@Model.Verification.verification_status" class="form-check-input" type="radio" name="verification_status" value="" />
-                        <label asp-for="@Model.Verification.verification_status">None</label>
+                        <input asp-for="@Model.Verification.verification_status" class="form-check-input" type="radio" value="Responded" onclick="verificationStatusValue(true)" />
+                        <label asp-for="@Model.Verification.verification_status" class="form-label">Responded</label>
+                        <br />
+                        <input asp-for="@Model.Verification.verification_status" class="form-check-input" type="radio" value="No Response" onclick="verificationStatusValue(false)" />
+                        <label asp-for="@Model.Verification.verification_status" class="form-label">No Response</label>
                     </div>
-                    <div class="form-check">
-                        <input asp-for="@Model.Verification.verification_status" class="form-check-input" type="radio" name="verification_status" value="Responded" />
-                        <label asp-for="@Model.Verification.verification_status">Responded</label>
+                </div>
+                <div class="div-toggle mb-4" id="responded">
+                    <div class="form-group">
+                        <label asp-for="@Model.Verification.response_status" class="form-label control-label">Type of Response</label>
+
+                        <div class="form-check indent">
+                            <input asp-for="@Model.Verification.response_status" class="form-check-input" type="radio" value="Interested" />
+                            <label asp-for="@Model.Verification.response_status" class="form-label">Interested</label>
+                            <div>
+                                <label asp-for="@Model.Verification.referral_status" class="form-label control-label-1">Refer to Company?</label>
+
+                                <div class="indent">
+                                    <input asp-for="@Model.Verification.referral_status" class="form-check-input" type="radio" value="Yes" />
+                                    <label asp-for="@Model.Verification.referral_status" class="form-label">YES</label>
+                                    <br />
+                                    <input asp-for="@Model.Verification.referral_date" class="form-control" type="date" />
+                                    <br />
+                                    <input asp-for="@Model.Verification.referral_status" class="form-check-input" type="radio" value="No" />
+                                    <label asp-for="@Model.Verification.referral_status" class="form-label">NO</label>
+                                    <br />
+                                    <label asp-for="@Model.Verification.no_referral_reason" class="form-label">Reason</label>
+                                    <input asp-for="@Model.Verification.no_referral_reason" class="form-control" type="text" />
+                                </div>
+                            </div><br />
+
+                            <input asp-for="@Model.Verification.response_status" class="form-check-input" type="radio" value="Not Interested" />
+                            <label asp-for="@Model.Verification.response_status" class="form-label">Not Interested</label>
+                            <div>
+                                <label asp-for="@Model.Verification.not_interested_reason" class="form-label">Reason</label>
+                                <input asp-for="@Model.Verification.not_interested_reason" class="form-control" type="text" />
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-check">
-                        <input asp-for="@Model.Verification.verification_status" class="form-check-input" type="radio" name="verification_status" value="No Response" />
-                        <label asp-for="@Model.Verification.verification_status">No Response</label>
+                </div>
+                <div class="div-toggle mb-4" id="no_response">
+                    <div class="form-group">
+                        <label class="form-label control-label-1">No Response (For Follow-up)</label>
+
+                        <div class="indent mb-4">
+                            <label asp-for="@Model.Verification.follow_up_date_1" class="form-label">First Follow-up</label>
+                            <input asp-for="@Model.Verification.follow_up_date_1" class="form-control" type="date" />
+                        </div>
+                        <div class="indent mb-4">
+                            <label asp-for="@Model.Verification.follow_up_date_2" class="form-label">Second Follow-up</label>
+                            <input asp-for="@Model.Verification.follow_up_date_2" class="form-control" type="date" />
+                        </div>
+                        <div class="form-check mb-4 indent">
+                            <input asp-for="@Model.Verification.invalid_contact" class="form-check-input" type="checkbox" value="" />
+                            <label asp-for="@Model.Verification.invalid_contact" class="form-check-label">Invalid Contact</label>
+                        </div>
                     </div>
                 </div>
                 <div>

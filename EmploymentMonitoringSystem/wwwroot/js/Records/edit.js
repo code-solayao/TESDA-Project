@@ -25,3 +25,22 @@
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultTab").click();
+
+// STATUS OF VERIFICATION
+
+var responded = document.getElementById("responded");
+var no_response = document.getElementById("no_response");
+
+responded.style.display = "none";
+no_response.style.display = "none";
+
+function verificationStatusValue(respond) {
+    if (respond == true) {
+        responded.style.display = "block";
+        no_response.style.display = "none";
+    }
+    else {
+        no_response.style.display = "block";
+        responded.style.display = "none";
+    }
+}

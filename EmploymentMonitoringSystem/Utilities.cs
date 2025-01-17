@@ -30,13 +30,6 @@ namespace EmploymentMonitoringSystem
             public Models.InitialRecord? Initial { get; set; }
             public Models.VerificationRecord? Verification { get; set; }
             public Models.EmploymentRecord? Employment { get; set; }
-
-            public Records(Models.InitialRecord? initial, Models.VerificationRecord? verification, Models.EmploymentRecord? employment)
-            {
-                Initial = initial;
-                Verification = verification;
-                Employment = employment;
-            }
         }
     }
 }

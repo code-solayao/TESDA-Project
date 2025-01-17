@@ -66,10 +66,15 @@ namespace EmploymentMonitoringSystem.Controllers
             VerificationRecord? verification = _context.Verification_Records.Find(Id);
             EmploymentRecord? employment = _context.Employment_Records.Find(Id);
 
-            Utilities.Records records = new Utilities.Records(initial, verification, employment);
-            if (records.Initial == null || records.Verification == null || records.Employment == null)
+            Utilities.Records records = new Utilities.Records()
+            {
+                Initial = initial,
+                Verification = verification,
+                Employment = employment,
+            };
+            if (records.Initial == null || records.Verification == null || records.Employment == null) 
                 return BadRequest();
-            else
+            else 
                 return View(records);
         }
 
@@ -82,7 +87,12 @@ namespace EmploymentMonitoringSystem.Controllers
             VerificationRecord? verification = _context.Verification_Records.Find(Id);
             EmploymentRecord? employment = _context.Employment_Records.Find(Id);
 
-            Utilities.Records details = new Utilities.Records(initial, verification, employment);
+            Utilities.Records details = new Utilities.Records()
+            {
+                Initial = initial,
+                Verification = verification,
+                Employment = employment,
+            };
             if (details.Initial == null || details.Verification == null || details.Employment == null) 
                 return BadRequest();
             else 
@@ -90,7 +100,7 @@ namespace EmploymentMonitoringSystem.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(VerificationRecord model)
+        public IActionResult Edit(Utilities.Records model)
         {
             // Kailangan ma-POST ang 2 model, hindi pwede ang Utilities.Records
             if (model == null)
@@ -102,7 +112,12 @@ namespace EmploymentMonitoringSystem.Controllers
                 if (!ModelState.IsValid)
                     return View(model);
 
-                _context.Verification_Records.Add(model);
+                if (model.Verification == null)
+                    return BadRequest(model);
+                else
+                {
+                    _context.Verification_Records.Add(model.Verification);
+                }
 
                 return RedirectToAction("Index");
             }
