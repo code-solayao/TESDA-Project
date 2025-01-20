@@ -117,6 +117,7 @@ namespace EmploymentMonitoringSystem.Controllers
                 else
                 {
                     _context.Verification_Records.Add(model.Verification);
+                    _context.SaveChanges();
                 }
 
                 return RedirectToAction("Index");

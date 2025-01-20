@@ -1,4 +1,9 @@
-﻿function openTabPage(name, element, color) {
+﻿// TAB CONTROL
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultTab").click();
+
+function openTabPage(name, element, color) {
     let tabcontents;
     let tablinks;
 
@@ -23,24 +28,108 @@
     element.style.color = "black";
 }
 
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultTab").click();
-
 // STATUS OF VERIFICATION
 
 var responded = document.getElementById("responded");
-var no_response = document.getElementById("no_response");
+var noResponse = document.getElementById("noResponse");
 
 responded.style.display = "none";
-no_response.style.display = "none";
+noResponse.style.display = "none";
 
 function verificationStatusValue(respond) {
     if (respond == true) {
         responded.style.display = "block";
-        no_response.style.display = "none";
+        noResponse.style.display = "none";
+        respondedStatus();
     }
     else {
-        no_response.style.display = "block";
+        noResponse.style.display = "block";
         responded.style.display = "none";
+        noResponseStatus();
+    }
+}
+
+var interested = document.getElementById("interested");
+var referralStatus = document.getElementById("referralStatus");
+var referYes = document.getElementById("referYes");
+var referNo = document.getElementById("referNo");
+var referralDate = document.getElementById("referralDate");
+var noReferralReason = document.getElementById("noReferralReason");
+
+var notInterested = document.getElementById("notInterested");
+var notInterestedReason = document.getElementById("notInterestedReason");
+
+var followup1 = document.getElementById("followup1");
+var followup2 = document.getElementById("followup2");
+var invalidContact = document.getElementById("invalidContact");
+
+function respondedStatus() {
+    resetDate(followup1);
+    resetDate(followup2);
+    invalidContact.checked = false;
+    invalidContact.value = "";
+}
+
+function noResponseStatus() {
+    interested.checked = false;
+    referralStatus.disabled = true;
+    referYes.checked = false;
+    referNo.checked = false;
+    referralDate.disabled = true;
+    resetDate(referralDate);
+    noReferralReason.disabled = true;
+    noReferralReason.value = "";
+
+    notInterested.checked = false;
+    notInterestedReason.disabled = true;
+    notInterestedReason.value = "";
+}
+
+function isInterested() {
+    referralStatus.disabled = false;
+    notInterestedReason.disabled = true;
+    notInterestedReason.value = "";
+}
+
+function isNotInterested() {
+    notInterestedReason.disabled = false;
+    referralStatus.disabled = true;
+    referYes.checked = false;
+    referNo.checked = false;
+    referralDate.disabled = true;
+    resetDate(referralDate);
+    noReferralReason.disabled = true;
+    noReferralReason.value = "";
+}
+
+function canRefer() {
+    referralDate.disabled = false;
+    noReferralReason.disabled = true;
+    noReferralReason.value = "";
+}
+
+function notRefer() {
+    noReferralReason.disabled = false;
+    referralDate.disabled = true;
+    resetDate(referralDate);
+}
+
+function contactStatus() {
+    if (invalidContact.checked == true) {
+        invalidContact.value = "Yes";
+    }
+    else {
+        invalidContact.value = "No";
+    }
+}
+
+function resetDate(element) {
+    element.value = "";
+
+    // prevent error on older browsers (eg. IE8)
+    if (element.type === "date") {
+        // update the input content visually
+        element.type = "text";
+        element.type = "date";
     }
 }
