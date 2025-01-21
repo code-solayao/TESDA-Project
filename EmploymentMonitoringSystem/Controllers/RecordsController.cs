@@ -116,7 +116,7 @@ namespace EmploymentMonitoringSystem.Controllers
                     return BadRequest(model);
                 else
                 {
-                    _context.Verification_Records.Add(model.Verification);
+                    _context.Verification_Records.Update(model.Verification);
                     _context.SaveChanges();
                 }
 

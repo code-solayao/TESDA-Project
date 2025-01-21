@@ -26,6 +26,15 @@ function openTabPage(name, element, color) {
     // Add the specific color to the button used to open the tab content
     element.style.backgroundColor = color;
     element.style.color = "black";
+
+    if (name !== "employment") return;
+    if (referYes.checked == true) {
+        document.getElementById("employmentField").disabled = false;
+    }
+    else {
+        document.getElementById("employmentField").disabled = true;
+    }
+
 }
 
 // STATUS OF VERIFICATION
@@ -121,6 +130,12 @@ function contactStatus() {
     else {
         invalidContact.value = "No";
     }
+}
+
+// EMPLOYMENT STATUS
+
+function employmentStatusValue(element) {
+    console.log(`Checked: ${element.value}`);
 }
 
 function resetDate(element) {
