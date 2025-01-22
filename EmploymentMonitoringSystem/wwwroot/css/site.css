@@ -31,7 +31,7 @@ label.control-label-1 {
     font-size: 1.1em;
 }
 
-label.rbtn-underline {
+label.bold-underline {
     font-weight: bold;
     text-decoration: underline;
 }
@@ -42,15 +42,18 @@ div.div-toggle {
 }
 
 #details {
-    background-color: lightgrey;
+    background-color: white;
+    font-size: 1.3em;
 }
 
 #verification {
-    background-color: lightgrey;
+    background-color: white;
+    font-size: 1.3em;
 }
 
 #employment {
-    background-color: lightgrey;
+    background-color: white;
+    font-size: 1.3em;
 }
 
 .tablink {

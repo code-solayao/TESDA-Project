@@ -19,19 +19,34 @@
 <div id="details" class="tabcontent">
     @if (Model.Initial != null)
     {
-        <p><b>Name: </b>@Model.Initial.full_name</p>
-        <p><b>Sex: </b>@Model.Initial.sex</p>
-        <p><b>Date of Birth: </b>@Model.Initial.birthdate</p>
-        <p><b>Contact Number: </b>@Model.Initial.contact_number</p>
-        <p><b>E-mail Address: </b>@Model.Initial.email</p>
-        <p><b>Address: </b>@Model.Initial.address</p>
-        <p><b>Sector: </b>@Model.Initial.sector</p>
-        <p><b>Qualification Title: </b>@Model.Initial.qualification_title</p>
-        <p><b>District: </b>@Model.Initial.district</p>
-        <p><b>City: </b>@Model.Initial.city</p>
-        <p><b>Type of Scholarship: </b>@Model.Initial.scholarship_type</p>
-        <p><b>Name of TVI: </b>@Model.Initial.tvi</p>
-        <p><b>Year of Graduation: </b>@Model.Initial.allocation</p>
+        <dl>
+            <dt>Name: </dt>
+            <dd>@Model.Initial.full_name</dd>
+            <dt>Sex: </dt>
+            <dd>@Model.Initial.sex</dd>
+            <dt>Date of Birth: </dt>
+            <dd>@Model.Initial.birthdate</dd>
+            <dt>Contact Number: </dt>
+            <dd>@Model.Initial.contact_number</dd>
+            <dt>E-mail Address: </dt>
+            <dd>@Model.Initial.email</dd>
+            <dt>Address: </dt>
+            <dd>@Model.Initial.address</dd>
+            <dt>Sector: </dt>
+            <dd>@Model.Initial.sector</dd>
+            <dt>Qualification Title: </dt>
+            <dd>@Model.Initial.qualification_title</dd>
+            <dt>District: </dt>
+            <dd>@Model.Initial.district</dd>
+            <dt>City: </dt>
+            <dd>@Model.Initial.city</dd>
+            <dt>Type of Scholarship: </dt>
+            <dd>@Model.Initial.scholarship_type</dd>
+            <dt>Name of TVI: </dt>
+            <dd>@Model.Initial.tvi</dd>
+            <dt>Year of Graduation: </dt>
+            <dd>@Model.Initial.allocation</dd>
+        </dl>
     }
 </div>
 
@@ -117,7 +132,7 @@
                             <input asp-for="@Model.Verification.follow_up_date_2" class="form-control" type="date" id="followup2" />
                         </div>
                         <div style="margin-left: 30px" class="form-check mb-4 indent">
-                            <input asp-for="@Model.Verification.invalid_contact" class="form-check-input" type="checkbox" value="" id="invalidContact" onclick="contactStatus()" />
+                            <input asp-for="@Model.Verification.invalid_contact" class="form-check-input" type="checkbox" id="invalidContact" />
                             <label asp-for="@Model.Verification.invalid_contact" class="form-check-label">Invalid Contact</label>
                         </div>
                     </div>
@@ -158,25 +173,25 @@
 
                         <div class="form-check">
                             <input asp-for="@Model.Employment.employment_status" class="form-check-input" type="radio" value="Hired" id="hired" onclick="employmentStatusValue(this)" />
-                            <label asp-for="@Model.Employment.employment_status" class="form-label">Hired</label>
+                            <label asp-for="@Model.Employment.employment_status" class="form-label bold-underline">Hired</label>
                             <div class="indent mb-4">
-                                <input asp-for="@Model.Employment.hired_date" class="form-control" type="date" id="hiredDate" />
+                                <input asp-for="@Model.Employment.hired_date" class="form-control" type="date" id="hiredDate" disabled />
                             </div>
                             <input asp-for="@Model.Employment.employment_status" class="form-check-input" type="radio" value="Submitted Documents" id="submitDocs" onclick="employmentStatusValue(this)" />
-                            <label asp-for="@Model.Employment.employment_status" class="form-label">Submitted Documents</label>
+                            <label asp-for="@Model.Employment.employment_status" class="form-label bold-underline">Submitted Documents</label>
                             <div class="indent-1 mb-4">
-                                <input asp-for="@Model.Employment.submitted_documents_date" class="form-control" type="date" id="submitDocsDate" />
+                                <input asp-for="@Model.Employment.submitted_documents_date" class="form-control" type="date" id="submitDocsDate" disabled />
                             </div>
                             <input asp-for="@Model.Employment.employment_status" class="form-check-input" type="radio" value="For Interview" id="forInterview" onclick="employmentStatusValue(this)" />
-                            <label asp-for="@Model.Employment.employment_status" class="form-label">For Interview</label>
+                            <label asp-for="@Model.Employment.employment_status" class="form-label bold-underline">For Interview</label>
                             <div class="indent-1 mb-4">
-                                <input asp-for="@Model.Employment.interview_date" class="form-control" type="date" id="interviewDate" />
+                                <input asp-for="@Model.Employment.interview_date" class="form-control" type="date" id="interviewDate" disabled />
                             </div>
                             <input asp-for="@Model.Employment.employment_status" class="form-check-input" type="radio" value="Not Hired" id="notHired" onclick="employmentStatusValue(this)" />
-                            <label asp-for="@Model.Employment.employment_status" class="form-label">Not Hired</label>
+                            <label asp-for="@Model.Employment.employment_status" class="form-label bold-underline">Not Hired</label>
                             <div class="indent-1 mb-4">
                                 <label asp-for="@Model.Employment.not_hired_reason" class="form-label">Reason</label>
-                                <select asp-for="@Model.Employment.not_hired_reason" class="form-control" id="notHired">
+                                <select asp-for="@Model.Employment.not_hired_reason" class="form-control" id="notHiredReason" disabled>
                                     <option value="">None</option>
                                     <option value="Underage">Underage</option>
                                     <option value="Upskilling">Upskilling</option>
@@ -198,8 +213,6 @@
         </div>
     </div>
 </form>
-
-
 
 <script src="~/js/Records/edit.js" asp-append-version="true"></script>
 

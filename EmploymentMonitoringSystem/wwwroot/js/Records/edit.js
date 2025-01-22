@@ -123,19 +123,45 @@ function notRefer() {
     resetDate(referralDate);
 }
 
-function contactStatus() {
-    if (invalidContact.checked == true) {
-        invalidContact.value = "Yes";
-    }
-    else {
-        invalidContact.value = "No";
-    }
-}
-
 // EMPLOYMENT STATUS
 
+let hired = document.getElementById("hiredDate");
+let submitDocs = document.getElementById("submitDocsDate");
+let forInterview = document.getElementById("interviewDate");
+let notHired = document.getElementById("notHiredReason");
+
 function employmentStatusValue(element) {
-    console.log(`Checked: ${element.value}`);
+    if (element.id === "hired") {
+        hired.disabled = false;
+    }
+    else {
+        hired.disabled = true;
+        resetDate(hired);
+    }
+
+    if (element.id === "submitDocs") {
+        submitDocs.disabled = false;
+    }
+    else {
+        submitDocs.disabled = true;
+        resetDate(submitDocs);
+    }
+
+    if (element.id === "forInterview") {
+        forInterview.disabled = false;
+    }
+    else {
+        forInterview.disabled = true;
+        resetDate(forInterview);
+    }
+
+    if (element.id === "notHired") {
+        notHired.disabled = false;
+    }
+    else {
+        notHired.disabled = true;
+        notHired.value = "";
+    }
 }
 
 function resetDate(element) {

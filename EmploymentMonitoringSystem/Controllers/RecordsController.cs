@@ -102,7 +102,6 @@ namespace EmploymentMonitoringSystem.Controllers
         [HttpPost]
         public IActionResult Edit(Utilities.Records model)
         {
-            // Kailangan ma-POST ang 2 model, hindi pwede ang Utilities.Records
             if (model == null)
             {
                 return BadRequest(ModelState);
@@ -113,10 +112,26 @@ namespace EmploymentMonitoringSystem.Controllers
                     return View(model);
 
                 if (model.Verification == null)
-                    return BadRequest(model);
+                {
+                    return BadRequest("Verification Model Bad Request");
+                }
                 else
                 {
+                    if (model.Employment == null)
+                    {
+                        model.Employment = new EmploymentRecord()
+                        {
+                            Id = model.Verification.Id
+                        };
+                    }
+
+                    if (model.Verification.invalid_contact == "true")
+                        model.Verification.invalid_contact = "Yes";
+                    else
+                        model.Verification.invalid_contact = "No";
+
                     _context.Verification_Records.Update(model.Verification);
+                    _context.Employment_Records.Update(model.Employment);
                     _context.SaveChanges();
                 }
 

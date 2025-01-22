@@ -23,19 +23,34 @@
 <div id="details" class="tabcontent">
     @if (Model.Initial != null)
     {
-        <p><b>Name: </b>@Model.Initial.full_name</p>
-        <p><b>Sex: </b>@Model.Initial.sex</p>
-        <p><b>Date of Birth: </b>@Model.Initial.birthdate</p>
-        <p><b>Contact Number: </b>@Model.Initial.contact_number</p>
-        <p><b>E-mail Address: </b>@Model.Initial.email</p>
-        <p><b>Address: </b>@Model.Initial.address</p>
-        <p><b>Sector: </b>@Model.Initial.sector</p>
-        <p><b>Qualification Title: </b>@Model.Initial.qualification_title</p>
-        <p><b>District: </b>@Model.Initial.district</p>
-        <p><b>City: </b>@Model.Initial.city</p>
-        <p><b>Type of Scholarship: </b>@Model.Initial.scholarship_type</p>
-        <p><b>Name of TVI: </b>@Model.Initial.tvi</p>
-        <p><b>Year of Graduation: </b>@Model.Initial.allocation</p>
+        <dl>
+            <dt>Name: </dt>
+            <dd>@Model.Initial.full_name</dd>
+            <dt>Sex: </dt>
+            <dd>@Model.Initial.sex</dd>
+            <dt>Date of Birth: </dt>
+            <dd>@Model.Initial.birthdate</dd>
+            <dt>Contact Number: </dt>
+            <dd>@Model.Initial.contact_number</dd>
+            <dt>E-mail Address: </dt>
+            <dd>@Model.Initial.email</dd>
+            <dt>Address: </dt>
+            <dd>@Model.Initial.address</dd>
+            <dt>Sector: </dt>
+            <dd>@Model.Initial.sector</dd>
+            <dt>Qualification Title: </dt>
+            <dd>@Model.Initial.qualification_title</dd>
+            <dt>District: </dt>
+            <dd>@Model.Initial.district</dd>
+            <dt>City: </dt>
+            <dd>@Model.Initial.city</dd>
+            <dt>Type of Scholarship: </dt>
+            <dd>@Model.Initial.scholarship_type</dd>
+            <dt>Name of TVI: </dt>
+            <dd>@Model.Initial.tvi</dd>
+            <dt>Year of Graduation: </dt>
+            <dd>@Model.Initial.allocation</dd>
+        </dl>
     }
 </div>
 
