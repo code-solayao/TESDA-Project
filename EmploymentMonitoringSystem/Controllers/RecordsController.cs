@@ -87,16 +87,24 @@ namespace EmploymentMonitoringSystem.Controllers
             VerificationRecord? verification = _context.Verification_Records.Find(Id);
             EmploymentRecord? employment = _context.Employment_Records.Find(Id);
 
-            Utilities.Records details = new Utilities.Records()
+            if (initial == null || verification == null || employment == null)
+                return BadRequest("ERROR 400 BAD REQUEST: Request body could not be read properly.");
+            else
             {
-                Initial = initial,
-                Verification = verification,
-                Employment = employment,
-            };
-            if (details.Initial == null || details.Verification == null || details.Employment == null) 
-                return BadRequest();
-            else 
+                if (verification.invalid_contact == "Yes")
+                    verification.invalid_contact = "true";
+                else
+                    verification.invalid_contact = "false";
+
+                Utilities.Records details = new Utilities.Records()
+                {
+                    Initial = initial,
+                    Verification = verification,
+                    Employment = employment,
+                };
+
                 return View(details);
+            }
         }
 
         [HttpPost]

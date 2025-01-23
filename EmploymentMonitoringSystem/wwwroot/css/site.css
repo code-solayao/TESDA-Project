@@ -41,19 +41,20 @@ div.div-toggle {
     width: 100%;
 }
 
+dd {
+    margin-bottom: 1em;
+}
+
 #details {
     background-color: white;
-    font-size: 1.3em;
 }
 
 #verification {
     background-color: white;
-    font-size: 1.3em;
 }
 
 #employment {
     background-color: white;
-    font-size: 1.3em;
 }
 
 .tablink {
@@ -69,6 +70,10 @@ div.div-toggle {
 }
 
 .tablink:hover {
+    background-color: #777;
+}
+
+.tablink:disabled {
     background-color: #777;
 }
 

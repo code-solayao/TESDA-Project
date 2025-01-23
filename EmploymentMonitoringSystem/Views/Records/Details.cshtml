@@ -17,10 +17,10 @@
 <div class="tab-buttons">
     <button id="defaultTab" class="tablink" onclick="openTabPage(`details`, this, `lightgrey`)">Details</button>
     <button class="tablink" onclick="openTabPage(`verification`, this, `lightgrey`)">Verification</button>
-    <button class="tablink" onclick="openTabPage(`employment`, this, `lightgrey`)">Employment</button>
+    <button id="disabledTab" class="tablink" onclick="openTabPage(`employment`, this, `lightgrey`)" disabled>Employment</button>
 </div>
 
-<div id="details" class="tabcontent">
+<div id="details" class="tabcontent" style="font-size: 1.3em;">
     @if (Model.Initial != null)
     {
         <dl>
@@ -29,7 +29,7 @@
             <dt>Sex: </dt>
             <dd>@Model.Initial.sex</dd>
             <dt>Date of Birth: </dt>
-            <dd>@Model.Initial.birthdate</dd>
+            <dd class="dateFormat">@Model.Initial.birthdate</dd>
             <dt>Contact Number: </dt>
             <dd>@Model.Initial.contact_number</dd>
             <dt>E-mail Address: </dt>
@@ -54,24 +54,55 @@
     }
 </div>
 
-<div id="verification" class="tabcontent">
+<div id="verification" class="tabcontent" style="font-size: 1.3em;">
     @if (Model.Verification != null)
     {
-        <p><b>Means of Verification: </b>@Model.Verification.verification_means</p>
-        <p><b>Date of Verification: </b>@Model.Verification.verification_date</p>
-        <p><b>Status of Verification: </b>@Model.Verification.verification_status</p>
-        <p><b>First Follow-up Date: </b>@Model.Verification.follow_up_date_1</p>
-        <p><b>Second Follow-up Date: </b>@Model.Verification.follow_up_date_2</p>
-        <p><b>Status of Response: </b>@Model.Verification.response_status</p>
-        <p><b>Reason (Not Interested): </b>@Model.Verification.not_interested_reason</p>
-        <p><b>Referral Status: </b>@Model.Verification.referral_status</p>
-        <p><b>Date of Referral: </b>@Model.Verification.referral_date</p>
-        <p><b>Reason (No Referral): </b>@Model.Verification.no_referral_reason</p>
-        <p><b>Invalid Contact: </b>@Model.Verification.invalid_contact</p>
+        <dl>
+            <dt>Means of Verification: </dt>
+            <dd>@Model.Verification.verification_means</dd>
+            <dt>Date of Verification: </dt>
+            <dd class="dateFormat">@Model.Verification.verification_date</dd>
+            <dt>Status of Verification: </dt>
+            <dd id="verification_status">@Model.Verification.verification_status</dd>
+            @if (Model.Verification.verification_status == "Responded")
+            {
+                <dt>Status of Response: </dt>
+                <dd>@Model.Verification.response_status</dd>
+                @if (Model.Verification.response_status == "Interested")
+                {
+                    <dt>Refer to Company? </dt>
+                    <dd id="referralStatus">@Model.Verification.referral_status</dd>
+                    @if (Model.Verification.referral_status == "Yes")
+                    {
+                        <dt>Date of Referral: </dt>
+                        <dd class="dateFormat">@Model.Verification.referral_date</dd>
+                    }
+                    else
+                    {
+                        <dt>Reason (No Referral): </dt>
+                        <dd>@Model.Verification.no_referral_reason</dd>
+                    }
+                }
+                else
+                {
+                    <dt>Reason (Not Interested): </dt>
+                    <dd>@Model.Verification.not_interested_reason</dd>
+                }
+            }
+            else 
+            {
+                <dt>First Follow-up Date: </dt>
+                <dd class="dateFormat">@Model.Verification.follow_up_date_1</dd>
+                <dt>Second Follow-up Date: </dt>
+                <dd class="dateFormat">@Model.Verification.follow_up_date_2</dd>
+                <dt>Invalid Contact? </dt>
+                <dd>@Model.Verification.invalid_contact</dd>
+            }
+        </dl>
     }
 </div>
 
-<div id="employment" class="tabcontent">
+<div id="employment" class="tabcontent" style="font-size: 1.3em;">
     @if (Model.Employment != null)
     {
         <p><b>Company Name: </b>@Model.Employment.company_name</p>
