@@ -1,4 +1,4 @@
-﻿function openTabPage(name, element, color) {
+﻿function openTabPage(name, element, backgroundColor, color) {
     let tabcontents;
     let tablinks;
 
@@ -19,8 +19,8 @@
     document.getElementById(name).style.display = "block";
 
     // Add the specific color to the button used to open the tab content
-    element.style.backgroundColor = color;
-    element.style.color = "black";
+    element.style.backgroundColor = backgroundColor;
+    element.style.color = color;
 }
 
 // Get the element with id="defaultOpen" and click on it

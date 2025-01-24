@@ -37,8 +37,10 @@ namespace EmploymentMonitoringSystem.Controllers
              * use last_name as key
              * use asp-validation-summary="All" only */
 
-            if (model == null) 
-                return BadRequest();
+            if (model == null)
+            {
+                return BadRequest("ERROR 400 BAD REQUEST: Request body could not be read properly.");
+            }
             else
             {
                 CheckExistingName(model);
@@ -72,10 +74,15 @@ namespace EmploymentMonitoringSystem.Controllers
                 Verification = verification,
                 Employment = employment,
             };
-            if (records.Initial == null || records.Verification == null || records.Employment == null) 
+
+            if (records.Initial == null || records.Verification == null || records.Employment == null)
+            {
                 return BadRequest();
-            else 
+            }
+            else
+            {
                 return View(records);
+            }
         }
 
         [HttpGet]
@@ -88,7 +95,9 @@ namespace EmploymentMonitoringSystem.Controllers
             EmploymentRecord? employment = _context.Employment_Records.Find(Id);
 
             if (initial == null || verification == null || employment == null)
+            {
                 return BadRequest("ERROR 400 BAD REQUEST: Request body could not be read properly.");
+            }
             else
             {
                 if (verification.invalid_contact == "Yes")
@@ -96,55 +105,78 @@ namespace EmploymentMonitoringSystem.Controllers
                 else
                     verification.invalid_contact = "false";
 
-                Utilities.Records details = new Utilities.Records()
+                Utilities.Records models = new Utilities.Records()
                 {
                     Initial = initial,
                     Verification = verification,
                     Employment = employment,
                 };
 
-                return View(details);
+                return View(models);
             }
         }
 
         [HttpPost]
-        public IActionResult Edit(Utilities.Records model)
+        public IActionResult Edit(Utilities.Records models)
         {
-            if (model == null)
+            if (models == null)
             {
-                return BadRequest(ModelState);
+                return BadRequest("ERROR 400 BAD REQUEST: Request body could not be read properly.");
             }
             else
             {
                 if (!ModelState.IsValid)
-                    return View(model);
+                    return View(models);
 
-                if (model.Verification == null)
-                {
-                    return BadRequest("Verification Model Bad Request");
-                }
+                if (models.Verification == null)
+                    return BadRequest("ERROR 400 BAD REQUEST: Request body could not be read properly.");
                 else
                 {
-                    if (model.Employment == null)
+                    if (models.Employment == null)
                     {
-                        model.Employment = new EmploymentRecord()
+                        models.Employment = new EmploymentRecord()
                         {
-                            Id = model.Verification.Id
+                            Id = models.Verification.Id
                         };
                     }
 
-                    if (model.Verification.invalid_contact == "true")
-                        model.Verification.invalid_contact = "Yes";
+                    if (models.Verification.invalid_contact == "true")
+                        models.Verification.invalid_contact = "Yes";
                     else
-                        model.Verification.invalid_contact = "No";
+                        models.Verification.invalid_contact = "No";
 
-                    _context.Verification_Records.Update(model.Verification);
-                    _context.Employment_Records.Update(model.Employment);
+                    _context.Verification_Records.Update(models.Verification);
+                    _context.Employment_Records.Update(models.Employment);
                     _context.SaveChanges();
                 }
 
                 return RedirectToAction("Index");
             }
+        }
+
+        public IActionResult Delete(int Id)
+        {
+            InitialRecord? initial = _context.Initial_Records.Find(Id);
+            VerificationRecord? verification = _context.Verification_Records.Find(Id);
+            EmploymentRecord? employment = _context.Employment_Records.Find(Id);
+
+            if (initial == null || verification == null || employment == null)
+                return BadRequest("ERROR 400 BAD REQUEST: Request body could not be read properly.");
+            else
+            {
+                _context.Initial_Records.Remove(initial);
+                _context.Verification_Records.Remove(verification);
+                _context.Employment_Records.Remove(employment);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteAll()
+        {
+            ClearAllRecords();
+            return RedirectToAction("Index");
         }
 
         #region Functions
@@ -178,14 +210,14 @@ namespace EmploymentMonitoringSystem.Controllers
                     }
 
                     if (result > 0)
-                        ModelState.AddModelError("last_name", "This name already exists. Please enter another name.");
+                        ModelState.AddModelError("Full Name", "This name already exists. Please enter another name.");
                     else model.full_name = full_name;
 
                     connection.Close();
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    ModelState.AddModelError("MySQL Exception 1", $"Error: {ex.Message}");
                 }
             }
 
@@ -209,6 +241,27 @@ namespace EmploymentMonitoringSystem.Controllers
                     full_name = $"{last_name} {extension_name}, {first_name} {middle_name}";
 
                 return full_name;
+            }
+        }
+
+        private void ClearAllRecords()
+        {
+            using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string sql = $"CALL clear_all_records();";
+                    MySqlCommand command = new MySqlCommand(sql, connection);
+                    command.ExecuteNonQuery();
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
 
