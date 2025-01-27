@@ -8,12 +8,13 @@
 
 <div class="text-center mb-4">
     <h1 class="display-4">Update Record</h1>
+    <a asp-controller="Records" asp-action="Index" class="btn btn-secondary">Cancel</a>
 </div>
 
 <div class="tab-buttons">
-    <button id="defaultTab" class="tablink" onclick="openTabPage(`details`, this, `lightgrey`)">Details</button>
-    <button class="tablink" onclick="openTabPage(`verification`, this, `lightgrey`)">Verification</button>
-    <button class="tablink" onclick="openTabPage(`employment`, this, `lightgrey`)">Employment</button>
+    <button id="defaultTab" class="tablink" onclick="openTabPage(`details`, this, `#7fbafa`, `white`)">Details</button>
+    <button class="tablink" onclick="openTabPage(`verification`, this, `#7fbafa`, `white`)">Verification</button>
+    <button class="tablink" onclick="openTabPage(`employment`, this, `#7fbafa`, `white`)">Employment</button>
 </div>
 
 <div id="details" class="tabcontent">

@@ -1,4 +1,21 @@
-﻿function openTabPage(name, element, backgroundColor, color) {
+﻿// TAB CONTROL
+
+document.getElementById("detailsTab").onclick = function() {
+    openTabPage(`details`, this, `#7fbafa`, `white`);
+}
+document.getElementById("verificationTab").onclick = function () {
+    openTabPage(`verification`, this, `#7fbafa`, `white`);
+}
+document.getElementById("employmentTab").onclick = function () {
+    openTabPage(`employment`, this, `#7fbafa`, `white`);
+}
+
+document.getElementById("detailsTab").click();
+
+hideShowTab();
+dateFormatRead();
+
+function openTabPage(name, element, backgroundColor, color) {
     let tabcontents;
     let tablinks;
 
@@ -23,17 +40,22 @@
     element.style.color = color;
 }
 
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultTab").click();
+function hideShowTab() {
+    let referralStatus = document.getElementById("referralStatus");
+    let employmentTab = document.getElementById("employmentTab");
 
-if (document.getElementById("referralStatus").textContent === "Yes") {
-    document.getElementById("disabledTab").disabled = false;
-}
-else {
-    document.getElementById("disabledTab").disabled = true;
+    if (referralStatus == null) {
+        return;
+    }
+
+    if (referralStatus.textContent === "Yes") {
+        employmentTab.disabled = false;
+    }
+    else {
+        employmentTab.disabled = true;
+    }
 }
 
-dateFormatRead();
 function dateFormatRead() {
     let dateFormats = document.getElementsByClassName("dateFormat");
     let year = "";

@@ -9,6 +9,7 @@
 
 <div class="text-center">
     <h1 class="display-4">Create an Entry</h1>
+    <a asp-controller="Records" asp-action="Index" class="btn btn-secondary">Cancel</a>
 </div>
 
 <div class="container mt-4">
@@ -93,7 +94,7 @@
         </div>
         <div class="form-group mb-4">
             <label asp-for="district" class="form-label control-label">District</label>
-            <select asp-for="district" class="form-control" id="selectDistrict" onchange="setOptionValue(this)">
+            <select asp-for="district" class="form-control" id="selectDistrict">
                 <option value="">None</option>
                 <option value="CaMaNaVa">CaMaNaVa</option>
                 <option value="Manila">Manila</option>

@@ -1,27 +1,10 @@
-﻿var district = document.getElementById("selectDistrict");
-var city = document.getElementById("selectCity");
-
-var optionValue;
-
-districtToCitySelection();
-
-function addOption(text) {
-    let option = document.createElement("option");
-    option.text = text;
-
-    if (text == "None") {
-        option.value = "";
-    }
-
-    return option;
+﻿document.getElementById("selectDistrict").onchange = function () {
+    districtToCitySelection(this.value);
 }
 
-function setOptionValue(e) {
-    optionValue = e.value;
-    districtToCitySelection();
-}
+function districtToCitySelection(optionValue) {
+    let city = document.getElementById("selectCity");
 
-function districtToCitySelection() {
     let length = city.options.length - 1;
     for (let i = length; i >= 0; i--) {
         city.remove(i);
@@ -88,4 +71,15 @@ function districtToCitySelection() {
             city.add(addOption("Valenzuela City"));
             break;
     }
+}
+
+function addOption(text) {
+    let option = document.createElement("option");
+    option.text = text;
+
+    if (text == "None") {
+        option.value = "";
+    }
+
+    return option;
 }

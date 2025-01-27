@@ -3,7 +3,7 @@
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultTab").click();
 
-function openTabPage(name, element, color) {
+function openTabPage(name, element, backgroundColor, color) {
     let tabcontents;
     let tablinks;
 
@@ -24,8 +24,8 @@ function openTabPage(name, element, color) {
     document.getElementById(name).style.display = "block";
 
     // Add the specific color to the button used to open the tab content
-    element.style.backgroundColor = color;
-    element.style.color = "black";
+    element.style.backgroundColor = backgroundColor;
+    element.style.color = color;
 
     if (name !== "employment") return;
     if (referYes.checked == true) {
