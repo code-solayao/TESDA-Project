@@ -1,6 +1,4 @@
-﻿// TAB CONTROL
-
-document.getElementById("detailsTab").onclick = function() {
+﻿document.getElementById("detailsTab").onclick = function() {
     openTabPage(`details`, this, `#7fbafa`, `white`);
 }
 document.getElementById("verificationTab").onclick = function () {

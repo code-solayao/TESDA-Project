@@ -28,33 +28,33 @@
     </div>
 </div>
 
-<div class="table-responsive">
-    <table class="table table-striped table-hover">
+<div id="tableWrapper" class="table-responsive">
+    <table id="recordsTable" class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>No.</th>
-                <th>Last name</th>
-                <th>First name</th>
-                <th>Middle name</th>
-                <th>Ext.</th>
-                <th>Status of Employment</th>
-                <th>Year of Graduation</th>
-                <th>Qualification Title</th>
-                <th></th>
+                <th class="table-header">No.</th>
+                <th class="table-header">Last name</th>
+                <th class="table-header">First name</th>
+                <th class="table-header">Middle name</th>
+                <th class="table-header">Ext.</th>
+                <th class="table-header">Status of Employment</th>
+                <th class="table-header">Year of Graduation</th>
+                <th class="table-header">Qualification Title</th>
+                <th class="table-header"></th>
             </tr>
         </thead>
         <tbody>
             @for (int i = 0; i < Model.InitialRecords.Count; i++)
             {
                 <tr>
-                    <td>@Model.InitialRecords[i].Id</td>
-                    <td>@Model.InitialRecords[i].last_name</td>
-                    <td>@Model.InitialRecords[i].first_name</td>
-                    <td>@Model.InitialRecords[i].middle_name</td>
-                    <td>@Model.InitialRecords[i].extension_name</td>
-                    <td>@Model.EmploymentRecords[i].employment_status</td>
-                    <td>@Model.InitialRecords[i].allocation</td>
-                    <td>@Model.InitialRecords[i].qualification_title</td>
+                    <td class="table-data">@Model.InitialRecords[i].Id</td>
+                    <td class="table-data">@Model.InitialRecords[i].last_name</td>
+                    <td class="table-data">@Model.InitialRecords[i].first_name</td>
+                    <td class="table-data">@Model.InitialRecords[i].middle_name</td>
+                    <td class="table-data">@Model.InitialRecords[i].extension_name</td>
+                    <td class="table-data">@Model.EmploymentRecords[i].employment_status</td>
+                    <td class="table-data">@Model.InitialRecords[i].allocation</td>
+                    <td class="table-data">@Model.InitialRecords[i].qualification_title</td>
                     <td>
                         <a asp-action="Details" asp-route-id="@Model.InitialRecords[i].Id" class="btn btn-secondary btn-sm">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book-half" viewBox="0 0 16 16">
@@ -67,3 +67,4 @@
         </tbody>
     </table>
 </div>
+

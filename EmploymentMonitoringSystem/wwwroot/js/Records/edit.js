@@ -1,20 +1,40 @@
-﻿// TAB CONTROL
+﻿var detailsTab = document.getElementById("detailsTab");
 
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultTab").click();
+var referralStatus = document.getElementById("referralStatus");
+var referYes = document.getElementById("referYes");
+var referNo = document.getElementById("referNo");
+var referralDate = document.getElementById("referralDate");
+var noReferralReason = document.getElementById("noReferralReason");
+
+var notInterestedReason = document.getElementById("notInterestedReason");
+
+detailsTab.onclick = function () {
+    openTabPage(`details`, this, `#7fbafa`, `white`);
+}
+document.getElementById("verificationTab").onclick = function () {
+    openTabPage(`verification`, this, `#7fbafa`, `white`);
+}
+document.getElementById("employmentTab").onclick = function () {
+    openTabPage(`employment`, this, `#7fbafa`, `white`);
+}
+
+detailsTab.click();
+
+document.getElementById("responded").style.display = "none";
+document.getElementById("noResponse").style.display = "none";
+
+dateFormatRead();
 
 function openTabPage(name, element, backgroundColor, color) {
-    let tabcontents;
-    let tablinks;
+    let tabcontents = document.getElementsByClassName("tabcontent");
+    let tablinks = document.getElementsByClassName("tablink");
 
     // Hide all elements with class="tabcontent" by default
-    tabcontents = document.getElementsByClassName("tabcontent");
     for (let i = 0; i < tabcontents.length; i++) {
         tabcontents[i].style.display = "none";
     }
 
     // Remove the background color of all tablinks/buttons
-    tablinks = document.getElementsByClassName("tablink");
     for (let i = 0; i < tablinks.length; i++) {
         tablinks[i].style.backgroundColor = "";
         tablinks[i].style.color = "white";
@@ -39,13 +59,10 @@ function openTabPage(name, element, backgroundColor, color) {
 
 // STATUS OF VERIFICATION
 
-var responded = document.getElementById("responded");
-var noResponse = document.getElementById("noResponse");
-
-responded.style.display = "none";
-noResponse.style.display = "none";
-
 function verificationStatusValue(respond) {
+    let responded = document.getElementById("responded");
+    let noResponse = document.getElementById("noResponse");
+
     if (respond == true) {
         responded.style.display = "block";
         noResponse.style.display = "none";
@@ -58,29 +75,17 @@ function verificationStatusValue(respond) {
     }
 }
 
-var interested = document.getElementById("interested");
-var referralStatus = document.getElementById("referralStatus");
-var referYes = document.getElementById("referYes");
-var referNo = document.getElementById("referNo");
-var referralDate = document.getElementById("referralDate");
-var noReferralReason = document.getElementById("noReferralReason");
-
-var notInterested = document.getElementById("notInterested");
-var notInterestedReason = document.getElementById("notInterestedReason");
-
-var followup1 = document.getElementById("followup1");
-var followup2 = document.getElementById("followup2");
-var invalidContact = document.getElementById("invalidContact");
-
 function respondedStatus() {
-    resetDate(followup1);
-    resetDate(followup2);
+    resetDate(document.getElementById("followup1"));
+    resetDate(document.getElementById("followup2"));
+
+    let invalidContact = document.getElementById("invalidContact");
     invalidContact.checked = false;
     invalidContact.value = "";
 }
 
 function noResponseStatus() {
-    interested.checked = false;
+    document.getElementById("interested").checked = false;
     referralStatus.disabled = true;
     referYes.checked = false;
     referNo.checked = false;
@@ -89,7 +94,7 @@ function noResponseStatus() {
     noReferralReason.disabled = true;
     noReferralReason.value = "";
 
-    notInterested.checked = false;
+    document.getElementById("notInterested").checked = false;
     notInterestedReason.disabled = true;
     notInterestedReason.value = "";
 }
@@ -125,12 +130,12 @@ function notRefer() {
 
 // EMPLOYMENT STATUS
 
-let hired = document.getElementById("hiredDate");
-let submitDocs = document.getElementById("submitDocsDate");
-let forInterview = document.getElementById("interviewDate");
-let notHired = document.getElementById("notHiredReason");
-
 function employmentStatusValue(element) {
+    let hired = document.getElementById("hiredDate");
+    let submitDocs = document.getElementById("submitDocsDate");
+    let forInterview = document.getElementById("interviewDate");
+    let notHired = document.getElementById("notHiredReason");
+
     if (element.id === "hired") {
         hired.disabled = false;
     }
@@ -161,6 +166,80 @@ function employmentStatusValue(element) {
     else {
         notHired.disabled = true;
         notHired.value = "";
+    }
+}
+
+function dateFormatRead() {
+    let dateFormats = document.getElementsByClassName("dateFormat");
+    let year = "";
+    let month = "";
+    let day = "";
+
+    let monthName = "";
+    for (let dateFormat of dateFormats) {
+        if (dateFormat.textContent == "") {
+            continue;
+        }
+
+        year = dateFormat.textContent.slice(0, 4);
+        month = dateFormat.textContent.slice(5, 7);
+        day = dateFormat.textContent.slice(8, 10);
+
+        switch (month) {
+            case "01":
+                monthName = "January";
+                break;
+
+            case "02":
+                monthName = "February";
+                break;
+
+            case "03":
+                monthName = "March";
+                break;
+
+            case "04":
+                monthName = "April";
+                break;
+
+            case "05":
+                monthName = "May";
+                break;
+
+            case "06":
+                monthName = "June";
+                break;
+
+            case "07":
+                monthName = "July";
+                break;
+
+            case "08":
+                monthName = "August";
+                break;
+
+            case "09":
+                monthName = "September";
+                break;
+
+            case "10":
+                monthName = "October";
+                break;
+
+            case "11":
+                monthName = "November";
+                break;
+
+            case "12":
+                monthName = "December";
+                break;
+
+            default:
+                monthName = "Month"
+                break;
+        }
+
+        dateFormat.textContent = `${monthName} ${day}, ${year}`;
     }
 }
 
