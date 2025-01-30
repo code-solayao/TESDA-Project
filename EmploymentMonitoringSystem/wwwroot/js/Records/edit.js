@@ -1,8 +1,14 @@
 ﻿var detailsTab = document.getElementById("detailsTab");
 
-var referralStatus = document.getElementById("referralStatus");
-var referYes = document.getElementById("referYes");
-var referNo = document.getElementById("referNo");
+var respondedBtn = document.getElementById("respondedBtn");
+var noResponseBtn = document.getElementById("noResponseBtn");
+
+var interestedBtn = document.getElementById("interestedBtn");
+var notInterestedBtn = document.getElementById("notInterestedBtn");
+
+var referralStatusForm = document.getElementById("referralStatusForm");
+var referYesBtn = document.getElementById("referYesBtn");
+var referNoBtn = document.getElementById("referNoBtn");
 var referralDate = document.getElementById("referralDate");
 var noReferralReason = document.getElementById("noReferralReason");
 
@@ -13,12 +19,56 @@ detailsTab.onclick = function () {
 }
 document.getElementById("verificationTab").onclick = function () {
     openTabPage(`verification`, this, `#7fbafa`, `white`);
+    refreshLogic();
 }
 document.getElementById("employmentTab").onclick = function () {
     openTabPage(`employment`, this, `#7fbafa`, `white`);
 }
 
 detailsTab.click();
+
+respondedBtn.onclick = function () {
+    verificationStatusValue(true);
+}
+noResponseBtn.onclick = function () {
+    verificationStatusValue(false);
+}
+
+interestedBtn.onclick = function () {
+    referralStatusForm.disabled = false;
+    notInterestedReason.disabled = true;
+    notInterestedReason.value = "";
+}
+document.getElementById("notInterestedBtn").onclick = function () {
+    notInterestedReason.disabled = false;
+    referralStatusForm.disabled = true;
+    referYesBtn.checked = false;
+    referNoBtn.checked = false;
+    referralDate.disabled = true;
+    resetDate(referralDate);
+    noReferralReason.disabled = true;
+    noReferralReason.value = "";
+}
+
+referYesBtn.onclick = function () {
+    referralStatus(true);
+}
+referNoBtn.onclick = function () {
+    referralStatus(false);
+}
+
+document.getElementById("hired").onclick = function () {
+    employmentStatusValue(this.id);
+}
+document.getElementById("submitDocs").onclick = function () {
+    employmentStatusValue(this.id);
+}
+document.getElementById("forInterview").onclick = function () {
+    employmentStatusValue(this.id);
+}
+document.getElementById("notHired").onclick = function () {
+    employmentStatusValue(this.id);
+}
 
 document.getElementById("responded").style.display = "none";
 document.getElementById("noResponse").style.display = "none";
@@ -48,7 +98,7 @@ function openTabPage(name, element, backgroundColor, color) {
     element.style.color = color;
 
     if (name !== "employment") return;
-    if (referYes.checked == true) {
+    if (referYesBtn.checked == true) {
         document.getElementById("employmentField").disabled = false;
     }
     else {
@@ -56,8 +106,6 @@ function openTabPage(name, element, backgroundColor, color) {
     }
 
 }
-
-// STATUS OF VERIFICATION
 
 function verificationStatusValue(respond) {
     let responded = document.getElementById("responded");
@@ -85,58 +133,40 @@ function respondedStatus() {
 }
 
 function noResponseStatus() {
-    document.getElementById("interested").checked = false;
-    referralStatus.disabled = true;
-    referYes.checked = false;
-    referNo.checked = false;
+    interestedBtn.checked = false;
+    referralStatusForm.disabled = true;
+    referYesBtn.checked = false;
+    referNoBtn.checked = false;
     referralDate.disabled = true;
     resetDate(referralDate);
     noReferralReason.disabled = true;
     noReferralReason.value = "";
 
-    document.getElementById("notInterested").checked = false;
+    document.getElementById("notInterestedBtn").checked = false;
     notInterestedReason.disabled = true;
     notInterestedReason.value = "";
 }
 
-function isInterested() {
-    referralStatus.disabled = false;
-    notInterestedReason.disabled = true;
-    notInterestedReason.value = "";
+function referralStatus(refer) {
+    if (refer == true) {
+        referralDate.disabled = false;
+        noReferralReason.disabled = true;
+        noReferralReason.value = "";
+    }
+    else {
+        noReferralReason.disabled = false;
+        referralDate.disabled = true;
+        resetDate(referralDate);
+    }
 }
 
-function isNotInterested() {
-    notInterestedReason.disabled = false;
-    referralStatus.disabled = true;
-    referYes.checked = false;
-    referNo.checked = false;
-    referralDate.disabled = true;
-    resetDate(referralDate);
-    noReferralReason.disabled = true;
-    noReferralReason.value = "";
-}
-
-function canRefer() {
-    referralDate.disabled = false;
-    noReferralReason.disabled = true;
-    noReferralReason.value = "";
-}
-
-function notRefer() {
-    noReferralReason.disabled = false;
-    referralDate.disabled = true;
-    resetDate(referralDate);
-}
-
-// EMPLOYMENT STATUS
-
-function employmentStatusValue(element) {
+function employmentStatusValue(id) {
     let hired = document.getElementById("hiredDate");
     let submitDocs = document.getElementById("submitDocsDate");
     let forInterview = document.getElementById("interviewDate");
     let notHired = document.getElementById("notHiredReason");
 
-    if (element.id === "hired") {
+    if (id === "hired") {
         hired.disabled = false;
     }
     else {
@@ -144,7 +174,7 @@ function employmentStatusValue(element) {
         resetDate(hired);
     }
 
-    if (element.id === "submitDocs") {
+    if (id === "submitDocs") {
         submitDocs.disabled = false;
     }
     else {
@@ -152,7 +182,7 @@ function employmentStatusValue(element) {
         resetDate(submitDocs);
     }
 
-    if (element.id === "forInterview") {
+    if (id === "forInterview") {
         forInterview.disabled = false;
     }
     else {
@@ -160,7 +190,7 @@ function employmentStatusValue(element) {
         resetDate(forInterview);
     }
 
-    if (element.id === "notHired") {
+    if (id === "notHired") {
         notHired.disabled = false;
     }
     else {
@@ -251,5 +281,25 @@ function resetDate(element) {
         // update the input content visually
         element.type = "text";
         element.type = "date";
+    }
+}
+
+function refreshLogic() {
+    if (respondedBtn.checked == true) {
+        respondedBtn.click();
+    }
+
+    if (interestedBtn.checked == true) {
+        interestedBtn.click();
+    }
+    if (notInterestedBtn.checked == true) {
+        notInterestedBtn.click();
+    }
+
+    if (referYesBtn.checked == true) {
+        referYesBtn.click();
+    }
+    if (referNoBtn.checked == true) {
+        referNoBtn.click();
     }
 }

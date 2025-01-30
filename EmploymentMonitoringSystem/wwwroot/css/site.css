@@ -21,12 +21,12 @@ body {
     margin-bottom: 100px;
 }
 
-label.control-label {
+label.control-label-1 {
     font-weight: bold;
     font-size: 1.3em;
 }
 
-label.control-label-1 {
+label.control-label-2 {
     font-weight: bold;
     font-size: 1.1em;
 }

@@ -17,19 +17,19 @@
         <div asp-validation-summary="All" class="text-danger"></div>
         <!-- FULL NAME -->
         <div class="form-group mb-4">
-            <label asp-for="last_name" class="form-label control-label">Last Name</label>
+            <label asp-for="last_name" class="form-label control-label-1">Last Name</label>
             <input asp-for="last_name" class="form-control" type="text" placeholder="Enter last name" />
         </div>
         <div class="form-group mb-4">
-            <label asp-for="first_name" class="form-label control-label">First Name</label>
+            <label asp-for="first_name" class="form-label control-label-1">First Name</label>
             <input asp-for="first_name" class="form-control" type="text" placeholder="Enter first name" />
         </div>
         <div class="form-group mb-4">
-            <label asp-for="middle_name" class="form-label control-label">Middle Name</label>
+            <label asp-for="middle_name" class="form-label control-label-1">Middle Name</label>
             <input asp-for="middle_name" class="form-control" type="text" placeholder="Enter middle name" />
         </div>
         <div class="form-group mb-5">
-            <label asp-for="extension_name" class="form-label control-label">Extension Name</label>
+            <label asp-for="extension_name" class="form-label control-label-1">Extension Name</label>
             <select asp-for="extension_name" class="form-control">
                 <option value="">None</option>
                 <option value="Sr.">Sr.</option>
@@ -39,7 +39,7 @@
         </div>
         <!-- INITIAL DATA -->
         <div class="form-group mb-3">
-            <label asp-for="sex" class="form-label control-label">Sex</label>
+            <label asp-for="sex" class="form-label control-label-1">Sex</label>
 
             <div>
                 <input asp-for="sex" class="form-check-input" type="radio" value="Male" />
@@ -50,23 +50,23 @@
             </div>
         </div>
         <div class="form-group mb-4">
-            <label asp-for="birthdate" class="form-label control-label">Date of Birth</label>
+            <label asp-for="birthdate" class="form-label control-label-1">Date of Birth</label>
             <input asp-for="birthdate" class="form-control" type="date" />
         </div>
         <div class="form-group mb-4">
-            <label asp-for="contact_number" class="form-label control-label">Contact Number</label>
+            <label asp-for="contact_number" class="form-label control-label-1">Contact Number</label>
             <input asp-for="contact_number" class="form-control" type="text" placeholder="0900-000-0000" />
         </div>
         <div class="form-group mb-4">
-            <label asp-for="address" class="form-label control-label">Address</label>
+            <label asp-for="address" class="form-label control-label-1">Address</label>
             <input asp-for="address" row="5" class="form-control" type="text" />
         </div>
         <div class="form-group mb-4">
-            <label asp-for="email" class="form-label control-label">E-mail Address</label>
+            <label asp-for="email" class="form-label control-label-1">E-mail Address</label>
             <input asp-for="email" class="form-control" type="email" placeholder="username@email.com" />
         </div>
         <div class="form-group mb-4">
-            <label asp-for="sector" class="form-label control-label">Sector</label>
+            <label asp-for="sector" class="form-label control-label-1">Sector</label>
             <select asp-for="sector" class="form-control">
                 <option value="">None</option>
                 <option value="Agriculture">Agriculture</option>
@@ -89,11 +89,11 @@
             </select>
         </div>
         <div class="form-group mb-4">
-            <label asp-for="qualification_title" class="form-label control-label">Qualification Title</label>
+            <label asp-for="qualification_title" class="form-label control-label-1">Qualification Title</label>
             <input asp-for="qualification_title" class="form-control" type="text" />
         </div>
         <div class="form-group mb-4">
-            <label asp-for="district" class="form-label control-label">District</label>
+            <label asp-for="district" class="form-label control-label-1">District</label>
             <select asp-for="district" class="form-control" id="selectDistrict">
                 <option value="">None</option>
                 <option value="CaMaNaVa">CaMaNaVa</option>
@@ -105,7 +105,7 @@
             </select>
         </div>
         <div class="form-group mb-4">
-            <label asp-for="city" class="form-label control-label">City</label>
+            <label asp-for="city" class="form-label control-label-1">City</label>
             <select asp-for="city" class="form-control" id="selectCity">
                 <option value="">None</option>
                 <option value="Caloocan City">Caloocan City</option>
@@ -127,7 +127,7 @@
             </select>
         </div>
         <div class="form-group mb-4">
-            <label asp-for="scholarship_type" class="form-label control-label">Type of Scholarship</label>
+            <label asp-for="scholarship_type" class="form-label control-label-1">Type of Scholarship</label>
             <select asp-for="scholarship_type" class="form-control">
                 <option value="">None</option>
                 <option value="STEP">STEP</option>
@@ -139,11 +139,11 @@
             </select>
         </div>
         <div class="form-group mb-4">
-            <label asp-for="tvi" class="form-label control-label">Name of TVI</label>
+            <label asp-for="tvi" class="form-label control-label-1">Name of TVI</label>
             <input asp-for="tvi" class="form-control" type="text" />
         </div>
         <div class="form-group mb-3">
-            <label asp-for="allocation" class="form-label control-label">Year of Graduation</label>
+            <label asp-for="allocation" class="form-label control-label-1">Year of Graduation</label>
             <div>
                 <input asp-for="allocation" class="form-check-input" type="radio" value="2023" />
                 <label asp-for="allocation" class="form-label">2023</label>

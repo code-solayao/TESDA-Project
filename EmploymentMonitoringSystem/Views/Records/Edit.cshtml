@@ -12,9 +12,9 @@
 </div>
 
 <div class="tab-buttons">
-    <button id="detailsTab" class="tablink">Details</button>
-    <button id="verificationTab" class="tablink">Verification</button>
-    <button id="employmentTab" class="tablink">Employment</button>
+    <button class="tablink" id="detailsTab">Details</button>
+    <button class="tablink" id="verificationTab">Verification</button>
+    <button class="tablink" id="employmentTab">Employment</button>
 </div>
 
 <div id="details" class="tabcontent">
@@ -61,7 +61,7 @@
                     <input asp-for="@Model.Verification.Id" class="form-control" type="number" placeholder="0" hidden />
                 </div>
                 <div class="form-group mb-4">
-                    <label asp-for="@Model.Verification.verification_means" class="form-label control-label">Means of Verification</label>
+                    <label asp-for="@Model.Verification.verification_means" class="form-label control-label-1">Means of Verification</label>
                     <select asp-for="@Model.Verification.verification_means" class="form-control">
                         <option value="">None</option>
                         <option value="For Verification">For Verification</option>
@@ -71,38 +71,38 @@
                     </select>
                 </div>
                 <div class="form-group mb-4">
-                    <label asp-for="@Model.Verification.verification_date" class="form-label control-label">Date of Verification</label>
+                    <label asp-for="@Model.Verification.verification_date" class="form-label control-label-1">Date of Verification</label>
                     <input asp-for="@Model.Verification.verification_date" class="form-control" type="date" />
                 </div>
                 <div class="form-group">
-                    <label asp-for="@Model.Verification.verification_status" class="form-label control-label">Status of Verification</label>
+                    <label asp-for="@Model.Verification.verification_status" class="form-label control-label-1">Status of Verification</label>
 
                     <div class="form-check">
-                        <input asp-for="@Model.Verification.verification_status" class="form-check-input" type="radio" value="Responded" onclick="verificationStatusValue(true)" />
+                        <input asp-for="@Model.Verification.verification_status" class="form-check-input" type="radio" value="Responded" id="respondedBtn" />
                         <label asp-for="@Model.Verification.verification_status" class="form-label">Responded</label>
                         <br />
-                        <input asp-for="@Model.Verification.verification_status" class="form-check-input" type="radio" value="No Response" onclick="verificationStatusValue(false)" />
+                        <input asp-for="@Model.Verification.verification_status" class="form-check-input" type="radio" value="No Response" id="noResponseBtn" />
                         <label asp-for="@Model.Verification.verification_status" class="form-label">No Response</label>
                     </div>
                 </div>
                 <div class="div-toggle mb-4" id="responded">
                     <div class="form-group">
-                        <label asp-for="@Model.Verification.response_status" class="form-label control-label">Type of Response</label>
+                        <label asp-for="@Model.Verification.response_status" class="form-label control-label-1">Type of Response</label>
 
                         <div style="margin-left: 30px" class="form-check">
-                            <input asp-for="@Model.Verification.response_status" class="form-check-input" type="radio" value="Interested" id="interested" onclick="isInterested()" />
+                            <input asp-for="@Model.Verification.response_status" class="form-check-input" type="radio" value="Interested" id="interestedBtn" />
                             <label asp-for="@Model.Verification.response_status" class="form-label">Interested</label>
                             <div>
-                                <label asp-for="@Model.Verification.referral_status" class="form-label control-label-1">Refer to Company?</label>
+                                <label asp-for="@Model.Verification.referral_status" class="form-label control-label-2">Refer to Company?</label>
 
                                 <div style="margin-left: 30px">
-                                    <fieldset id="referralStatus" disabled>
-                                        <input asp-for="@Model.Verification.referral_status" class="form-check-input" type="radio" value="Yes" id="referYes" onclick="canRefer()" />
+                                    <fieldset id="referralStatusForm" disabled>
+                                        <input asp-for="@Model.Verification.referral_status" class="form-check-input" type="radio" value="Yes" id="referYesBtn" />
                                         <label asp-for="@Model.Verification.referral_status" class="form-label">YES</label>
                                         <br />
                                         <input asp-for="@Model.Verification.referral_date" class="form-control" type="date" id="referralDate" disabled />
                                         <br />
-                                        <input asp-for="@Model.Verification.referral_status" class="form-check-input" type="radio" value="No" id="referNo" onclick="notRefer()" />
+                                        <input asp-for="@Model.Verification.referral_status" class="form-check-input" type="radio" value="No" id="referNoBtn" />
                                         <label asp-for="@Model.Verification.referral_status" class="form-label">NO</label>
                                         <br />
                                         <label asp-for="@Model.Verification.no_referral_reason" class="form-label">Reason</label>
@@ -111,7 +111,7 @@
                                 </div>
                             </div><br />
 
-                            <input asp-for="@Model.Verification.response_status" class="form-check-input" type="radio" value="Not Interested" id="notInterested" onclick="isNotInterested()" />
+                            <input asp-for="@Model.Verification.response_status" class="form-check-input" type="radio" value="Not Interested" id="notInterestedBtn" />
                             <label asp-for="@Model.Verification.response_status" class="form-label">Not Interested</label>
                             <div>
                                 <label asp-for="@Model.Verification.not_interested_reason" class="form-label">Reason</label>
@@ -122,7 +122,7 @@
                 </div>
                 <div class="div-toggle mb-4" id="noResponse">
                     <div class="form-group">
-                        <label class="form-label control-label-1">No Response (For Follow-up)</label>
+                        <label class="form-label control-label-2">No Response (For Follow-up)</label>
 
                         <div style="margin-left: 30px" class="mb-4">
                             <label asp-for="@Model.Verification.follow_up_date_1" class="form-label">First Follow-up</label>
@@ -158,37 +158,37 @@
                         <input asp-for="@Model.Employment.Id" class="form-control" type="number" placeholder="0" id="test" hidden />
                     </div>
                     <div class="form-group mb-4">
-                        <label asp-for="@Model.Employment.company_name" class="form-label control-label">Name of Company</label>
+                        <label asp-for="@Model.Employment.company_name" class="form-label control-label-1">Name of Company</label>
                         <input asp-for="@Model.Employment.company_name" class="form-control" type="text" />
                     </div>
                     <div class="form-group mb-4">
-                        <label asp-for="@Model.Employment.company_address" class="form-label control-label">Address</label>
+                        <label asp-for="@Model.Employment.company_address" class="form-label control-label-1">Address</label>
                         <input asp-for="@Model.Employment.company_address" class="form-control" type="text" row="5" />
                     </div>
                     <div class="form-group mb-4">
-                        <label asp-for="@Model.Employment.job_title" class="form-label control-label">Job Title</label>
+                        <label asp-for="@Model.Employment.job_title" class="form-label control-label-1">Job Title</label>
                         <input asp-for="@Model.Employment.job_title" class="form-control" type="text" />
                     </div>
                     <div class="form-group mb-4">
-                        <label class="form-label control-label">Employment Status</label>
+                        <label class="form-label control-label-1">Employment Status</label>
 
                         <div class="form-check">
-                            <input asp-for="@Model.Employment.employment_status" class="form-check-input" type="radio" value="Hired" id="hired" onclick="employmentStatusValue(this)" />
+                            <input asp-for="@Model.Employment.employment_status" class="form-check-input" type="radio" value="Hired" id="hired" />
                             <label asp-for="@Model.Employment.employment_status" class="form-label bold-underline">Hired</label>
                             <div class="indent mb-4">
                                 <input asp-for="@Model.Employment.hired_date" class="form-control" type="date" id="hiredDate" disabled />
                             </div>
-                            <input asp-for="@Model.Employment.employment_status" class="form-check-input" type="radio" value="Submitted Documents" id="submitDocs" onclick="employmentStatusValue(this)" />
+                            <input asp-for="@Model.Employment.employment_status" class="form-check-input" type="radio" value="Submitted Documents" id="submitDocs" />
                             <label asp-for="@Model.Employment.employment_status" class="form-label bold-underline">Submitted Documents</label>
                             <div class="indent-1 mb-4">
                                 <input asp-for="@Model.Employment.submitted_documents_date" class="form-control" type="date" id="submitDocsDate" disabled />
                             </div>
-                            <input asp-for="@Model.Employment.employment_status" class="form-check-input" type="radio" value="For Interview" id="forInterview" onclick="employmentStatusValue(this)" />
+                            <input asp-for="@Model.Employment.employment_status" class="form-check-input" type="radio" value="For Interview" id="forInterview" />
                             <label asp-for="@Model.Employment.employment_status" class="form-label bold-underline">For Interview</label>
                             <div class="indent-1 mb-4">
                                 <input asp-for="@Model.Employment.interview_date" class="form-control" type="date" id="interviewDate" disabled />
                             </div>
-                            <input asp-for="@Model.Employment.employment_status" class="form-check-input" type="radio" value="Not Hired" id="notHired" onclick="employmentStatusValue(this)" />
+                            <input asp-for="@Model.Employment.employment_status" class="form-check-input" type="radio" value="Not Hired" id="notHired" />
                             <label asp-for="@Model.Employment.employment_status" class="form-label bold-underline">Not Hired</label>
                             <div class="indent-1 mb-4">
                                 <label asp-for="@Model.Employment.not_hired_reason" class="form-label">Reason</label>
