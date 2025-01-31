@@ -19,7 +19,7 @@ detailsTab.onclick = function () {
 }
 document.getElementById("verificationTab").onclick = function () {
     openTabPage(`verification`, this, `#7fbafa`, `white`);
-    refreshLogic();
+    refreshVerification();
 }
 document.getElementById("employmentTab").onclick = function () {
     openTabPage(`employment`, this, `#7fbafa`, `white`);
@@ -99,10 +99,10 @@ function openTabPage(name, element, backgroundColor, color) {
 
     if (name !== "employment") return;
     if (referYesBtn.checked == true) {
-        document.getElementById("employmentField").disabled = false;
+        employmentField(false);
     }
     else {
-        document.getElementById("employmentField").disabled = true;
+        employmentField(true);
     }
 
 }
@@ -157,6 +157,35 @@ function referralStatus(refer) {
         noReferralReason.disabled = false;
         referralDate.disabled = true;
         resetDate(referralDate);
+    }
+}
+
+function employmentField(isDisabled) {
+    let hiredDate = document.getElementById("hiredDate");
+    let submitDocsDate = document.getElementById("submitDocsDate");
+    let interviewDate = document.getElementById("interviewDate");
+    let notHiredReason = document.getElementById("notHiredReason");
+
+    document.getElementById("employmentField").disabled = isDisabled;
+
+    if (isDisabled) {
+        document.getElementById("companyName").value = "";
+        document.getElementById("companyAddress").value = "";
+        document.getElementById("jobTitle").value = "";
+
+        document.getElementById("hired").checked = false;
+        document.getElementById("submitDocs").checked = false;
+        document.getElementById("forInterview").checked = false;
+        document.getElementById("notHired").checked = false;
+
+        hiredDate.disabled = true;
+        resetDate(hiredDate);
+        submitDocsDate.disabled = true;
+        resetDate(submitDocsDate);
+        interviewDate.disabled = true;
+        resetDate(interviewDate);
+        notHiredReason.disabled = true;
+        notHiredReason.value = "";
     }
 }
 
@@ -284,7 +313,7 @@ function resetDate(element) {
     }
 }
 
-function refreshLogic() {
+function refreshVerification() {
     if (respondedBtn.checked == true) {
         respondedBtn.click();
     }
