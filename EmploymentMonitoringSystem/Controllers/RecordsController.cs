@@ -33,10 +33,7 @@ namespace EmploymentMonitoringSystem.Controllers
         [HttpPost]
         public IActionResult Create(InitialRecord model)
         {
-            /* band-aid solution to display exception message: 
-             * use last_name as key
-             * use asp-validation-summary="All" only */
-
+            // maybe merge all 3 records
             if (model == null)
             {
                 return BadRequest("ERROR 400 BAD REQUEST: Request body could not be read properly.");
@@ -154,11 +151,13 @@ namespace EmploymentMonitoringSystem.Controllers
             }
         }
 
-        public IActionResult Delete(int Id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int Id)
         {
-            InitialRecord? initial = _context.Initial_Records.Find(Id);
-            VerificationRecord? verification = _context.Verification_Records.Find(Id);
-            EmploymentRecord? employment = _context.Employment_Records.Find(Id);
+            InitialRecord? initial = await _context.Initial_Records.FindAsync(Id);
+            VerificationRecord? verification = await _context.Verification_Records.FindAsync(Id);
+            EmploymentRecord? employment = await _context.Employment_Records.FindAsync(Id);
 
             if (initial == null || verification == null || employment == null)
                 return BadRequest("ERROR 400 BAD REQUEST: Request body could not be read properly.");
@@ -167,15 +166,31 @@ namespace EmploymentMonitoringSystem.Controllers
                 _context.Initial_Records.Remove(initial);
                 _context.Verification_Records.Remove(verification);
                 _context.Employment_Records.Remove(employment);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
 
             return RedirectToAction("Index");
         }
 
-        public IActionResult DeleteAll()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteAll()
         {
-            ClearAllRecords();
+            // ClearAllRecords();
+            List<InitialRecord> initial = _context.Initial_Records.ToList();
+            List<VerificationRecord> verification = _context.Verification_Records.ToList();
+            List<EmploymentRecord> employment = _context.Employment_Records.ToList();
+
+            if (initial == null || verification == null || employment == null)
+                return BadRequest("ERROR 400 BAD REQUEST: Request body could not be read properly.");
+            else
+            {
+                _context.Initial_Records.RemoveRange(initial);
+                _context.Verification_Records.RemoveRange(verification);
+                _context.Employment_Records.RemoveRange(employment);
+                await _context.SaveChangesAsync();
+            }
+
             return RedirectToAction("Index");
         }
 

@@ -83,8 +83,10 @@
                 <p>The following action cannot be undone. Are you sure to clear all records here?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a asp-action="DeleteAll" class="btn btn-primary">Confirm</a>
+                <form asp-action="DeleteAll" method="post">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Confirm</button>
+                </form>
             </div>
         </div>
     </div>
