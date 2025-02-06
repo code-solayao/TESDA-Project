@@ -18,18 +18,5 @@ namespace EmploymentMonitoringSystem
                 return mySqlConnectionStringBuilder.ConnectionString;
             }
         }
-
-        public class DataRecordTable
-        {
-            public required List<Models.InitialRecord> InitialRecords { get; set; }
-            public required List<Models.EmploymentRecord> EmploymentRecords { get; set; }
-        }
-
-        public class Records
-        {
-            public Models.InitialRecord? Initial { get; set; }
-            public Models.VerificationRecord? Verification { get; set; }
-            public Models.EmploymentRecord? Employment { get; set; }
-        }
     }
 }

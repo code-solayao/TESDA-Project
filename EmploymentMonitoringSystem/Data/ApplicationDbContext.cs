@@ -10,9 +10,6 @@ namespace EmploymentMonitoringSystem.Data
             
         }
 
-        public DbSet<InitialRecord> Initial_Records { get; set; }
-        public DbSet<VerificationRecord> Verification_Records { get; set; }
-        public DbSet<EmploymentRecord> Employment_Records { get; set; }
-        public DbSet<ExternalRecord> External_Records { get; set; }
+        public DbSet<Graduate> Graduates { get; set; }
     }
 }

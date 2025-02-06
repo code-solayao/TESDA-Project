@@ -31,20 +31,6 @@ label.control-label-2 {
     font-size: 1.1em;
 }
 
-label.bold-underline {
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-div.div-toggle {
-    margin-top: 20px;
-    width: 100%;
-}
-
-dd {
-    margin-bottom: 1em;
-}
-
 #details {
     background-color: white;
     font-size: 1.3em;
@@ -85,4 +71,8 @@ dd {
     height: 100%;
     outline: solid;
     padding: 100px 20px;
+}
+
+dd {
+    margin-bottom: 1em;
 }
