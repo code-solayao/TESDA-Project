@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmploymentMonitoringSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250206021501_InitialSetup")]
+    [Migration("20250207080956_InitialSetup")]
     partial class InitialSetup
     {
         /// <inheritdoc />

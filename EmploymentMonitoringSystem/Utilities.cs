@@ -9,11 +9,11 @@ namespace EmploymentMonitoringSystem
             get
             {
                 MySqlConnectionStringBuilder mySqlConnectionStringBuilder = new MySqlConnectionStringBuilder();
-                mySqlConnectionStringBuilder.Server = "192.168.1.121";
-                mySqlConnectionStringBuilder.Port = 3306;
-                mySqlConnectionStringBuilder.UserID = "TesdaNCR";
-                mySqlConnectionStringBuilder.Password = "Mysql.Tesda2024";
-                mySqlConnectionStringBuilder.Database = "employment_monitoring_system";
+                mySqlConnectionStringBuilder.Server = "localhost";
+                //mySqlConnectionStringBuilder.Port = 3306;
+                mySqlConnectionStringBuilder.UserID = "root";
+                mySqlConnectionStringBuilder.Password = string.Empty;
+                mySqlConnectionStringBuilder.Database = "tesda_etrak_db";
 
                 return mySqlConnectionStringBuilder.ConnectionString;
             }

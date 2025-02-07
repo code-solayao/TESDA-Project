@@ -23,10 +23,11 @@ div.table-wrapper {
 }
 
 th.table-header {
+    background-color: grey;
+    color: white;
     position: sticky;
     top: 0px;
-    background-color: #7fbafa;
-    color: white;
+    /* background-color: #7fbafa; */
 }
 
 th.table-header, td.table-data {
