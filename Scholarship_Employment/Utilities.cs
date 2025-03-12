@@ -10,17 +10,17 @@ namespace Scholarship_Employment
             get
             {
                 MySqlConnectionStringBuilder mySqlConnectionStringBuilder = new MySqlConnectionStringBuilder();
-                mySqlConnectionStringBuilder.Server = "192.168.1.121";
+                mySqlConnectionStringBuilder.Server = "127.0.0.1";
                 mySqlConnectionStringBuilder.Port = 3306;
-                mySqlConnectionStringBuilder.UserID = "TesdaNCR";
-                mySqlConnectionStringBuilder.Password = "Mysql.Tesda2024";
-                mySqlConnectionStringBuilder.Database = "tesda_db";
+                mySqlConnectionStringBuilder.UserID = "root";
+                mySqlConnectionStringBuilder.Password = string.Empty;
+                mySqlConnectionStringBuilder.Database = "tesda_etrak";
 
                 return mySqlConnectionStringBuilder.ConnectionString;
             }
         }
 
-        public static string DbTable { get => "initial_records"; }
+        public static string DbTable { get => "graduates"; }
 
         // FrmFullName
 
