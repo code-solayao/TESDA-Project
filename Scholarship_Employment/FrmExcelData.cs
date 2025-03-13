@@ -157,7 +157,7 @@ namespace Scholarship_Employment
                         _qualification_title = DataGridView_CellString(i, 3);
                         _sector = DataGridView_CellString(i, 4);
                         _last_name = DataGridView_CellString(i, 5);
-                        _first_name = DataGridView_CellString(i, 6); 
+                        _first_name = DataGridView_CellString(i, 6);
                         _middle_name = DataGridView_CellString(i, 7);
                         _extension_name = DataGridView_CellString(i, 8);
                         _full_name = DataGridView_CellString(i, 9);
@@ -205,6 +205,9 @@ namespace Scholarship_Employment
                         _no_of_employed = DataGridView_CellString(i, 42);
                         _verification = DataGridView_CellString(i, 43);
                         _job_vacancies = DataGridView_CellString(i, 44);
+
+                        if (String.IsNullOrEmpty(_last_name) && String.IsNullOrEmpty(_first_name) && String.IsNullOrEmpty(_full_name)) 
+                            continue;
 
                         sql = "CALL import_records(" +
                             "@created_at, @updated_at, @district, @city, @tvi, " +
