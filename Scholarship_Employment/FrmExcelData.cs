@@ -303,9 +303,26 @@ namespace Scholarship_Employment
         private string DataGridView_CellString(int row, int cell)
         {
             object cellValue = dgvImport.Rows[row].Cells[cell].Value;
-
             if (cellValue == null) return string.Empty;
-            else return cellValue.ToString();
+
+            string value = cellValue.ToString();
+            if (value.Length == 5)
+            {
+                try
+                {
+                    // Wag ganto dahil ang sobrang tagal ma-process lahat!
+                    int serialNumber = int.Parse(value);
+                    DateTime excelBaseDate = new DateTime(1899, 12, 30);
+                    DateTime convertedDate = excelBaseDate.AddDays(serialNumber);
+                    return convertedDate.ToString("yyyy-MM-dd");
+                }
+                catch (FormatException e)
+                {
+                    return value;
+                }
+            }
+
+            return value;
         }
     }
 }
