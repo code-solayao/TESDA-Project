@@ -79,7 +79,7 @@ namespace Scholarship_Employment
 
         private void FrmExcelData_Load(object sender, EventArgs e)
         {
-            
+            lblLoading.Text = string.Empty;
         }
 
         private void btnLoadExcelData_Click(object sender, EventArgs e)
@@ -137,6 +137,7 @@ namespace Scholarship_Employment
 
         private void SubmitToDatabase()
         {
+            lblLoading.Text = "Loading...";
             using (MySqlConnection connection = new MySqlConnection(Utilities.MySqlConnectionString))
             {
                 try
@@ -174,13 +175,13 @@ namespace Scholarship_Employment
                         _employer_name = DataGridView_CellString(i, 20);
                         _employment_type = DataGridView_CellString(i, 21);
                         _work_address = DataGridView_CellString(i, 22);
-                        _date_hired = DataGridView_CellString(i, 23);
+                        _date_hired = DataGridView_CellStringDate(i, 23);
                         _allocation = DataGridView_CellString(i, 24);
 
                         _verification_means = DataGridView_CellString(i, 25);
-                        _verification_date = DataGridView_CellString(i, 26);
+                        _verification_date = DataGridView_CellStringDate(i, 26);
                         _verification_status = DataGridView_CellString(i, 27);
-                        _follow_up_date_1 = DataGridView_CellString(i, 28);
+                        _follow_up_date_1 = DataGridView_CellStringDate(i, 28);
                         _follow_up_date_2 = string.Empty;
                         _response_status = DataGridView_CellString(i, 29);
                         _not_interested_reason = DataGridView_CellString(i, 30);
@@ -195,7 +196,7 @@ namespace Scholarship_Employment
                         _application_status = DataGridView_CellString(i, 35);
                         _withdrawn_reason = DataGridView_CellString(i, 36);
                         _employment_status = DataGridView_CellString(i, 37);
-                        _hired_date = DataGridView_CellString(i, 38);
+                        _hired_date = DataGridView_CellStringDate(i, 38);
                         _submitted_documents_date = string.Empty;
                         _interview_date = string.Empty;
                         _not_hired_reason = DataGridView_CellString(i, 39);
@@ -298,6 +299,7 @@ namespace Scholarship_Employment
                     MessageBox.Show(ex.Message, "ERROR");
                 }
             }
+            lblLoading.Text = string.Empty;
         }
 
         private string DataGridView_CellString(int row, int cell)
@@ -306,20 +308,40 @@ namespace Scholarship_Employment
             if (cellValue == null) return string.Empty;
 
             string value = cellValue.ToString();
-            if (value.Length == 5)
+            switch (cell)
             {
-                try
-                {
-                    // Wag ganto dahil ang sobrang tagal ma-process lahat!
-                    int serialNumber = int.Parse(value);
-                    DateTime excelBaseDate = new DateTime(1899, 12, 30);
-                    DateTime convertedDate = excelBaseDate.AddDays(serialNumber);
-                    return convertedDate.ToString("yyyy-MM-dd");
-                }
-                catch (FormatException e)
-                {
-                    return value;
-                }
+                case 37:
+                    // Status of Employment
+                    if (value.Contains("Requirements"))
+                        value = "Submitted Documents";
+                    break;
+                case 39:
+                    // Not Hired (Reason)
+                    if (value.Equals("Overage"))
+                        value = "Underage";
+                    else if (value.Equals("Not Yet Qualified"))
+                        value = "Did not meet the requirements";
+                    break;
+            }
+
+            return value;
+        }
+
+        private string DataGridView_CellStringDate(int row, int cell)
+        {
+            object cellValue = dgvImport.Rows[row].Cells[cell].Value;
+            if (cellValue == null) return string.Empty;
+
+            string value = cellValue.ToString();
+            if (DateTime.TryParse(value, out DateTime parsedDate))
+                return parsedDate.ToString("yyyy-MM-dd");
+
+            if (value.Length != 5) return value;
+            if (int.TryParse(value, out int parsedInt))
+            {
+                DateTime excelBaseDate = new DateTime(1899, 12, 30);
+                DateTime convertedDate = excelBaseDate.AddDays(parsedInt);
+                return convertedDate.ToString("yyyy-MM-dd");
             }
 
             return value;

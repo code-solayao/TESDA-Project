@@ -37,6 +37,7 @@
             this.pgExport = new System.Windows.Forms.TabPage();
             this.dgvExport = new System.Windows.Forms.DataGridView();
             this.btnExport = new System.Windows.Forms.Button();
+            this.lblLoading = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvImport)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.pgImport.SuspendLayout();
@@ -79,6 +80,7 @@
             // 
             // pgImport
             // 
+            this.pgImport.Controls.Add(this.lblLoading);
             this.pgImport.Controls.Add(this.btnSubmit);
             this.pgImport.Controls.Add(this.lblFilePath);
             this.pgImport.Controls.Add(this.dgvImport);
@@ -148,6 +150,16 @@
             this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
+            // lblLoading
+            // 
+            this.lblLoading.AutoSize = true;
+            this.lblLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLoading.Location = new System.Drawing.Point(225, 663);
+            this.lblLoading.Name = "lblLoading";
+            this.lblLoading.Size = new System.Drawing.Size(78, 20);
+            this.lblLoading.TabIndex = 4;
+            this.lblLoading.Text = "Loading...";
+            // 
             // FrmExcelData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -178,5 +190,6 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.DataGridView dgvExport;
+        private System.Windows.Forms.Label lblLoading;
     }
 }
