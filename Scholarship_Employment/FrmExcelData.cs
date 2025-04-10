@@ -193,19 +193,19 @@ namespace Scholarship_Employment
                         _company_name = DataGridView_CellString(i, 32);
                         _company_address = DataGridView_CellString(i, 33);
                         _job_title = DataGridView_CellString(i, 34);
-                        _application_status = DataGridView_CellString(i, 35);
-                        _withdrawn_reason = DataGridView_CellString(i, 36);
-                        _employment_status = DataGridView_CellString(i, 37);
-                        _hired_date = DataGridView_CellStringDate(i, 38);
+                        _employment_status = DataGridView_CellString(i, 35);
+                        _hired_date = DataGridView_CellStringDate(i, 36);
                         _submitted_documents_date = string.Empty;
                         _interview_date = string.Empty;
-                        _not_hired_reason = DataGridView_CellString(i, 39);
+                        _not_hired_reason = DataGridView_CellString(i, 37);
 
-                        _count = DataGridView_CellString(i, 40);
-                        _no_of_graduates = DataGridView_CellString(i, 41);
-                        _no_of_employed = DataGridView_CellString(i, 42);
-                        _verification = DataGridView_CellString(i, 43);
-                        _job_vacancies = DataGridView_CellString(i, 44);
+                        _count = DataGridView_CellString(i, 38);
+                        _no_of_graduates = DataGridView_CellString(i, 39);
+                        _no_of_employed = DataGridView_CellString(i, 40);
+                        _verification = DataGridView_CellString(i, 41);
+                        _job_vacancies = DataGridView_CellString(i, 42);
+                        _withdrawn_reason = DataGridView_CellString(i, 43);
+                        _application_status = DataGridView_CellString(i, 44);
 
                         if (String.IsNullOrEmpty(_last_name) && String.IsNullOrEmpty(_first_name) && String.IsNullOrEmpty(_full_name)) 
                             continue;
