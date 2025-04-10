@@ -67,6 +67,7 @@ namespace Scholarship_Employment
         private string _no_of_employed;
         private string _verification;
         private string _job_vacancies;
+        private string _remarks;
 
         #endregion
 
@@ -116,7 +117,7 @@ namespace Scholarship_Employment
                     connection.Open();
 
                     DataTable dataTableExcel = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-                    string sheetName = dataTableExcel.Rows[0]["TABLE_NAME"].ToString();
+                    string sheetName = dataTableExcel.Rows[2]["TABLE_NAME"].ToString();
 
                     string sql = $"SELECT * FROM [{sheetName}]";
                     OleDbCommand command = new OleDbCommand(sql, connection);
@@ -204,8 +205,9 @@ namespace Scholarship_Employment
                         _no_of_employed = DataGridView_CellString(i, 40);
                         _verification = DataGridView_CellString(i, 41);
                         _job_vacancies = DataGridView_CellString(i, 42);
-                        _withdrawn_reason = DataGridView_CellString(i, 43);
+                        _remarks = DataGridView_CellString(i, 43);
                         _application_status = DataGridView_CellString(i, 44);
+                        _withdrawn_reason = string.Empty;
 
                         if (String.IsNullOrEmpty(_last_name) && String.IsNullOrEmpty(_first_name) && String.IsNullOrEmpty(_full_name)) 
                             continue;
@@ -221,7 +223,7 @@ namespace Scholarship_Employment
                             "@referral_date, @no_referral_reason, @invalid_contact, @company_name, @company_address, " +
                             "@job_title, @application_status, @withdrawn_reason, @employment_status, @hired_date, " +
                             "@submitted_documents_date, @interview_date, @not_hired_reason, @count, @no_of_graduates, " +
-                            "@no_of_employed, @verification, @job_vacancies);";
+                            "@no_of_employed, @verification, @job_vacancies, @remarks);";
                         command = new MySqlCommand(sql, connection);
 
                         command.Parameters.AddWithValue("@created_at", _created_at);
@@ -287,6 +289,7 @@ namespace Scholarship_Employment
                         command.Parameters.AddWithValue("@no_of_employed", _no_of_employed);
                         command.Parameters.AddWithValue("@verification", _verification);
                         command.Parameters.AddWithValue("@job_vacancies", _job_vacancies);
+                        command.Parameters.AddWithValue("@remarks", _remarks);
 
                         command.ExecuteNonQuery();
                     }
