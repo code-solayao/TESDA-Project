@@ -116,8 +116,21 @@ namespace Scholarship_Employment
                 {
                     connection.Open();
 
-                    DataTable dataTableExcel = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-                    string sheetName = dataTableExcel.Rows[2]["TABLE_NAME"].ToString();
+                    string sheet = null;
+                    string sheetName = "List of Graduates";
+
+                    DataTable sheets = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                    if (sheets != null && sheets.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in sheets.Rows)
+                        {
+                            if (row["TABLE_NAME"].ToString().Contains(sheetName))
+                                sheet = row["TABLE_NAME"].ToString();
+                        }
+                    }
+                    else MessageBox.Show("No sheets found in the Excel file.", "No Sheets Found");
+                    //DataTable dataTableExcel = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                    //string sheetName = dataTableExcel.Rows[2]["TABLE_NAME"].ToString();
 
                     string sql = $"SELECT * FROM [{sheetName}]";
                     OleDbCommand command = new OleDbCommand(sql, connection);
