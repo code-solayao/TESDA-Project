@@ -84,12 +84,11 @@ namespace Scholarship_Employment
 
         private void btnLoadExcelData_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
-            openFileDialog.Title = "Select an Excel File";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Excel Sheet(*.xlsx)|*.xlsx|All Files(*.*)|*.*";
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
-                string filePath = openFileDialog.FileName;
+                string filePath = ofd.FileName;
                 lblFilePath.Text = filePath;
                 LoadExcelData(filePath, "yes");
             }
@@ -116,34 +115,24 @@ namespace Scholarship_Employment
                 {
                     connection.Open();
 
-                    string sheet = string.Empty;
-                    string sheetName = "List of Graduates";
+                    DataTable dataTableExcel = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                    string sheetName = dataTableExcel.Rows[0]["TABLE_NAME"].ToString();
 
-                    DataTable sheets = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-                    if (sheets != null && sheets.Rows.Count > 0)
-                    {
-                        foreach (DataRow row in sheets.Rows)
-                        {
-                            if (row["TABLE_NAME"].ToString().Contains(sheetName))
-                                sheet = row["TABLE_NAME"].ToString();
-                        }
-                    }
-                    else MessageBox.Show("No sheets found in the Excel file.", "No Sheets Found");
-
-                    string sql = $"SELECT * FROM [{sheet}]";
+                    string sql = $"SELECT * FROM [{sheetName}]";
                     OleDbCommand command = new OleDbCommand(sql, connection);
                     OleDbDataAdapter dataAdapter = new OleDbDataAdapter(command);
                     DataTable dataTable = new DataTable();
                     dataAdapter.Fill(dataTable);
 
-                    dgvImport.DataSource = dataTable;
                     connection.Close();
+                    dgvImport.DataSource = dataTable;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "ERROR");
                 }
             }
+
         }
 
         private void SubmitToDatabase()
