@@ -132,7 +132,7 @@ namespace Scholarship_Employment
                     //DataTable dataTableExcel = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
                     //string sheetName = dataTableExcel.Rows[2]["TABLE_NAME"].ToString();
 
-                    string sql = $"SELECT * FROM [{sheetName}]";
+                    string sql = $"SELECT * FROM [{sheet}]";
                     OleDbCommand command = new OleDbCommand(sql, connection);
                     OleDbDataAdapter dataAdapter = new OleDbDataAdapter(command);
                     DataTable dataTable = new DataTable();
